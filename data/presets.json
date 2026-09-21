@@ -1,0 +1,225 @@
+[
+  {
+    "id": "2026",
+    "label": "2026 conferences",
+    "detail": "FBS membership for 2026. Notre Dame and UConn sit in Independents, outside Power and Group of X.",
+    "basedOn2026": true,
+    "conferences": [
+      {
+        "name": "ACC",
+        "tier": "power",
+        "color": "#1D4E89",
+        "schools": [
+          "boston-college",
+          "california",
+          "clemson",
+          "duke",
+          "florida-state",
+          "georgia-tech",
+          "louisville",
+          "miami-fl",
+          "nc-state",
+          "north-carolina",
+          "pittsburgh",
+          "smu",
+          "stanford",
+          "syracuse",
+          "virginia",
+          "virginia-tech",
+          "wake-forest"
+        ]
+      },
+      {
+        "name": "Big Ten",
+        "tier": "power",
+        "color": "#9E2A2B",
+        "schools": [
+          "illinois",
+          "indiana",
+          "iowa",
+          "maryland",
+          "michigan",
+          "michigan-state",
+          "minnesota",
+          "nebraska",
+          "northwestern",
+          "ohio-state",
+          "oregon",
+          "penn-state",
+          "purdue",
+          "rutgers",
+          "ucla",
+          "usc",
+          "washington",
+          "wisconsin"
+        ]
+      },
+      {
+        "name": "Big 12",
+        "tier": "power",
+        "color": "#C2410C",
+        "schools": [
+          "arizona",
+          "arizona-state",
+          "baylor",
+          "byu",
+          "cincinnati",
+          "colorado",
+          "houston",
+          "iowa-state",
+          "kansas",
+          "kansas-state",
+          "oklahoma-state",
+          "tcu",
+          "texas-tech",
+          "ucf",
+          "utah",
+          "west-virginia"
+        ]
+      },
+      {
+        "name": "SEC",
+        "tier": "power",
+        "color": "#6D28D9",
+        "schools": [
+          "alabama",
+          "arkansas",
+          "auburn",
+          "florida",
+          "georgia",
+          "kentucky",
+          "lsu",
+          "mississippi-state",
+          "missouri",
+          "oklahoma",
+          "ole-miss",
+          "south-carolina",
+          "tennessee",
+          "texas",
+          "texas-a-m",
+          "vanderbilt"
+        ]
+      },
+      {
+        "name": "American",
+        "tier": "group",
+        "color": "#0E7490",
+        "schools": [
+          "army",
+          "charlotte",
+          "east-carolina",
+          "florida-atlantic",
+          "memphis",
+          "navy",
+          "north-texas",
+          "rice",
+          "south-florida",
+          "temple",
+          "tulane",
+          "tulsa",
+          "uab",
+          "utsa"
+        ]
+      },
+      {
+        "name": "Conference USA",
+        "tier": "group",
+        "color": "#B45309",
+        "schools": [
+          "delaware",
+          "fiu",
+          "jacksonville-state",
+          "kennesaw-state",
+          "liberty",
+          "middle-tennessee",
+          "missouri-state",
+          "new-mexico-state",
+          "sam-houston",
+          "western-kentucky"
+        ]
+      },
+      {
+        "name": "MAC",
+        "tier": "group",
+        "color": "#0F6E56",
+        "schools": [
+          "akron",
+          "ball-state",
+          "bowling-green",
+          "buffalo",
+          "central-michigan",
+          "eastern-michigan",
+          "kent-state",
+          "miami-oh",
+          "ohio",
+          "sacramento-state",
+          "toledo",
+          "umass",
+          "western-michigan"
+        ]
+      },
+      {
+        "name": "Mountain West",
+        "tier": "group",
+        "color": "#1E3A8A",
+        "schools": [
+          "air-force",
+          "hawaii",
+          "nevada",
+          "new-mexico",
+          "north-dakota-state",
+          "northern-illinois",
+          "san-jose-state",
+          "unlv",
+          "utep",
+          "wyoming"
+        ]
+      },
+      {
+        "name": "Pac-12",
+        "tier": "group",
+        "color": "#4C1D95",
+        "schools": [
+          "boise-state",
+          "colorado-state",
+          "fresno-state",
+          "oregon-state",
+          "san-diego-state",
+          "texas-state",
+          "utah-state",
+          "washington-state"
+        ]
+      },
+      {
+        "name": "Sun Belt",
+        "tier": "group",
+        "color": "#9A3412",
+        "schools": [
+          "appalachian-state",
+          "arkansas-state",
+          "coastal-carolina",
+          "georgia-southern",
+          "georgia-state",
+          "james-madison",
+          "louisiana",
+          "louisiana-tech",
+          "marshall",
+          "old-dominion",
+          "south-alabama",
+          "southern-miss",
+          "troy",
+          "ulm"
+        ]
+      },
+      {
+        "name": "Independents",
+        "tier": "none",
+        "color": "#57534E",
+        "schools": [
+          "notre-dame",
+          "uconn"
+        ]
+      }
+    ]
+  }
+]

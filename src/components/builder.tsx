@@ -1,8 +1,8 @@
 "use client"
 
 import { useMemo, useState } from "react"
-import { useDroppable } from "@dnd-kit/core"
 import { Plus } from "lucide-react"
+import { useDrag } from "@/components/drag-context"
 import { ConferenceRow } from "@/components/conference-row"
 import { FcsPicker } from "@/components/fcs-picker"
 import { MapView } from "@/components/map-view"
@@ -28,7 +28,7 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
         [school.name, school.abbr, school.city, school.region].join(" ").toLowerCase().includes(needle),
       )
     : unassigned
-  const pool = useDroppable({ id: "pool" })
+  const drag = useDrag()
   const groupCount = board.state.conferences.filter((conference) => conference.tier === "group").length
   const short = board.state.conferences.filter((conference) => conference.schoolIds.length < 2)
 
@@ -157,13 +157,11 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
           />
         </div>
         <div
-          ref={(node) => {
-            pool.setNodeRef(node)
-          }}
           data-testid="unassigned-pool"
+          data-drop-pool=""
           className={cn(
             "flex min-h-28 flex-wrap gap-2 rounded-xl border border-dashed p-2",
-            pool.isOver ? "border-foreground bg-accent" : "border-border",
+            drag.overPool ? "border-foreground bg-accent" : "border-border",
           )}
         >
           {unassigned.length === 0 && (

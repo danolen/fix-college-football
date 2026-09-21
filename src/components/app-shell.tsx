@@ -1,22 +1,10 @@
 "use client"
 
 import { useMemo, useState, useSyncExternalStore } from "react"
-import {
-  DndContext,
-  DragOverlay,
-  KeyboardSensor,
-  MouseSensor,
-  TouchSensor,
-  pointerWithin,
-  rectIntersection,
-  useSensor,
-  useSensors,
-  type CollisionDetection,
-  type DragEndEvent,
-} from "@dnd-kit/core"
 import { RotateCcw } from "lucide-react"
 import { BoardProvider, type BoardApi } from "@/components/board-context"
 import { Builder } from "@/components/builder"
+import { DragProvider, type DropTarget } from "@/components/drag-context"
 import { SchoolDetail } from "@/components/school-detail"
 import { SchoolTileFace } from "@/components/school-tile"
 import { SharePanel } from "@/components/share-panel"
@@ -53,16 +41,10 @@ import { scoreRivalries, scoreTone } from "@/lib/scoring"
 import { discardSavedBoard, getBoardSnapshot, getServerBoardSnapshot, makeId, replaceBoard, subscribeBoard } from "@/lib/storage"
 import type { BoardState, Conference, Mode, Preset, Tier } from "@/lib/types"
 
-const collide: CollisionDetection = (args) => {
-  const hits = pointerWithin(args)
-  return hits.length > 0 ? hits : rectIntersection(args)
-}
-
 export function AppShell() {
   const snapshot = useSyncExternalStore(subscribeBoard, getBoardSnapshot, getServerBoardSnapshot)
   const [tab, setTab] = useState<"build" | "share">("build")
   const [inspectId, setInspectId] = useState<string | null>(null)
-  const [activeId, setActiveId] = useState<string | null>(null)
   const [pending, setPending] = useState<
     | { kind: "preset"; preset: Preset }
     | { kind: "blank" }
@@ -97,12 +79,6 @@ export function AppShell() {
     })
   }, [onBoard, schoolsById, draft])
 
-  const sensors = useSensors(
-    useSensor(MouseSensor, { activationConstraint: { distance: 6 } }),
-    useSensor(TouchSensor, { activationConstraint: { delay: 160, tolerance: 8 } }),
-    useSensor(KeyboardSensor),
-  )
-
   if (!snapshot || !draft) {
     return (
       <main className="mx-auto flex min-h-full max-w-3xl flex-col justify-center px-6 py-16">
@@ -116,29 +92,15 @@ export function AppShell() {
   const loadError = snapshot.loadError
   const unlocked = shareUnlocked(state)
   const tone = scoreTone(score.kept, score.total, catalog.thresholds)
-  const activeSchool = activeId ? schoolsById.get(activeId) ?? null : null
-
   function commit(next: BoardState) {
     replaceBoard(next)
     if (tab === "share" && !shareUnlocked(next)) setTab("build")
   }
 
-  function onDragEnd(event: DragEndEvent) {
-    setActiveId(null)
-    const schoolId = event.active.data.current?.schoolId as string | undefined
-    if (!schoolId || !event.over) return
-    const overId = String(event.over.id)
-    let target: string | null = null
-    let beforeId: string | null = null
-    if (overId === "pool") target = null
-    else if (overId.startsWith("conference:")) target = overId.slice("conference:".length)
-    else if (overId.startsWith("slot:") || overId.startsWith("school:")) {
-      const otherId = overId.split(":")[1]
-      if (!otherId || otherId === schoolId) return
-      target = conferenceOf(state).get(otherId) ?? null
-      beforeId = target ? otherId : null
-    } else return
-    commit(moveSchool(state, schoolId, target, beforeId))
+  function dropSchool(schoolId: string, target: DropTarget) {
+    const board = getBoardSnapshot()?.board
+    if (!board) return
+    commit(moveSchool(board, schoolId, target.conferenceId, target.beforeId))
   }
 
   function commitPreset(preset: Preset) {
@@ -244,14 +206,14 @@ export function AppShell() {
           </div>
         )}
 
-        <main className="mx-auto max-w-7xl px-4 py-5 sm:px-6">
-          <DndContext
-            sensors={sensors}
-            collisionDetection={collide}
-            onDragStart={(event) => setActiveId(String(event.active.data.current?.schoolId ?? ""))}
-            onDragCancel={() => setActiveId(null)}
-            onDragEnd={onDragEnd}
-          >
+        <DragProvider
+          onDrop={dropSchool}
+          overlay={(schoolId) => {
+            const school = schoolsById.get(schoolId)
+            return school ? <SchoolTileFace school={school} /> : null
+          }}
+        >
+          <main className="mx-auto max-w-7xl px-4 py-5 sm:px-6">
             <Tabs value={tab} onValueChange={(value) => api.setTab(value as "build" | "share")}>
               <TabsContent value="build">
                 <Builder onInspect={setInspectId} />
@@ -260,9 +222,8 @@ export function AppShell() {
                 <SharePanel />
               </TabsContent>
             </Tabs>
-            <DragOverlay>{activeSchool ? <SchoolTileFace school={activeSchool} /> : null}</DragOverlay>
-          </DndContext>
-        </main>
+          </main>
+        </DragProvider>
 
         <footer className="mx-auto max-w-7xl px-4 py-8 text-xs leading-relaxed text-muted-foreground sm:px-6">
           Fix College Football is not affiliated with the NCAA, any conference, or any school. Helmets are original

@@ -1,8 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { useDroppable } from "@dnd-kit/core"
 import { ArrowLeftRight, Trash2 } from "lucide-react"
+import { useDrag } from "@/components/drag-context"
 import { SchoolTile } from "@/components/school-tile"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -38,10 +38,14 @@ export function ConferenceRow({
     setSourceName(conference.name)
     setName(conference.name)
   }
-  const droppable = useDroppable({ id: `conference:${conference.id}` })
+  const drag = useDrag()
+  const targeted = drag.overConferenceId === conference.id
 
   return (
-    <section className="rounded-2xl border bg-card p-3 shadow-sm" data-conference-id={conference.id}>
+    <section
+      className={cn("rounded-2xl border bg-card p-3 shadow-sm", targeted && "ring-2 ring-foreground")}
+      data-conference-id={conference.id}
+    >
       <div className="mb-2 flex flex-wrap items-center gap-2">
         <Popover>
           <PopoverTrigger
@@ -105,12 +109,9 @@ export function ConferenceRow({
         </div>
       </div>
       <div
-        ref={(node) => {
-          droppable.setNodeRef(node)
-        }}
         className={cn(
           "flex min-h-24 flex-wrap gap-2 rounded-xl border border-dashed p-2",
-          droppable.isOver ? "border-foreground bg-accent" : "border-border bg-background/40",
+          targeted ? "border-foreground bg-accent" : "border-border bg-background/40",
         )}
       >
         {schools.length === 0 && (

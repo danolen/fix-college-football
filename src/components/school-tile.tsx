@@ -1,10 +1,10 @@
 "use client"
 
-import { useDraggable, useDroppable } from "@dnd-kit/core"
 import { Info } from "lucide-react"
 import { inkOn } from "@/lib/colors"
 import type { School } from "@/lib/types"
 import { HelmetMark } from "@/components/helmet-mark"
+import { useDrag } from "@/components/drag-context"
 import { cn } from "@/lib/utils"
 
 export function SchoolTile({
@@ -16,31 +16,21 @@ export function SchoolTile({
   readOnly?: boolean
   onInspect?: (school: School) => void
 }) {
-  const draggable = useDraggable({
-    id: `school:${school.id}`,
-    data: { schoolId: school.id },
-    disabled: readOnly,
-  })
-  const droppable = useDroppable({
-    id: `slot:${school.id}`,
-    data: { schoolId: school.id },
-    disabled: readOnly,
-  })
+  const drag = useDrag()
   const ink = inkOn(school.primary)
+  const dragging = drag.activeId === school.id
+  const targeted = drag.overSchoolId === school.id && !dragging
   return (
     <div
-      ref={(node) => {
-        draggable.setNodeRef(node)
-        droppable.setNodeRef(node)
-      }}
       data-school-id={school.id}
+      draggable={false}
+      onPointerDown={readOnly ? undefined : (event) => drag.startPointerDrag(event, school.id)}
       className={cn(
-        "group relative flex w-[4.6rem] shrink-0 cursor-grab flex-col items-center gap-1 rounded-xl px-1 py-1.5 active:cursor-grabbing sm:w-[5.1rem]",
-        draggable.isDragging && "opacity-40",
-        droppable.isOver && "ring-2 ring-foreground",
+        "group relative flex w-[4.6rem] shrink-0 touch-none flex-col items-center gap-1 rounded-xl px-1 py-1.5 select-none sm:w-[5.1rem]",
+        readOnly ? "" : "cursor-grab active:cursor-grabbing",
+        dragging && "opacity-40",
+        targeted && "ring-2 ring-foreground",
       )}
-      {...(readOnly ? {} : draggable.listeners)}
-      {...(readOnly ? {} : draggable.attributes)}
     >
       <div
         className="flex w-full flex-col items-center rounded-lg border-2 px-1 pt-1 pb-1.5"
@@ -76,15 +66,15 @@ export function SchoolTileFace({ school }: { school: School }) {
   const ink = inkOn(school.primary)
   return (
     <div
-      className="flex w-16 flex-col items-center rounded-lg border-2 px-1 pt-1 pb-1.5"
+      className="flex w-16 flex-col items-center rounded-lg border-2 px-1 pt-1 pb-1.5 shadow-lg"
       style={{ background: school.primary, borderColor: school.secondary, color: ink }}
     >
       <HelmetMark primary={school.primary} secondary={school.secondary} className="h-11 w-12" />
       <span
-      className={`font-display leading-none font-semibold tracking-wide ${school.abbr.length >= 5 ? "text-[0.68rem]" : "text-sm"}`}
-    >
-      {school.abbr}
-    </span>
+        className={`font-display leading-none font-semibold tracking-wide ${school.abbr.length >= 5 ? "text-[0.68rem]" : "text-sm"}`}
+      >
+        {school.abbr}
+      </span>
     </div>
   )
 }

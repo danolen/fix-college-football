@@ -24,7 +24,7 @@ export function SchoolTile({
       draggable={false}
       onPointerDown={readOnly ? undefined : (event) => drag.startPointerDrag(event, school.id)}
       className={cn(
-        "group relative flex w-[5.6rem] shrink-0 touch-none flex-col items-center gap-0.5 rounded-xl px-0.5 py-1 select-none",
+        "group relative flex w-[5.4rem] shrink-0 touch-none flex-col items-center gap-0.5 rounded-xl px-0.5 py-1 select-none",
         readOnly ? "" : "cursor-grab active:cursor-grabbing",
         dragging && "opacity-40",
         targeted && "ring-2 ring-foreground",
@@ -34,7 +34,7 @@ export function SchoolTile({
         primary={school.primary}
         secondary={school.secondary}
         abbr={school.abbr}
-        className="h-[4.35rem] w-full"
+        className="h-[5.2rem] w-full"
       />
       <span className="max-w-full truncate text-[0.65rem] text-muted-foreground">{school.name}</span>
       {onInspect && (
@@ -61,7 +61,7 @@ export function SchoolTileFace({ school }: { school: School }) {
       primary={school.primary}
       secondary={school.secondary}
       abbr={school.abbr}
-      className="h-[4.35rem] w-[5.4rem] drop-shadow-md"
+      className="h-[5.2rem] w-[5.2rem] drop-shadow-md"
     />
   )
 }

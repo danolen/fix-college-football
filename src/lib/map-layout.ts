@@ -1,4 +1,4 @@
-import { geoAlbers, geoPath, type GeoPermissibleObjects } from "d3-geo"
+import { geoAlbers, geoBounds, geoPath, type GeoPermissibleObjects } from "d3-geo"
 import type { Feature, Geometry } from "geojson"
 import { blobPath, type Pt } from "@/lib/hull"
 import type { Conference, School } from "@/lib/types"
@@ -50,6 +50,7 @@ export type MapInset = {
 export type MapScene = {
   width: number
   height: number
+  mainHeight: number
   land: string[]
   lakes: string[]
   blobs: MapBlob[]
@@ -84,31 +85,29 @@ export function layoutMap(args: {
   const band = showHawaii || showAlaska ? 128 : 0
   const mainHeight = height - band
 
-  const mainLand = args.geo.regions.filter((item) => item.region === "main")
+  const stateLand = args.geo.regions.filter(
+    (item) => item.kind === "state" && item.region === "main" && isLowerFortyEight(item.geometry),
+  )
   const projection = geoAlbers().parallels([29.5, 45.5]).rotate([96, 0])
   const fitFeature = {
     type: "FeatureCollection",
-    features: args.geo.regions
-      .filter((item) => item.kind === "state" && item.region === "main")
-      .map((item) => ({ type: "Feature", properties: {}, geometry: item.geometry }) as Feature),
+    features: stateLand.map((item) => ({ type: "Feature", properties: {}, geometry: item.geometry }) as Feature),
   }
   projection.fitExtent(
     [
-      [10, 10],
-      [width - 10, mainHeight - 12],
+      [12, 12],
+      [width - 12, mainHeight - 12],
     ],
     fitFeature as GeoPermissibleObjects,
   )
   const path = geoPath(projection)
-  const land = mainLand.map((item) => path(item.geometry) ?? "").filter(Boolean)
+  const land = stateLand.map((item) => path(item.geometry) ?? "").filter(Boolean)
   const lakes = args.geo.lakes.map((geometry) => path(geometry) ?? "").filter(Boolean)
 
   const mainSchools = located.filter((school) => geoRegion(school.lat, school.lon) === "main")
   const projectMain = (school: School): Pt | null => {
     const point = projection([school.lon, school.lat])
-    if (!point) return null
-    if (point[0] < -20 || point[1] < -20 || point[0] > width + 20 || point[1] > mainHeight + 20) return null
-    return point
+    return point ? [point[0], point[1]] : null
   }
 
   const dots: MapDot[] = []
@@ -175,7 +174,12 @@ export function layoutMap(args: {
     )
   }
 
-  return { width, height, land, lakes, blobs, dots, insets }
+  return { width, height, mainHeight, land, lakes, blobs, dots, insets }
+}
+
+function isLowerFortyEight(geometry: Geometry): boolean {
+  const [[minLon, minLat], [maxLon, maxLat]] = geoBounds(geometry)
+  return minLon > -130 && maxLon < -60 && minLat > 23 && maxLat < 50
 }
 
 function buildInset(args: {

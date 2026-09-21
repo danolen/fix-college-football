@@ -14,7 +14,7 @@ import { shareText } from "@/lib/scoring"
 export function SharePanel() {
   const board = useBoard()
   const gridRef = useRef<HTMLDivElement>(null)
-  const mapRef = useRef<SVGSVGElement>(null)
+  const mapFrame = useRef<HTMLDivElement>(null)
   const [busy, setBusy] = useState<"grid" | "map" | null>(null)
   const text = shareText(board.scoreKept, board.scoreTotal)
   const outside = board.state.conferences.filter((conference) => conference.tier === "none")
@@ -49,7 +49,7 @@ export function SharePanel() {
   }
 
   async function saveMap() {
-    const svg = mapRef.current
+    const svg = mapFrame.current?.querySelector("svg") ?? null
     if (!svg) {
       toast.error("The map is not ready yet.")
       return
@@ -137,11 +137,10 @@ export function SharePanel() {
       </div>
 
       <div className="overflow-x-auto">
-        <div className="min-w-[720px]">
+        <div ref={mapFrame} className="min-w-[720px]">
           <MapView
             schools={board.onBoard}
             conferences={board.state.conferences}
-            svgRef={mapRef}
             className="h-[36rem] w-full"
           />
         </div>

@@ -104,8 +104,7 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
         <MapView
           schools={board.onBoard}
           conferences={board.state.conferences}
-          includeUnassigned={false}
-          className="h-[28rem] w-full sm:h-[32rem] lg:sticky lg:top-36 lg:h-[calc(100vh-9rem)] lg:min-h-[34rem]"
+          className="h-[28rem] w-full sm:h-[32rem] lg:sticky lg:top-36 lg:h-[calc(100vh-17.5rem)] lg:min-h-[32rem]"
         />
         <div className="flex flex-col gap-4">
           {board.state.mode === "flat" ? (

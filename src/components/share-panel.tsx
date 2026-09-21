@@ -17,8 +17,6 @@ export function SharePanel() {
   const mapRef = useRef<SVGSVGElement>(null)
   const [busy, setBusy] = useState<"grid" | "map" | null>(null)
   const text = shareText(board.scoreKept, board.scoreTotal)
-  const placed = new Set(board.state.conferences.flatMap((conference) => conference.schoolIds))
-  const assigned = board.onBoard.filter((school) => placed.has(school.id))
   const outside = board.state.conferences.filter((conference) => conference.tier === "none")
   const sections =
     board.state.mode === "tiers"
@@ -77,7 +75,7 @@ export function SharePanel() {
       <div className="rounded-2xl border bg-card p-6">
         <h2 className="font-display text-2xl font-semibold">Share is locked</h2>
         <p className="mt-2 max-w-xl text-sm text-muted-foreground">
-          Every conference other than Independents needs at least two schools. Independents can be empty. Other empty conferences count against you — fill them or delete them. Schools left unassigned can stay in the pool, and they stay off the map.
+          Every conference other than Independents needs at least two schools. Independents can be empty. Other empty conferences count against you — fill them or delete them. Schools left unassigned can stay in the pool. On the map they stay as gray dots.
         </p>
       </div>
     )
@@ -141,9 +139,8 @@ export function SharePanel() {
       <div className="overflow-x-auto">
         <div className="min-w-[720px]">
           <MapView
-            schools={assigned}
+            schools={board.onBoard}
             conferences={board.state.conferences}
-            includeUnassigned={false}
             svgRef={mapRef}
             className="h-[36rem] w-full"
           />

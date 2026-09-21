@@ -9,13 +9,11 @@ import { Button } from "@/components/ui/button"
 export function MapView({
   schools,
   conferences,
-  includeUnassigned,
   className,
   svgRef,
 }: {
   schools: School[]
   conferences: Conference[]
-  includeUnassigned: boolean
   className?: string
   svgRef?: Ref<SVGSVGElement>
 }) {
@@ -60,7 +58,7 @@ export function MapView({
 
   const scene =
     geo && status === "ready"
-      ? layoutMap({ geo, schools, conferences, width: size.width, height: size.height, includeUnassigned })
+      ? layoutMap({ geo, schools, conferences, width: size.width, height: size.height })
       : null
 
   return (
@@ -97,11 +95,29 @@ export function MapView({
             <path key={`lake-${index}`} d={d} fill="#d5e3ea" />
           ))}
           {scene.blobs.map((blob) => (
-            <path key={blob.name + blob.d.slice(0, 24)} d={blob.d} fill={blob.color} fillOpacity={0.38} stroke={blob.color} strokeWidth={1.5} />
+            <path
+              key={blob.name + blob.d.slice(0, 24)}
+              data-map-blob={blob.name}
+              d={blob.d}
+              fill={blob.color}
+              fillOpacity={0.12}
+              stroke={blob.color}
+              strokeOpacity={0.28}
+              strokeWidth={1.25}
+            />
           ))}
           {scene.dots.map((dot) => (
             <g key={dot.id}>
-              <circle cx={dot.x} cy={dot.y} r={Math.max(5.5, scene.width / 130)} fill={dot.color} stroke="#fbf6ec" strokeWidth={1.6} />
+              <circle
+                data-map-dot={dot.id}
+                data-assigned={dot.assigned ? "yes" : "no"}
+                cx={dot.x}
+                cy={dot.y}
+                r={Math.max(5.5, scene.width / 130)}
+                fill={dot.color}
+                stroke="#fbf6ec"
+                strokeWidth={1.6}
+              />
               <title>{dot.name}</title>
             </g>
           ))}
@@ -125,7 +141,7 @@ export function MapView({
             ) : null,
           )}
           {scene.insets.map((inset) => (
-            <g key={inset.label}>
+            <g key={inset.label} data-map-inset={inset.label}>
               <rect x={inset.x} y={inset.y} width={inset.width} height={inset.height} rx={8} fill="#d5e3ea" stroke="#7f9788" />
               <text x={inset.x + 8} y={inset.y + 13} fontSize={10} fontWeight={700} fill="#1c1915" fontFamily="Arial, Helvetica, sans-serif">
                 {inset.label}
@@ -134,10 +150,28 @@ export function MapView({
                 <path key={`${inset.label}-land-${index}`} d={d} fill="#e7efe4" stroke="#7f9788" strokeWidth={0.5} />
               ))}
               {inset.blobs.map((blob) => (
-                <path key={`${inset.label}-${blob.d.slice(0, 16)}`} d={blob.d} fill={blob.color} fillOpacity={0.38} stroke={blob.color} />
+                <path
+                  key={`${inset.label}-${blob.d.slice(0, 16)}`}
+                  data-map-blob={blob.name}
+                  d={blob.d}
+                  fill={blob.color}
+                  fillOpacity={0.12}
+                  stroke={blob.color}
+                  strokeOpacity={0.28}
+                />
               ))}
               {inset.dots.map((dot) => (
-                <circle key={dot.id} cx={dot.x} cy={dot.y} r={4.5} fill={dot.color} stroke="#fbf6ec" strokeWidth={1.2} />
+                <circle
+                  key={dot.id}
+                  data-map-dot={dot.id}
+                  data-assigned={dot.assigned ? "yes" : "no"}
+                  cx={dot.x}
+                  cy={dot.y}
+                  r={5}
+                  fill={dot.color}
+                  stroke="#fbf6ec"
+                  strokeWidth={1.2}
+                />
               ))}
             </g>
           ))}

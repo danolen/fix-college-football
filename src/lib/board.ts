@@ -142,8 +142,15 @@ export function removeFcsSchool(state: BoardState, schoolId: string): BoardState
   }
 }
 
+export function isIndependents(conference: { name: string }): boolean {
+  return conference.name.trim().toLowerCase() === "independents"
+}
+
 export function shareUnlocked(state: BoardState): boolean {
-  return state.conferences.length > 0 && state.conferences.every((conference) => conference.schoolIds.length >= 2)
+  return (
+    state.conferences.length > 0 &&
+    state.conferences.every((conference) => isIndependents(conference) || conference.schoolIds.length >= 2)
+  )
 }
 
 export function onBoardIds(fbsIds: string[], state: BoardState): string[] {

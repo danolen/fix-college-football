@@ -77,7 +77,7 @@ export function SharePanel() {
       <div className="rounded-2xl border bg-card p-6">
         <h2 className="font-display text-2xl font-semibold">Share is locked</h2>
         <p className="mt-2 max-w-xl text-sm text-muted-foreground">
-          Every conference needs at least two schools. Empty conferences count against you — fill them or delete them. Schools left unassigned can stay in the pool.
+          Every conference other than Independents needs at least two schools. Independents can be empty. Other empty conferences count against you — fill them or delete them. Schools left unassigned can stay in the pool, and they stay off the map.
         </p>
       </div>
     )
@@ -145,6 +145,7 @@ export function SharePanel() {
             conferences={board.state.conferences}
             includeUnassigned={false}
             svgRef={mapRef}
+            className="h-[36rem] w-full"
           />
         </div>
       </div>

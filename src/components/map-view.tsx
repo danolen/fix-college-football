@@ -22,7 +22,7 @@ export function MapView({
   const [geo, setGeo] = useState<NorthAmericaGeo | null>(null)
   const [status, setStatus] = useState<"loading" | "ready" | "error">("loading")
   const [attempt, setAttempt] = useState(0)
-  const [width, setWidth] = useState(720)
+  const [size, setSize] = useState({ width: 960, height: 640 })
 
   useEffect(() => {
     let cancelled = false
@@ -49,27 +49,29 @@ export function MapView({
   useEffect(() => {
     if (!node) return
     const observer = new ResizeObserver(() => {
-      setWidth(Math.max(320, Math.round(node.clientWidth)))
+      const width = Math.max(320, Math.round(node.clientWidth))
+      const measured = Math.round(node.clientHeight)
+      const height = Math.max(360, measured > 80 ? measured : Math.round(width * 0.72))
+      setSize({ width, height })
     })
     observer.observe(node)
     return () => observer.disconnect()
   }, [node])
 
-  const height = Math.max(300, Math.round(width * 0.62))
   const scene =
     geo && status === "ready"
-      ? layoutMap({ geo, schools, conferences, width, height, includeUnassigned })
+      ? layoutMap({ geo, schools, conferences, width: size.width, height: size.height, includeUnassigned })
       : null
 
   return (
     <div ref={setNode} className={className}>
       {status === "loading" && (
-        <div className="flex h-72 items-center justify-center rounded-2xl border bg-card text-sm text-muted-foreground">
+        <div className="flex h-full min-h-[22rem] items-center justify-center rounded-2xl border bg-card text-sm text-muted-foreground">
           Drawing the map…
         </div>
       )}
       {status === "error" && (
-        <div className="flex h-72 flex-col items-center justify-center gap-3 rounded-2xl border bg-card px-6 text-center">
+        <div className="flex h-full min-h-[22rem] flex-col items-center justify-center gap-3 rounded-2xl border bg-card px-6 text-center">
           <p className="text-sm">The map could not be loaded.</p>
           <Button type="button" variant="outline" onClick={() => {
             setStatus("loading")
@@ -83,11 +85,9 @@ export function MapView({
         <svg
           ref={svgRef}
           viewBox={`0 0 ${scene.width} ${scene.height}`}
-          width={scene.width}
-          height={scene.height}
           role="img"
           aria-label="Map of conferences across North America"
-          className="h-auto max-w-full rounded-2xl border bg-[#d5e3ea]"
+          className="block h-full w-full rounded-2xl border bg-[#d5e3ea]"
         >
           <rect width={scene.width} height={scene.height} fill="#d5e3ea" />
           {scene.land.map((d, index) => (
@@ -101,7 +101,7 @@ export function MapView({
           ))}
           {scene.dots.map((dot) => (
             <g key={dot.id}>
-              <circle cx={dot.x} cy={dot.y} r={4.5} fill={dot.color} stroke="#fbf6ec" strokeWidth={1.4} />
+              <circle cx={dot.x} cy={dot.y} r={Math.max(5.5, scene.width / 130)} fill={dot.color} stroke="#fbf6ec" strokeWidth={1.6} />
               <title>{dot.name}</title>
             </g>
           ))}
@@ -137,7 +137,7 @@ export function MapView({
                 <path key={`${inset.label}-${blob.d.slice(0, 16)}`} d={blob.d} fill={blob.color} fillOpacity={0.38} stroke={blob.color} />
               ))}
               {inset.dots.map((dot) => (
-                <circle key={dot.id} cx={dot.x} cy={dot.y} r={3.5} fill={dot.color} stroke="#fbf6ec" strokeWidth={1} />
+                <circle key={dot.id} cx={dot.x} cy={dot.y} r={4.5} fill={dot.color} stroke="#fbf6ec" strokeWidth={1.2} />
               ))}
             </g>
           ))}

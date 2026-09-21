@@ -73,8 +73,13 @@ export function layoutMap(args: {
   const width = Math.max(320, args.width)
   const height = Math.max(260, args.height)
   const located = args.schools.filter((school) => Number.isFinite(school.lat) && Number.isFinite(school.lon))
-  const showHawaii = located.some((school) => geoRegion(school.lat, school.lon) === "hawaii")
-  const showAlaska = located.some((school) => geoRegion(school.lat, school.lon) === "alaska")
+  const membership = new Map<string, Conference>()
+  for (const conference of args.conferences) {
+    for (const schoolId of conference.schoolIds) membership.set(schoolId, conference)
+  }
+  const drawn = located.filter((school) => args.includeUnassigned || membership.has(school.id))
+  const showHawaii = drawn.some((school) => geoRegion(school.lat, school.lon) === "hawaii")
+  const showAlaska = drawn.some((school) => geoRegion(school.lat, school.lon) === "alaska")
   const band = showHawaii || showAlaska ? 96 : 0
   const mainHeight = height - band
 
@@ -97,12 +102,7 @@ export function layoutMap(args: {
   const land = mainLand.map((item) => path(item.geometry) ?? "").filter(Boolean)
   const lakes = args.geo.lakes.map((geometry) => path(geometry) ?? "").filter(Boolean)
 
-  const membership = new Map<string, Conference>()
-  for (const conference of args.conferences) {
-    for (const schoolId of conference.schoolIds) membership.set(schoolId, conference)
-  }
-
-  const mainSchools = located.filter((school) => geoRegion(school.lat, school.lon) === "main")
+  const mainSchools = drawn.filter((school) => geoRegion(school.lat, school.lon) === "main")
   const projectMain = (school: School): Pt | null => {
     const point = projection([school.lon, school.lat])
     if (!point) return null
@@ -146,7 +146,7 @@ export function layoutMap(args: {
     insets.push(
       buildInset({
         geo: args.geo,
-        schools: located.filter((school) => geoRegion(school.lat, school.lon) === "hawaii"),
+        schools: drawn.filter((school) => geoRegion(school.lat, school.lon) === "hawaii"),
         region: "hawaii",
         label: "Hawaiʻi",
         x: 12,
@@ -162,7 +162,7 @@ export function layoutMap(args: {
     insets.push(
       buildInset({
         geo: args.geo,
-        schools: located.filter((school) => geoRegion(school.lat, school.lon) === "alaska"),
+        schools: drawn.filter((school) => geoRegion(school.lat, school.lon) === "alaska"),
         region: "alaska",
         label: "Alaska",
         x: showHawaii ? 28 + insetWidth : 12,

@@ -38,7 +38,3 @@ export function relativeLuminance(hex: string): number {
 export function inkOn(hex: string): string {
   return relativeLuminance(hex) > 0.62 ? "#1c1915" : "#fbf6ec"
 }
-
-export function helmetShell(hex: string): string {
-  return relativeLuminance(hex) > 0.78 ? "#1c1915" : "#f7f3ea"
-}

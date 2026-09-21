@@ -77,6 +77,33 @@ describe("board", () => {
     assert.equal(shareUnlocked(state), true)
   })
 
+  it("does not let Independents block sharing", () => {
+    let state = createBlankBoard(ids)
+    state = {
+      ...state,
+      conferences: state.conferences.map((conference, index) =>
+        index === 0
+          ? { ...conference, name: "Independents", schoolIds: [] }
+          : { ...conference, schoolIds: [`a${index}`, `b${index}`] },
+      ),
+    }
+    assert.equal(shareUnlocked(state), true)
+    state = {
+      ...state,
+      conferences: state.conferences.map((conference) =>
+        conference.name === "Independents" ? { ...conference, schoolIds: ["notre-dame"] } : conference,
+      ),
+    }
+    assert.equal(shareUnlocked(state), true)
+    state = {
+      ...state,
+      conferences: state.conferences.map((conference) =>
+        conference.name === "Conference 2" ? { ...conference, schoolIds: ["only"] } : conference,
+      ),
+    }
+    assert.equal(shareUnlocked(state), false)
+  })
+
   it("applies a preset without dropping membership when the mode changes", () => {
     const preset: Preset = {
       id: "2026",

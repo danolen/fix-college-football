@@ -21,6 +21,6 @@ Your layout is stored in this browser only. There is no account and no link that
 
 - Build: presets, a flat list or Power and Group of X, an optional FCS picker, and drag-and-drop.
 - Score: rivalries kept together, equal weight. Green and amber follow the same fractions as the inspiration (25/45 and 15/45) of the rivalries whose schools are both on the board.
-- Share: once every conference has at least two schools, download a grid image, download a map image, or post the text to X. The post is text only.
+- Share: once every conference other than Independents has at least two schools, download a grid image, download a map image, or post the text to X. Independents can have two, one, or none. The post is text only. The map draws only schools that are in a conference.
 
 School and rivalry data lives in `data/`. The map is drawn from Natural Earth lakes and public-domain country and state outlines in `public/geo/north-america.json`. No map API key.

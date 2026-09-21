@@ -10,6 +10,7 @@ import { SchoolTile } from "@/components/school-tile"
 import { useBoard } from "@/components/board-context"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { isIndependents } from "@/lib/board"
 import type { Tier } from "@/lib/types"
 import { cn } from "@/lib/utils"
 
@@ -30,7 +31,9 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
     : unassigned
   const drag = useDrag()
   const groupCount = board.state.conferences.filter((conference) => conference.tier === "group").length
-  const short = board.state.conferences.filter((conference) => conference.schoolIds.length < 2)
+  const short = board.state.conferences.filter(
+    (conference) => !isIndependents(conference) && conference.schoolIds.length < 2,
+  )
 
   return (
     <div className="flex flex-col gap-5">
@@ -93,11 +96,17 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
       </p>
       <p className="text-sm" data-testid="share-lock">
         {board.unlocked
-          ? "Share is open. Every conference has at least two schools."
+          ? "Share is open. Every conference besides Independents has at least two schools."
           : `Share is locked. ${short.map((conference) => `${conference.name} (${conference.schoolIds.length})`).join(", ") || "Add a conference"} still need two schools.`}
       </p>
 
-      <div className="grid items-start gap-5 xl:grid-cols-[minmax(0,1.4fr)_minmax(18rem,0.8fr)]">
+      <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1.7fr)_minmax(17.5rem,0.72fr)]">
+        <MapView
+          schools={board.onBoard}
+          conferences={board.state.conferences}
+          includeUnassigned={false}
+          className="h-[28rem] w-full sm:h-[32rem] lg:sticky lg:top-36 lg:h-[calc(100vh-9rem)] lg:min-h-[34rem]"
+        />
         <div className="flex flex-col gap-4">
           {board.state.mode === "flat" ? (
             <TierBlock
@@ -132,12 +141,6 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
             </>
           )}
         </div>
-        <MapView
-          schools={board.onBoard}
-          conferences={board.state.conferences}
-          includeUnassigned
-          className="xl:sticky xl:top-24"
-        />
       </div>
 
       <section className="rounded-2xl border bg-card p-3">

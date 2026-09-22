@@ -226,8 +226,8 @@ export function AppShell() {
         </DragProvider>
 
         <footer className="mx-auto max-w-7xl px-4 py-8 text-xs leading-relaxed text-muted-foreground sm:px-6">
-          Fix College Football is not affiliated with the NCAA, any conference, or any school. Helmets are original
-          silhouettes in school colors, not official athletic marks. The toy is inspired by Lily Lavender’s{" "}
+          Fix College Football is not affiliated with the NCAA, any conference, or any school. Tiles are colored
+          circles in school colors, not official athletic marks. The toy is inspired by Lily Lavender’s{" "}
           <a className="underline" href="https://lilylavender.github.io/youTryItThen/">
             youTryItThen
           </a>

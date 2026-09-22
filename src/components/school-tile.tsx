@@ -2,7 +2,7 @@
 
 import { Info } from "lucide-react"
 import type { School } from "@/lib/types"
-import { HelmetMark } from "@/components/helmet-mark"
+import { SchoolMark } from "@/components/school-mark"
 import { useDrag } from "@/components/drag-context"
 import { cn } from "@/lib/utils"
 
@@ -30,11 +30,11 @@ export function SchoolTile({
         targeted && "ring-2 ring-foreground",
       )}
     >
-      <HelmetMark
+      <SchoolMark
         primary={school.primary}
         secondary={school.secondary}
         abbr={school.abbr}
-        className="h-[5.2rem] w-full"
+        className="size-[4.6rem]"
       />
       <span className="max-w-full truncate text-[0.65rem] text-muted-foreground">{school.name}</span>
       {onInspect && (
@@ -57,11 +57,11 @@ export function SchoolTile({
 
 export function SchoolTileFace({ school }: { school: School }) {
   return (
-    <HelmetMark
+    <SchoolMark
       primary={school.primary}
       secondary={school.secondary}
       abbr={school.abbr}
-      className="h-[5.2rem] w-[5.2rem] drop-shadow-md"
+      className="size-[4.6rem] drop-shadow-md"
     />
   )
 }

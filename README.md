@@ -4,7 +4,7 @@ An in-browser toy for rearranging NCAA FBS conferences. Open a blank board, or s
 
 The interaction is inspired by Lily Lavender’s [youTryItThen](https://lilylavender.github.io/youTryItThen/) ([source](https://github.com/LilyLavender/youTryItThen)), a browser toy for redrawing MLB divisions. That repository does not include a license file, so this project does not reuse its source. The code here is a separate implementation.
 
-This site is not affiliated with the NCAA, any conference, or any school. Tiles are original helmet silhouettes in school colors, not official athletic marks.
+This site is not affiliated with the NCAA, any conference, or any school. Tiles are colored circles in school colors — primary fill, secondary border, school abbreviation — not official athletic marks.
 
 ## Run it
 

@@ -1,7 +1,7 @@
 import { geoAlbers, geoBounds, geoPath, type GeoPermissibleObjects } from "d3-geo"
 import type { Feature, Geometry } from "geojson"
-import { blobPath, type Pt } from "@/lib/hull"
-import type { Conference, School } from "@/lib/types"
+import { blobPath, type Pt } from "./hull"
+import type { Conference, MapColorMode, MapShowMode, School } from "./types"
 
 export type MapRegion = "main" | "hawaii" | "alaska"
 
@@ -33,6 +33,27 @@ export type MapDot = {
   y: number
   color: string
   assigned: boolean
+  primary: string
+  secondary: string
+  abbr: string
+}
+
+export function mapDotRadius(width: number) {
+  return Math.max(5.5, width / 130)
+}
+
+export function mapSchoolMarkSize(width: number, inset = false) {
+  if (inset) return Math.max(14, Math.min(18, width / 18))
+  return Math.max(16, Math.min(22, width / 44))
+}
+
+export function conferenceBlobPad(width: number, colorBy: MapColorMode, inset = false) {
+  if (inset) {
+    const mark = colorBy === "schools" ? mapSchoolMarkSize(width, true) / 2 : 5
+    return mark + 2
+  }
+  const mark = colorBy === "schools" ? mapSchoolMarkSize(width) / 2 : mapDotRadius(width)
+  return mark + 3
 }
 
 export type MapInset = {
@@ -72,9 +93,13 @@ export function layoutMap(args: {
   conferences: Conference[]
   width: number
   height: number
+  show?: MapShowMode
+  colorBy?: MapColorMode
 }): MapScene {
   const width = Math.max(320, args.width)
   const height = Math.max(260, args.height)
+  const show = args.show ?? "all"
+  const colorBy = args.colorBy ?? "conference"
   const located = args.schools.filter((school) => Number.isFinite(school.lat) && Number.isFinite(school.lon))
   const membership = new Map<string, Conference>()
   for (const conference of args.conferences) {
@@ -110,20 +135,16 @@ export function layoutMap(args: {
     return point ? [point[0], point[1]] : null
   }
 
+  const pad = conferenceBlobPad(width, colorBy)
   const dots: MapDot[] = []
   const grouped = new Map<string, { conference: Conference; points: Pt[] }>()
   for (const school of mainSchools) {
     const conference = membership.get(school.id)
     const point = projectMain(school)
     if (!point) continue
-    dots.push({
-      id: school.id,
-      name: school.name,
-      x: point[0],
-      y: point[1],
-      color: conference?.color ?? UNASSIGNED_DOT,
-      assigned: Boolean(conference),
-    })
+    const assigned = Boolean(conference)
+    if (show === "assigned" && !assigned) continue
+    dots.push(makeDot(school, point, conference, colorBy))
     if (!conference) continue
     const bucket = grouped.get(conference.id) ?? { conference, points: [] }
     bucket.points.push(point)
@@ -132,7 +153,7 @@ export function layoutMap(args: {
 
   const blobs = placeLabels(
     [...grouped.values()].map((bucket) => ({
-      d: blobPath(bucket.points, 28),
+      d: blobPath(bucket.points, pad),
       color: bucket.conference.color,
       name: bucket.conference.name,
       label: centroid(bucket.points),
@@ -155,6 +176,8 @@ export function layoutMap(args: {
         width: insetWidth,
         height: insetHeight,
         membership,
+        show,
+        colorBy,
       }),
     )
   }
@@ -170,6 +193,8 @@ export function layoutMap(args: {
         width: insetWidth,
         height: insetHeight,
         membership,
+        show,
+        colorBy,
       }),
     )
   }
@@ -192,6 +217,8 @@ function buildInset(args: {
   width: number
   height: number
   membership: Map<string, Conference>
+  show: MapShowMode
+  colorBy: MapColorMode
 }): MapInset {
   const landFeatures = args.geo.regions.filter((item) => item.region === args.region)
   const collection = {
@@ -213,25 +240,21 @@ function buildInset(args: {
   const lakes: string[] = []
   const grouped = new Map<string, { conference: Conference; points: Pt[] }>()
   const dots: MapDot[] = []
+  const pad = conferenceBlobPad(args.width, args.colorBy, true)
   for (const school of args.schools) {
     const conference = args.membership.get(school.id)
     const point = projection([school.lon, school.lat])
     if (!point) continue
-    dots.push({
-      id: school.id,
-      name: school.name,
-      x: point[0],
-      y: point[1],
-      color: conference?.color ?? UNASSIGNED_DOT,
-      assigned: Boolean(conference),
-    })
+    const assigned = Boolean(conference)
+    if (args.show === "assigned" && !assigned) continue
+    dots.push(makeDot(school, point, conference, args.colorBy))
     if (!conference) continue
     const bucket = grouped.get(conference.id) ?? { conference, points: [] }
     bucket.points.push(point)
     grouped.set(conference.id, bucket)
   }
   const blobs = [...grouped.values()].map((bucket) => ({
-    d: blobPath(bucket.points, 16),
+    d: blobPath(bucket.points, pad),
     color: bucket.conference.color,
     name: bucket.conference.name,
     label: null,
@@ -246,6 +269,21 @@ function buildInset(args: {
     lakes,
     blobs,
     dots,
+  }
+}
+
+function makeDot(school: School, point: Pt, conference: Conference | undefined, colorBy: MapColorMode): MapDot {
+  const assigned = Boolean(conference)
+  return {
+    id: school.id,
+    name: school.name,
+    x: point[0],
+    y: point[1],
+    color: colorBy === "schools" ? school.primary : conference?.color ?? UNASSIGNED_DOT,
+    assigned,
+    primary: school.primary,
+    secondary: school.secondary,
+    abbr: school.abbr,
   }
 }
 

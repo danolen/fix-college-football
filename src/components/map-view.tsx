@@ -1,11 +1,13 @@
 "use client"
 
-import { useEffect, useId, useRef, useState, type PointerEvent as ReactPointerEvent } from "react"
+import { useEffect, useId, useRef, useState, useSyncExternalStore, type PointerEvent as ReactPointerEvent } from "react"
 import { Minus, Plus } from "lucide-react"
-import type { NorthAmericaGeo } from "@/lib/map-layout"
-import { layoutMap } from "@/lib/map-layout"
-import type { Conference, School } from "@/lib/types"
+import { SchoolMark } from "@/components/school-mark"
 import { Button } from "@/components/ui/button"
+import { getMapPrefs, getServerMapPrefs, setMapPrefs, subscribeMapPrefs } from "@/lib/storage"
+import type { NorthAmericaGeo } from "@/lib/map-layout"
+import { layoutMap, mapDotRadius, mapSchoolMarkSize } from "@/lib/map-layout"
+import type { Conference, MapColorMode, MapShowMode, School } from "@/lib/types"
 import { cn } from "@/lib/utils"
 
 const MIN_ZOOM = 1
@@ -50,6 +52,7 @@ export function MapView({
   className?: string
 }) {
   const clipId = useId().replace(/:/g, "")
+  const prefs = useSyncExternalStore(subscribeMapPrefs, getMapPrefs, getServerMapPrefs)
   const [geo, setGeo] = useState<NorthAmericaGeo | null>(null)
   const [status, setStatus] = useState<"loading" | "ready" | "error">("loading")
   const [attempt, setAttempt] = useState(0)
@@ -95,7 +98,15 @@ export function MapView({
 
   const scene =
     geo && status === "ready"
-      ? layoutMap({ geo, schools, conferences, width: size.width, height: size.height })
+      ? layoutMap({
+          geo,
+          schools,
+          conferences,
+          width: size.width,
+          height: size.height,
+          show: prefs.show,
+          colorBy: prefs.colorBy,
+        })
       : null
 
   useEffect(() => {
@@ -205,19 +216,77 @@ export function MapView({
             </clipPath>
           </defs>
           <rect width={scene.width} height={scene.height} fill="#d5e3ea" />
-          <MapBody scene={scene} camera={camera} clipId={clipId} />
+          <MapBody scene={scene} camera={camera} clipId={clipId} colorBy={prefs.colorBy} />
         </svg>
       )}
       {scene && (
-        <div className="absolute top-3 right-3 z-10 flex flex-col gap-1">
-          <Button type="button" size="icon-sm" variant="outline" className="bg-background shadow-sm" aria-label="Zoom in" data-testid="map-zoom-in" onClick={() => nudge(1.25)}>
-            <Plus />
-          </Button>
-          <Button type="button" size="icon-sm" variant="outline" className="bg-background shadow-sm" aria-label="Zoom out" data-testid="map-zoom-out" onClick={() => nudge(0.8)}>
-            <Minus />
-          </Button>
-        </div>
+        <>
+          <MapControls show={prefs.show} colorBy={prefs.colorBy} />
+          <div className="absolute top-3 right-3 z-10 flex flex-col gap-1">
+            <Button type="button" size="icon-sm" variant="outline" className="bg-background shadow-sm" aria-label="Zoom in" data-testid="map-zoom-in" onClick={() => nudge(1.25)}>
+              <Plus />
+            </Button>
+            <Button type="button" size="icon-sm" variant="outline" className="bg-background shadow-sm" aria-label="Zoom out" data-testid="map-zoom-out" onClick={() => nudge(0.8)}>
+              <Minus />
+            </Button>
+          </div>
+        </>
       )}
+    </div>
+  )
+}
+
+function MapControls({ show, colorBy }: { show: MapShowMode; colorBy: MapColorMode }) {
+  return (
+    <div className="absolute top-3 left-3 z-10 flex max-w-[calc(100%-4.25rem)] flex-col gap-1.5">
+      <div className="flex flex-col gap-1.5 rounded-xl border bg-background/95 p-1.5 shadow-sm sm:flex-row sm:flex-wrap sm:items-center">
+        <div className="flex min-w-0 flex-wrap items-center gap-1.5">
+          <span className="px-1 text-[0.7rem] font-medium text-muted-foreground">Show:</span>
+          <div className="inline-flex rounded-lg border bg-card p-0.5" role="group" aria-label="Show">
+            <Button
+              type="button"
+              size="xs"
+              variant={show === "all" ? "default" : "ghost"}
+              data-testid="map-show-all"
+              onClick={() => setMapPrefs({ show: "all" })}
+            >
+              All schools
+            </Button>
+            <Button
+              type="button"
+              size="xs"
+              variant={show === "assigned" ? "default" : "ghost"}
+              data-testid="map-show-assigned"
+              onClick={() => setMapPrefs({ show: "assigned" })}
+            >
+              Assigned only
+            </Button>
+          </div>
+        </div>
+        <div className="flex min-w-0 flex-wrap items-center gap-1.5">
+          <span className="px-1 text-[0.7rem] font-medium text-muted-foreground">Color by:</span>
+          <div className="inline-flex rounded-lg border bg-card p-0.5" role="group" aria-label="Color by">
+            <Button
+              type="button"
+              size="xs"
+              variant={colorBy === "conference" ? "default" : "ghost"}
+              data-testid="map-color-conference"
+              onClick={() => setMapPrefs({ colorBy: "conference" })}
+            >
+              Conference
+            </Button>
+            <Button
+              type="button"
+              size="xs"
+              variant={colorBy === "schools" ? "default" : "ghost"}
+              data-testid="map-color-schools"
+              onClick={() => setMapPrefs({ colorBy: "schools" })}
+            >
+              School colors
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
@@ -226,10 +295,12 @@ function MapBody({
   scene,
   camera,
   clipId,
+  colorBy,
 }: {
   scene: ReturnType<typeof layoutMap>
   camera: Camera
   clipId: string
+  colorBy: MapColorMode
 }) {
   const cx = scene.width / 2
   const cy = scene.mainHeight / 2
@@ -257,19 +328,7 @@ function MapBody({
             />
           ))}
           {scene.dots.map((dot) => (
-            <g key={dot.id}>
-              <circle
-                data-map-dot={dot.id}
-                data-assigned={dot.assigned ? "yes" : "no"}
-                cx={dot.x}
-                cy={dot.y}
-                r={Math.max(5.5, scene.width / 130)}
-                fill={dot.color}
-                stroke="#fbf6ec"
-                strokeWidth={1.6}
-              />
-              <title>{dot.name}</title>
-            </g>
+            <SchoolOrDot key={dot.id} dot={dot} colorBy={colorBy} size={mapSchoolMarkSize(scene.width)} radius={mapDotRadius(scene.width)} />
           ))}
           {scene.blobs.map((blob) =>
             blob.label ? (
@@ -313,20 +372,61 @@ function MapBody({
             />
           ))}
           {inset.dots.map((dot) => (
-            <circle
+            <SchoolOrDot
               key={dot.id}
-              data-map-dot={dot.id}
-              data-assigned={dot.assigned ? "yes" : "no"}
-              cx={dot.x}
-              cy={dot.y}
-              r={5}
-              fill={dot.color}
-              stroke="#fbf6ec"
-              strokeWidth={1.2}
+              dot={dot}
+              colorBy={colorBy}
+              size={mapSchoolMarkSize(inset.width, true)}
+              radius={5}
             />
           ))}
         </g>
       ))}
     </>
+  )
+}
+
+function SchoolOrDot({
+  dot,
+  colorBy,
+  size,
+  radius,
+}: {
+  dot: ReturnType<typeof layoutMap>["dots"][number]
+  colorBy: MapColorMode
+  size: number
+  radius: number
+}) {
+  if (colorBy === "schools") {
+    return (
+      <g data-map-dot={dot.id} data-assigned={dot.assigned ? "yes" : "no"} data-map-mark="school">
+        <SchoolMark
+          primary={dot.primary}
+          secondary={dot.secondary}
+          abbr={dot.abbr}
+          x={dot.x - size / 2}
+          y={dot.y - size / 2}
+          width={size}
+          height={size}
+        />
+        <title>{dot.name}</title>
+      </g>
+    )
+  }
+  return (
+    <g>
+      <circle
+        data-map-dot={dot.id}
+        data-assigned={dot.assigned ? "yes" : "no"}
+        data-map-mark="conference"
+        cx={dot.x}
+        cy={dot.y}
+        r={radius}
+        fill={dot.color}
+        stroke="#fbf6ec"
+        strokeWidth={1.6}
+      />
+      <title>{dot.name}</title>
+    </g>
   )
 }

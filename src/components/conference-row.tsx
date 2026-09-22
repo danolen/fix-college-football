@@ -55,7 +55,7 @@ export function ConferenceRow({
           />
           <PopoverContent className="w-auto" align="start">
             <p className="mb-2 text-xs font-medium">Conference color</p>
-            <div className="grid grid-cols-6 gap-1.5">
+            <div className="grid max-h-56 grid-cols-8 gap-1.5 overflow-y-auto">
               {PALETTE.map((color) => (
                 <button
                   key={color}

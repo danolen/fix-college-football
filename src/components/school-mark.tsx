@@ -5,17 +5,34 @@ export function SchoolMark({
   secondary,
   abbr,
   className,
+  x,
+  y,
+  width,
+  height,
 }: {
   primary: string
   secondary: string
   abbr?: string
   className?: string
+  x?: number
+  y?: number
+  width?: number
+  height?: number
 }) {
   const letters = abbr ?? ""
   const ink = inkOn(primary)
   const letterSize = letters.length >= 5 ? 22 : letters.length === 4 ? 26 : letters.length === 3 ? 32 : 38
   return (
-    <svg viewBox="0 0 100 100" className={className} aria-hidden overflow="visible">
+    <svg
+      viewBox="0 0 100 100"
+      className={className}
+      x={x}
+      y={y}
+      width={width}
+      height={height}
+      aria-hidden
+      overflow="visible"
+    >
       <circle cx="50" cy="50" r="44" fill={primary} stroke={secondary} strokeWidth="8" />
       {letters ? (
         <text

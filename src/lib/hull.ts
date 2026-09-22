@@ -22,12 +22,41 @@ export function convexHull(points: Pt[]): Pt[] {
 
 export function blobPath(points: Pt[], padding: number): string {
   const unique = dedupe(points)
+  const pad = Math.max(1, padding)
   if (unique.length === 0) return ""
-  if (unique.length === 1) return circle(unique[0], padding)
-  if (unique.length === 2) return capsule(unique[0], unique[1], padding * 0.85)
+  if (unique.length === 1) return circle(unique[0], pad)
+  if (unique.length === 2) return capsule(unique[0], unique[1], pad)
   const hull = convexHull(unique)
-  const expanded = offsetConvex(hull, padding)
-  return smoothClosed(expanded, padding * 0.85)
+  if (hull.length <= 1) return circle(hull[0] ?? unique[0], pad)
+  if (hull.length === 2) return capsule(hull[0], hull[1], pad)
+  return roundedBuffer(hull, pad)
+}
+
+export function blobOutline(points: Pt[], padding: number): Pt[] {
+  const unique = dedupe(points)
+  const pad = Math.max(1, padding)
+  if (unique.length === 0) return []
+  if (unique.length === 1) return sampleCircle(unique[0], pad)
+  if (unique.length === 2) return sampleCapsule(unique[0], unique[1], pad)
+  const hull = convexHull(unique)
+  if (hull.length <= 1) return sampleCircle(hull[0] ?? unique[0], pad)
+  if (hull.length === 2) return sampleCapsule(hull[0], hull[1], pad)
+  return sampleRoundedBuffer(hull, pad)
+}
+
+export function boundsOf(points: Pt[]): { minX: number; minY: number; maxX: number; maxY: number } | null {
+  if (points.length === 0) return null
+  let minX = points[0][0]
+  let minY = points[0][1]
+  let maxX = points[0][0]
+  let maxY = points[0][1]
+  for (const [x, y] of points) {
+    minX = Math.min(minX, x)
+    minY = Math.min(minY, y)
+    maxX = Math.max(maxX, x)
+    maxY = Math.max(maxY, y)
+  }
+  return { minX, minY, maxX, maxY }
 }
 
 function dedupe(points: Pt[]): Pt[] {
@@ -59,23 +88,68 @@ function capsule(a: Pt, b: Pt, radius: number): string {
   return `M ${a1[0]} ${a1[1]} A ${radius} ${radius} 0 0 0 ${a2[0]} ${a2[1]} L ${b2[0]} ${b2[1]} A ${radius} ${radius} 0 0 0 ${b1[0]} ${b1[1]} Z`
 }
 
-function offsetConvex(points: Pt[], padding: number): Pt[] {
-  const count = points.length
+function roundedBuffer(hull: Pt[], padding: number): string {
+  const count = hull.length
+  let path = ""
+  for (let index = 0; index < count; index += 1) {
+    const curr = hull[index]
+    const next = hull[(index + 1) % count]
+    const nEdge = outwardNormal(curr, next)
+    const nNext = outwardNormal(next, hull[(index + 2) % count])
+    const from: Pt = [curr[0] + nEdge[0] * padding, curr[1] + nEdge[1] * padding]
+    const to: Pt = [next[0] + nEdge[0] * padding, next[1] + nEdge[1] * padding]
+    const after: Pt = [next[0] + nNext[0] * padding, next[1] + nNext[1] * padding]
+    const cross = nEdge[0] * nNext[1] - nEdge[1] * nNext[0]
+    const sweep = cross >= 0 ? 0 : 1
+    path += index === 0 ? `M ${from[0]} ${from[1]}` : `L ${from[0]} ${from[1]}`
+    path += ` L ${to[0]} ${to[1]} A ${padding} ${padding} 0 0 ${sweep} ${after[0]} ${after[1]}`
+  }
+  return `${path} Z`
+}
+
+function sampleRoundedBuffer(hull: Pt[], padding: number): Pt[] {
+  const count = hull.length
   const out: Pt[] = []
   for (let index = 0; index < count; index += 1) {
-    const prev = points[(index - 1 + count) % count]
-    const curr = points[index]
-    const next = points[(index + 1) % count]
-    const n1 = outwardNormal(prev, curr)
-    const n2 = outwardNormal(curr, next)
-    let bx = n1[0] + n2[0]
-    let by = n1[1] + n2[1]
-    const length = Math.hypot(bx, by) || 1
-    bx /= length
-    by /= length
-    const denom = Math.abs(bx * n1[0] + by * n1[1])
-    const scale = padding / Math.max(0.2, denom)
-    out.push([curr[0] + bx * scale, curr[1] + by * scale])
+    const curr = hull[index]
+    const next = hull[(index + 1) % count]
+    const nEdge = outwardNormal(curr, next)
+    const nNext = outwardNormal(next, hull[(index + 2) % count])
+    out.push([curr[0] + nEdge[0] * padding, curr[1] + nEdge[1] * padding])
+    out.push([next[0] + nEdge[0] * padding, next[1] + nEdge[1] * padding])
+    const start = Math.atan2(nEdge[1], nEdge[0])
+    const end = Math.atan2(nNext[1], nNext[0])
+    const turn = sweepDelta(start, end, nEdge[0] * nNext[1] - nEdge[1] * nNext[0] >= 0)
+    const steps = Math.max(2, Math.ceil(Math.abs(turn) * padding / 3))
+    for (let step = 1; step <= steps; step += 1) {
+      const angle = start + (turn * step) / steps
+      out.push([next[0] + Math.cos(angle) * padding, next[1] + Math.sin(angle) * padding])
+    }
+  }
+  return out
+}
+
+function sampleCircle(center: Pt, radius: number): Pt[] {
+  const out: Pt[] = []
+  for (let step = 0; step < 24; step += 1) {
+    const angle = (step / 24) * Math.PI * 2
+    out.push([center[0] + Math.cos(angle) * radius, center[1] + Math.sin(angle) * radius])
+  }
+  return out
+}
+
+function sampleCapsule(a: Pt, b: Pt, radius: number): Pt[] {
+  const along = Math.atan2(b[1] - a[1], b[0] - a[0])
+  const left = along + Math.PI / 2
+  const right = along - Math.PI / 2
+  const out: Pt[] = []
+  for (let step = 0; step <= 10; step += 1) {
+    const angle = left + (Math.PI * step) / 10
+    out.push([a[0] + Math.cos(angle) * radius, a[1] + Math.sin(angle) * radius])
+  }
+  for (let step = 0; step <= 10; step += 1) {
+    const angle = right + (Math.PI * step) / 10
+    out.push([b[0] + Math.cos(angle) * radius, b[1] + Math.sin(angle) * radius])
   }
   return out
 }
@@ -87,26 +161,14 @@ function outwardNormal(a: Pt, b: Pt): Pt {
   return [dy / length, -dx / length]
 }
 
-function smoothClosed(points: Pt[], radius: number): string {
-  const count = points.length
-  let path = ""
-  for (let index = 0; index < count; index += 1) {
-    const prev = points[(index - 1 + count) % count]
-    const curr = points[index]
-    const next = points[(index + 1) % count]
-    const start = pull(curr, prev, Math.min(radius, distance(curr, prev) / 2))
-    const end = pull(curr, next, Math.min(radius, distance(curr, next) / 2))
-    path += index === 0 ? `M ${start[0]} ${start[1]}` : `L ${start[0]} ${start[1]}`
-    path += ` Q ${curr[0]} ${curr[1]} ${end[0]} ${end[1]}`
+function sweepDelta(start: number, end: number, ccw: boolean): number {
+  let delta = end - start
+  if (ccw) {
+    while (delta < 0) delta += Math.PI * 2
+    while (delta > Math.PI * 2) delta -= Math.PI * 2
+  } else {
+    while (delta > 0) delta -= Math.PI * 2
+    while (delta < -Math.PI * 2) delta += Math.PI * 2
   }
-  return `${path} Z`
-}
-
-function pull(from: Pt, to: Pt, amount: number): Pt {
-  const length = distance(from, to) || 1
-  return [from[0] + ((to[0] - from[0]) / length) * amount, from[1] + ((to[1] - from[1]) / length) * amount]
-}
-
-function distance(a: Pt, b: Pt): number {
-  return Math.hypot(a[0] - b[0], a[1] - b[1])
+  return delta
 }

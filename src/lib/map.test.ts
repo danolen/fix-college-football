@@ -1,7 +1,7 @@
 import assert from "node:assert/strict"
 import { describe, it } from "node:test"
 import { nextColor, PALETTE } from "./colors.ts"
-import { blobOutline, blobPath, boundsOf, type Pt } from "./hull.ts"
+import { blobOutline, blobPath, boundsOf, pointInPolygon, signedArea, type Pt } from "./hull.ts"
 import { layoutMap, type NorthAmericaGeo } from "./map-layout.ts"
 import type { Conference, School } from "./types.ts"
 
@@ -63,6 +63,21 @@ describe("conference blobs", () => {
       11,
     )
     assert.equal((path.match(/M /g) ?? []).length, 1)
+  })
+
+  it("keeps a positive winding so corners do not invert", () => {
+    const points: Pt[] = [
+      [80, 80],
+      [220, 70],
+      [240, 180],
+      [60, 200],
+      [140, 120],
+    ]
+    const outline = blobOutline(points, 12)
+    assert.ok(signedArea(outline) > 0)
+    for (const point of points) assert.equal(pointInPolygon(point, outline), true)
+    assert.equal(pointInPolygon([800, 800], outline), false)
+    assert.equal(/[Aa] /.test(blobPath(points, 12)), false)
   })
 })
 

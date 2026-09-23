@@ -1,6 +1,46 @@
 [
   {
-    "id": "r-01",
+    "id": "r-001",
+    "name": "Air Force–Army",
+    "schools": [
+      "air-force",
+      "army"
+    ]
+  },
+  {
+    "id": "r-002",
+    "name": "Ram–Falcon Trophy",
+    "schools": [
+      "air-force",
+      "colorado-state"
+    ]
+  },
+  {
+    "id": "r-003",
+    "name": "Air Force–Hawaii",
+    "schools": [
+      "air-force",
+      "hawaii"
+    ]
+  },
+  {
+    "id": "r-004",
+    "name": "Air Force–Navy",
+    "schools": [
+      "air-force",
+      "navy"
+    ]
+  },
+  {
+    "id": "r-005",
+    "name": "Wagon Wheel",
+    "schools": [
+      "akron",
+      "kent-state"
+    ]
+  },
+  {
+    "id": "r-006",
     "name": "Iron Bowl",
     "schools": [
       "alabama",
@@ -8,7 +48,23 @@
     ]
   },
   {
-    "id": "r-02",
+    "id": "r-007",
+    "name": "Alabama–LSU",
+    "schools": [
+      "alabama",
+      "lsu"
+    ]
+  },
+  {
+    "id": "r-008",
+    "name": "Battle for Highway 82",
+    "schools": [
+      "alabama",
+      "mississippi-state"
+    ]
+  },
+  {
+    "id": "r-009",
     "name": "Third Saturday in October",
     "schools": [
       "alabama",
@@ -16,15 +72,87 @@
     ]
   },
   {
-    "id": "r-03",
-    "name": "Alabama–Mississippi State",
+    "id": "r-010",
+    "name": "Appalachian State–Charlotte",
     "schools": [
-      "alabama",
-      "mississippi-state"
+      "appalachian-state",
+      "charlotte"
     ]
   },
   {
-    "id": "r-04",
+    "id": "r-011",
+    "name": "Appalachian State–Coastal Carolina",
+    "schools": [
+      "appalachian-state",
+      "coastal-carolina"
+    ]
+  },
+  {
+    "id": "r-012",
+    "name": "Deeper than Hate",
+    "schools": [
+      "appalachian-state",
+      "georgia-southern"
+    ]
+  },
+  {
+    "id": "r-013",
+    "name": "The Old Mountain Feud",
+    "schools": [
+      "appalachian-state",
+      "marshall"
+    ]
+  },
+  {
+    "id": "r-014",
+    "name": "Duel in the Desert",
+    "schools": [
+      "arizona",
+      "arizona-state"
+    ]
+  },
+  {
+    "id": "r-015",
+    "name": "Arizona–New Mexico",
+    "schools": [
+      "arizona",
+      "new-mexico"
+    ]
+  },
+  {
+    "id": "r-016",
+    "name": "Arkansas State–Louisiana",
+    "schools": [
+      "arkansas-state",
+      "louisiana"
+    ]
+  },
+  {
+    "id": "r-017",
+    "name": "Paint Bucket Bowl",
+    "schools": [
+      "arkansas-state",
+      "memphis"
+    ]
+  },
+  {
+    "id": "r-018",
+    "name": "Arkansas State–Missouri State",
+    "schools": [
+      "arkansas-state",
+      "missouri-state"
+    ]
+  },
+  {
+    "id": "r-019",
+    "name": "Arkansas State–ULM",
+    "schools": [
+      "arkansas-state",
+      "ulm"
+    ]
+  },
+  {
+    "id": "r-020",
     "name": "Golden Boot",
     "schools": [
       "arkansas",
@@ -32,15 +160,15 @@
     ]
   },
   {
-    "id": "r-05",
-    "name": "Battle Line Trophy",
+    "id": "r-021",
+    "name": "Battle Line Rivalry",
     "schools": [
       "arkansas",
       "missouri"
     ]
   },
   {
-    "id": "r-06",
+    "id": "r-022",
     "name": "Arkansas–Texas",
     "schools": [
       "arkansas",
@@ -48,7 +176,39 @@
     ]
   },
   {
-    "id": "r-07",
+    "id": "r-023",
+    "name": "Southwest Classic Trophy",
+    "schools": [
+      "arkansas",
+      "texas-a-m"
+    ]
+  },
+  {
+    "id": "r-024",
+    "name": "Army–Navy Game",
+    "schools": [
+      "army",
+      "navy"
+    ]
+  },
+  {
+    "id": "r-025",
+    "name": "Army–Notre Dame",
+    "schools": [
+      "army",
+      "notre-dame"
+    ]
+  },
+  {
+    "id": "r-026",
+    "name": "Auburn–Florida",
+    "schools": [
+      "auburn",
+      "florida"
+    ]
+  },
+  {
+    "id": "r-027",
     "name": "Deep South's Oldest Rivalry",
     "schools": [
       "auburn",
@@ -56,247 +216,111 @@
     ]
   },
   {
-    "id": "r-08",
-    "name": "Auburn–Vanderbilt",
+    "id": "r-028",
+    "name": "Auburn–Georgia Tech",
     "schools": [
       "auburn",
-      "vanderbilt"
+      "georgia-tech"
     ]
   },
   {
-    "id": "r-09",
-    "name": "Florida–Georgia",
+    "id": "r-029",
+    "name": "Tiger Bowl",
     "schools": [
-      "florida",
-      "georgia"
+      "auburn",
+      "lsu"
     ]
   },
   {
-    "id": "r-10",
-    "name": "Florida–Kentucky",
+    "id": "r-030",
+    "name": "Ball State–Miami (OH)",
     "schools": [
-      "florida",
-      "kentucky"
+      "ball-state",
+      "miami-oh"
     ]
   },
   {
-    "id": "r-11",
-    "name": "Florida–South Carolina",
+    "id": "r-031",
+    "name": "Bronze Stalk Trophy",
     "schools": [
-      "florida",
-      "south-carolina"
+      "ball-state",
+      "northern-illinois"
     ]
   },
   {
-    "id": "r-12",
-    "name": "Georgia–South Carolina",
+    "id": "r-032",
+    "name": "Baylor–Houston",
     "schools": [
-      "georgia",
-      "south-carolina"
+      "baylor",
+      "houston"
     ]
   },
   {
-    "id": "r-13",
-    "name": "Kentucky–South Carolina",
+    "id": "r-033",
+    "name": "Bluebonnet Battle",
     "schools": [
-      "kentucky",
-      "south-carolina"
+      "baylor",
+      "tcu"
     ]
   },
   {
-    "id": "r-14",
-    "name": "Kentucky–Tennessee",
+    "id": "r-034",
+    "name": "Battle of the Brazos",
     "schools": [
-      "kentucky",
-      "tennessee"
-    ]
-  },
-  {
-    "id": "r-15",
-    "name": "Magnolia Bowl",
-    "schools": [
-      "lsu",
-      "ole-miss"
-    ]
-  },
-  {
-    "id": "r-16",
-    "name": "LSU–Texas A&M",
-    "schools": [
-      "lsu",
+      "baylor",
       "texas-a-m"
     ]
   },
   {
-    "id": "r-17",
-    "name": "Egg Bowl (Golden Egg)",
+    "id": "r-035",
+    "name": "Baylor–Texas Tech",
     "schools": [
-      "mississippi-state",
-      "ole-miss"
+      "baylor",
+      "texas-tech"
     ]
   },
   {
-    "id": "r-18",
-    "name": "Mississippi State–Vanderbilt",
+    "id": "r-036",
+    "name": "Milk Can",
     "schools": [
-      "mississippi-state",
-      "vanderbilt"
+      "boise-state",
+      "fresno-state"
     ]
   },
   {
-    "id": "r-19",
-    "name": "Missouri–Oklahoma",
+    "id": "r-037",
+    "name": "Boise State–Nevada",
     "schools": [
-      "missouri",
-      "oklahoma"
+      "boise-state",
+      "nevada"
     ]
   },
   {
-    "id": "r-20",
-    "name": "Missouri–Texas A&M",
+    "id": "r-038",
+    "name": "Boise State–Washington State",
     "schools": [
-      "missouri",
-      "texas-a-m"
+      "boise-state",
+      "washington-state"
     ]
   },
   {
-    "id": "r-21",
-    "name": "Oklahoma–Ole Miss",
+    "id": "r-039",
+    "name": "O'Rourke–McFadden Trophy",
     "schools": [
-      "oklahoma",
-      "ole-miss"
+      "boston-college",
+      "clemson"
     ]
   },
   {
-    "id": "r-22",
-    "name": "Red River Rivalry (Golden Hat)",
+    "id": "r-040",
+    "name": "Frank Leahy Memorial Bowl",
     "schools": [
-      "oklahoma",
-      "texas"
+      "boston-college",
+      "notre-dame"
     ]
   },
   {
-    "id": "r-23",
-    "name": "Tennessee–Vanderbilt",
-    "schools": [
-      "tennessee",
-      "vanderbilt"
-    ]
-  },
-  {
-    "id": "r-24",
-    "name": "Land of Lincoln Trophy",
-    "schools": [
-      "illinois",
-      "northwestern"
-    ]
-  },
-  {
-    "id": "r-25",
-    "name": "Purdue Cannon",
-    "schools": [
-      "illinois",
-      "purdue"
-    ]
-  },
-  {
-    "id": "r-26",
-    "name": "Old Oaken Bucket",
-    "schools": [
-      "indiana",
-      "purdue"
-    ]
-  },
-  {
-    "id": "r-27",
-    "name": "Floyd of Rosedale",
-    "schools": [
-      "iowa",
-      "minnesota"
-    ]
-  },
-  {
-    "id": "r-28",
-    "name": "Heroes Trophy",
-    "schools": [
-      "iowa",
-      "nebraska"
-    ]
-  },
-  {
-    "id": "r-29",
-    "name": "Heartland Trophy",
-    "schools": [
-      "iowa",
-      "wisconsin"
-    ]
-  },
-  {
-    "id": "r-30",
-    "name": "Maryland–Rutgers",
-    "schools": [
-      "maryland",
-      "rutgers"
-    ]
-  },
-  {
-    "id": "r-31",
-    "name": "Paul Bunyan Trophy",
-    "schools": [
-      "michigan",
-      "michigan-state"
-    ]
-  },
-  {
-    "id": "r-32",
-    "name": "The Game",
-    "schools": [
-      "michigan",
-      "ohio-state"
-    ]
-  },
-  {
-    "id": "r-33",
-    "name": "Paul Bunyan's Axe",
-    "schools": [
-      "minnesota",
-      "wisconsin"
-    ]
-  },
-  {
-    "id": "r-34",
-    "name": "Oregon–Washington",
-    "schools": [
-      "oregon",
-      "washington"
-    ]
-  },
-  {
-    "id": "r-35",
-    "name": "Victory Bell",
-    "schools": [
-      "ucla",
-      "usc"
-    ]
-  },
-  {
-    "id": "r-36",
-    "name": "Little Brown Jug",
-    "schools": [
-      "michigan",
-      "minnesota"
-    ]
-  },
-  {
-    "id": "r-37",
-    "name": "Old Brass Spittoon",
-    "schools": [
-      "indiana",
-      "michigan-state"
-    ]
-  },
-  {
-    "id": "r-38",
+    "id": "r-041",
     "name": "Boston College–Syracuse",
     "schools": [
       "boston-college",
@@ -304,143 +328,47 @@
     ]
   },
   {
-    "id": "r-39",
-    "name": "Boston College–Pittsburgh",
+    "id": "r-042",
+    "name": "Boston College–UMass",
     "schools": [
       "boston-college",
-      "pittsburgh"
+      "umass"
     ]
   },
   {
-    "id": "r-40",
-    "name": "Syracuse–Pittsburgh",
+    "id": "r-043",
+    "name": "Anniversary Award",
     "schools": [
-      "syracuse",
-      "pittsburgh"
+      "bowling-green",
+      "kent-state"
     ]
   },
   {
-    "id": "r-41",
-    "name": "South's Oldest Rivalry",
+    "id": "r-044",
+    "name": "Battle of I-75 Trophy",
     "schools": [
-      "north-carolina",
-      "virginia"
+      "bowling-green",
+      "toledo"
     ]
   },
   {
-    "id": "r-42",
-    "name": "Victory Bell",
+    "id": "r-045",
+    "name": "Buffalo–Temple",
     "schools": [
-      "north-carolina",
-      "duke"
+      "buffalo",
+      "temple"
     ]
   },
   {
-    "id": "r-43",
-    "name": "North Carolina–NC State",
+    "id": "r-046",
+    "name": "Flagship Cup",
     "schools": [
-      "north-carolina",
-      "nc-state"
+      "buffalo",
+      "umass"
     ]
   },
   {
-    "id": "r-44",
-    "name": "NC State–Wake Forest",
-    "schools": [
-      "nc-state",
-      "wake-forest"
-    ]
-  },
-  {
-    "id": "r-45",
-    "name": "NC State–Duke",
-    "schools": [
-      "nc-state",
-      "duke"
-    ]
-  },
-  {
-    "id": "r-46",
-    "name": "Duke–Wake Forest",
-    "schools": [
-      "duke",
-      "wake-forest"
-    ]
-  },
-  {
-    "id": "r-47",
-    "name": "Commonwealth Cup",
-    "schools": [
-      "virginia",
-      "virginia-tech"
-    ]
-  },
-  {
-    "id": "r-48",
-    "name": "Clemson–Florida State",
-    "schools": [
-      "clemson",
-      "florida-state"
-    ]
-  },
-  {
-    "id": "r-49",
-    "name": "Florida State–Miami (FL)",
-    "schools": [
-      "florida-state",
-      "miami-fl"
-    ]
-  },
-  {
-    "id": "r-50",
-    "name": "Miami (FL)–Virginia Tech",
-    "schools": [
-      "miami-fl",
-      "virginia-tech"
-    ]
-  },
-  {
-    "id": "r-51",
-    "name": "Big Game (Stanford Axe)",
-    "schools": [
-      "stanford",
-      "california"
-    ]
-  },
-  {
-    "id": "r-52",
-    "name": "Stanford–SMU",
-    "schools": [
-      "stanford",
-      "smu"
-    ]
-  },
-  {
-    "id": "r-53",
-    "name": "California–SMU",
-    "schools": [
-      "california",
-      "smu"
-    ]
-  },
-  {
-    "id": "r-54",
-    "name": "Sunflower Showdown",
-    "schools": [
-      "kansas",
-      "kansas-state"
-    ]
-  },
-  {
-    "id": "r-55",
-    "name": "Baylor–TCU",
-    "schools": [
-      "baylor",
-      "tcu"
-    ]
-  },
-  {
-    "id": "r-56",
+    "id": "r-047",
     "name": "Holy War",
     "schools": [
       "byu",
@@ -448,31 +376,143 @@
     ]
   },
   {
-    "id": "r-57",
-    "name": "Territorial Cup",
+    "id": "r-048",
+    "name": "The Old Wagon Wheel",
     "schools": [
-      "arizona",
-      "arizona-state"
+      "byu",
+      "utah-state"
     ]
   },
   {
-    "id": "r-58",
-    "name": "Farmageddon",
+    "id": "r-049",
+    "name": "BYU–Wyoming",
     "schools": [
-      "iowa-state",
-      "kansas-state"
+      "byu",
+      "wyoming"
     ]
   },
   {
-    "id": "r-59",
-    "name": "Florida–Florida State",
+    "id": "r-050",
+    "name": "Big Game",
     "schools": [
-      "florida",
+      "california",
+      "stanford"
+    ]
+  },
+  {
+    "id": "r-051",
+    "name": "California–UCLA",
+    "schools": [
+      "california",
+      "ucla"
+    ]
+  },
+  {
+    "id": "r-052",
+    "name": "Central Michigan–Eastern Michigan",
+    "schools": [
+      "central-michigan",
+      "eastern-michigan"
+    ]
+  },
+  {
+    "id": "r-053",
+    "name": "Victory Cannon",
+    "schools": [
+      "central-michigan",
+      "western-michigan"
+    ]
+  },
+  {
+    "id": "r-054",
+    "name": "Charlotte–East Carolina",
+    "schools": [
+      "charlotte",
+      "east-carolina"
+    ]
+  },
+  {
+    "id": "r-055",
+    "name": "Charlotte–Old Dominion",
+    "schools": [
+      "charlotte",
+      "old-dominion"
+    ]
+  },
+  {
+    "id": "r-056",
+    "name": "The Keg of Nails",
+    "schools": [
+      "cincinnati",
+      "louisville"
+    ]
+  },
+  {
+    "id": "r-057",
+    "name": "Cincinnati–Memphis",
+    "schools": [
+      "cincinnati",
+      "memphis"
+    ]
+  },
+  {
+    "id": "r-058",
+    "name": "Battle for the Bell",
+    "schools": [
+      "cincinnati",
+      "miami-oh"
+    ]
+  },
+  {
+    "id": "r-059",
+    "name": "Cincinnati–Pittsburgh",
+    "schools": [
+      "cincinnati",
+      "pittsburgh"
+    ]
+  },
+  {
+    "id": "r-060",
+    "name": "Cincinnati–UCF",
+    "schools": [
+      "cincinnati",
+      "ucf"
+    ]
+  },
+  {
+    "id": "r-061",
+    "name": "Clemson–Florida State",
+    "schools": [
+      "clemson",
       "florida-state"
     ]
   },
   {
-    "id": "r-60",
+    "id": "r-062",
+    "name": "Clemson–Georgia",
+    "schools": [
+      "clemson",
+      "georgia"
+    ]
+  },
+  {
+    "id": "r-063",
+    "name": "Clemson–Georgia Tech",
+    "schools": [
+      "clemson",
+      "georgia-tech"
+    ]
+  },
+  {
+    "id": "r-064",
+    "name": "Textile Bowl",
+    "schools": [
+      "clemson",
+      "nc-state"
+    ]
+  },
+  {
+    "id": "r-065",
     "name": "Palmetto Bowl",
     "schools": [
       "clemson",
@@ -480,183 +520,287 @@
     ]
   },
   {
-    "id": "r-61",
-    "name": "Cy-Hawk Trophy",
+    "id": "r-066",
+    "name": "Coastal Carolina–Liberty",
     "schools": [
-      "iowa",
-      "iowa-state"
+      "coastal-carolina",
+      "liberty"
     ]
   },
   {
-    "id": "r-62",
-    "name": "Clean, Old-Fashioned Hate (Governor's Cup)",
+    "id": "r-067",
+    "name": "Border War",
     "schools": [
-      "georgia",
-      "georgia-tech"
+      "colorado-state",
+      "wyoming"
     ]
   },
   {
-    "id": "r-63",
-    "name": "Governor's Cup",
-    "schools": [
-      "kentucky",
-      "louisville"
-    ]
-  },
-  {
-    "id": "r-64",
-    "name": "Apple Cup",
-    "schools": [
-      "washington",
-      "washington-state"
-    ]
-  },
-  {
-    "id": "r-65",
-    "name": "Platypus Trophy",
-    "schools": [
-      "oregon",
-      "oregon-state"
-    ]
-  },
-  {
-    "id": "r-66",
-    "name": "Rocky Mountain Showdown (Centennial Cup)",
+    "id": "r-068",
+    "name": "Rocky Mountain Showdown",
     "schools": [
       "colorado",
       "colorado-state"
     ]
   },
   {
-    "id": "r-67",
-    "name": "Bedlam (Bedlam Bell)",
+    "id": "r-069",
+    "name": "Colorado–Nebraska",
     "schools": [
-      "oklahoma",
-      "oklahoma-state"
+      "colorado",
+      "nebraska"
     ]
   },
   {
-    "id": "r-68",
-    "name": "Backyard Brawl",
+    "id": "r-070",
+    "name": "Rumble in the Rockies",
     "schools": [
-      "pittsburgh",
-      "west-virginia"
+      "colorado",
+      "utah"
     ]
   },
   {
-    "id": "r-69",
-    "name": "Border Showdown",
+    "id": "r-071",
+    "name": "Delaware–James Madison",
     "schools": [
-      "kansas",
-      "missouri"
+      "delaware",
+      "james-madison"
     ]
   },
   {
-    "id": "r-70",
-    "name": "Rio Grande Rivalry",
+    "id": "r-072",
+    "name": "Delaware–Liberty",
     "schools": [
-      "new-mexico",
-      "new-mexico-state"
+      "delaware",
+      "liberty"
     ]
   },
   {
-    "id": "r-71",
-    "name": "Rip Miller Trophy",
+    "id": "r-073",
+    "name": "Duke–NC State",
     "schools": [
-      "notre-dame",
-      "navy"
+      "duke",
+      "nc-state"
     ]
   },
   {
-    "id": "r-72",
-    "name": "Legends Trophy",
-    "schools": [
-      "notre-dame",
-      "stanford"
-    ]
-  },
-  {
-    "id": "r-73",
-    "name": "Jeweled Shillelagh",
-    "schools": [
-      "notre-dame",
-      "usc"
-    ]
-  },
-  {
-    "id": "r-74",
-    "name": "Megaphone Trophy",
-    "schools": [
-      "notre-dame",
-      "michigan-state"
-    ]
-  },
-  {
-    "id": "r-75",
-    "name": "Shillelagh Trophy",
-    "schools": [
-      "notre-dame",
-      "purdue"
-    ]
-  },
-  {
-    "id": "r-76",
-    "name": "Notre Dame–Boston College",
-    "schools": [
-      "notre-dame",
-      "boston-college"
-    ]
-  },
-  {
-    "id": "r-77",
-    "name": "Army–Navy",
-    "schools": [
-      "army",
-      "navy"
-    ]
-  },
-  {
-    "id": "r-78",
-    "name": "Commander-in-Chief's Trophy series",
-    "schools": [
-      "army",
-      "air-force"
-    ]
-  },
-  {
-    "id": "r-79",
-    "name": "Commander-in-Chief's Trophy series",
-    "schools": [
-      "navy",
-      "air-force"
-    ]
-  },
-  {
-    "id": "r-80",
+    "id": "r-074",
     "name": "Victory Bell",
     "schools": [
-      "cincinnati",
-      "miami-oh"
+      "duke",
+      "north-carolina"
     ]
   },
   {
-    "id": "r-81",
-    "name": "100 Miles of Hate",
+    "id": "r-075",
+    "name": "Duke–Wake Forest",
     "schools": [
-      "middle-tennessee",
-      "western-kentucky"
+      "duke",
+      "wake-forest"
     ]
   },
   {
-    "id": "r-82",
-    "name": "Shula Bowl (Don Shula Award)",
+    "id": "r-076",
+    "name": "East Carolina–Marshall",
     "schools": [
-      "florida-atlantic",
-      "fiu"
+      "east-carolina",
+      "marshall"
     ]
   },
   {
-    "id": "r-83",
+    "id": "r-077",
+    "name": "Victory Barrel",
+    "schools": [
+      "east-carolina",
+      "nc-state"
+    ]
+  },
+  {
+    "id": "r-078",
+    "name": "East Carolina–North Carolina",
+    "schools": [
+      "east-carolina",
+      "north-carolina"
+    ]
+  },
+  {
+    "id": "r-079",
+    "name": "Eastern Michigan–Western Michigan",
+    "schools": [
+      "eastern-michigan",
+      "western-michigan"
+    ]
+  },
+  {
+    "id": "r-080",
+    "name": "Shula Bowl",
+    "schools": [
+      "fiu",
+      "florida-atlantic"
+    ]
+  },
+  {
+    "id": "r-081",
+    "name": "Florida State–Miami",
+    "schools": [
+      "florida-state",
+      "miami-fl"
+    ]
+  },
+  {
+    "id": "r-082",
+    "name": "Florida Cup",
+    "schools": [
+      "florida",
+      "florida-state"
+    ]
+  },
+  {
+    "id": "r-083",
+    "name": "Okefenokee Oar",
+    "schools": [
+      "florida",
+      "georgia"
+    ]
+  },
+  {
+    "id": "r-084",
+    "name": "Florida–LSU",
+    "schools": [
+      "florida",
+      "lsu"
+    ]
+  },
+  {
+    "id": "r-085",
+    "name": "Florida–Miami",
+    "schools": [
+      "florida",
+      "miami-fl"
+    ]
+  },
+  {
+    "id": "r-086",
+    "name": "Florida–Tennessee",
+    "schools": [
+      "florida",
+      "tennessee"
+    ]
+  },
+  {
+    "id": "r-087",
+    "name": "Fresno State–Hawaii",
+    "schools": [
+      "fresno-state",
+      "hawaii"
+    ]
+  },
+  {
+    "id": "r-088",
+    "name": "Oil Can",
+    "schools": [
+      "fresno-state",
+      "san-diego-state"
+    ]
+  },
+  {
+    "id": "r-089",
+    "name": "Battle for the Valley",
+    "schools": [
+      "fresno-state",
+      "san-jose-state"
+    ]
+  },
+  {
+    "id": "r-090",
+    "name": "Modern Day Hate",
+    "schools": [
+      "georgia-southern",
+      "georgia-state"
+    ]
+  },
+  {
+    "id": "r-091",
+    "name": "Georgia Southern–Troy",
+    "schools": [
+      "georgia-southern",
+      "troy"
+    ]
+  },
+  {
+    "id": "r-092",
+    "name": "Georgia State–Kennesaw State",
+    "schools": [
+      "georgia-state",
+      "kennesaw-state"
+    ]
+  },
+  {
+    "id": "r-093",
+    "name": "Gold Cowbell",
+    "schools": [
+      "georgia-tech",
+      "vanderbilt"
+    ]
+  },
+  {
+    "id": "r-094",
+    "name": "Techmo Bowl",
+    "schools": [
+      "georgia-tech",
+      "virginia-tech"
+    ]
+  },
+  {
+    "id": "r-095",
+    "name": "Clean, Old-Fashioned Hate",
+    "schools": [
+      "georgia",
+      "georgia-tech"
+    ]
+  },
+  {
+    "id": "r-096",
+    "name": "Georgia–South Carolina",
+    "schools": [
+      "georgia",
+      "south-carolina"
+    ]
+  },
+  {
+    "id": "r-097",
+    "name": "Georgia–Tennessee",
+    "schools": [
+      "georgia",
+      "tennessee"
+    ]
+  },
+  {
+    "id": "r-098",
+    "name": "Dick Tomey Legacy Game",
+    "schools": [
+      "hawaii",
+      "san-jose-state"
+    ]
+  },
+  {
+    "id": "r-099",
+    "name": "Hawai'i–UNLV",
+    "schools": [
+      "hawaii",
+      "unlv"
+    ]
+  },
+  {
+    "id": "r-100",
+    "name": "Hawaii–Wyoming",
+    "schools": [
+      "hawaii",
+      "wyoming"
+    ]
+  },
+  {
+    "id": "r-101",
     "name": "Bayou Bucket",
     "schools": [
       "houston",
@@ -664,59 +808,1043 @@
     ]
   },
   {
-    "id": "r-84",
-    "name": "Battle on the Bayou (Wooden Boot)",
+    "id": "r-102",
+    "name": "Houston–Texas Tech",
+    "schools": [
+      "houston",
+      "texas-tech"
+    ]
+  },
+  {
+    "id": "r-103",
+    "name": "Houston–Tulsa",
+    "schools": [
+      "houston",
+      "tulsa"
+    ]
+  },
+  {
+    "id": "r-104",
+    "name": "Arch Rivalry",
+    "schools": [
+      "illinois",
+      "missouri"
+    ]
+  },
+  {
+    "id": "r-105",
+    "name": "Land of Lincoln Trophy",
+    "schools": [
+      "illinois",
+      "northwestern"
+    ]
+  },
+  {
+    "id": "r-106",
+    "name": "Illibuck",
+    "schools": [
+      "illinois",
+      "ohio-state"
+    ]
+  },
+  {
+    "id": "r-107",
+    "name": "Purdue Cannon",
+    "schools": [
+      "illinois",
+      "purdue"
+    ]
+  },
+  {
+    "id": "r-108",
+    "name": "The Bourbon Barrel",
+    "schools": [
+      "indiana",
+      "kentucky"
+    ]
+  },
+  {
+    "id": "r-109",
+    "name": "Old Brass Spittoon",
+    "schools": [
+      "indiana",
+      "michigan-state"
+    ]
+  },
+  {
+    "id": "r-110",
+    "name": "Old Oaken Bucket",
+    "schools": [
+      "indiana",
+      "purdue"
+    ]
+  },
+  {
+    "id": "r-111",
+    "name": "Farmageddon",
+    "schools": [
+      "iowa-state",
+      "kansas-state"
+    ]
+  },
+  {
+    "id": "r-112",
+    "name": "Telephone Trophy",
+    "schools": [
+      "iowa-state",
+      "missouri"
+    ]
+  },
+  {
+    "id": "r-113",
+    "name": "Cy-Hawk Trophy",
+    "schools": [
+      "iowa",
+      "iowa-state"
+    ]
+  },
+  {
+    "id": "r-114",
+    "name": "Floyd of Rosedale",
+    "schools": [
+      "iowa",
+      "minnesota"
+    ]
+  },
+  {
+    "id": "r-115",
+    "name": "Heroes Trophy",
+    "schools": [
+      "iowa",
+      "nebraska"
+    ]
+  },
+  {
+    "id": "r-116",
+    "name": "Heartland Trophy",
+    "schools": [
+      "iowa",
+      "wisconsin"
+    ]
+  },
+  {
+    "id": "r-117",
+    "name": "Jacksonville State–Kennesaw State",
+    "schools": [
+      "jacksonville-state",
+      "kennesaw-state"
+    ]
+  },
+  {
+    "id": "r-118",
+    "name": "Battle for the Ol' School Bell",
+    "schools": [
+      "jacksonville-state",
+      "troy"
+    ]
+  },
+  {
+    "id": "r-119",
+    "name": "Jacksonville State–UAB",
+    "schools": [
+      "jacksonville-state",
+      "uab"
+    ]
+  },
+  {
+    "id": "r-120",
+    "name": "Battle of the Blue Ridge",
+    "schools": [
+      "james-madison",
+      "liberty"
+    ]
+  },
+  {
+    "id": "r-121",
+    "name": "James Madison–Marshall",
+    "schools": [
+      "james-madison",
+      "marshall"
+    ]
+  },
+  {
+    "id": "r-122",
+    "name": "James Madison–North Dakota State",
+    "schools": [
+      "james-madison",
+      "north-dakota-state"
+    ]
+  },
+  {
+    "id": "r-123",
+    "name": "Royal Rivalry",
+    "schools": [
+      "james-madison",
+      "old-dominion"
+    ]
+  },
+  {
+    "id": "r-124",
+    "name": "Sunflower Showdown",
+    "schools": [
+      "kansas",
+      "kansas-state"
+    ]
+  },
+  {
+    "id": "r-125",
+    "name": "Border War",
+    "schools": [
+      "kansas",
+      "missouri"
+    ]
+  },
+  {
+    "id": "r-126",
+    "name": "Governor's Cup",
+    "schools": [
+      "kentucky",
+      "louisville"
+    ]
+  },
+  {
+    "id": "r-127",
+    "name": "Kentucky–Tennessee",
+    "schools": [
+      "kentucky",
+      "tennessee"
+    ]
+  },
+  {
+    "id": "r-128",
+    "name": "Kentucky–Vanderbilt",
+    "schools": [
+      "kentucky",
+      "vanderbilt"
+    ]
+  },
+  {
+    "id": "r-129",
+    "name": "Liberty–Old Dominion",
+    "schools": [
+      "liberty",
+      "old-dominion"
+    ]
+  },
+  {
+    "id": "r-130",
+    "name": "Rivalry in Dixie",
+    "schools": [
+      "louisiana-tech",
+      "southern-miss"
+    ]
+  },
+  {
+    "id": "r-131",
+    "name": "Louisiana Tech–ULM",
+    "schools": [
+      "louisiana-tech",
+      "ulm"
+    ]
+  },
+  {
+    "id": "r-132",
+    "name": "Louisiana–Louisiana Tech",
+    "schools": [
+      "louisiana",
+      "louisiana-tech"
+    ]
+  },
+  {
+    "id": "r-133",
+    "name": "Louisiana–ULM",
     "schools": [
       "louisiana",
       "ulm"
     ]
   },
   {
-    "id": "r-85",
+    "id": "r-134",
+    "name": "Louisville–Memphis",
+    "schools": [
+      "louisville",
+      "memphis"
+    ]
+  },
+  {
+    "id": "r-135",
+    "name": "Louisville–West Virginia",
+    "schools": [
+      "louisville",
+      "west-virginia"
+    ]
+  },
+  {
+    "id": "r-136",
+    "name": "LSU–Mississippi State",
+    "schools": [
+      "lsu",
+      "mississippi-state"
+    ]
+  },
+  {
+    "id": "r-137",
+    "name": "Magnolia Bowl",
+    "schools": [
+      "lsu",
+      "ole-miss"
+    ]
+  },
+  {
+    "id": "r-138",
+    "name": "LSU–Texas A&M",
+    "schools": [
+      "lsu",
+      "texas-a-m"
+    ]
+  },
+  {
+    "id": "r-139",
+    "name": "Battle for the Rag",
+    "schools": [
+      "lsu",
+      "tulane"
+    ]
+  },
+  {
+    "id": "r-140",
+    "name": "Battle for the Bell",
+    "schools": [
+      "marshall",
+      "ohio"
+    ]
+  },
+  {
+    "id": "r-141",
+    "name": "Friends of Coal Bowl",
+    "schools": [
+      "marshall",
+      "west-virginia"
+    ]
+  },
+  {
+    "id": "r-142",
+    "name": "Crab Bowl Classic",
+    "schools": [
+      "maryland",
+      "navy"
+    ]
+  },
+  {
+    "id": "r-143",
+    "name": "Maryland–Penn State",
+    "schools": [
+      "maryland",
+      "penn-state"
+    ]
+  },
+  {
+    "id": "r-144",
+    "name": "Maryland–Rutgers",
+    "schools": [
+      "maryland",
+      "rutgers"
+    ]
+  },
+  {
+    "id": "r-145",
+    "name": "Maryland–Virginia",
+    "schools": [
+      "maryland",
+      "virginia"
+    ]
+  },
+  {
+    "id": "r-146",
+    "name": "Mid–South Rivalry",
+    "schools": [
+      "memphis",
+      "ole-miss"
+    ]
+  },
+  {
+    "id": "r-147",
+    "name": "Black and Blue Bowl",
+    "schools": [
+      "memphis",
+      "southern-miss"
+    ]
+  },
+  {
+    "id": "r-148",
+    "name": "Memphis–Tulane",
+    "schools": [
+      "memphis",
+      "tulane"
+    ]
+  },
+  {
+    "id": "r-149",
+    "name": "Battle for the Bones",
+    "schools": [
+      "memphis",
+      "uab"
+    ]
+  },
+  {
+    "id": "r-150",
+    "name": "Miami–Virginia Tech",
+    "schools": [
+      "miami-fl",
+      "virginia-tech"
+    ]
+  },
+  {
+    "id": "r-151",
+    "name": "Battle of the Bricks",
+    "schools": [
+      "miami-oh",
+      "ohio"
+    ]
+  },
+  {
+    "id": "r-152",
+    "name": "Megaphone Trophy",
+    "schools": [
+      "michigan-state",
+      "notre-dame"
+    ]
+  },
+  {
+    "id": "r-153",
+    "name": "Battle for the Land Grant",
+    "schools": [
+      "michigan-state",
+      "penn-state"
+    ]
+  },
+  {
+    "id": "r-154",
+    "name": "Paul Bunyan Trophy",
+    "schools": [
+      "michigan",
+      "michigan-state"
+    ]
+  },
+  {
+    "id": "r-155",
+    "name": "Little Brown Jug",
+    "schools": [
+      "michigan",
+      "minnesota"
+    ]
+  },
+  {
+    "id": "r-156",
+    "name": "George Jewitt Trophy",
+    "schools": [
+      "michigan",
+      "northwestern"
+    ]
+  },
+  {
+    "id": "r-157",
+    "name": "Michigan–Notre Dame",
+    "schools": [
+      "michigan",
+      "notre-dame"
+    ]
+  },
+  {
+    "id": "r-158",
     "name": "The Game",
     "schools": [
-      "harvard",
-      "yale"
+      "michigan",
+      "ohio-state"
     ]
   },
   {
-    "id": "r-86",
-    "name": "The Rivalry",
+    "id": "r-159",
+    "name": "Battle for the Palladium",
     "schools": [
-      "lafayette",
-      "lehigh"
+      "middle-tennessee",
+      "troy"
     ]
   },
   {
-    "id": "r-87",
-    "name": "Brawl of the Wild (Great Divide Trophy)",
+    "id": "r-160",
+    "name": "100 Miles of Hate",
     "schools": [
-      "montana",
-      "montana-state"
+      "middle-tennessee",
+      "western-kentucky"
     ]
   },
   {
-    "id": "r-88",
-    "name": "Bayou Classic",
+    "id": "r-161",
+    "name": "$5 Bits of Broken Chair Trophy",
     "schools": [
-      "grambling-state",
-      "southern"
+      "minnesota",
+      "nebraska"
     ]
   },
   {
-    "id": "r-89",
-    "name": "Florida Classic",
+    "id": "r-162",
+    "name": "Governor's Victory Bell",
     "schools": [
-      "bethune-cookman",
-      "florida-a-m"
+      "minnesota",
+      "penn-state"
     ]
   },
   {
-    "id": "r-90",
-    "name": "Nickel Trophy",
+    "id": "r-163",
+    "name": "Paul Bunyan's Axe",
     "schools": [
-      "north-dakota",
-      "north-dakota-state"
+      "minnesota",
+      "wisconsin"
+    ]
+  },
+  {
+    "id": "r-164",
+    "name": "Egg Bowl",
+    "schools": [
+      "mississippi-state",
+      "ole-miss"
+    ]
+  },
+  {
+    "id": "r-165",
+    "name": "Victory Bell",
+    "schools": [
+      "missouri",
+      "nebraska"
+    ]
+  },
+  {
+    "id": "r-166",
+    "name": "Tiger–Sooner Peace Pipe",
+    "schools": [
+      "missouri",
+      "oklahoma"
+    ]
+  },
+  {
+    "id": "r-167",
+    "name": "Mayor's Cup",
+    "schools": [
+      "missouri",
+      "south-carolina"
+    ]
+  },
+  {
+    "id": "r-168",
+    "name": "Rip Miller Trophy",
+    "schools": [
+      "navy",
+      "notre-dame"
+    ]
+  },
+  {
+    "id": "r-169",
+    "name": "Gansz Trophy",
+    "schools": [
+      "navy",
+      "smu"
+    ]
+  },
+  {
+    "id": "r-170",
+    "name": "North Carolina–NC State",
+    "schools": [
+      "nc-state",
+      "north-carolina"
+    ]
+  },
+  {
+    "id": "r-171",
+    "name": "NC State–Wake Forest",
+    "schools": [
+      "nc-state",
+      "wake-forest"
+    ]
+  },
+  {
+    "id": "r-172",
+    "name": "Nebraska–Oklahoma",
+    "schools": [
+      "nebraska",
+      "oklahoma"
+    ]
+  },
+  {
+    "id": "r-173",
+    "name": "Nebraska–Texas",
+    "schools": [
+      "nebraska",
+      "texas"
+    ]
+  },
+  {
+    "id": "r-174",
+    "name": "Freedom Trophy",
+    "schools": [
+      "nebraska",
+      "wisconsin"
+    ]
+  },
+  {
+    "id": "r-175",
+    "name": "Nevada–Sacramento State",
+    "schools": [
+      "nevada",
+      "sacramento-state"
+    ]
+  },
+  {
+    "id": "r-176",
+    "name": "Battle for Nevada",
+    "schools": [
+      "nevada",
+      "unlv"
+    ]
+  },
+  {
+    "id": "r-177",
+    "name": "Battle of I-10",
+    "schools": [
+      "new-mexico-state",
+      "utep"
+    ]
+  },
+  {
+    "id": "r-178",
+    "name": "Rio Grande Rivalry",
+    "schools": [
+      "new-mexico",
+      "new-mexico-state"
+    ]
+  },
+  {
+    "id": "r-179",
+    "name": "Battle of the Carolinas",
+    "schools": [
+      "north-carolina",
+      "south-carolina"
+    ]
+  },
+  {
+    "id": "r-180",
+    "name": "South's Oldest Rivalry",
+    "schools": [
+      "north-carolina",
+      "virginia"
+    ]
+  },
+  {
+    "id": "r-181",
+    "name": "North Carolina–Wake Forest",
+    "schools": [
+      "north-carolina",
+      "wake-forest"
+    ]
+  },
+  {
+    "id": "r-182",
+    "name": "Safeway Bowl",
+    "schools": [
+      "north-texas",
+      "smu"
+    ]
+  },
+  {
+    "id": "r-183",
+    "name": "North Texas–UTSA",
+    "schools": [
+      "north-texas",
+      "utsa"
+    ]
+  },
+  {
+    "id": "r-184",
+    "name": "Northwestern–Notre Dame",
+    "schools": [
+      "northwestern",
+      "notre-dame"
+    ]
+  },
+  {
+    "id": "r-185",
+    "name": "Notre Dame–Pittsburgh",
+    "schools": [
+      "notre-dame",
+      "pittsburgh"
+    ]
+  },
+  {
+    "id": "r-186",
+    "name": "Shillelagh Trophy",
+    "schools": [
+      "notre-dame",
+      "purdue"
+    ]
+  },
+  {
+    "id": "r-187",
+    "name": "Legends Trophy",
+    "schools": [
+      "notre-dame",
+      "stanford"
+    ]
+  },
+  {
+    "id": "r-188",
+    "name": "Jeweled Shillelagh",
+    "schools": [
+      "notre-dame",
+      "usc"
+    ]
+  },
+  {
+    "id": "r-189",
+    "name": "Ohio State–Penn State",
+    "schools": [
+      "ohio-state",
+      "penn-state"
+    ]
+  },
+  {
+    "id": "r-190",
+    "name": "Oklahoma State–Texas Tech",
+    "schools": [
+      "oklahoma-state",
+      "texas-tech"
+    ]
+  },
+  {
+    "id": "r-191",
+    "name": "Oklahoma State–Tulsa",
+    "schools": [
+      "oklahoma-state",
+      "tulsa"
+    ]
+  },
+  {
+    "id": "r-192",
+    "name": "Bedlam Series",
+    "schools": [
+      "oklahoma",
+      "oklahoma-state"
+    ]
+  },
+  {
+    "id": "r-193",
+    "name": "Red River Rivalry",
+    "schools": [
+      "oklahoma",
+      "texas"
+    ]
+  },
+  {
+    "id": "r-194",
+    "name": "Oregon State–Washington State",
+    "schools": [
+      "oregon-state",
+      "washington-state"
+    ]
+  },
+  {
+    "id": "r-195",
+    "name": "Platypus Trophy",
+    "schools": [
+      "oregon",
+      "oregon-state"
+    ]
+  },
+  {
+    "id": "r-196",
+    "name": "Oregon–Washington",
+    "schools": [
+      "oregon",
+      "washington"
+    ]
+  },
+  {
+    "id": "r-197",
+    "name": "Keystone Classic",
+    "schools": [
+      "penn-state",
+      "pittsburgh"
+    ]
+  },
+  {
+    "id": "r-198",
+    "name": "Penn State–Syracuse",
+    "schools": [
+      "penn-state",
+      "syracuse"
+    ]
+  },
+  {
+    "id": "r-199",
+    "name": "Penn State–Temple",
+    "schools": [
+      "penn-state",
+      "temple"
+    ]
+  },
+  {
+    "id": "r-200",
+    "name": "Pittsburgh–Syracuse",
+    "schools": [
+      "pittsburgh",
+      "syracuse"
+    ]
+  },
+  {
+    "id": "r-201",
+    "name": "Backyard Brawl",
+    "schools": [
+      "pittsburgh",
+      "west-virginia"
+    ]
+  },
+  {
+    "id": "r-202",
+    "name": "Mayor's Cup",
+    "schools": [
+      "rice",
+      "smu"
+    ]
+  },
+  {
+    "id": "r-203",
+    "name": "Rice–Tulsa",
+    "schools": [
+      "rice",
+      "tulsa"
+    ]
+  },
+  {
+    "id": "r-204",
+    "name": "Sam Houston–Texas State",
+    "schools": [
+      "sam-houston",
+      "texas-state"
+    ]
+  },
+  {
+    "id": "r-205",
+    "name": "Sam Houston–UTEP",
+    "schools": [
+      "sam-houston",
+      "utep"
+    ]
+  },
+  {
+    "id": "r-206",
+    "name": "Bill Walsh Legacy Game",
+    "schools": [
+      "san-jose-state",
+      "stanford"
+    ]
+  },
+  {
+    "id": "r-207",
+    "name": "Battle for the Iron Skillet",
+    "schools": [
+      "smu",
+      "tcu"
+    ]
+  },
+  {
+    "id": "r-208",
+    "name": "South Alabama–Southern Miss",
+    "schools": [
+      "south-alabama",
+      "southern-miss"
+    ]
+  },
+  {
+    "id": "r-209",
+    "name": "Battle for the Belt",
+    "schools": [
+      "south-alabama",
+      "troy"
+    ]
+  },
+  {
+    "id": "r-210",
+    "name": "South Carolina–Texas A&M",
+    "schools": [
+      "south-carolina",
+      "texas-a-m"
+    ]
+  },
+  {
+    "id": "r-211",
+    "name": "War on I–4",
+    "schools": [
+      "south-florida",
+      "ucf"
+    ]
+  },
+  {
+    "id": "r-212",
+    "name": "Battle for the Bell",
+    "schools": [
+      "southern-miss",
+      "tulane"
+    ]
+  },
+  {
+    "id": "r-213",
+    "name": "Southern Miss–UAB",
+    "schools": [
+      "southern-miss",
+      "uab"
+    ]
+  },
+  {
+    "id": "r-214",
+    "name": "Stanford–USC",
+    "schools": [
+      "stanford",
+      "usc"
+    ]
+  },
+  {
+    "id": "r-215",
+    "name": "Syracuse–UConn",
+    "schools": [
+      "syracuse",
+      "uconn"
+    ]
+  },
+  {
+    "id": "r-216",
+    "name": "Ben Schwartzwalder Trophy",
+    "schools": [
+      "syracuse",
+      "west-virginia"
+    ]
+  },
+  {
+    "id": "r-217",
+    "name": "TCU–Texas",
+    "schools": [
+      "tcu",
+      "texas"
+    ]
+  },
+  {
+    "id": "r-218",
+    "name": "Saddle Trophy",
+    "schools": [
+      "tcu",
+      "texas-tech"
+    ]
+  },
+  {
+    "id": "r-219",
+    "name": "Tennessee–Vanderbilt",
+    "schools": [
+      "tennessee",
+      "vanderbilt"
+    ]
+  },
+  {
+    "id": "r-220",
+    "name": "I-35 Rivalry",
+    "schools": [
+      "texas-state",
+      "utsa"
+    ]
+  },
+  {
+    "id": "r-221",
+    "name": "Lone Star Showdown",
+    "schools": [
+      "texas",
+      "texas-a-m"
+    ]
+  },
+  {
+    "id": "r-222",
+    "name": "Chancellor's Spurs",
+    "schools": [
+      "texas",
+      "texas-tech"
+    ]
+  },
+  {
+    "id": "r-223",
+    "name": "Troy–UAB",
+    "schools": [
+      "troy",
+      "uab"
+    ]
+  },
+  {
+    "id": "r-224",
+    "name": "UCF–UConn",
+    "schools": [
+      "ucf",
+      "uconn"
+    ]
+  },
+  {
+    "id": "r-225",
+    "name": "Victory Bell",
+    "schools": [
+      "ucla",
+      "usc"
+    ]
+  },
+  {
+    "id": "r-226",
+    "name": "UConn–UMass",
+    "schools": [
+      "uconn",
+      "umass"
+    ]
+  },
+  {
+    "id": "r-227",
+    "name": "Bridger's Battle",
+    "schools": [
+      "utah-state",
+      "wyoming"
+    ]
+  },
+  {
+    "id": "r-228",
+    "name": "Battle of the Brothers",
+    "schools": [
+      "utah",
+      "utah-state"
+    ]
+  },
+  {
+    "id": "r-229",
+    "name": "Black Diamond Trophy",
+    "schools": [
+      "virginia-tech",
+      "west-virginia"
+    ]
+  },
+  {
+    "id": "r-230",
+    "name": "Commonwealth Cup",
+    "schools": [
+      "virginia",
+      "virginia-tech"
+    ]
+  },
+  {
+    "id": "r-231",
+    "name": "Apple Cup",
+    "schools": [
+      "washington",
+      "washington-state"
     ]
   }
 ]

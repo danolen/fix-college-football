@@ -1,0 +1,781 @@
+{{Short description|None}}
+{{Hatnote|See [[List of most-played college football series in NCAA Division I|college football series in NCAA Division I]], for a list of series played 100 or more times, including ones not included as rivalry games below.}}
+{{pp-sock|small=yes}}
+{{Use American English|date=March 2026}}
+{{Use mdy dates|date=March 2024}}
+[[File:Lafayette2006PLchampsboard.JPG|thumb|upright=1.3|[[Fisher Stadium]]'s scoreboard in [[Easton, Pennsylvania]] following [[Lafayette Leopards football|Lafayette College]]'s victory over [[Lehigh Mountain Hawks football|Lehigh University]] in the 142nd edition of "[[The Rivalry (Lafayette–Lehigh)|The Rivalry]]" in 2006. The series between the two colleges, which are {{convert|17|mi}} away from each other in the [[Lehigh Valley]], is the most played rivalry in [[college football]] history with 158 meetings since 1884.]]
+ 
+This is a '''list of [[List of sports rivalries|rivalry]] games''' in [[college football]]. The list also shows any trophy awarded to the winner of the rivalry between the teams.{{efn|The list only shows games that have an associated Wikipedia article for either the name of the game or the trophy. Other series have been played more times than games listed here that have no Wikipedia article. For example, in the FBS, Washington State and Oregon State have played more than 100 times, and in the FCS, Harvard and Brown have played over 100 times.}}
+<!--This list is for all rivalries with trophy listed where appropriate. Please add additional entries in alphabetical order by game name, or if the game has only a trophy, by trophy name, and list the two teams alphabetically as to show no preference.
+
+{{Trophy game|[[game]]|[[trophy]]|[[teama]]|[[teamb]]|[[firstyear]]|[[latestyear]]|[[meetings]]}}
+
+For consistency, please use [[Foo|Common Name]], where "Foo" is:
+     The article for the school's football program, if it exists;
+     The article for the school's athletics program, if no football article exists, or
+     The school's full name, if no football or athletics article exists
+-->
+
+==NCAA Division I Football Bowl Subdivision==
+{{Start trophy game list}}
+{{Trophy game|[[100 Miles of Hate]]||[[Middle Tennessee Blue Raiders football|Middle Tennessee]]|[[Western Kentucky Hilltoppers football|Western Kentucky]]|1914|2025|75}}
+{{Trophy game|[[Air Force–Colorado State football rivalry|Air Force–Colorado State]]|[[Ram–Falcon Trophy]]|[[Air Force Falcons football|Air Force]]|[[Colorado State Rams football|Colorado State]]|1957|2025|63}}
+{{Trophy game|[[Air Force–Hawaii football rivalry|Air Force–Hawaii]]|[[Kuter Trophy]]|[[Air Force Falcons football|Air Force]]|[[Hawaii Rainbow Warriors football|Hawaii]]|1966|2025|24}}
+{{Trophy game|Akron–Kent State|[[Wagon Wheel (trophy)|Wagon Wheel]]|[[Akron Zips football|Akron]]|[[Kent State Golden Flashes football|Kent State]]|1923|2025|68}}
+{{Trophy game|[[Alabama–Clemson football rivalry|Alabama–Clemson]]||[[Alabama Crimson Tide football|Alabama]]|[[Clemson Tigers football|Clemson]]|1900|2019|19}}
+{{Trophy game|[[Alabama–Florida football rivalry|Alabama–Florida]]||[[Alabama Crimson Tide football|Alabama]]|[[Florida Gators football|Florida]]|1916|2021|42}}
+{{Trophy game|[[Alabama–Georgia football rivalry|Alabama–Georgia]]||[[Alabama Crimson Tide football|Alabama]]|[[Georgia Bulldogs football|Georgia]]|1895|2025|76}}
+{{Trophy game|[[Alabama–Georgia Tech football rivalry|Alabama–Georgia Tech]]||[[Alabama Crimson Tide football|Alabama]]|[[Georgia Tech Yellow Jackets football|Georgia Tech]]|1902|1984|52}}
+{{Trophy game|[[Alabama–LSU football rivalry|Alabama–LSU]]||[[Alabama Crimson Tide football|Alabama]]|[[LSU Tigers football|LSU]]|1895|2025|90}}
+{{Trophy game|[[Alabama–Ole Miss football rivalry|Alabama–Ole Miss]]||[[Alabama Crimson Tide football|Alabama]]|[[Ole Miss Rebels football|Ole Miss]]|1894|2023|71}}
+{{Trophy game|[[Alabama–Penn State football rivalry|Alabama–Penn State]]||[[Alabama Crimson Tide football|Alabama]]|[[Penn State Nittany Lions football|Penn State]]|1959|2011|15}}
+{{Trophy game|[[Apple Cup]]|Apple Cup Trophy|[[Washington Huskies football|Washington]]|[[Washington State Cougars football|Washington State]]|1900|2026|118}}
+{{Trophy game|[[Illinois–Missouri football rivalry|Arch Rivalry]]| [[Illinois–Missouri football rivalry|Arch Rivalry Trophy]]|[[Illinois Fighting Illini football|Illinois]]|[[Missouri Tigers football|Missouri]]|1896|2010|24}}
+{{Trophy game|[[Arizona–New Mexico football rivalry|Arizona–New Mexico]]||[[Arizona Wildcats football|Arizona]]|[[New Mexico Lobos football|New Mexico]]|1908|2024|68}}
+{{Trophy game|[[Arkansas–LSU football rivalry|Arkansas–LSU]]|[[Golden Boot (Arkansas–LSU)|Golden Boot]]|[[Arkansas Razorbacks football|Arkansas]]|[[LSU Tigers football|LSU]]|1901|2025|71}}
+{{Trophy game|[[Arkansas–Ole Miss football rivalry|Arkansas–Ole Miss]]||[[Arkansas Razorbacks football|Arkansas]]|[[Ole Miss Rebels football|Ole Miss]]|1908|2025|72}}
+{{Trophy game|[[Arkansas–Texas football rivalry|Arkansas–Texas]]||[[Arkansas Razorbacks football|Arkansas]]|[[Texas Longhorns football|Texas]]|1894|2025|81}}
+{{Trophy game|[[Arkansas–Texas A&M football rivalry|Arkansas–Texas A&M]]|Southwest Classic Trophy|[[Arkansas Razorbacks football|Arkansas]]|[[Texas A&M Aggies football|Texas A&M]]|1903|2025|82}}
+{{Trophy game|[[Arkansas–Texas Tech football rivalry|Arkansas–Texas Tech]]||[[Arkansas Razorbacks football|Arkansas]]|[[Texas Tech Red Raiders football|Texas Tech]]|1957|2024|38}}
+{{Trophy game|[[Army–Navy Game]]||[[Army Black Knights football|Army]]|[[Navy Midshipmen football|Navy]]|1890|2025|126}}
+{{Trophy game|[[Army–Notre Dame football rivalry|Army–Notre Dame]]||[[Army Black Knights football|Army]]|[[Notre Dame Fighting Irish football|Notre Dame]]|1913|2024|52}}
+{{Trophy game|[[Auburn–Clemson football rivalry|Auburn–Clemson]]||[[Auburn Tigers football|Auburn]]|[[Clemson Tigers football|Clemson]]|1899|2017|51}}
+{{Trophy game|[[Auburn–Florida football rivalry|Auburn–Florida]]||[[Auburn Tigers football|Auburn]]|[[Florida Gators football|Florida]]|1912|2026|85}}
+{{Trophy game|[[Auburn–Georgia Tech football rivalry|Auburn–Georgia Tech]]||[[Auburn Tigers football|Auburn]]|[[Georgia Tech Yellow Jackets football|Georgia Tech]]|1892|2005|92}}
+{{Trophy game|[[Auburn–Mississippi State football rivalry|Auburn–Mississippi State]]||[[Auburn Tigers football|Auburn]]|[[Mississippi State Bulldogs football|Mississippi State]]|1905|2023|97}}
+{{Trophy game|[[Auburn–Ole Miss football rivalry|Auburn–Ole Miss]]||[[Auburn Tigers football|Auburn]]|[[Ole Miss Rebels football|Ole Miss]]|1928|2023|48}}
+{{Trophy game|[[Auburn–Tennessee football rivalry|Auburn–Tennessee]]||[[Auburn Tigers football|Auburn]]|[[Tennessee Volunteers football|Tennessee]]|1900|2020|54}}
+{{Trophy game|[[Auburn–Tulane football rivalry|Auburn–Tulane]]||[[Auburn Tigers football|Auburn]]|[[Tulane Green Wave football|Tulane]]|1902|2019|38}}
+{{Trophy game|[[Backyard Brawl]]||[[Pittsburgh Panthers football|Pittsburgh]]|[[West Virginia Mountaineers football|West Virginia]]|1895|2025|108}}
+{{Trophy game|Ball State–Northern Illinois|[[Bronze Stalk Trophy]]|[[Ball State Cardinals football|Ball State]]|[[Northern Illinois Huskies football|Northern Illinois]]|1941|2025|53}}
+{{Trophy game|[[Alabama–Mississippi State football rivalry|Battle for Highway 82]]||[[Alabama Crimson Tide football|Alabama]]|[[Mississippi State Bulldogs football|Mississippi State]]|1896|2023|108}}
+{{Trophy game|Battle for Nevada|[[Fremont Cannon]]|[[Nevada Wolf Pack football|Nevada]]|[[UNLV Rebels football|UNLV]]|1969|2025|51}}
+{{Trophy game|Battle for the Bell|[[Victory Bell (Cincinnati–Miami)|Victory Bell]]|[[Cincinnati Bearcats football|Cincinnati]]|[[Miami RedHawks football|Miami (OH)]]|1888|2024|128}}
+{{Trophy game|[[Battle for the Bell (Marshall–Ohio)|Battle for the Bell]]|The Bell|[[Marshall Thundering Herd football|Marshall]]|[[Ohio Bobcats football|Ohio]]|1905|2019|60}}
+{{Trophy game|[[Battle for the Bell (Southern Miss–Tulane)|Battle for the Bell]]|The Bell|[[Southern Miss Golden Eagles football|Southern Miss]]|[[Tulane Green Wave football|Tulane]]|1979|2023|33}}
+{{Trophy game|[[South Alabama–Troy football rivalry|Battle for the Belt]]|The Belt|[[South Alabama Jaguars football|South Alabama]]|[[Troy Trojans football|Troy]]|2012|2025|14}}
+{{Trophy game|[[Battle for the Bones]]|The Bones|[[Memphis Tigers football|Memphis]]|[[UAB Blazers football|UAB]]|1997|2025|18}}
+{{Trophy game|[[SMU–TCU football rivalry|Battle for the Iron Skillet]]|Iron Skillet|[[SMU Mustangs football|SMU]]|[[TCU Horned Frogs football|TCU]]|1915|2025|104}}
+{{Trophy game|[[Michigan State–Penn State football rivalry|Battle for the Land Grant]]|Land Grant Trophy|[[Michigan State Spartans football|Michigan State]]|[[Penn State Nittany Lions football|Penn State]]|1914|2025|39}}
+{{Trophy game|[[Battle for the Ol' School Bell]]|Ol' School Bell|[[Jacksonville State Gamecocks football|Jacksonville State]]|[[Troy Trojans football|Troy]]|1924|2025|64}}
+{{Trophy game|[[Battle for the Palladium]]|The Palladium Trophy|[[Middle Tennessee Blue Raiders football|Middle Tennessee]]|[[Troy Trojans football|Troy]]|1936|2020|21}}
+{{Trophy game|[[Battle for the Rag]]|[[Tiger Rag (LSU-Tulane)|Tiger Rag]]|[[LSU Tigers football|LSU]]|[[Tulane Green Wave football|Tulane]]|1893|2009|98}}
+{{Trophy game|[[Battle for the Valley]]|Valley Trophy|[[Fresno State Bulldogs football|Fresno State]]|[[San Jose State Spartans football|San José State]]|1921|2026|89}}
+{{Trophy game|[[Battle Line Rivalry]]|Battle Line Trophy|[[Arkansas Razorbacks football|Arkansas]]|[[Missouri Tigers football|Missouri]]|1906|2025|17}}
+{{Trophy game|[[Battle of I-10]]|Silver Spade|[[New Mexico State Aggies football|New Mexico State]]|[[UTEP Miners football|UTEP]]|1914|2025|102}}
+{{Trophy game|[[Battle of the Blue Ridge]]||[[James Madison Dukes football|James Madison]]|[[Liberty Flames football|Liberty]]|1980|2026|20}}
+{{Trophy game|[[Battle of the Brazos]]||[[Baylor Bears football|Baylor]]|[[Texas A&M Aggies football|Texas A&M]]|1899|2011|108}}
+{{Trophy game|[[Battle of the Bricks]]||[[Miami RedHawks football|Miami (OH)]]|[[Ohio Bobcats football|Ohio]]|1908|2025|102}}
+{{Trophy game|[[Battle of the Brothers]]||[[Utah Utes football|Utah]]|[[Utah State Aggies football|Utah State]]|1892|2024|113}}
+{{Trophy game|[[North Carolina–South Carolina football rivalry|Battle of the Carolinas]]||[[North Carolina Tar Heels football|North Carolina]]|[[South Carolina Gamecocks football|South Carolina]]|1903|2023|60}}
+{{Trophy game|[[Battle on the Bayou]]|Wooden Boot|[[Louisiana Ragin' Cajuns football|Louisiana]]|[[Louisiana–Monroe Warhawks football|Louisiana–Monroe]]|1951|2025|61}}
+{{Trophy game|[[Baylor–Houston football rivalry|Baylor–Houston]]||[[Baylor Bears football|Baylor]]|[[Houston Cougars football|Houston]]|1950|2025|31}}
+{{Trophy game|[[Baylor–Rice football rivalry|Baylor–Rice]]||[[Baylor Bears football|Baylor]]|[[Rice Owls football|Rice]]|1914|2019|82}}
+{{Trophy game|[[Baylor–Texas football rivalry|Baylor–Texas]]||[[Baylor Bears football|Baylor]]|[[Texas Longhorns football|Texas]]|1901|2023|113}}
+{{Trophy game|[[Baylor–Texas Tech football rivalry|Baylor–Texas Tech]]||[[Baylor Bears football|Baylor]]|[[Texas Tech Red Raiders football|Texas Tech]]|1929|2024|83}}
+{{Trophy game|[[Bedlam Series]]|Bedlam Bell|[[Oklahoma Sooners football|Oklahoma]]|[[Oklahoma State Cowboys football|Oklahoma State]]|1904|2023|118}}
+{{Trophy game|[[Big Game (American football)|Big Game]]|[[Stanford Axe|The Axe]]|[[California Golden Bears football|California]]|[[Stanford Cardinal football|Stanford]]|1892|2025|128}}
+{{Trophy game|[[Bill Walsh Legacy Game]]||[[San Jose State Spartans football|San José State]]|[[Stanford Cardinal football|Stanford]]|1900|2025|69}}
+{{Trophy game|[[Black and Blue Bowl]]||[[Memphis Tigers football|Memphis]]|[[Southern Miss Golden Eagles football|Southern Miss]]|1935|2012|63}}
+{{Trophy game|[[Baylor–TCU football rivalry|Bluebonnet Battle]]|Bluebonnet Shield|[[Baylor Bears football|Baylor]]|[[TCU Horned Frogs football|TCU]]|1899|2025|121}}
+{{Trophy game|[[Boise State–Fresno State football rivalry|Boise State–Fresno State]]|Milk Can|[[Boise State Broncos football|Boise State]]|[[Fresno State Bulldogs football|Fresno State]]|1977|2025|27}}
+{{Trophy game|[[Boise State–Nevada football rivalry|Boise State–Nevada]]||[[Boise State Broncos football|Boise State]]|[[Nevada Wolf Pack football|Nevada]]|1971|2025|47}}
+{{Trophy game|[[Border War (Colorado State–Wyoming rivalry)|Border War]]|[[Bronze Boot]]|[[Colorado State Rams football|Colorado State]]|[[Wyoming Cowboys football|Wyoming]]|1899|2026|118}}
+{{Trophy game|[[Border War (Kansas–Missouri rivalry)|Border War]]|Indian War Drum; Lamar Hunt Trophy|[[Kansas Jayhawks football|Kansas]]|[[Missouri Tigers football|Missouri]]|1891|2026|122}}
+{{Trophy game|Boston College–Clemson|[[O'Rourke–McFadden Trophy]]|[[Boston College Eagles football|Boston College]]|[[Clemson Tigers football|Clemson]]|1940|2025|33}}
+{{Trophy game|[[Boston College–UMass football rivalry|Boston College–UMass]]||[[Boston College Eagles football|Boston College]]|[[UMass Minutemen football|UMass]]|1899|2021|28}}
+{{Trophy game|[[Boston College–Virginia Tech football rivalry|Boston College–Virginia Tech]]||[[Boston College Eagles football|Boston College]]|[[Virginia Tech Hokies football|Virginia Tech]]|1993|2024|33}}
+{{Trophy game|Bowling Green–Kent State|[[Anniversary Award]]|[[Bowling Green Falcons football|Bowling Green]]|[[Kent State Golden Flashes football|Kent State]]|1920|2025|93}}
+{{Trophy game|[[Bowling Green–Toledo football rivalry|Bowling Green–Toledo]]|Battle of I-75 Trophy|[[Bowling Green Falcons football|Bowling Green]]|[[Toledo Rockets football|Toledo]]|1919|2025|90}}
+{{Trophy game|[[Utah State–Wyoming football rivalry|Bridger's Battle]]|Bridger Rifle|[[Utah State Aggies football|Utah State]]|[[Wyoming Cowboys football|Wyoming]]|1903|2024|73}}
+{{Trophy game|Buffalo–UMass|Flagship Cup|[[Buffalo Bulls football|Buffalo]]|[[UMass Minutemen football|UMass]]|1964|2025|16}}
+{{Trophy game|[[BYU–Utah State football rivalry|BYU–Utah State]]|[[The Old Wagon Wheel]]|[[BYU Cougars football|BYU]]|[[Utah State Aggies football|Utah State]]|1922|2022|91}}
+{{Trophy game|[[California–UCLA football rivalry|California–UCLA]]||[[California Golden Bears football|California]]|[[UCLA Bruins football|UCLA]]|1933|2026|95}}
+{{Trophy game|[[California–USC  football rivalry|California–USC]]||[[California Golden Bears football|California]]|[[USC Trojans football|USC]]|1912|2023|112}}
+{{Trophy game|[[Central Michigan–Eastern Michigan football rivalry|Central Michigan–Eastern Michigan]]||[[Central Michigan Chippewas football|Central Michigan]]|[[Eastern Michigan Eagles football|Eastern Michigan]]|1902|2025|103}}
+{{Trophy game|Central Michigan–Western Michigan|[[Central Michigan–Western Michigan football rivalry|Victory Cannon]]|[[Central Michigan Chippewas football|Central Michigan]]|[[Western Michigan Broncos football|Western Michigan]]|1907|2025|96}}
+{{Trophy game|[[Centre–Kentucky rivalry|Centre–Kentucky]]||[[Centre Colonels football|Centre]]|[[Kentucky Wildcats football|Kentucky]]|1891|1929|35}}
+{{Trophy game|[[Chicago–Michigan football rivalry|Chicago–Michigan]]||[[Chicago Maroons football|Chicago]]|[[Michigan Wolverines football|Michigan]]|1892|1939|26}}
+{{Trophy game|[[Chicago–Purdue football rivalry|Chicago–Purdue]]||[[Chicago Maroons football|Chicago]]|[[Purdue Boilermakers football|Purdue]]|1892|1936|42}}
+{{Trophy game|Cincinnati–Louisville|[[The Keg of Nails]]|[[Cincinnati Bearcats football|Cincinnati]]|[[Louisville Cardinals football|Louisville]]|1929|2022|54}}
+{{Trophy game|[[Cincinnati–Memphis rivalry#Football|Cincinnati–Memphis]]||[[Cincinnati Bearcats football|Cincinnati]]|[[Memphis Tigers football|Memphis]]|1966|2020|37}}
+{{Trophy game|[[Cincinnati–UCF football rivalry|Cincinnati–UCF]]||[[Cincinnati Bearcats football|Cincinnati]]|[[UCF Knights football|UCF]]|2015|2025|11}}
+{{Trophy game|[[Cincinnati–West Virginia rivalry|Cincinnati–West Virginia]]||[[Cincinnati Bearcats football|Cincinnati]]|[[West Virginia Mountaineers football|West Virginia]]|1921|2024|22}}
+{{Trophy game|[[Clean, Old-Fashioned Hate]]|Governor's Cup|[[Georgia Bulldogs football|Georgia]]|[[Georgia Tech Yellow Jackets football|Georgia Tech]]|1893|2025|119}}
+{{Trophy game|[[Clemson–Florida State football rivalry|Clemson–Florida State]]||[[Clemson Tigers football|Clemson]]|[[Florida State Seminoles football|Florida State]]|1970|2025|38}}
+{{Trophy game|[[Clemson–Georgia football rivalry|Clemson–Georgia]]||[[Clemson Tigers football|Clemson]]|[[Georgia Bulldogs football|Georgia]]|1897|2024|66}}
+{{Trophy game|[[Clemson–Georgia Tech football rivalry|Clemson–Georgia Tech]]||[[Clemson Tigers football|Clemson]]|[[Georgia Tech Yellow Jackets football|Georgia Tech]]|1898|2025|90}}
+{{Trophy game|[[Coastal Carolina–Liberty football rivalry|Coastal Carolina–Liberty]]||[[Coastal Carolina Chanticleers football|Coastal Carolina]]|[[Liberty Flames football|Liberty]]|2003|2020|15}}
+{{Trophy game|[[Colorado–Kansas State football rivalry|Colorado–Kansas State]]||[[Colorado Buffaloes football|Colorado]]|[[Kansas State Wildcats football|Kansas State]]|1912|2025|68}}
+{{Trophy game|[[Colorado–Nebraska football rivalry|Colorado–Nebraska]]||[[Colorado Buffaloes football|Colorado]]|[[Nebraska Cornhuskers football|Nebraska]]|1898|2024|73}}
+{{Trophy game|[[Crab Bowl Classic]]|Crab Bowl Trophy|[[Maryland Terrapins football|Maryland]]|[[Navy Midshipmen football|Navy]]|1905|2010|21}}
+{{Trophy game|[[Appalachian State–Georgia Southern football rivalry|Deeper than Hate]]||[[Appalachian State Mountaineers football|Appalachian State]]|[[Georgia Southern Eagles football|Georgia Southern]]|1932|2025|41}}
+{{Trophy game|[[Deep South's Oldest Rivalry]]||[[Auburn Tigers football|Auburn]]|[[Georgia Bulldogs football|Georgia]]|1892|2025|130}}
+{{Trophy game|[[Dick Tomey Legacy Game]]|Dick Tomey Legacy Trophy|[[Hawaii Rainbow Warriors football|Hawaii]]|[[San Jose State Spartans football|San José State]]|1936|2025|47}}
+{{Trophy game|[[Arizona–Arizona State football rivalry|Duel in the Desert]]|[[Territorial Cup]]|[[Arizona Wildcats football|Arizona]]|[[Arizona State Sun Devils football|Arizona State]]|1899|2025|99}}
+{{Trophy game|[[Duke–Georgia Tech football rivalry|Duke–Georgia Tech]]||[[Duke Blue Devils football|Duke]]|[[Georgia Tech Yellow Jackets football|Georgia Tech]]|1933|2025|92}}
+{{Trophy game|[[Duke–North Carolina rivalry|Duke–North Carolina]]|[[Victory Bell (Duke–North Carolina)|Victory Bell]]|[[Duke Blue Devils football|Duke]]|[[North Carolina Tar Heels football|North Carolina]]|1888|2025|112}}
+{{Trophy game|[[Duke–NC State football rivalry|Duke–NC State]]||[[Duke Blue Devils football|Duke]]|[[NC State Wolfpack football|NC State]]|1924|2025|86}}
+{{Trophy game|[[Duke–Virginia football rivalry|Duke–Virginia]]||[[Duke Blue Devils football|Duke]]|[[Virginia Cavaliers football|Virginia]]|1890|2025|77}}
+{{Trophy game|[[Duke–Wake Forest football rivalry|Duke–Wake Forest]]||[[Duke Blue Devils football|Duke]]|[[Wake Forest Demon Deacons football|Wake Forest]]|1889|2025|105}}
+{{Trophy game|[[East Carolina–Marshall football rivalry|East Carolina–Marshall]]||[[East Carolina Pirates football|East Carolina]]|[[Marshall Thundering Herd football|Marshall]]|1967|2023|17}}
+{{Trophy game|[[East Carolina–NC State rivalry|East Carolina–NC State]]|Victory Barrel|[[East Carolina Pirates football|East Carolina]]|[[NC State Wolfpack football|NC State]]|1970|2025|34}}
+{{Trophy game|[[Egg Bowl]]|Golden Egg Trophy|[[Mississippi State Bulldogs football|Mississippi State]]|[[Ole Miss Rebels football|Ole Miss]]|1901|2025|122}}
+{{Trophy game|[[Iowa State–Kansas State football rivalry|Farmageddon]]||[[Iowa State Cyclones football|Iowa State]]|[[Kansas State Wildcats football|Kansas State]]|1917|2025|109}}
+{{Trophy game|[[Florida–Florida State football rivalry|Florida–Florida State]]|Makala Trophy, [[Florida Cup]]|[[Florida Gators football|Florida]]|[[Florida State Seminoles football|Florida State]]|1958|2025|69}}
+{{Trophy game|[[Florida–Georgia football rivalry|Florida–Georgia]]|Okefenokee Oar|[[Florida Gators football|Florida]]|[[Georgia Bulldogs football|Georgia]]|1915|2025|103}}
+{{Trophy game|[[Florida–Kentucky rivalry#Football|Florida–Kentucky]]||[[Florida Gators football|Florida]]|[[Kentucky Wildcats football|Kentucky]]|1917|2025|76}}
+{{Trophy game|[[Florida–LSU football rivalry|Florida–LSU]]||[[Florida Gators football|Florida]]|[[LSU Tigers football|LSU]]|1937|2025|72}}
+{{Trophy game|[[Florida–Miami football rivalry|Florida–Miami]]|[[Florida Cup]], Seminole War Canoe|[[Florida Gators football|Florida]]|[[Miami Hurricanes football|Miami (FL)]]|1938|2025|58}}
+{{Trophy game|[[Florida–Tennessee football rivalry|Florida–Tennessee]]||[[Florida Gators football|Florida]]|[[Tennessee Volunteers football|Tennessee]]|1916|2025|55}}
+{{Trophy game|[[Florida State–Miami football rivalry|Florida State–Miami]]|[[Florida Cup]]|[[Florida State Seminoles football|Florida State]]|[[Miami Hurricanes football|Miami (FL)]]|1951|2025|70}}
+{{Trophy game|Florida State–Virginia|[[Jefferson–Eppes Trophy]]|[[Florida State Seminoles football|Florida State]]|[[Virginia Cavaliers football|Virginia]]|1992|2025|20}}
+{{Trophy game|[[Holy War (Boston College–Notre Dame)|Frank Leahy Memorial Bowl]]|Ireland Trophy|[[Boston College Eagles football|Boston College]]|[[Notre Dame Fighting Irish football|Notre Dame]]|1975|2025|28}}
+{{Trophy game|[[Fresno State–Hawaii football rivalry|Fresno State–Hawaii]]|Golden Screwdriver|[[Fresno State Bulldogs football|Fresno State]]|[[Hawaii Rainbow Warriors football|Hawaii]]|1938|2025|57}}
+{{Trophy game|[[Fresno State–San Diego State football rivalry|Fresno State–San Diego State]]|Oil Can|[[Fresno State Bulldogs football|Fresno State]]|[[San Diego State Aztecs football|San Diego State]]|1923|2025|63}}
+{{Trophy game|[[Friends of Coal Bowl]]||[[Marshall Thundering Herd football|Marshall]]|[[West Virginia Mountaineers football|West Virginia]]|1911|2012|12}}
+{{Trophy game|[[Georgia–South Carolina football rivalry|Georgia–South Carolina]]||[[Georgia Bulldogs football|Georgia]]|[[South Carolina Gamecocks football|South Carolina]]|1894|2023|76}}
+{{Trophy game|[[Georgia–Tennessee football rivalry|Georgia–Tennessee]]||[[Georgia Bulldogs football|Georgia]]|[[Tennessee Volunteers football|Tennessee]]|1899|2025|55}}
+{{Trophy game|[[Georgia–Vanderbilt football rivalry|Georgia–Vanderbilt]]||[[Georgia Bulldogs football|Georgia]]|[[Vanderbilt Commodores football|Vanderbilt]]|1893|2023|83}}
+{{Trophy game|[[Georgia Tech–Tennessee football rivalry|Georgia Tech–Tennessee]]||[[Georgia Tech Yellow Jackets football|Georgia Tech]]|[[Tennessee Volunteers football|Tennessee]]|1902|2026|45}}
+{{Trophy game|[[Georgia Tech–Vanderbilt football rivalry|Georgia Tech–Vanderbilt]]|Gold Cowbell|[[Georgia Tech Yellow Jackets football|Georgia Tech]]|[[Vanderbilt Commodores football|Vanderbilt]]|1892|2024|39}}
+{{Trophy game|[[Governors' Trophy Game]]|The Governors' Perpetual Trophy|[[Oregon Webfoots football|Oregon]]|[[Saint Mary's Gaels football|Saint Mary's]]|1929|1950|10}}
+{{Trophy game|[[Green Line Rivalry]]||[[Boston College Eagles football|Boston College]]|[[Boston University Terriers football|Boston University]]|1893|1962|32}}
+{{Trophy game|[[Hawaii–Wyoming football rivalry|Hawaii–Wyoming]]|[[Paniolo Trophy]]|[[Hawaii Rainbow Warriors football|Hawaii]]|[[Wyoming Cowboys football|Wyoming]]|1978|2025|29}}
+{{Trophy game|[[Holy War (BYU–Utah)|Holy War]]||[[BYU Cougars football|BYU]]|[[Utah Utes football|Utah]]|1896|2025|103}}
+{{Trophy game|[[Houston–Rice rivalry|Houston–Rice]]|[[Bayou Bucket]]|[[Houston Cougars football|Houston]]|[[Rice Owls football|Rice]]|1971|2025|47}}
+{{Trophy game|[[Houston–SMU rivalry#Football|Houston–SMU]]||[[Houston Cougars football|Houston]]|[[SMU Mustangs football|SMU]]|1975|2022|37}}
+{{Trophy game|[[Houston–Texas Tech football rivalry|Houston–Texas Tech]]||[[Houston Cougars football|Houston]]|[[Texas Tech Red Raiders football|Texas Tech]]|1951|2026|37}}
+{{Trophy game|[[I-35 Rivalry#Football|I-35 Rivalry]]||[[Texas State Bobcats football|Texas State]]|[[UTSA Roadrunners football|UTSA]]|2012|2026|8}}
+{{Trophy game|[[Illinois–Indiana rivalry#Football|Illinois–Indiana]]||[[Illinois Fighting Illini football|Illinois]]|[[Indiana Hoosiers football|Indiana]]|1899|2025|74}}
+{{Trophy game|[[Illinois–Iowa rivalry#Football|Illinois–Iowa]]||[[Illinois Fighting Illini football|Illinois]]|[[Iowa Hawkeyes football|Iowa]]|1899|2023|79}}
+{{Trophy game|[[Illinois–Michigan football rivalry|Illinois–Michigan]]||[[Illinois Fighting Illini football|Illinois]]|[[Michigan Wolverines football|Michigan]]|1898|2024|98}}
+{{Trophy game|[[Illinois–Northwestern football rivalry|Illinois–Northwestern]]|[[Land of Lincoln Trophy]]|[[Illinois Fighting Illini football|Illinois]]|[[Northwestern Wildcats football|Northwestern]]|1892|2025|119}}
+{{Trophy game|Illinois–Ohio State|[[Illibuck]]|[[Illinois Fighting Illini football|Illinois]]|[[Ohio State Buckeyes football|Ohio State]]|1902|2025|104}}
+{{Trophy game|[[Illinois–Purdue football rivalry|Illinois–Purdue]]|[[Purdue Cannon]]|[[Illinois Fighting Illini football|Illinois]]|[[Purdue Boilermakers football|Purdue]]|1890|2025|101}}
+{{Trophy game|[[Indiana–Kentucky football rivalry|Indiana–Kentucky]]|[[The Bourbon Barrel]]|[[Indiana Hoosiers football|Indiana]]|[[Kentucky Wildcats football|Kentucky]]|1893|2005|36}}
+{{Trophy game|[[Indiana–Michigan State football rivalry|Indiana–Michigan State]]|[[Old Brass Spittoon]]|[[Indiana Hoosiers football|Indiana]]|[[Michigan State Spartans football|Michigan State]]|1922|2025|72}}
+{{Trophy game|Indiana–Purdue|[[Old Oaken Bucket]]|[[Indiana Hoosiers football|Indiana]]|[[Purdue Boilermakers football|Purdue]]|1891|2025|127}}
+{{Trophy game|[[Iowa–Iowa State football rivalry|Iowa–Iowa State]]|[[Cy-Hawk Trophy]]|[[Iowa Hawkeyes football|Iowa]]|[[Iowa State Cyclones football|Iowa State]]|1894|2026|73}}
+{{Trophy game|[[Iowa–Minnesota football rivalry|Iowa–Minnesota]]|Floyd of Rosedale|[[Iowa Hawkeyes football|Iowa]]|[[Minnesota Golden Gophers football|Minnesota]]|1891|2025|119}}
+{{Trophy game|[[Iowa–Nebraska football rivalry|Iowa–Nebraska]]|Heroes Trophy|[[Iowa Hawkeyes Football|Iowa]]|[[Nebraska Cornhuskers football|Nebraska]]|1891|2025|56}}
+{{Trophy game|[[Iowa–Wisconsin football rivalry|Iowa–Wisconsin]]|Heartland Trophy|[[Iowa Hawkeyes football|Iowa]]|[[Wisconsin Badgers football|Wisconsin]]|1894|2025|99}}
+{{Trophy game|[[Iowa State–Missouri football rivalry|Iowa State–Missouri]]|Telephone Trophy|[[Iowa State Cyclones football|Iowa State]]|[[Missouri Tigers football|Missouri]]|1896|2011|104}}
+{{Trophy game|[[Iowa State–Nebraska football rivalry|Iowa State–Nebraska]]||[[Iowa State Cyclones football|Iowa State]]|[[Nebraska Cornhuskers football|Nebraska]]|1896|2010|104}}
+{{Trophy game|[[Iron Bowl]]|[[James E. Foy, V-ODK Sportsmanship Trophy]]|[[Alabama Crimson Tide football|Alabama]]|[[Auburn Tigers football|Auburn]]|1893|2025|90}}
+{{Trophy game|[[Kansas–Nebraska football rivalry|Kansas–Nebraska]]||[[Kansas Jayhawks football|Kansas]]|[[Nebraska Cornhuskers football|Nebraska]]|1892|2010|117}}
+{{Trophy game|[[Kansas State–Missouri football rivalry|Kansas State–Missouri]]||[[Kansas State Wildcats football|Kansas State]]|[[Missouri Tigers football|Missouri]]|1909|2023|99}}
+{{Trophy game|[[Kansas State–Nebraska football rivalry|Kansas State–Nebraska]]||[[Kansas State Wildcats football|Kansas State]]|[[Nebraska Cornhuskers football|Nebraska]]|1911|2010|95}}
+{{Trophy game|[[Kansas State–Oklahoma football rivalry|Kansas State–Oklahoma]]||[[Kansas State Wildcats football|Kansas State]]|[[Oklahoma Sooners football|Oklahoma]]|1908|2022|103}}
+{{Trophy game|[[Kentucky–Louisville rivalry|Kentucky–Louisville]]|[[Governor's Cup (Kentucky)|Governor's Cup]]|[[Kentucky Wildcats football|Kentucky]]|[[Louisville Cardinals football|Louisville]]|1912|2025|37}}
+{{Trophy game|[[Kentucky–Tennessee football rivalry|Kentucky–Tennessee]] || [[Kentucky Wildcats football|Kentucky]]|[[Tennessee Volunteers football|Tennessee]]|1893|2025|121}}
+{{Trophy game|[[Kentucky–Vanderbilt football rivalry|Kentucky–Vanderbilt]]||[[Kentucky Wildcats football|Kentucky]]|[[Vanderbilt Commodores football|Vanderbilt]]|1896|2025|98}}
+{{Trophy game|[[Penn State–Pittsburgh football rivalry|Keystone Classic]]||[[Penn State Nittany Lions football|Penn State]]|[[Pittsburgh Panthers football|Pittsburgh]]|1893|2019|100}}
+{{Trophy game|[[Texas–Texas A&M football rivalry|Lone Star Showdown]]||[[Texas Longhorns football|Texas]]|[[Texas A&M Aggies football|Texas A&M]]|1894|2025|120}}
+{{Trophy game|[[Louisiana–Louisiana Tech football rivalry|Louisiana–Louisiana Tech]] || [[Louisiana Ragin' Cajuns football|Louisiana]] | [[Louisiana Tech Bulldogs football|Louisiana Tech]]|1910|2015|87}}
+{{Trophy game|[[Louisiana Tech–Louisiana–Monroe football rivalry|Louisiana Tech–Louisiana–Monroe]]||[[Louisiana Tech Bulldogs football|Louisiana Tech]]|[[Louisiana–Monroe Warhawks football|Louisiana–Monroe]]|1953|2000|43}}
+{{Trophy game|[[Louisville–Memphis rivalry#Football|Louisville–Memphis]]||[[Louisville Cardinals football|Louisville]]|[[Memphis Tigers football|Memphis]]|1948|2013|43}}
+{{Trophy game|[[Louisville–Miami football rivalry|Louisville–Miami]]|Schnellenberger Trophy|[[Louisville Cardinals football|Louisville]]|[[Miami Hurricanes football|Miami (FL)]]|1933|2025|18}}
+{{Trophy game|[[LSU–Mississippi State football rivalry|LSU–Mississippi State]]||[[LSU Tigers football|LSU]]|[[Mississippi State Bulldogs football|Mississippi State]]|1896|2023|117}}
+{{Trophy game|[[LSU–Texas A&M football rivalry|LSU–Texas A&M]]||[[LSU Tigers football|LSU]]|[[Texas A&M Aggies football|Texas A&M]]|1899|2025|64}}
+{{Trophy game|[[Magnolia Bowl]]|Magnolia Bowl Trophy|[[LSU Tigers football|LSU]]|[[Ole Miss Rebels football|Ole Miss]]|1894|2026|115}}
+{{Trophy game|[[Maryland–Penn State football rivalry|Maryland–Penn State]]||[[Maryland Terrapins football|Maryland]]|[[Penn State Nittany Lions football|Penn State]]|1917|2024|48}}
+{{Trophy game|[[Maryland–Rutgers football rivalry|Maryland–Rutgers]]||[[Maryland Terrapins football|Maryland]]|[[Rutgers Scarlet Knights football|Rutgers]]|1920|2025|21}}
+{{Trophy game|[[Maryland–Virginia football rivalry|Maryland–Virginia]]||[[Maryland Terrapins football|Maryland]]|[[Virginia Cavaliers football|Virginia]]|1919|2024|80}}
+{{Trophy game|[[Maryland–West Virginia football rivalry|Maryland–West Virginia]]||[[Maryland Terrapins football|Maryland]]|[[West Virginia Mountaineers football|West Virginia]]|1919|2021|53}}
+{{Trophy game|[[Miami–Nebraska football rivalry|Miami–Nebraska]]||[[Miami Hurricanes football|Miami (FL)]]|[[Nebraska Cornhuskers football|Nebraska]]|1951|2015|12}}
+{{Trophy game|[[Miami–Virginia Tech football rivalry|Miami–Virginia Tech]]||[[Miami Hurricanes football|Miami (FL)]]|[[Virginia Tech Hokies football|Virginia Tech]]|1953|2025|42}}
+{{Trophy game|[[Michigan–Michigan State football rivalry|Michigan–Michigan State]]|Paul Bunyan Trophy|[[Michigan Wolverines football|Michigan]]|[[Michigan State Spartans football|Michigan State]]|1898|2025|118}}
+{{Trophy game|[[Michigan–Minnesota football rivalry|Michigan–Minnesota]]|[[Little Brown Jug (college football trophy)|Little Brown Jug]]|[[Michigan Wolverines football|Michigan]]|[[Minnesota Golden Gophers football|Minnesota]]|1892|2024|106}}
+{{Trophy game|[[Michigan–Northwestern football rivalry|Michigan–Northwestern]]|George Jewitt Trophy|[[Michigan Wolverines football|Michigan]]|[[Northwestern Wildcats football|Northwestern]]|1892|2025|78}}
+{{Trophy game|[[Michigan–Notre Dame football rivalry|Michigan–Notre Dame]]||[[Michigan Wolverines football|Michigan]]|[[Notre Dame Fighting Irish football|Notre Dame]]|1887|2019|44}}
+{{Trophy game|[[Michigan–Penn State football rivalry|Michigan–Penn State]]||[[Michigan Wolverines football|Michigan]]|[[Penn State Nittany Lions football|Penn State]]|1993|2023|27}}
+{{Trophy game|[[Michigan State–Notre Dame football rivalry|Michigan State–Notre Dame]]|Megaphone Trophy|[[Michigan State Spartans football|Michigan State]]|[[Notre Dame Fighting Irish football|Notre Dame]]|1897|2026|80}}
+{{Trophy game|[[Memphis–Ole Miss football rivalry|Mid–South Rivalry]]||[[Memphis Tigers football|Memphis]]|[[Ole Miss Rebels football|Ole Miss]]|1921|2019|64}}
+{{Trophy game|[[Minnesota–Nebraska football rivalry|Minnesota–Nebraska]]|$5 Bits of Broken Chair Trophy|[[Minnesota Golden Gophers football|Minnesota]]|[[Nebraska Cornhuskers football|Nebraska]]|1900|2025|65}}
+{{Trophy game|Minnesota–Penn State|[[Governor's Victory Bell]]|[[Minnesota Golden Gophers football|Minnesota]]|[[Penn State Nittany Lions football|Penn State]]|1993|2024|17}}
+{{Trophy game|[[Minnesota–Wisconsin football rivalry|Minnesota–Wisconsin]]|Paul Bunyan's Axe|[[Minnesota Golden Gophers football|Minnesota]]|[[Wisconsin Badgers football|Wisconsin]]|1890|2025|135}}
+{{Trophy game|[[Missouri–Nebraska football rivalry|Missouri–Nebraska]]|Victory Bell|[[Missouri Tigers football|Missouri]]|[[Nebraska Cornhuskers football|Nebraska]]|1892|2010|104}}
+{{Trophy game|[[Missouri–Oklahoma football rivalry|Missouri–Oklahoma]]|Tiger–Sooner Peace Pipe|[[Missouri Tigers football|Missouri]]|[[Oklahoma Sooners football|Oklahoma]]|1902|2025|98}}
+{{Trophy game|[[Mayor's Cup (Missouri-South Carolina)|Missouri–South Carolina]]|Mayor's Cup|[[Missouri Tigers football|Missouri]]|[[South Carolina Gamecocks football|South Carolina]]|1979|2025|16}}
+{{Trophy game|[[Georgia Southern–Georgia State football rivalry|Modern Day Hate]]||[[Georgia Southern Eagles football|Georgia Southern]]|[[Georgia State Panthers football|Georgia State]]|2014|2025|12}}
+{{Trophy game|Navy–SMU|[[Gansz Trophy]]|[[Navy Midshipmen football|Navy]]|[[SMU Mustangs football|SMU]]|1930|2023|25}}
+{{Trophy game|[[Navy–Notre Dame football rivalry|Navy–Notre Dame]]|Rip Miller Trophy|[[Navy Midshipmen football|Navy]]|[[Notre Dame Fighting Irish football|Notre Dame]]|1927|2025|98}}
+{{Trophy game|[[NC State–Wake Forest rivalry#Football|NC State–Wake Forest]]||[[NC State Wolfpack football|NC State]]|[[Wake Forest Demon Deacons football|Wake Forest]]|1895|2025|119}}
+{{Trophy game|[[Nebraska–Oklahoma football rivalry|Nebraska–Oklahoma]]||[[Nebraska Cornhuskers football|Nebraska]]|[[Oklahoma Sooners football|Oklahoma]]|1912|2023|88}}
+{{Trophy game|[[Nebraska–Wisconsin football rivalry|Nebraska–Wisconsin]]|Freedom Trophy|[[Nebraska Cornhuskers football|Nebraska]]|[[Wisconsin Badgers football|Wisconsin]]|1901|2024|18}}
+{{Trophy game|[[North Carolina–NC State football rivalry|North Carolina–NC State]]||[[North Carolina Tar Heels football|North Carolina]]|[[NC State Wolfpack football|NC State]]|1894|2025|115}}
+{{Trophy game|[[North Carolina–Wake Forest rivalry#Football|North Carolina–Wake Forest]]||[[North Carolina Tar Heels football|North Carolina]]|[[Wake Forest Demon Deacons football|Wake Forest]]|1888|2025|112}}
+{{Trophy game|[[Northwestern–Notre Dame football rivalry|Northwestern–Notre Dame]]||[[Northwestern Wildcats football|Northwestern]]|[[Notre Dame Fighting Irish football|Notre Dame]]|1889|2018|49}}
+{{Trophy game|[[Notre Dame–Pittsburgh football rivalry|Notre Dame–Pittsburgh]]||[[Notre Dame Fighting Irish football|Notre Dame]]|[[Pittsburgh Panthers football|Pittsburgh]]|1909|2025|74}}
+{{Trophy game|[[Notre Dame–Purdue football rivalry|Notre Dame–Purdue]]|Shillelagh Trophy|[[Notre Dame Fighting Irish football|Notre Dame]]|[[Purdue Boilermakers football|Purdue]]|1896|2025|89}}
+{{Trophy game|[[Notre Dame–Stanford football rivalry|Notre Dame–Stanford]]|Legends Trophy|[[Notre Dame Fighting Irish football|Notre Dame]]|[[Stanford Cardinal football|Stanford]]|1925|2025|39}}
+{{Trophy game|[[Notre Dame–USC football rivalry|Notre Dame–USC]]|[[Jeweled Shillelagh]]|[[Notre Dame Fighting Irish football|Notre Dame]]|[[USC Trojans football|USC]]|1926|2025|96}}
+{{Trophy game|[[Ohio State–Penn State football rivalry|Ohio State–Penn State]]||[[Ohio State Buckeyes football|Ohio State]]|[[Penn State Nittany Lions football|Penn State]]|1912|2025|41}}
+{{Trophy game|[[Oklahoma State–Tulsa football rivalry|Oklahoma State–Tulsa]]||[[Oklahoma State Cowboys football|Oklahoma State]]|[[Tulsa Golden Hurricane football|Tulsa]]|1914|2026|78}}
+{{Trophy game|[[Ole Miss–Tennessee football rivalry|Ole Miss–Tennessee]]||[[Ole Miss Rebels football|Ole Miss]]|[[Tennessee Volunteers football|Tennessee]]|1902|2021|66}}
+{{Trophy game|[[Ole Miss–Tulane football rivalry|Ole Miss–Tulane]]||[[Ole Miss Rebels football|Ole Miss]]|[[Tulane Green Wave football|Tulane]]|1893|2025|75}}
+{{Trophy game|[[Ole Miss–Vanderbilt football rivalry|Ole Miss–Vanderbilt]]||[[Ole Miss Rebels football|Ole Miss]]|[[Vanderbilt Commodores football|Vanderbilt]]|1894|2023|98}}
+{{Trophy game|[[Oregon–Oregon State football rivalry|Oregon–Oregon State]]|[[Platypus Trophy]]|[[Oregon Ducks football|Oregon]]|[[Oregon State Beavers football|Oregon State]]|1894|2025|129|}}
+{{Trophy game|[[Oregon–Stanford football rivalry|Oregon–Stanford]]||[[Oregon Ducks football|Oregon]]|[[Stanford Cardinal football|Stanford]]|1900|2023|87}}
+{{Trophy game| [[Oregon–USC football rivalry|Oregon–USC]]||[[Oregon Ducks football|Oregon]]|[[USC Trojans football|USC]]|1915|2025|65}}
+{{Trophy game|[[Oregon–Washington football rivalry|Oregon–Washington]]||[[Oregon Ducks football|Oregon]]|[[Washington Huskies football|Washington]]|1900|2025|118}}
+{{Trophy game|Pacific–San José State|[[Victory Bell (Pacific–San Jose State)|Victory Bell]]|[[Pacific Tigers football|Pacific]]|[[San Jose State Spartans football|San José State]]|1895|1995|72}}
+{{Trophy game|[[Paint Bucket Bowl]]||[[Arkansas State Red Wolves football|Arkansas State]]|[[Memphis Tigers football|Memphis]]|1914|2026|63}}
+{{Trophy game|[[Clemson–South Carolina rivalry|Palmetto Bowl]]||[[Clemson Tigers football|Clemson]]|[[South Carolina Gamecocks football|South Carolina]]|1896|2025|122}}
+{{Trophy game|[[Penn State–Syracuse football rivalry|Penn State–Syracuse]]||[[Penn State Nittany Lions football|Penn State]]|[[Syracuse Orange football|Syracuse]]|1922|2013|71}}
+{{Trophy game|[[Penn State–West Virginia football rivalry|Penn State–West Virginia]]||[[Penn State Nittany Lions football|Penn State]]|[[West Virginia Mountaineers football|West Virginia]]|1904|2024|61}}
+{{Trophy game|[[Pittsburgh–Syracuse football rivalry|Pittsburgh–Syracuse]]||[[Pittsburgh Panthers football|Pittsburgh]]|[[Syracuse Orange football|Syracuse]]|1916|2026|82}}
+{{Trophy game|[[Red River Rivalry]]|[[Red River Rivalry#Game trophies|Golden Hat]]|[[Oklahoma Sooners football|Oklahoma]]|[[Texas Longhorns football|Texas]]|1900|2025|121}}
+{{Trophy game|[[Rice–SMU football rivalry|Rice–SMU]]|Mayor's Cup|[[Rice Owls football|Rice]]|[[SMU Mustangs football|SMU]]|1916|2023|91}}
+{{Trophy game|[[Rice–Texas football rivalry|Rice–Texas]]||[[Rice Owls football|Rice]]|[[Texas Longhorns football|Texas]]|1914|2023|97}}
+{{Trophy game|[[Rio Grande Rivalry (football)|Rio Grande Rivalry]]|The Roaster|[[New Mexico Lobos football|New Mexico]]|[[New Mexico State Aggies football|New Mexico State]]|1894|2025|115}}
+{{Trophy game|[[Rivalry in Dixie]]||[[Louisiana Tech Bulldogs football|Louisiana Tech]]|[[Southern Miss Golden Eagles football|Southern Miss]]|1935|2025|54}}
+{{Trophy game|[[Rocky Mountain Showdown]]|Centennial Cup|[[Colorado Buffaloes football|Colorado]]|[[Colorado State Rams football|Colorado State]]|1893|2024|93}}
+{{Trophy game|[[Royal Rivalry]]|Royal Rivalry Trophy|[[James Madison Dukes football|James Madison]]|[[Old Dominion Monarchs football|Old Dominion]]|2011|2025|6}}
+{{Trophy game|[[Rumble in the Rockies]]||[[Colorado Buffaloes football|Colorado]]|[[Utah Utes football|Utah]]|1903|2025|72}}
+{{Trophy game|[[Safeway Bowl]]||[[North Texas Mean Green football|North Texas]]|[[SMU Mustangs football|SMU]]|1922|2023|43}}
+{{Trophy game|[[Sam Houston–Texas State football rivalry|Sam Houston–Texas State]]||[[Sam Houston Bearkats football|Sam Houston]]|[[Texas State Bobcats football|Texas State]]|1915|2024|93}}
+{{Trophy game|[[Sewanee–Vanderbilt football rivalry|Sewanee–Vanderbilt]]||[[Sewanee Tigers football|Sewanee]]|[[Vanderbilt Commodores football|Vanderbilt]]|1891|1944|52}}
+{{Trophy game|[[Shula Bowl]]|Don Shula Award|[[Florida Atlantic Owls football|Florida Atlantic]]|[[FIU Panthers football|FIU]]|2002|2026|24}}
+{{Trophy game|[[South's Oldest Rivalry]]||[[North Carolina Tar Heels football|North Carolina]]|[[Virginia Cavaliers football|Virginia]]|1892|2025|130}}
+{{Trophy game|[[Stanford–UCLA football rivalry|Stanford–UCLA]]||[[Stanford Cardinal football|Stanford]]|[[UCLA Bruins football|UCLA]]|1925|2023|95}}
+{{Trophy game|[[Stanford–USC football rivalry|Stanford–USC]]||[[Stanford Cardinal football|Stanford]]|[[USC Trojans football|USC]]|1905|2023|103}}
+{{Trophy game|[[Sunflower Showdown]]|Governor's Cup|[[Kansas Jayhawks football|Kansas]]|[[Kansas State Wildcats football|Kansas State]]|1902|2025|123}}
+{{Trophy game|[[Syracuse–UConn rivalry#Football|Syracuse–UConn]]||[[Syracuse Orange football|Syracuse]]|[[UConn Huskies football|UConn]]|2004|2025|14}}
+{{Trophy game|[[Syracuse–West Virginia football rivalry|Syracuse–West Virginia]]|[[Ben Schwartzwalder Trophy]]|[[Syracuse Orange football|Syracuse]]|[[West Virginia Mountaineers football|West Virginia]]|1945|2018|61}}
+{{Trophy game|[[TCU–Texas football rivalry|TCU–Texas]]||[[TCU Horned Frogs football|TCU]]|[[Texas Longhorns football|Texas]]|1897|2023|94}}
+{{Trophy game|[[TCU–Texas A&M football rivalry|TCU–Texas A&M]]||[[TCU Horned Frogs football|TCU]]|[[Texas A&M Aggies football|Texas A&M]]|1897|2001|92}}
+{{Trophy game|[[TCU–Texas Tech football rivalry|TCU–Texas Tech]]|Saddle Trophy|[[TCU Horned Frogs football|TCU]]|[[Texas Tech Red Raiders football|Texas Tech]]|1926|2024|67}}
+{{Trophy game|[[Georgia Tech–Virginia Tech football rivalry|Techmo Bowl]]||[[Georgia Tech Yellow Jackets football|Georgia Tech]]|[[Virginia Tech Hokies football|Virginia Tech]]|1990|2025|21}}
+{{Trophy game|[[Tennessee–Vanderbilt football rivalry|Tennessee–Vanderbilt]]||[[Tennessee Volunteers football|Tennessee]]|[[Vanderbilt Commodores football|Vanderbilt]]|1892|2025|120}}
+{{Trophy game|[[Texas–Texas Tech football rivalry|Texas–Texas Tech]]|Chancellor's Spurs|[[Texas Longhorns football|Texas]]|[[Texas Tech Red Raiders football|Texas Tech]]|1928|2023|73}}
+{{Trophy game|[[Texas A&M–Texas Tech football rivalry|Texas A&M–Texas Tech]]||[[Texas A&M Aggies football|Texas A&M]]|[[Texas Tech Red Raiders football|Texas Tech]]|1927|2011|70}}
+{{Trophy game|[[Textile Bowl]]|Textile Bowl|[[Clemson Tigers football|Clemson]]|[[NC State Wolfpack football|NC State]]|1899|2024|92}}
+{{Trophy game|[[Michigan–Ohio State football rivalry|The Game]]||[[Michigan Wolverines football|Michigan]]|[[Ohio State Buckeyes football|Ohio State]]|1897|2025|120}}
+{{Trophy game|[[Appalachian State–Marshall football rivalry|The Old Mountain Feud]]||[[Appalachian State Mountaineers football|Appalachian State]]|[[Marshall Thundering Herd football|Marshall]]|1977|2025|28}}
+{{Trophy game|[[Third Saturday in October]]||[[Alabama Crimson Tide football|Alabama]]|[[Tennessee Volunteers football|Tennessee]]|1901|2025|108}}
+{{Trophy game|[[Auburn–LSU football rivalry|Tiger Bowl]]||[[Auburn Tigers football|Auburn]]|[[LSU Tigers football|LSU]]|1901|2023|58}}
+{{Trophy game|[[UConn–UMass rivalry|UConn–UMass]]||[[UConn Huskies football|UConn]]|[[UMass Minutemen football|UMass]]|1897|2024|78}}
+{{Trophy game|[[UCLA–USC rivalry|UCLA–USC]]|[[Victory Bell (UCLA–USC)|Victory Bell]]|[[UCLA Bruins football|UCLA]]|[[USC Trojans football|USC]]|1929|2025|95}}
+{{Trophy game|[[Virginia Tech–West Virginia football rivalry|Virginia Tech–West Virginia]]|Black Diamond Trophy|[[Virginia Tech Hokies football|Virginia Tech]]|[[West Virginia Mountaineers football|West Virginia]]|1912|2022|54}}
+{{Trophy game|[[Virginia–Virginia Tech football rivalry|Virginia–Virginia Tech]]|[[Virginia–Virginia Tech football rivalry|Commonwealth Cup]]|[[Virginia Cavaliers football|Virginia]]|[[Virginia Tech Hokies football|Virginia Tech]]|1895|2025|106}}
+{{Trophy game|[[South Florida–UCF football rivalry|War on I–4]]|War on I–4 Trophy|[[South Florida Bulls football|South Florida]]|[[UCF Knights football|UCF]]|2005|2022|14}}
+|}
+
+===Rivalries involving more than two teams===
+{| class="wikitable sortable"
+!Series
+!Trophy
+!Teams
+!First meeting
+|-
+|
+|[[Beehive Boot]]
+|[[BYU Cougars football|BYU]], [[Utah Utes football|Utah]], [[Utah State Aggies football|Utah State]] (previously [[Weber State Wildcats football|Weber State]])
+|1971
+|-
+|
+|[[Commander-in-Chief's Trophy]]
+|[[Air Force Falcons football|Air Force]], [[Army Black Knights football|Army]], [[Navy Midshipmen football|Navy]]
+|1972
+|-
+|
+|[[Florida Cup]]
+|[[Florida Gators football|Florida]], [[Florida State Seminoles football|Florida State]], [[Miami Hurricanes football|Miami (FL)]]
+|2002
+|-
+|Battle for the Michigan MAC
+|[[Michigan MAC Trophy]]
+|[[Central Michigan Chippewas football|Central Michigan]], [[Eastern Michigan Eagles football|Eastern Michigan]], [[Western Michigan Broncos football|Western Michigan]]
+|2005
+|-
+|[[Northwest Championship]]
+|
+|[[Oregon Ducks football|Oregon]], [[Oregon State Beavers football|Oregon State]], [[Washington Huskies football|Washington]], [[Washington State Cougars football|Washington State]]
+|1903
+|-
+|[[Old Ironsides (trophy)#District championship era (1881–1950)|Tri-State Big Three]]
+|[[Old Ironsides (trophy)|Old Ironsides]]
+|[[Penn State Nittany Lions football|Penn State]], [[Pittsburgh Panthers football|Pittsburgh]], [[West Virginia Mountaineers football|West Virginia]]
+|1900
+|-
+|-
+|
+|[[Sacred Cod Trophy]]
+|[[Boston College Eagles football|Boston College]], [[Boston University Terriers football|Boston University]], [[Holy Cross Crusaders football|Holy Cross]]
+|1954
+|-
+|[[Tobacco Road (rivalry)|Tobacco Road]]
+|
+|[[Duke Blue Devils football|Duke]], [[North Carolina Tar Heels football|North Carolina]], [[NC State Wolfpack football|NC State]], [[Wake Forest Demon Deacons football|Wake Forest]]
+|1924
+|}
+
+==NCAA Division I Football Championship Subdivision==
+{{Start trophy game list}}
+{{Trophy game|[[Battle for the Brice–Cowell Musket]]|Brice–Cowell Musket|[[Maine Black Bears football|Maine]]|[[New Hampshire Wildcats football|New Hampshire]]|1903|2025|115}}
+{{Trophy game|[[Battle for the Golden Horseshoe]]|The Golden Horseshoe|[[Cal Poly Mustangs football|Cal Poly]]|[[UC Davis Aggies football|UC Davis]]|1939|2025|51}}
+{{Trophy game|[[Battle of the Bay (Hampton–Norfolk State)|Battle of the Bay]]||[[Hampton Pirates football|Hampton]]|[[Norfolk State Spartans football|Norfolk State]]|1963|2026|61}}
+{{Trophy game|[[Battle of the Border (Lamar–McNeese)|Battle of the Border]]||[[Lamar Cardinals football|Lamar]]|[[McNeese Cowboys football|McNeese]]|1951|2025|43}}
+{{Trophy game|[[Bayou Classic]]||[[Grambling State Tigers football|Grambling State]]|[[Southern Jaguars football|Southern]]|1974|2024|76}}
+{{Trophy game|[[Beehive Bowl]]||[[Southern Utah Thunderbirds football|Southern Utah]]|[[Weber State Wildcats football|Weber State]]|1984|2026|30}}
+{{Trophy game|[[Brawl of the Wild]]|The Great Divide Trophy|[[Montana Grizzlies football|Montana]]|[[Montana State Bobcats football|Montana State]]|1897|2025|125}}
+{{Trophy game|[[Brown–Rhode Island football rivalry|Brown–Rhode Island]]|Governor's Cup|[[Brown Bears football|Brown]]|[[Rhode Island Rams football|Rhode Island]]|1909|2025|109}}
+{{Trophy game|Butler–Valparaiso|[[Hoosier Helmet Trophy]]|[[Butler Bulldogs football|Butler]]|[[Valparaiso Beacons football|Valparaiso]]|1927|2025|85}}
+{{Trophy game|[[Capital Cup]]|Capital Cup|[[Richmond Spiders football|Richmond]]|[[William & Mary Tribe football|William & Mary]]|1898|2025|136}}
+{{Trophy game|[[Colgate–Cornell football rivalry|Colgate–Cornell]]||[[Colgate Raiders football|Colgate]]|[[Cornell Big Red football|Cornell]]|1896|2026|107}}
+{{Trophy game|[[Cornell–Dartmouth football rivalry|Cornell–Dartmouth]]||[[Cornell Big Red football|Cornell]]|[[Dartmouth Big Green|Dartmouth]]|1900|2025|108}}
+{{Trophy game|[[Cornell–Penn football rivalry|Cornell–Penn]]|Trustees' Cup|[[Cornell Big Red football|Cornell]]|[[Penn Quakers football|Penn]]|1893|2025|131}}
+{{Trophy game|[[Dartmouth–Harvard football rivalry|Dartmouth–Harvard]]||[[Dartmouth Big Green|Dartmouth]]|[[Harvard Crimson|Harvard]]|1882|2025|128}}
+{{Trophy game|Eastern Kentucky–Morehead State|[[Old Hawg Rifle]]|[[Eastern Kentucky Colonels football|Eastern Kentucky]]|[[Morehead State Eagles football|Morehead State]]|1924|2024|74}}
+{{Trophy game|Eastern Washington–Portland State|[[The Dam Cup]]|[[Eastern Washington Eagles football|Eastern Washington]]|[[Portland State Vikings football|Portland State]]|1968|2025|46}}
+{{Trophy game|[[Albany–Stony Brook football rivalry|Empire Clash]]|The Golden Apple Trophy|[[Albany Great Danes football|Albany]]|[[Stony Brook Seawolves football|Stony Brook]]|1995|2025|27}}
+{{Trophy game|[[Columbia–Cornell football rivalry|Empire State Bowl]]|Empire Cup|[[Columbia Lions football|Columbia]]|[[Cornell Big Red football|Cornell]]|1889|2025|112}}
+{{Trophy game|[[Drake–Northern Iowa rivalry|Drake–Northern Iowa]]||[[Drake Bulldogs football|Drake]]|[[Northern Iowa Panthers football|Northern Iowa]]|1900|2026|48}}
+{{Trophy game|[[EWU–UM Governors Cup]]|The Governors Cup|[[Eastern Washington Eagles football|Eastern Washington]]| [[Montana Grizzlies football|Montana]]|1967|2025|51}}
+{{Trophy game|[[Florida Classic]]||[[Bethune–Cookman Wildcats football|Bethune–Cookman]]|[[Florida A&M Rattlers football|Florida A&M]]|1925|2025|80}}
+{{Trophy game|Fordham–Holy Cross|[[Ram–Crusader Cup]]|[[Fordham Rams football|Fordham]]|[[Holy Cross Crusaders football|Holy Cross]]|1902|2025|63}}
+{{Trophy game|[[Furman–Wofford football rivalry|Furman–Wofford]]||[[Furman Paladins football|Furman]]|[[Wofford Terriers football|Wofford]]|1889|2025|99}}
+{{Trophy game|[[Northern Arizona–Southern Utah football rivalry|Grand Canyon Rivalry]]|HintonBurdick Grand Canyon Trophy|[[Northern Arizona Lumberjacks football|Northern Arizona]]|[[Southern Utah Thunderbirds football|Southern Utah]]|1982|2025|27}}
+{{Trophy game|[[Dartmouth–New Hampshire football rivalry|Granite Bowl]]|Granite Bowl|[[Dartmouth Big Green football|Dartmouth]]|[[New Hampshire Wildcats football|New Hampshire]]|1901|2025|43}}
+{{Trophy game|[[Harvard–Penn football rivalry|Harvard–Penn]]||[[Harvard Crimson football|Harvard]]|[[Penn Quakers football|Penn]]|1881|2025|95}}
+{{Trophy game|[[Harvard–Princeton football rivalry|Harvard–Princeton]]||[[Harvard Crimson football|Harvard]]|[[Princeton Tigers football|Princeton]]|1877|2025|117}}
+{{Trophy game|[[Howard–Morgan State football rivalry|Howard–Morgan State]]||[[Howard Bison football|Howard]]|[[Morgan State Bears football|Morgan State]]|1899|2025|91}}
+{{Trophy game|[[Idaho–Idaho State football rivalry|Idaho–Idaho State]]|The Potato State Trophy |[[Idaho Vandals football|Idaho]]| [[Idaho State Bengals football|Idaho State]]|1916|2025|47}}
+{{Trophy game|Idaho–Montana|[[Little Brown Stein]]|[[Idaho Vandals football|Idaho]]|[[Montana Grizzlies football|Montana]]|1903|2025|90}}
+{{Trophy game|[[Jackson State–Southern football rivalry|Jackson State–Southern]]|BoomBox Classic|[[Jackson State Tigers football|Jackson State]]|[[Southern Jaguars football|Southern]]|1929|2025|73}}
+{{Trophy game|[[Labor Day Classic]]|Durley-Nicks Trophy|[[Prairie View A&M Panthers football|Prairie View A&M]]|[[Texas Southern Tigers football|Texas Southern]]|1947|2026|82}}
+{{Trophy game|[[The Liberty Cup|Liberty Cup]]|Liberty Cup|[[Columbia Lions football|Columbia]]|[[Fordham Rams football|Fordham]]|1890|2015|24}}
+{{Trophy game|[[Magic City Classic]]|Magic City Classic Trophy|[[Alabama A&M Bulldogs football|Alabama A&M]]|[[Alabama State Hornets football|Alabama State]]|1924|2025|90}}
+{{Trophy game|[[McNeese State–Northwestern State football rivalry|McNeese–Northwestern State]]||[[McNeese Cowboys football|McNeese]]|[[Northwestern State Demons|Northwestern State]]|1951|2025|74}}
+{{Trophy game|[[Mid-America Classic]]|Mid-America Classic|[[Eastern Illinois Panthers football|Eastern Illinois]]|[[Illinois State Redbirds football|Illinois State]]|1901|2025|113}}
+{{Trophy game|[[Military Classic of the South]]|Silver Shako|[[The Citadel Bulldogs football|The Citadel]]|[[VMI Keydets football|VMI]]|1920|2025|81}}
+{{Trophy game|[[North Carolina A&T–North Carolina Central rivalry|North Carolina A&T–North Carolina Central]]||[[North Carolina A&T Aggies football|North Carolina A&T]]|[[North Carolina Central Eagles football|North Carolina Central]]|1922|2026|98}}
+{{Trophy game|[[North Carolina A&T–South Carolina State football rivalry|North Carolina A&T–South Carolina State]]||[[North Carolina A&T Aggies football|North Carolina A&T]]|[[South Carolina State Bulldogs|South Carolina State]]|1924|2025|61}}
+{{Trophy game|North Dakota–South Dakota|[[Sitting Bull Trophy]]|[[North Dakota Fighting Hawks football|North Dakota]]|[[South Dakota Coyotes football|South Dakota]]|1903|2025|103}}
+{{Trophy game|[[Northwestern State–Southeastern Louisiana football rivalry|Northwestern State–Southeastern Louisiana]]||[[Northwestern State Demons football|Northwestern State]]|[[Southeastern Louisiana Lions football|Southeastern Louisiana]]|1935|2025|70}}
+{{Trophy game|Northwestern State–Stephen F. Austin|[[Chief Caddo|The Chief]]|[[Northwestern State Demons football|Northwestern State]]|[[Stephen F. Austin Lumberjacks football|Stephen F. Austin]]|1924|2025|78}}
+{{Trophy game|[[NSU Challenge]]|NSU Trophy|[[Nicholls Colonels football|Nicholls]]|[[Northwestern State Demons football|Northwestern State]]|1973|2025|52}}
+{{Trophy game|[[Penn–Princeton football rivalry|Penn–Princeton]]||[[Penn Quakers football|Penn]]|[[Princeton Tigers football|Princeton]]|1876|2025|116}}
+{{Trophy game|[[Princeton–Yale football rivalry|Princeton–Yale]]||[[Princeton Tigers football|Princeton]]|[[Yale Bulldogs football|Yale]]|1873|2025|147}}
+{{Trophy game|[[Red Beans and Rice Bowl]]|50 Pound Iron Pot|[[Central Arkansas Bears football|Central Arkansas]]|[[McNeese Cowboys football|McNeese]]|1994|2019|13}}
+{{Trophy game|[[Richmond–VMI football rivalry|Richmond–VMI]]||[[Richmond Spiders football|Richmond]]|[[VMI Keydets football|VMI]]|1893|2025|91}}
+{{Trophy game|[[River Bell Classic]]|River Bell Trophy|[[Nicholls Colonels football|Nicholls]]|[[Southeastern Louisiana Lions football|Southeastern Louisiana]]|1972|2025|36}}
+{{Trophy game|[[Soul Bowl]]||[[Alcorn State Braves football|Alcorn State]]|[[Jackson State Tigers football|Jackson State]]|1927|2025|90}}
+{{Trophy game|[[South Dakota–South Dakota State football rivalry|South Dakota Showdown Series]]||[[South Dakota Coyotes football|South Dakota]]|[[South Dakota State Jackrabbits football|South Dakota State]]|1889|2025|118}}
+{{Trophy game|[[State Fair Classic]]||[[Grambling State Tigers football|Grambling State]]|[[Prairie View A&M Panthers football|Prairie View A&M]]|1925|2025|79}}
+{{Trophy game|[[The Battle for Greater Baltimore]]||[[Morgan State Bears football|Morgan State]]|[[Towson Tigers football|Towson]]|1979|2026|31}}
+{{Trophy game|[[The Citadel–Furman football rivalry|The Citadel–Furman]]||[[The Citadel Bulldogs football|The Citadel]]|[[Furman Paladins football|Furman]]|1913|2025|105}}
+{{Trophy game|[[The Citadel–Wofford football rivalry|The Citadel–Wofford]]|Big Dog Trophy|[[The Citadel Bulldogs football|The Citadel]]|[[Wofford Terriers football|Wofford]]|1916|2026|80}}
+{{Trophy game|[[Harvard–Yale football rivalry|The Game]]||[[Harvard Crimson football|Harvard]]|[[Yale Bulldogs football|Yale]]|1875|2025|141}}
+{{Trophy game|[[The Real HU]]||[[Hampton Pirates football|Hampton]]|[[Howard Bison football|Howard]]|1908|2025|100}}
+{{Trophy game|[[The Rivalry (Lafayette–Lehigh)|The Rivalry]]||[[Lafayette Leopards football|Lafayette]]|[[Lehigh Mountain Hawks football|Lehigh]]|1884|2025|161}}
+{{Trophy game|[[VMI–William & Mary football rivalry|VMI–William & Mary]]||[[VMI Keydets football|VMI]]|[[William & Mary Tribe football|William & Mary]]|1905|2024|89}}
+|}
+
+===Rivalries involving more than two teams===
+{| class="wikitable"
+!Series
+!Trophy
+!Teams
+!First meeting
+|-
+| [[Big Three (colleges)|Big Three]]
+|
+| [[Harvard Crimson football|Harvard]], [[Princeton Tigers football|Princeton]], [[Yale Bulldogs football|Yale]]
+| 1877
+|-
+|
+| {{sort|Sergeant York|[[Sgt. York Trophy]]}}
+| [[Tennessee State Tigers football|Tennessee State]], [[Tennessee Tech Golden Eagles football|Tennessee Tech]], [[UT Martin Skyhawks football|UT Martin]] (previously [[Austin Peay Governors football|Austin Peay]])
+| 2007
+|}
+
+==Rivalries involving FBS and FCS teams==
+This list is restricted to rivalries whose participants are currently in different Division I football subdivisions, ''and'' have played one another while in different subdivisions. Most of these began when both teams competed in the same (sub)division.
+
+In this list, the FCS team is in ''italics''.
+{{Start trophy game list}}
+{{Trophy game|Akron–Youngstown State|[[Steel Tire]]|[[Akron Zips football|Akron]]|''[[Youngstown State Penguins football|Youngstown State]]''|1940|1995|35}}
+{{Trophy game|Ball State–Indiana State|[[Blue Key Victory Bell]]|[[Ball State Cardinals football|Ball State]]|''[[Indiana State Sycamores football|Indiana State]]''|1924|2023<ref>{{Cite web|last=Kelley|first=Kevin|date=June 28, 2022|title=Indiana State to host McKendree in 2025, play at Ball State in 2028|url=https://fbschedules.com/indiana-state-to-host-mckendree-in-2025-play-at-ball-state-in-2028/|access-date=June 11, 2024|website=FBSchedules.com|language=en-US}}</ref>|64}}
+{{Trophy game|[[Battle for the Paddle]]|Paddle Trophy|''[[Nicholls Colonels football|Nicholls]]''|[[Texas State Bobcats football|Texas State]]|1980|2025|32}}
+{{Trophy game|[[Battle for the Red Belt]]|Red Belt|''[[Murray State Racers football|Murray State]]''|[[Western Kentucky Hilltoppers football|Western Kentucky]]|1931|2008|67}}
+{{Trophy game|[[Battle of the Bluegrass]]||''[[Eastern Kentucky Colonels football|Eastern Kentucky]]''|[[Western Kentucky Hilltoppers football|Western Kentucky]]|1914|2024|86}}
+{{Trophy game|[[Battle of the Palouse]]||''[[Idaho Vandals football|Idaho]]''{{efn-ua|Idaho returned to FCS in 2018, joining the Big Sky Conference}}|[[Washington State Cougars football|Washington State]]|1894|2025<ref>{{Cite web|last=Kelley|first=Kevin|date=June 28, 2022|title=Idaho to play at Washington State in 2027 and 2029|url=https://fbschedules.com/idaho-to-play-at-washington-state-in-2027-and-2029/|access-date=September 4, 2022|website=FBSchedules.com|language=en-US}}</ref>|94}}
+{{Trophy game|[[Boston College–Holy Cross football rivalry|Boston College–Holy Cross]]||[[Boston College Eagles football|Boston College]]|''[[Holy Cross Crusaders football|Holy Cross]]''|1896|2023|84}}
+{{Trophy game|[[City Game]]||''[[Duquesne Dukes football|Duquesne]]''|[[Pittsburgh Panthers football|Pittsburgh]]|1901|2025|9}}
+{{Trophy game|[[Colgate–Syracuse football rivalry|Colgate–Syracuse]]||''[[Colgate Raiders football|Colgate]]''|[[Syracuse Orange football|Syracuse]]|1891|2025<ref>{{cite web |last=Kelley |first=Kevin |title=Colgate adds three future opponents, includes game at Syracuse in 2028 |url=https://fbschedules.com/colgate-adds-three-future-opponents-includes-game-at-syracuse-in-2028/ |website=FBS Schedules}}</ref>|69}}
+{{Trophy game|Lamar–Louisiana|[[Sabine Shoe]]|''[[Lamar Cardinals football|Lamar]]''|[[Louisiana Ragin' Cajuns football|Louisiana]]|1923|2026|35}}
+{{Trophy game|Louisiana–McNeese| [[Cajun Crown]] | [[Louisiana Ragin' Cajuns football|Louisiana]]|''[[McNeese Cowboys football|McNeese]]''|1951|2025<ref>{{cite web |last=Kelley |first=Kevin |title=Louisiana to open 2028 season at TCU, adds game vs. McNeese |url=https://fbschedules.com/louisiana-to-open-2028-season-at-tcu-adds-game-vs-mcneese/ |website=FBS Schedules}}</ref>|39}}
+{{Trophy game|Louisiana–Southeastern Louisiana|[[Cypress Mug]]|[[Louisiana Ragin' Cajuns football|Louisiana]]|''[[Southeastern Louisiana Lions football|Southeastern Louisiana]]''|1930|2022|41}}
+{{Trophy game|[[Louisiana Tech vs. Northwestern State football rivalry|Louisiana Tech–Northwestern State]]||[[Louisiana Tech Bulldogs football|Louisiana Tech]]|''[[Northwestern State Demons football|Northwestern State]]''|1907|2026|81}}
+{{Trophy game|[[Norfolk State–Old Dominion rivalry|Norfolk State–Old Dominion]]||''[[Norfolk State Spartans football|Norfolk State]]''|[[Old Dominion Monarchs football|Old Dominion]]|2011|2026<ref>{{Cite web|last=Minium |first=Harry |title=ODU Football Adds Four FCS Opponents to Future Schedules, Including Norfolk State and W&M |url=https://odusports.com/news/2023/2/2/odu-football-adds-four-fcs-opponents-to-future-schedules-including-norfolk-state-and-w-m.aspx |access-date=February 3, 2023 |website=Old Dominion University |date=February 2, 2023 |language=en}}</ref>|5}}
+{{Trophy game|[[Rhode Island–UConn football rivalry|Rhode Island–UConn]] || ''[[Rhode Island Rams football|Rhode Island]]'' | [[UConn Huskies football|UConn]]|1897|2018|94}}
+{{Trophy game|[[Route 1 Rivalry]]|First State Cup|[[Delaware Fightin' Blue Hens football|Delaware]]|''[[Delaware State Hornets football|Delaware State]]''|2007|2025|12}}
+{{Trophy game|Temple–Villanova|[[Mayor's Cup (Temple–Villanova)|Mayor's Cup]]|[[Temple Owls football|Temple]]|''[[Villanova Wildcats football|Villanova]]''|1928|2018|34}}
+{{Trophy game|[[VMI–Virginia Tech football rivalry|VMI–Virginia Tech]]||''[[VMI Keydets football|VMI]]''|[[Virginia Tech Hokies football|Virginia Tech]]|1894|2026|80}}
+|}
+
+==NCAA Division II==
+{{Start trophy game list}}
+{{Trophy game|26th Street Tussle|Key to the City<ref>{{Cite web |last=Remien |first=Bert |title=Fun Facts About Sioux Falls' Key to the City Matchup Saturday |url=https://espnsiouxfalls.com/fun-facts-about-sioux-falls-key-to-the-city-matchup-saturday/ |access-date=November 23, 2022 |website=ESPN Sioux Falls|date=September 28, 2022 }}</ref>|[[Augustana University Vikings football|Augustana (SD)]]|[[Sioux Falls Cougars football|Sioux Falls]]|1916|2025|33}}
+{{Trophy game|Anchor–Bone Classic|Anchor–Bone Trophy<ref>{{cite web|url=https://www.ferrisstatebulldogs.com/sports/fball/2019-20/releases/20190829djpml3|title=Fox Sports Detroit To Televise 2019 Anchor-Bone Classic Live From Top Taggart Field|date=August 29, 2019|publisher=Ferris State Bulldogs |access-date=November 11, 2019}}</ref>|[[Ferris State Bulldogs football|Ferris State]]|[[Grand Valley State Lakers football|Grand Valley State]]|1971|2025|55}}
+{{Trophy game|[[Valdosta State–West Georgia football rivalry|Battle for the Peach Basket]]|Peach State Bragging Trophy (The Peach Basket)|[[Valdosta State Blazers football|Valdosta State]]|[[West Georgia Wolves football|West Georgia]]<sup>FCS</sup>|1983|2023{{efn|Rivalry ended after the 2023 season, with West Georgia moving to Division I FCS in 2024.}}|43}}
+{{Trophy game|[[Central Washington–Western Washington football rivalry|Battle in Seattle]]|Cascade Cup|[[Central Washington Wildcats|Central Washington]]|[[Western Washington Vikings|Western Washington]]|1922|2008{{efn|Rivalry ended after the 2008 season, when Western Washington cut its football program.}}|101}}
+{{Trophy game|Battle for the Bit||[[Fairmont State Fighting Falcons|Fairmont State]]|[[Glenville State Pioneers|Glenville State]]|1909|2025|99}}
+{{Trophy game|Battle for the Nyikos Cup|Nyikos Cup<ref>{{Cite web |last=Kendall |first=Trisha |date=2011-01-02 |title=New Tradition Honors Longtime Friend of Mines - Mines Magazine |url=https://minesmagazine.com/384/ |access-date=2024-11-03 |website=minesmagazine.com |language=en-US}}</ref>|[[Colorado Mesa Mavericks|Colorado Mesa]]|[[Colorado Mines Orediggers|Colorado Mines]]|1975|2025|49}}
+{{Trophy game|Battle for the Sledge<ref>{{Cite web |title=Battle For The Sledge |url=https://winonastatewarriors.com/news/2016/11/4/football-battle-for-the-sledge.aspx |access-date=November 10, 2022 |website=Winona State University Athletics |date=November 4, 2016 |language=en}}</ref><ref>{{Cite web |title=Football History vs Winona State |url=https://smsumustangs.com/sports/football/opponent-history/winona-state/13 |access-date=November 10, 2022 |website=SMSU Athletics |language=en}}</ref>||[[Southwest Minnesota State Mustangs|Southwest Minnesota State]]|[[Winona State Warriors|Winona State]]|1970|2025|54}}
+{{Trophy game|[[Battle of the Ravine]]||[[Henderson State Reddies football|Henderson State]]|[[Ouachita Baptist Tigers football|Ouachita Baptist]]|1895|2025|98}}
+{{Trophy game|[[Battle of the Timberlands]]||[[Arkansas–Monticello Boll Weevils football|Arkansas–Monticello]]|[[Southern Arkansas University Muleriders football|Southern Arkansas]]|1913|2025|100}}
+{{Trophy game|[[Battle of the Valleys]]||[[Grand Valley State Lakers football|Grand Valley State]]|[[Saginaw Valley State Cardinals football|Saginaw Valley State]]|1975|2025|54}}
+{{Trophy game|[[Black Hills Brawl]]|[[Homestake Trophy]]|[[Black Hills State Yellow Jackets|Black Hills State]]|[[South Dakota Mines Hardrockers|South Dakota Mines]]|1895|2025|140}}
+{{Trophy game|[[Bronze Derby]]||[[Newberry College|Newberry]]|[[Presbyterian Blue Hose football|Presbyterian]]<sup>FCS</sup>|1913|2006{{efn|Rivalry ended after the 2006 season, with Presbyterian moving to Division I FCS in 2007.}}|93}}
+{{Trophy game|Catawba vs. Lenoir–Rhyne<ref>{{cite web |title=Lenoir–Rhyne Football History vs Catawba |url=https://lrbears.com/sports/football/opponent-history/catawba-college/29 |website=Lenoir–Rhyne University Athletics}}</ref>||[[Catawba College#Athletics|Catawba]]|[[Lenoir–Rhyne Bears football|Lenoir–Rhyne]]|1907|2025|104}}
+{{Trophy game|Chile Bowl<ref>{{Cite web|url=https://goeasternathletics.com/news/2018/10/9/football-eastern-new-mexico-and-western-new-mexico-announce-inaugural-chile-bowl.aspx|title=Eastern New Mexico and Western New Mexico announce inaugural Chile Bowl|date=October 9, 2018 |publisher=Eastern New Mexico University Athletics|access-date=July 6, 2023}}</ref>||[[Eastern New Mexico Greyhounds|Eastern New Mexico]]|[[Western New Mexico Mustangs|Western New Mexico]]|1934|2025|64}}
+{{Trophy game|[[Coal Bowl]]|Coal Miners Pail Trophy<ref>{{Cite web |title=The Coal Bowl |url=https://iupathletics.com/sports/2011/10/13/FB_1013115124.aspx |access-date=November 23, 2022 |website=Indiana University of Pennsylvania Athletics}}</ref>|[[California Vulcans|California (PA)]]|[[IUP Crimson Hawks|Indiana (PA)]]|1908|2025|100}}
+{{Trophy game|Coastal Classic|Coastal Classic Trophy<ref>{{Cite web|url=https://spacecoastdaily.com/2019/10/florida-tech-welcome-coastal-classic-rival-west-florida-for-homecoming-game-saturday/|title=Florida Tech Panthers Welcome Coastal Classic Rival West Florida for Homecoming Game {{!}}|date=October 26, 2019 |publisher=spacecoastdaily.com|access-date=November 22, 2019}}</ref>|[[Florida Tech Panthers football|Florida Tech]]|[[West Florida Argonauts|West Florida]]|2016|2019{{efn|Rivalry ended in 2019 due to Florida Tech cutting its football program.}}|5}}
+{{Trophy game|Colorado Classic|Colorado Classic Trophy|[[Adams State Grizzlies|Adams State]]|[[Western Colorado Mountaineers|Western Colorado]]|1934|2025|79}}
+{{Trophy game|Dog Fight|The Bone Trophy<ref>{{Cite web|url=https://scsuhuskies.com/news/2019/9/18/football-huskies-bulldogs-set-for-battle-in-duluth.aspx|title=Huskies, Bulldogs set for battle in Duluth|publisher=St. Cloud State University Athletics|access-date=November 22, 2019}}</ref>|[[Minnesota–Duluth Bulldogs|Minnesota–Duluth]]|[[St. Cloud State Huskies football|St. Cloud State]]|1933|2019{{efn|Rivalry ended when St. Cloud State cut its football program in fall of 2020.}}|52}}
+{{Trophy game|East Central−Southeastern Oklahoma State| Great American Trophy|[[East Central Tigers|East Central]]|[[Southeastern Oklahoma State Savage Storm|Southeastern Oklahoma State]]|1909|2021|106}}
+{{Trophy game|Elm City rivalry||[[New Haven Chargers|New Haven]]| [[Southern Connecticut Owls|Southern Connecticut]]|1981|2023|34}}
+{{Trophy game|[[Fountain City Classic]]||[[Albany State Golden Rams|Albany State]]|[[Fort Valley State Wildcats|Fort Valley State]]|1924|2024|90}}
+{{Trophy game||[[Delta State–Mississippi College football rivalry|Heritage Bell]]| [[Delta State Statesmen and Lady Statesmen|Delta State]]|[[Mississippi College Choctaws|Mississippi College]]|1979|2024{{efn|Rivalry ended when Mississippi College cut its football program after finishing 2024 season.<ref>{{Cite web |agency=Associated Press |date=2024-11-18 |title=Mississippi College will change its name and drop its football program |url=https://mississippitoday.org/2024/11/18/mississippi-college-name-change/ |access-date=2024-11-19 |website=Mississippi Today |language=en-US}}</ref>}}|44}}
+{{Trophy game||Milk Jug<ref>{{Cite web |title=This one's for the milk jug |url=https://www.clarion.edu/news/2015/november/this-ones-for-the-milk-jug.html#:~:text=Clarion%20and%20Slippery%20Rock%20started,players%20of%20the%20winning%20team. |access-date=November 10, 2022 |website=www.clarion.edu}}</ref>|[[Clarion Golden Eagles|Clarion]]|[[Slippery Rock football|Slippery Rock]]|1910|2021|83}}
+{{Trophy game|Miner's Bowl|Miner's Helmet and Axe<ref>{{Cite web|url=https://mssulions.com/news/2019/11/13/football-heads-to-pitt-state-for-miners-bowl.aspx|title=Football Heads To Pitt State For Miners Bowl|date=November 13, 2019 |publisher=Missouri Southern State University Athletics|access-date=November 22, 2019}}</ref>|[[Missouri Southern Lions football|Missouri Southern]]|[[Pittsburg State Gorillas football|Pittsburg State]]|1968|2021|53}}
+{{Trophy game||[[Miner's Cup]]<ref>{{Cite web|url=https://upsupply.co/journal/mtu-nmu-miners-cup|title=History of the Miner's Cup, the Annual MTU/NMU Football Game|website=upsupply.co|access-date=December 9, 2019}}</ref>|[[Michigan Tech Huskies football|Michigan Tech]]|[[Northern Michigan Wildcats|Northern Michigan]]|1920|2025|98}}
+{{Trophy game|[[Missouri Western–Northwest Missouri State football rivalry|Missouri Western–Northwest Missouri State]]||[[Missouri Western Griffons football|Missouri Western]]|[[Northwest Missouri State Bearcats football|Northwest Missouri State]]|1981|2025|46}}
+{{Trophy game||The Musket|[[Adams State Grizzlies|Adams State]]|[[Fort Lewis Skyhawks|Fort Lewis]]|1963|2021|59}}
+{{Trophy game||Niagara Cup<ref>Niagara Cup first awarded in 2004.</ref>|[[Gannon Golden Knights football|Gannon]]|[[Mercyhurst Lakers football|Mercyhurst]]|1991|2021|24}}
+{{Trophy game|[[North Alabama–West Alabama football rivalry|North Alabama−West Alabama]]||[[North Alabama Lions football|North Alabama]]<sup>FCS</sup>|[[West Alabama Tigers football|West Alabama]]|1949|2017{{efn|Rivalry ended after the 2017 season, with North Alabama moving to Division I FCS in 2018.}}|71}}
+{{Trophy game|[[Northwest Missouri State−Pittsburg State football rivalry|Northwest Missouri State−Pittsburg State]]||[[Northwest Missouri State Bearcats football|Northwest Missouri State]]|[[Pittsburg State Gorillas football|Pittsburg State]]|1932|2025|58}}
+{{Trophy game|Old Hickory Stick Game|[[Hickory Stick (Northwest Missouri-Truman State rivalry)|Hickory Stick]]|[[Northwest Missouri State Bearcats football|Northwest Missouri State]]|[[Truman State Bulldogs football|Truman State]]|1908|2011|91}}
+{{Trophy game|[[Central Oklahoma–Northeastern State football rivalry|President's Cup]]|President's Cup|[[Central Oklahoma Bronchos football|Central Oklahoma]]|[[Northeastern State RiverHawks football|Northeastern State]]|1912|2025|85}}
+{{Trophy game||Traveling Trophy<ref>{{Cite web |date=October 26, 2022 |title=Preview: Hillsdale looks to play spoiler on Saturday against 7-0 #6 Ashland |work=Hillsdale College Athletics |url=https://www.hillsdalechargers.com/sports/fball/2022-23/releases/20221026iscq4y |language=en}}</ref>|[[Ashland Eagles|Ashland]]|[[Hillsdale Chargers|Hillsdale]]|1970|2021|45}}
+{{Trophy game|[[Turkey Day Classic]]||[[Alabama State Hornets football|Alabama State]]<sup>FCS</sup>|[[Tuskegee Golden Tigers football|Tuskegee]]|1901|2025|109}}
+{{Trophy game|[[Emporia State–Washburn football rivalry|Turnpike Tussle]]||[[Emporia State Hornets football|Emporia State]]|[[Washburn Ichabods football|Washburn]]|1899|2025|121}}
+{{Trophy game||Wagon Wheel<ref>{{cite web |title=Buffaloes Battle Eastern New Mexico in 37th Wagon Wheel Game |url=https://gobuffsgo.com/news/2025/10/17/football-buffaloes-battle-eastern-new-mexico-in-the-37th-wagon-wheel-game.aspx |website=West Texas A&M Athletics |access-date=25 July 2026}}</ref>|[[Eastern New Mexico Greyhounds|Eastern New Mexico]]|[[West Texas A&M Buffaloes|West Texas A&M]]|1934|2025|44}}
+{{Trophy game||Wooden Shoes Trophy|[[Grand Valley State Lakers football|Grand Valley State]]|[[Wayne State Warriors football|Wayne State]]|1975|2025|46}}
+|}
+
+== NCAA Division III ==
+{{Start trophy game list}}
+{{Trophy game|[[Academic Bowl (college football)|Academic Bowl]]|[[Academic Bowl (College Football)|Academic Bowl]]|[[Carnegie Mellon Tartans football|Carnegie Mellon]]|[[Case Western Reserve Spartans football|Case Western Reserve]]|1986|2024|38}}
+{{Trophy game|Admiral's Cup|Admiral's Cup<ref>{{Cite web |date=September 23, 2020 |title=Buccaneer Rivalries: The Admiral's Cup, A Storied History |url=https://www.mmabucs.com/general/2020-21/releases/20200923npdr3n}}</ref>|[[Maine Maritime Academy|Maine Maritime]]{{efn|group=D3|Maine Maritime suspended its football program in 2020 due to financial impacts from COVID-19. In 2023, the football program was reinstated, due to play a full DIII schedule in 2025.<ref>{{Cite web |date=2024-10-22 |title=Maine Maritime Academy to Reinstate Football Program |url=https://marinersports.org/news/2023/1/9/maine-maritime-academy-to-reinstate-football-program.aspx |access-date=2024-11-13 |website=Maine Maritime Academy |language=en}}</ref>}}|[[Massachusetts Maritime Academy|Mass Maritime]]|1946|2019|59}}
+{{Trophy game|[[Backyard Brawl (Millsaps–Mississippi College)|Backyard Brawl]]||[[Millsaps Majors|Millsaps]]|[[Mississippi College Choctaws|Mississippi College]] |1920|2013{{efn|group=D3|Rivalry ended when Mississippi College rejoined NCAA Division II in 2014.}}|52}}
+{{Trophy game||[[Baird Brothers Trophy]]|[[Case Western Reserve Spartans football|Case Western Reserve]]|[[College of Wooster|Wooster]]|1984|2012<ref>{{Cite web|url=https://observer.case.edu/spartans-win-final-baird-brothers-trophy-31-28-versus-wooster/|title=Spartans win final Baird Brothers Trophy, 31-28 versus Wooster|last=Cooke|first=Peter|website=The Observer|access-date=November 17, 2019}}</ref>|25}}
+{{Trophy game|Battle for the Border Claw|Border Claw Trophy|[[East Texas Baptist University|East Texas Baptist]]|[[Louisiana Christian University|Louisiana Christian]]<sup>NAIA</sup>|1947<ref>{{Cite web|url=https://goetbutigers.com/news/2019/11/15/preview-etbu-football-battling-for-the-claw.aspx?path=football|title=PREVIEW {{!}} Battling for "The Claw"|date=November 15, 2019 |publisher=East Texas Baptist University Athletics |access-date=November 16, 2019}}</ref>|2019|22}}
+{{Trophy game|Battle for the Drum|The Drum<ref>{{cite web|url=https://www.oxyathletics.com/aboutathletics/TheDrum|title=Battle for the Drum|publisher=Occidental|access-date=November 16, 2019|archive-date=November 16, 2019|archive-url=https://web.archive.org/web/20191116134447/https://www.oxyathletics.com/aboutathletics/TheDrum|url-status=dead}}</ref>|[[Occidental College|Occidental]]|[[Pomona-Pitzer Sagehens|Pomona–Pitzer]]|1895{{efn|group=D3|The rivalry began between Pomona and Occidental Colleges. Pomona now operates a joint athletic program with Pitzer College, both being among the five undergraduate [[Claremont Colleges]], with the joint program known as Pomona–Pitzer.}}|2019|112}}
+{{Trophy game|Battle for the Wagon|[[Conestoga Wagon]]<ref>{{Cite web|url=https://www.godiplomats.com/sports/m-footbl/2019-20/releases/20191025h5k6kr|title=Wagon Week !! - Week 7 Game Notes|date=October 25, 2019|publisher=Franklin & Marshall|access-date=November 16, 2019|archive-date=November 16, 2019|archive-url=https://web.archive.org/web/20191116134519/https://www.godiplomats.com/sports/m-footbl/2019-20/releases/20191025h5k6kr|url-status=dead}}</ref>|[[Dickinson College|Dickinson]]|[[Franklin and Marshall College|Franklin & Marshall]]|1889|2025|116}}
+{{Trophy game|Battle of Sixth Street<ref>{{cite web |title=Rivals so close they share a campus |date=November 10, 2022|url=https://www.d3football.com/columns/around-the-nation/2022/sixth-street-rivalry |website=D3Football.com}}</ref>|Battle of Sixth Street Trophy<ref>The Battle of Sixth Street Trophy replaced the Peace Pipe Trophy in 2014.</ref><ref>{{Cite press release |date=October 10, 2014 |url=https://www.cmc.edu/news/cms-and-pomona-pitzer-football-teams-to-play-for-the-battle-of-sixth-street-trophy |title=CMS and Pomona-Pitzer football teams to play for "The Battle of Sixth Street" trophy |publisher=Claremont McKenna College  |access-date=November 16, 2019|last3=537-3559}}</ref>|[[Claremont-Mudd-Scripps Stags and Athenas|Claremont–Mudd–Scripps]]|[[Pomona-Pitzer Sagehens|Pomona–Pitzer]]|1959{{efn|group=D3|The rivalry began between Pomona and another Claremont College, Claremont McKenna. As noted previously, Pomona now operates a joint athletic program with another Claremont College, Pitzer College, as Pomona–Pitzer. Claremont McKenna is now part of the Claremont–Mudd–Scripps athletic program along with two other Claremont Colleges, Harvey Mudd and Scripps Colleges.}}|2025|69}}
+{{Trophy game|[[The Biggest Little Game In America|Biggest Little Game In America]]||[[Amherst College|Amherst]]|[[Williams Ephs|Williams]]|1884|2025|139}}
+{{Trophy game||The Book of Knowledge<ref>{{cite web|url=https://miacathletics.com/sports/2022/4/20/about-honor-history-rivalry-trophies-book-of-knowledge.aspx|title=The Book of Knowledge|work=MIAC|publisher=Minnesota Interactive Athletic Conference|access-date=September 13, 2025}}</ref>|[[Carleton Knights football|Carleton]]|[[Macalester College|Macalester]]|1898|2026|71}}
+{{Trophy game|The Bridge Bowl|Bridge Bowl Trophy|[[Mount St. Joseph University|Mount St. Joseph]]|[[Thomas More University|Thomas More (KY)]]<sup>NAIA</sup>|1990|2013<ref>{{cite web|title=Mount St. Joe cancels Bridge Bowl|url=https://www.cincinnati.com/story/sports/college/othercolleges/2014/04/03/mount-st-joe-cancels-bridge-bowl/7285361/|location=Cincinnati |work=The Enquirer|access-date=January 7, 2019}}</ref>{{efn|group=D3|Thomas More, which had left the NAIA for NCAA Division III in 1990, returned to the NAIA in 2019, and moved to NCAA Division II in 2023.}} |18}}
+{{Trophy game|Bronze Ball||[[Anderson Ravens|Anderson (IN)]]|[[Manchester University (Indiana)|Manchester (IN)]]|1945|2025}}
+{{Trophy game|The Bronze Turkey Game or Turkey Bowl|The Bronze Turkey Trophy<ref>{{Cite web|url=http://www.knox.edu/news/a-few-things-to-know-about-the-bronze-turkey-game|title=A Few Things to Know about the Bronze Turkey Game |publisher=Knox College |access-date=November 16, 2019}}</ref>|[[Knox College (Illinois)|Knox (IL)]]|[[Monmouth College|Monmouth (IL)]]|1888|2023|134}}
+{{Trophy game||Centennial Cup<ref>{{Cite web|url=https://hwsathletics.com/news/2019/11/15/hobart-football-hobart-seeks-9th-straight-centennial-cup.aspx|title=Hobart seeks 9th straight Centennial Cup|date=November 15, 2019 |publisher=Hobart and William Smith College Athletics |access-date=November 16, 2019}}</ref>|[[Hobart Statesmen|Hobart]]|[[Rochester Yellowjackets|Rochester]]|1892|2019|112}}
+{{Trophy game|Cereal Bowl|Goat Trophy|[[Carleton Knights football|Carleton]]|[[St. Olaf College|St. Olaf]]|1919<ref>[http://www.southernminn.com/northfield_news/archives/article_44e6977a-9634-5291-b56e-8aef1ca23173.html "Knights, Oles Meet with Goat Trophy, Cereal Bowl at Stake"], ''Northfield News'', October 9, 2004. Retrieved December 27, 2015.</ref>|2025|105}}
+{{Trophy game|The Chowder Bowl||[[Massachusetts Maritime Academy|Mass Maritime]]|[[State University of New York Maritime College|SUNY Maritime]]|2007|2024|16}}
+{{Trophy game||[[Cortaca Jug]]|[[Ithaca College|Ithaca]]|[[State University of New York at Cortland|SUNY Cortland]]|1930|2024|82}}
+{{Trophy game|Cranberry Bowl|The Scoop<ref>{{cite web|url=https://www.bsubears.com/sports/fball/2019-20/releases/Connolly_BostonHerald_CranberryBowl|title=Historic Cranberry Bowl Enters 41st Edition|date=November 14, 2019|publisher=Bridgewater St. |access-date=November 16, 2019}}</ref>|[[Bridgewater State University|Bridgewater State]]|[[Massachusetts Maritime Academy|Mass Maritime]]|1974|2019|46}}
+{{Trophy game|Cuyahoga Gold Bowl Game|Cuyahoga Gold Bowl Trophy|[[Baldwin Wallace Yellow Jackets football|Baldwin Wallace]]|[[John Carroll Blue Streaks football|John Carroll]]|1923<ref>{{cite web|url=https://www.bwyellowjackets.com/sports/fball/2019-20/releases/jcupreview|title=Football Hosts #10 John Carroll in Regular Season Finale and 31st Cuyahoga Gold Bowl Game|work=Baldwin Wallace Athletics|date=November 14, 2019|access-date=November 16, 2019|archive-date=November 16, 2019|archive-url=https://web.archive.org/web/20191116134447/https://www.bwyellowjackets.com/sports/fball/2019-20/releases/jcupreview|url-status=dead}}</ref>|2024|64}}
+{{Trophy game||[[Doehling–Heselton Memorial Trophy]]|[[Lawrence University|Lawrence]]|[[Ripon College (Wisconsin)|Ripon]]|1893|2025|123}}
+{{Trophy game||[[Dutchman's Shoes]]|[[RPI Engineers|RPI]]|[[Union College|Union (NY)]]|1886|2025|122}}
+{{Trophy game||[[Edmund Orgill Trophy]]|[[Rhodes College|Rhodes]]|[[Sewanee Tigers football|Sewanee]]|1899{{efn|group=D3|This is the year the rivalry began. The '''Edmund Orgill Trophy''' was first competed for in 1954.[http://www.commercialappeal.com/news/2007/nov/09/gritty-rhodes-tight-end-overcomes-adversity-in/]}}|2025|92}}
+{{Trophy game||Founders Trophy|[[Chicago Maroons football|Chicago]]|[[Washington University Bears football|Washington (MO)]]|1933|2019|38}}
+{{Trophy game|Gate City Soup Bowl||[[Greensboro College|Greensboro]]|[[Guilford Quakers|Guilford]]|1997<ref>{{cite web |url=http://www.greensborocollegesports.com/sports/fball/2011-12/files/Gate_City_Soup_Bowl|title=Gate City Soup Bowl |access-date=July 22, 2012 |url-status=dead |archive-url=https://web.archive.org/web/20121206024532/http://www.greensborocollegesports.com/sports/fball/2011-12/files/Gate_City_Soup_Bowl |archive-date=December 6, 2012}}</ref>|2016|20}}
+{{Trophy game|Gettysburg–McDaniel||[[Gettysburg College|Gettysburg]]|[[McDaniel College|McDaniel]]|1891|2019|73}}
+{{Trophy game||Goal Post Trophy<ref>{{cite web|url=https://www.juniatasports.net/sports/fball/2013-14/releases/20131113ccyjpd|title=Eagles Host Susquehanna in Goal Post Game|date=November 13, 2019|publisher=Juniata Athletics|access-date=November 17, 2019}}</ref>|[[Juniata College|Juniata]]|[[Susquehanna University|Susquehanna]]|1923|2019|74}}
+{{Trophy game||The Hammer<ref>{{Cite web|url=https://www.hamlineoracle.com/3081/sports/fight-for-the-hammer/|title=Fight for the Hammer|last=Dungan|first=Josh|website=The Oracle|access-date=November 16, 2019}}</ref>|[[Augsburg University|Augsburg]]|[[Hamline University|Hamline]]|1926|2019|79}}
+{{Trophy game||Helmet Trophy|[[Anna Maria College|Anna Maria]]|[[Castleton University|Castleton]]|2009|2019|11}}
+{{Trophy game|Tommie-Johnnie Game |The Holy Grail | [[Saint John's Johnnies football|Saint John's (MN)]] | [[St. Thomas (Minnesota) Tommies football|St. Thomas (MN)]]<sup>FCS</sup> | 1901 | 2019{{efn|group=D3|The 2020 game, which was intended to be the last in the rivalry, was not held due to [[COVID-19 pandemic in Minnesota|COVID-19]]. St. Thomas involuntarily left the Minnesota Intercollegiate Athletic Conference (MIAC) in spring 2021, joining the Division I [[Summit League]] for most non-football sports and the FCS [[Pioneer Football League]].<ref>{{Cite news|url=http://knsiradio.com/news/local-news/tommie-johnnie-rivalry-coming-end|title=Tommie-Johnnie Rivalry is Coming to an End|last=Christenson|first=Myah|date=October 18, 2019|work=KNSI|access-date=December 3, 2019|url-status=dead}}</ref>}} |89}}
+{{Trophy game|Johns Hopkins–McDaniel|[[Maryland Railroad Lantern]]|[[Johns Hopkins Blue Jays|Johns Hopkins]]|[[McDaniel College|McDaniel]]|1894|2025|103}}
+{{Trophy game||Keystone Cup<ref>{{Cite web|url=https://athletics.delval.edu/news/2019/11/15/keystone-cup-preview-9-11-delval-football-vs-widener.aspx|title=Keystone Cup Preview: #9/11 DelVal Football vs. Widener|publisher=Delaware Valley University Athletics |access-date=November 16, 2019}}</ref>|[[Delaware Valley College|Delaware Valley]]|[[Widener Pride football|Widener]]|1977|2019|42}}
+{{Trophy game|Lefse Bowl|The Troll Trophy<ref>{{cite journal|url=http://concordiamn.prestosports.com/sports/fball/2013-14/releases/20130919tnj1c2|title=The Ugliest Rivalry Trophy In The Nation|journal=Concordia (MN)|date=September 19, 2013|access-date=December 12, 2015}}</ref>|[[Concordia College (Moorhead, Minnesota)#Athletics|Concordia (Moorhead)]]|[[St. Olaf College|St. Olaf]]|1921|2019|70}}
+{{Trophy game||Lincoln Football Trophy<ref>{{Cite web|url=https://www.godiplomats.com/sports/m-footbl/2019-20/releases/20191114nl3y6s|title=F&M Faces Gettysburg for Lincoln Trophy - Week 10 Game Notes|date=November 14, 2019|publisher=Franklin & Marshall|access-date=November 16, 2019|archive-date=November 9, 2022|archive-url=https://web.archive.org/web/20221109160345/https://www.godiplomats.com/sports/m-footbl/2019-20/releases/20191114nl3y6s|url-status=dead}}</ref>|[[Franklin and Marshall College|Franklin & Marshall]]|[[Gettysburg College|Gettysburg]]|1890|2023|108}}
+{{Trophy game||Little Brass Bell<ref>{{Cite web|url=https://northcentralcardinals.com/sports/2009/2/18/FB_0218094448.aspx|title=Little Brass Bell|publisher=North Central College Athletics |access-date=November 16, 2019}}</ref>|[[North Central College|North Central (IL)]]|[[Wheaton College (Illinois)|Wheaton (IL)]]|1900|2019|101}}
+{{Trophy game||Little Brown Bucket<ref>{{Cite web|url=https://gettysburgsports.com/news/2019/9/19/football-gettysburg-dickinson-meet-in-bucket-battle.aspx?path=football|title=Gettysburg, Dickinson Meet in Bucket Battle|date=September 19, 2019 |publisher=Gettysburg College Athletics |access-date=November 16, 2019}}</ref>|[[Dickinson College|Dickinson]]|[[Gettysburg College|Gettysburg]]|1892|2023|88}}
+{{Trophy game||Maple Sap Bucket<ref>{{Cite web |last=Writer |first=Tom Haley Staff |date=September 15, 2023 |title=Spartans look to grab elusive Bucket win |url=https://www.rutlandherald.com/sports/spartans-look-to-grab-elusive-bucket-win/article_59609799-9c2b-52e7-896c-e4af64fd1b67.html |access-date=November 26, 2023 |website=Rutland Herald |language=en}}</ref>|[[Vermont State University|Vermont State University – Castleton]]|[[Norwich University|Norwich]]|2009|2024|15}}
+{{Trophy game||Mercer County Cup|[[Grove City College|Grove City]]|[[Thiel College|Thiel]]|1892<ref>{{Cite web|url=https://athletics.gcc.edu/documents/2019/11/15/fbnotes1910.pdf|title=Thiel Game Notes (PDF)|publisher=Grove City College Athletics |access-date=November 16, 2019}}</ref>|2024|110}}
+{{Trophy game|[[Monon Bell#Monon Bell Classic|Monon Bell Classic]]|[[Monon Bell]]|[[DePauw Tigers|DePauw]]|[[Wabash Little Giants|Wabash]]|1890|2025|131}}
+{{Trophy game|[[Occidental–Whittier football rivalry|Occidental–Whittier]]|Myron Claxton's Shoes|[[Occidental College|Occidental]]|[[Whittier College|Whittier]]|1901|2019{{efn|group=D3|Rivalry ended with Occidental's discontinuation of its football program amidst the COVID-19 pandemic, and Whittier's discontinuation of football following the 2022 season.}}|111}}
+{{Trophy game||Old Red Lantern<ref>{{cite web|url=https://www.woosterathletics.com/sports/fball/2019-20/releases/20191014j1k2y9|title=Wooster Seeking to Regain Possession of "Old Red Lantern" This Week|work=The College of Wooster |date=October 14, 2019|access-date=November 16, 2019}}</ref>|[[Denison University|Denison]]|[[College of Wooster|Wooster]]|1889|2019|88}}
+{{Trophy game|Old Rocking Chair Classic|Mac-Jack Rocking Chair<ref>{{cite web |title=Defense Stifles Hamilton As Middlebury Retains Rocking Chair With 35-0 Win |url=https://athletics.middlebury.edu/news/2024/11/2/football-defense-stifles-hamilton-as-middlebury-retains-rocking-chair-with-35-0-win.aspx |website=Middlebury College Athletics}}</ref>|[[Hamilton College|Hamilton]]|[[Middlebury Panthers|Middlebury]]|1911|2024|66}}
+{{Trophy game|Oldest College Rivalry West of the Mississippi<ref>{{Cite web|url=https://www.public.coe.edu/historyweb/athletics_other_coecornellrivalry.htm|title=Coe College History - Athletics - Other - Coe/Cornell Rivalry|publisher=Coe College |access-date=November 16, 2019}}</ref>||[[Coe College|Coe]]|[[Cornell College|Cornell (IA)]]|1891|2025|134}}
+{{Trophy game||Paint Bucket<ref>{{cite web|url=https://miacathletics.com/sports/2022/4/20/about-honor-history-rivalry-trophies-the-paint-bucket.aspx|title=The Paint Bucket|publisher=Minnesota Interactive Athletic Conference|access-date=September 27, 2025}}</ref>|[[Hamline Pipers football|Hamline]]|[[Macalester College|Macalester]]|1887|2024|123}}
+{{Trophy game|Pynchon Saw Game<ref>{{cite web |title=No. 13/13 Football Falls to Western New England, 23-22, in 12th Annual Pynchon SAW Trophy |url=https://springfieldcollegepride.com/news/2025/9/6/no-13-13-football-falls-to-western-new-england-23-22-in-12th-annual-pynchon-saw-trophy.aspx |website=Springfield College Athletics}}</ref>|Pynchon Saw Trophy|[[Springfield Pride football|Springfield College (MA)]]|[[Western New England University|Western New England University (MA)]]|2013|2025|12}}
+{{Trophy game|Seafaring Scuffle||[[Merchant Marine Mariners|Merchant Marine]]|[[State University of New York Maritime College|SUNY Maritime]]|2009|2019|11}}
+{{Trophy game||[[Secretaries' Cup]]|[[Coast Guard Bears|Coast Guard]]|[[Merchant Marine Mariners|Merchant Marine]]|1949|2025|54}}
+{{Trophy game|Smudge Pot Trophy Game|The Smudge Pot<ref>{{cite web |last1=Potkey |first1=Rhiannon |title=CLU, Redlands play for smudge pot trophy |url=https://archive.vcstar.com/sports/clu-redlands-play-for-smudge-pot-trophy-ep-667090592-351001371.html#:~:text=The%20teams%20will%20be%20playing%20for%20bragging,was%20introduced%20to%20the%20rivalry%20in%202012. |website=Ventura County Star}}</ref>|[[Cal Lutheran Kingsmen and Regals|California Lutheran]]|[[University of Redlands#Athletics|Redlands]]|2012|2023|11}}
+{{Trophy game|The Little Army–Navy Game|The Mug<ref>{{Cite web |date=2024-10-26 |title=Football Completes Comeback, Defeats Norwich in Battle for the Mug |url=https://coastguardathletics.com/news/2024/10/26/football-completes-comeback-defeats-norwich-in-battle-for-the-mug.aspx |access-date=2024-11-16 |website=United States Coast Guard Academy |language=en}}</ref>|[[Coast Guard Bears|Coast Guard]]|[[Norwich University|Norwich Cadet]]|1929|2024|96}}
+{{Trophy game||[[Steven Dean Memorial Trophy]]|[[Catholic University Cardinals football|Catholic]]|[[Georgetown Hoyas football|Georgetown]]<sup>FCS</sup>|1976|2019|19}}
+{{Trophy game|[[The Game (Hampden–Sydney vs. Randolph–Macon)]]|The Game Ball|[[Hampden–Sydney Tigers football|Hampden–Sydney]]|[[Randolph–Macon Yellow Jackets football|Randolph–Macon]]|1893|2025|129}}
+{{Trophy game||The Regents Cup|[[Frostburg State Bobcats|Frostburg State]]<sup>D-II</sup>|[[Salisbury University|Salisbury]]|1973|2018<ref>{{Cite web|url=https://www.times-news.com/sports/local_sports/final-regents-cup-game/article_6e530f0d-036f-583e-ab45-70c0904bf58b.html|title=Final Regents Cup game |website=The Cumberland Times-News |date=November 10, 2018 |access-date=November 16, 2019}}</ref>|46}}
+{{Trophy game||The Stagg Hat<ref>{{Cite web|url=https://lycomingathletics.com/news/2015/8/31/FOOT_0831154807.aspx|title=Warriors open 2015 campaign with trip to rival Susquehanna|date=August 31, 2015 |publisher=Lycoming College Athletics |access-date=November 16, 2019}}</ref>|[[Lycoming College|Lycoming]]|[[Susquehanna University|Susquehanna]]|1949|2019|55}}
+{{Trophy game|[[RPI–WPI football rivalry|Transit Trophy Game]]|The Transit Trophy|[[RPI Engineers|RPI]]|[[WPI Engineers football|WPI]]|1894|2025|118}}
+{{Trophy game|[[Trinity–Wesleyan football rivalry|Trinity–Wesleyan]]||[[Trinity Bantams football|Trinity]]|[[Wesleyan Cardinals football|Wesleyan]]|1885|2025|124}}
+{{Trophy game||The Trophy<ref>{{cite web |last1=Albanese |first1=Mark |title=Football Unveils "The Trophy" Ahead of 97th Meeting with Crosstown Rivals |date=November 3, 2021 |url=https://golutes.com/news/2021/11/3/football-unveils-the-trophy-ahead-of-97th-meeting-with-crosstown-rivals.aspx |publisher=PLU |access-date=December 7, 2022}}</ref>|[[Pacific Lutheran University|Pacific Lutheran]]|[[University of Puget Sound|Puget Sound]]|1931|2022|98}}
+{{Trophy game|Victory Bell Classic|Victory Bell<ref>{{cite web |last1=Doyle |first1=Gregg |title=Doyel: Hanover-Franklin 'Victory Bell' rivalry started on banks of Ohio River |date=November 8, 2021 |access-date=October 13, 2025 |url=https://www.indystar.com/story/sports/columnists/gregg-doyel/2018/11/08/hanover-franklin-victory-bell-rivalry-started-banks-ohio-river/1901375002/ |publisher=IndyStar}}</ref>|[[Franklin College (Indiana)|Franklin (IN)]]|[[Hanover College|Hanover]]|1898|2024|94}}
+{{Trophy game||Wagon Wheel<ref>{{cite web |date=Winter 2018|title=Pioneers Reclaim Wagon Wheel |url=https://www.lclark.edu/live/news/38183-pioneers-reclaim-wagon-wheel |website=L&C Magazine |access-date=October 7, 2025}}</ref>|[[Lewis & Clark Pioneers football|Lewis & Clark]]|[[Willamette Bearcats|Willamette]]|1948|2024|75}}
+{{Trophy game||War on I-94 Trophy<ref>{{Cite web|url=https://athletics.uwstout.edu/news/2019/11/14/football-preview-i-94-battle-to-highlight-season-finale.aspx?path=football|title=Football Preview: I-94 battle to highlight season finale|date=November 14, 2019 |publisher=University of Wisconsin-Stout Athletics |access-date=November 16, 2019}}</ref>|[[University of Wisconsin–Eau Claire|Wisconsin–Eau Claire]]|[[University of Wisconsin–Stout|Wisconsin–Stout]]|1917|2024|97}}
+{{Trophy game||Wilkes-Barre Mayor's Cup|[[King's College (Pennsylvania)|King's (PA)]]|[[Wilkes University|Wilkes]]|1946<ref>{{cite book |title=2025 Football Record Book |publisher=King's College Athletics |page=29 |url=https://kingscollegeathletics.com/documents/2025/2/7/FB_RecordBook25.pdf}}</ref>{{efn|group=D3|King's and Wilkes first meeting was in 1946 and had played nine more times before the establishment of the trophy. The first game for the '''Wilkes-Barre Mayor's Cup''' was in 1996, per [http://www.kingscollegeathletics.com/news/2009/11/13/FB_11_13_09_wilkes_preview.aspx King's College's preview of the 2009 game].}}|2025|40}}
+{{Trophy game||Wooden Shoes Rivalry Trophy<ref>{{cite web |date=October 7, 2023|title=Flying Dutchmen Renew "Wooden Shoes Rivalry" |url=https://hope.edu/news/2003/10/07/flying-dutchmen-renew-wooden-shoes-rivalry.html |website=Hope College |access-date=October 7, 2025}}</ref>|[[Hope College|Hope College (MI)]]|[[Kalamazoo College|Kalamazoo College (MI)]]|1910|2024|103}}
+|}
+
+;Notes
+{{notelist|group=D3}}
+
+===Rivalries involving more than two teams===
+{| class="wikitable"
+!Series
+!Trophy
+!Teams
+!First meeting
+|-
+| [[Colby-Bates-Bowdoin Consortium]]
+| C-B-B Trophy
+| [[Bates College|Bates]], [[Bowdoin College|Bowdoin]], [[Colby College|Colby]]
+| 1892
+|-
+| [[Little Three]]
+|
+| [[Amherst College|Amherst]], [[Wesleyan University|Wesleyan]], [[Williams Ephs|Williams]]
+| 1899
+|}
+
+==Longest continuous NCAA college football rivalries==
+{{Synthesis|date=December 2020}}
+Following are the longest active continuously-played series in NCAA [[college football]].<ref name=FBS>{{Citation | title = NCAA's 2016 FBS Record Book | publisher = NCAA | url = http://fs.ncaa.org/Docs/stats/football_records/2016/FBS.pdf | format = English | access-date = May 18, 2017}}</ref><ref name=FCS>{{Citation | title = NCAA's 2016 FCS Record Book | publisher = NCAA | url = http://fs.ncaa.org/Docs/stats/football_records/2016/FCS.pdf | format = English | access-date = May 18, 2017}}</ref><ref name=DivII>{{Citation | title = NCAA's 2016 Division II Record Book | publisher = NCAA | url = http://fs.ncaa.org/Docs/stats/football_records/2016/D2.pdf | format = English | access-date = May 18, 2017}}</ref><ref name=DivIII>{{Citation | title = NCAA's 2016 Division III Record Book | publisher = NCAA | url = http://fs.ncaa.org/Docs/stats/football_records/2016/D3.pdf | format = English | access-date = May 18, 2017}}</ref>{{Obsolete source|reason=Use of 2016 PDF citations|date=December 2020}} Many historic series were interrupted by World War I, the [[Spanish flu|1918 flu pandemic]] and World War II.  More recently, other longstanding rivalries were terminated by the conference realignments of the [[2010–2014 NCAA conference realignment|early 2010s]] and [[2021–2024 NCAA conference realignment|early 2020s]], or were interrupted by the [[COVID-19 pandemic in the United States|COVID-19 pandemic]].
+
+{| class="wikitable sortable"
+! class="unsortable"| Series
+!Continuous<br />since
+!class="unsortable"| Series nickname / Trophy
+!NCAA Div.
+!First meeting
+!class="unsortable"| Series leader
+!class="unsortable"| Notes
+|-
+| [[Lehigh Mountain Hawks football|Lehigh]]–[[Lafayette Leopards football|Lafayette]]
+| 1897
+| [[The Rivalry (Lafayette–Lehigh)|The Rivalry]]
+| [[NCAA Division I Football Championship Subdivision|FCS]]
+| 1884
+| Lafayette
+| Most played series in college football.<ref name=FCS/> No game played in calendar 2020 due to COVID-19, but played in April 2021 as part of the Patriot League's rescheduled spring 2021 season.
+|-
+| [[Minnesota Golden Gophers football|Minnesota]]–[[Wisconsin Badgers football|Wisconsin]]
+| 1907
+| [[Minnesota–Wisconsin football rivalry|Paul Bunyan's Axe]]
+| [[NCAA Division I Football Bowl Subdivision|FBS]]
+| 1890
+| Wisconsin
+| [[Most played rivalries in NCAA Division I FBS|Most played series in FBS]]<ref name=FBS/>
+|-
+| [[NC State Wolfpack football|North Carolina State]]–[[Wake Forest Demon Deacons football|Wake Forest]]
+| 1910
+| [[NC State–Wake Forest rivalry]]
+| FBS
+| 1895
+| NC State
+|
+|-
+| [[Kansas Jayhawks football|Kansas]]–[[Kansas State Wildcats football|Kansas State]]<ref name=1910x>{{cite news | last = Olson | first = Kevin | title = 1910: The lost year of the Sunflower Showdown | work = The Manhattan Mercury | date = December 2, 2014 | url = http://themercury.com/k_state_sports/the-lost-year-of-the-sunflower-showdown/article_02a38fa8-540d-5de7-aea1-6d6fcf9deb82.html | access-date = November 14, 2017}}</ref>
+| 1911
+| [[Kansas–Kansas State football rivalry|Sunflower Showdown]]
+| FBS
+| 1902
+| Kansas
+|
+|-
+| [[Iowa State Cyclones football|Iowa State]]–[[Kansas State Wildcats football|Kansas State]]<ref>{{Citation | title = Kansas State v. Iowa State Series | publisher = Winsipedia | url = http://www.winsipedia.com/kansas-state/vs/iowa-state | format = English | access-date = May 18, 2017}}</ref>
+| 1917
+| [[Iowa State–Kansas State football rivalry|Farmageddon]]
+| FBS
+| 1917
+| Iowa State
+| Longest never interrupted series in FBS<ref>{{cite web | url=https://www.heartlandcollegesports.com/2020/11/19/farmageddon-an-underrated-history/ | title=Farmageddon: An Underrated History | date=November 19, 2020 }}</ref>
+|-
+| [[North Carolina Tar Heels football|North Carolina]]–[[Virginia Cavaliers football|Virginia]]<ref>{{Citation | title = Virginia v. North Carolina Series | publisher = Winsipedia | url = http://www.winsipedia.com/north-carolina/vs/virginia | format = English | access-date = May 18, 2017}}</ref>
+| 1919
+| [[South's Oldest Rivalry]]
+| FBS
+| 1892
+| North Carolina
+|}
+
+:<small>''Note: The NCAA also lists as "continuous" the following rivalries interrupted by gaps during war years: North Carolina–Virginia (1910–1916, 1919–current); Mississippi–Mississippi State (1915–1942, 1944–current); Auburn–Georgia (1919–1942, 1944–current); Tennessee–Kentucky (1919–1942, 1944–current).<ref name=FBS/> Other rivalries were also interrupted during war years, for example: [[List of Harvard–Yale football games|Harvard–Yale]] (1897–1916, 1919–1943, 1945–present); [[Princeton–Yale football rivalry|Princeton–Yale]] (1876–1916, 1919–1943, 1945–present); Miami–Cincinnati (1909–1942, 1945–present); and Oregon-Oregon State (1912–1942, 1945–present). The NCAA does not explain how it selects only some interrupted rivalries to count as "continuous."''</small>
+
+===Longest interrupted NCAA college football rivalries===
+Following are the NCAA Division I and II series that continued for the most consecutive seasons before being interrupted. Eight of the eighteen series on this list are defunct rivalries from the old [[Big Eight Conference football|Big Eight Conference]]. Six are rivalries interrupted in 2020 due to the COVID-19 pandemic.
+
+{| class="wikitable sortable"
+! class="unsortable"| Series
+!Continuous<br />years
+!Length
+!NCAA Div.
+!First meeting
+!class="unsortable"| Notes / reason for interruption
+|-
+| [[North Dakota State Bison football|North Dakota State]]–[[South Dakota State Jackrabbits football|South Dakota State]] ([[Dakota Marker]])
+| 1903–2025
+| 118 years
+| [[NCAA Division I Football Championship Subdivision|FCS]]
+| 1903
+| Ended by [[2021–2026 NCAA conference realignment|North Dakota State's move]] to the [[Mountain West Conference]]/[[NCAA Division I Football Bowl Subdivision|FBS]]
+|-
+| [[Oklahoma Sooners football|Oklahoma]]–[[Oklahoma State Cowboys football|Oklahoma State]]<ref>{{Citation | title = Oklahoma v. Oklahoma State Series | publisher = cfbdatawarehouse.com | url = http://cfbdatawarehouse.com/data/active/o/oklahoma/opponents_records.php?teamid=2393 | format = English | access-date = October 9, 2018 | archive-url = https://web.archive.org/web/20181010060722/http://cfbdatawarehouse.com/data/active/o/oklahoma/opponents_records.php?teamid=2393 | archive-date = October 10, 2018 | url-status = dead }}</ref><ref>{{cite news | last = Tramel | first = Berry | title = Notre Dame Stadium an American treasure | newspaper = Daily Oklahoman | date = September 25, 2013 | url = http://newsok.com/oklahoma-football-notre-dame-stadium-an-american-treasure/article/3886517 | access-date = July 8, 2014}}</ref>
+| 1910–2023
+| 114 years
+| [[NCAA Division I Football Bowl Subdivision|FBS]]
+| 1910
+| Ended by [[2021–2026 NCAA conference realignment|Oklahoma's move]] to the [[Southeastern Conference]].<ref>{{cite magazine |url=https://www.si.com/college/2023/11/03/bye-bye-bedlam-oklahoma-oklahoma-state-rivalry-faces-uncertain-future |title=Bye-Bye, Bedlam: Oklahoma, Oklahoma State Rivalry Faces Uncertain Future |first=Pat |last=Forde |magazine=Sports Illustrated |date=November 3, 2023 |access-date=January 11, 2024}}</ref>
+|-
+| [[Clemson Tigers football|Clemson]]–[[South Carolina Gamecocks football|South Carolina]]<ref name=FBS/>
+| 1909–2019
+| 111 years
+| [[NCAA Division I Football Bowl Subdivision|FBS]]
+| 1896
+| Interrupted in 2020 due to [[COVID-19 pandemic in the United States|COVID-19 pandemic]]
+|-
+| [[North Dakota Fighting Hawks football|North Dakota]]–[[North Dakota State Bison football team|North Dakota State]] ([[Nickel Trophy]])
+| 1894–2003
+| 110 years
+| [[NCAA Division II|Div II]]/[[NCAA Division I Football Championship Subdivision|FCS]]
+| 1894
+| Interrupted in 2004 due to North Dakota State's reclassification to Division I, resumed annual games in 2019 before being interrupted again in 2026 due to North Dakota State's move to the [[Mountain West Conference]]/[[NCAA Division I Football Bowl Subdivision|FBS]]
+|-
+| [[Wabash Little Giants|Wabash]]–[[DePauw Tigers|DePauw]]<ref>{{Citation | title = DePauw v. Wabash Series | publisher = cfbdatawarehouse.com | url = http://cfbdatawarehouse.com/data/active/d/depauw/opponents_records.php?teamid=3399 | format = English | access-date = October 8, 2014 | archive-date = September 7, 2015 | archive-url = https://web.archive.org/web/20150907233117/http://www.cfbdatawarehouse.com/data/active/d/depauw/opponents_records.php?teamid=3399 | url-status = dead }}</ref>
+| 1911–2019
+| 109 years
+| [[NCAA Division III|Div. III]]
+| 1890
+| Interrupted in 2020 due to COVID-19 pandemic
+|-
+| [[Nebraska Cornhuskers football|Nebraska]]–[[Kansas Jayhawks football|Kansas]]<ref name=FBS/>
+| 1906–2010
+| 105 years
+| FBS
+| 1892
+|Longest continuous series in FBS before interruption<br />Ended by [[2010–2014 Big Ten Conference realignment#First wave: Nebraska joins|Nebraska's move]] to the [[Big Ten Conference|Big Ten]]
+|-
+| [[Michigan Wolverines football|Michigan]]–[[Ohio State Buckeyes football|Ohio State]]
+| 1918–2019
+| 102 years
+| FBS
+| 1897
+| Interrupted in 2020 due to COVID-19 pandemic
+|-
+| [[Dartmouth Big Green football|Dartmouth]]–[[Cornell Big Red football|Cornell]]
+| 1919–2019
+| 101 years
+| [[Football Championship Subdivision|FCS]]
+| 1900
+| Interrupted in 2020 due to COVID-19 pandemic
+|-
+| [[Penn Quakers football|Penn]]–[[Cornell Big Red football|Cornell]]
+| 1919–2019
+| 101 years
+| FCS
+| 1893
+| Interrupted in 2020 due to COVID-19 pandemic
+|-
+| [[Purdue Boilermakers football|Purdue]]–[[Indiana Hoosiers football|Indiana]]
+| 1920–2019
+| 100 years
+| FBS
+| 1891
+| Interrupted in 2020 due to COVID-19 pandemic
+|-
+| [[Texas Longhorns football|Texas]]–[[Texas A&M Aggies football|Texas A&M]]<ref name=FBS/>
+| 1915–2011
+| 97 years
+| FBS
+| 1894
+| Ended by [[2010–12 Southeastern Conference realignment|Texas A&M's move]] to the [[Southeastern Conference|SEC]]; resumed in 2024 with [[2021–2024 NCAA conference realignment#Southeastern Conference|Texas' move]] to the SEC
+|-
+| [[Oklahoma Sooners football|Oklahoma]]–[[Kansas Jayhawks football|Kansas]]<ref name=FBS/>
+| 1903–1997
+| 95 years
+| FBS
+| 1903
+|Longest continuous series in FBS until annual play ended in 1997<br />Ended by advent of [[Big 12 Conference|Big 12]] divisional play<br />Annual play resumed in 2011 with end of Big 12 divisional play, and ended again with Oklahoma's 2024 move to the SEC
+|-
+| [[Missouri Tigers football|Missouri]]–[[Kansas Jayhawks football|Kansas]]<ref name=FBS/>
+| 1919–2011
+| 93 years
+| FBS
+| 1891
+| Ended by [[2010–12 Southeastern Conference realignment|Missouri's move]] to the [[Southeastern Conference|SEC]]
+|-
+| [[Missouri Tigers football|Missouri]]–[[Iowa State Cyclones football|Iowa State]]<ref name=FBS/>
+| 1919–2011
+| 93 years
+| FBS
+| 1896
+| Ended by Missouri's move to the [[Southeastern Conference|SEC]]
+|-
+| [[Nebraska Cornhuskers football|Nebraska]]–[[Iowa State Cyclones football|Iowa State]]<ref>{{Citation | title = Nebraska v. Iowa State Series | publisher = Winsipedia | url = http://www.winsipedia.com/nebraska/vs/iowa-state | format = English | access-date = May 18, 2017}}</ref>
+| 1921–2010
+| 90 years
+| FBS
+| 1896
+| Ended by Nebraska's move to the [[Big Ten Conference|Big Ten]]
+|-
+| [[Duke Blue Devils football|Duke]]–[[Georgia Tech Yellow Jackets football|Georgia Tech]]<ref>{{cite web | url=https://www.winsipedia.com/georgia-tech/vs/duke | title=Winsipedia - Georgia Tech Yellow Jackets vs. Duke Blue Devils football series history }}</ref>
+| 1933–2022
+| 90 years
+| FBS
+| 1933
+| Rivalry pre-dates Georgia Tech's admission into the [[Atlantic Coast Conference]] (ACC) in 1983. Ended by changes to the ACC's scheduling format effective in 2023.
+|-
+| [[Nebraska Cornhuskers football|Nebraska]]–[[Kansas State Wildcats football|Kansas State]]<ref>{{Citation | title = Nebraska v. Kansas State Series | publisher = Winsipedia | url = http://www.winsipedia.com/nebraska/vs/kansas-state | format = English | access-date = May 18, 2017}}</ref>
+| 1922–2010
+| 89 years
+| FBS
+| 1911
+| Ended by Nebraska's move to the [[Big Ten Conference|Big Ten]]
+|-
+| [[Nebraska Cornhuskers football|Nebraska]]–[[Missouri Tigers football|Missouri]]<ref>{{Citation | title = Nebraska v. Missouri Series | publisher = Winsipedia | url = http://www.winsipedia.com/nebraska/vs/missouri | format = English | access-date = May 18, 2017}}</ref>
+| 1922–2010
+| 89 years
+| FBS
+| 1892
+| Ended by Nebraska's move to the [[Big Ten Conference|Big Ten]]
+|-
+| [[Ohio State Buckeyes football|Ohio State]]–[[Illinois Fighting Illini football|Illinois]]<ref>{{Citation | title = Ohio State v. Illinois Series | publisher = Winsipedia | url = http://www.winsipedia.com/illinois/vs/ohio-state | format = English | access-date = May 18, 2017}}</ref>
+| 1914–2002
+| 89 years
+| FBS
+| 1902
+| Ended by [[Big Ten Conference|Big Ten]]'s change to non-round robin scheduling
+|-
+| [[Presbyterian Blue Hose football|Presbyterian]]–[[Newberry College|Newberry]]<ref>{{Citation | title = Presbyterian v. Newberry Series | publisher = cfbdatawarehouse.com | url = http://www.cfbdatawarehouse.com/data/div_iaa/bigsouth/presbyterian/opponents_records.php?teamid=2239 | format = English | access-date = July 14, 2014 | archive-date = July 14, 2014 | archive-url = https://web.archive.org/web/20140714221659/http://www.cfbdatawarehouse.com/data/div_iaa/bigsouth/presbyterian/opponents_records.php?teamid=2239 | url-status = dead }}</ref><ref>{{Citation | title = Presbyterian College series | publisher = Presbyterian College | url = http://www.gobluehose.com/fls/18100/SPORTS/football/history/2012fbyby.pdf?DB_OEM_ID=18100 | format = English | access-date = July 14, 2014}}</ref>
+| 1919–2006
+| 88 years
+| [[NCAA Division II|Div. II]]
+| 1913
+| Ended by Presbyterian's move to Division I
+|}
+
+==See also==
+* [[Lambert-Meadowlands Trophy]] (top team in the [[Northeastern United States|Northeast]])
+* [[College rivalry#United States]]
+* [[List of black college football classics]]
+
+==Notes==
+{{notelist-ua}}
+
+==References==
+{{Reflist|30em}}
+
+==Further reading==
+* {{cite web|first=Steve|last=Weinberg|title=Are college football rivalries getting out of hand?|date=August 26, 2011|work=[[USA Today]]|url=http://content.usatoday.net/dist/custom/gci/InsidePage.aspx?cId=azcentral&sParam=50142484.story|access-date=September 5, 2011}}
+
+{{College football}}
+{{supporter culture}}
+
+{{DEFAULTSORT:NCAA college football rivalry games}}
+[[Category:College football rivalries in the United States|*]]
+[[Category:College football-related lists|rivalry games]]
+[[Category:NCAA lists|Football rivalry games]]

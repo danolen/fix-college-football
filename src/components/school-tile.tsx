@@ -9,18 +9,23 @@ import { cn } from "@/lib/utils"
 export function SchoolTile({
   school,
   readOnly = false,
+  selectable = false,
   onInspect,
 }: {
   school: School
   readOnly?: boolean
+  selectable?: boolean
   onInspect?: (school: School) => void
 }) {
   const drag = useDrag()
-  const dragging = drag.activeId === school.id
+  const dragging = drag.activeId === school.id || drag.activeIds.includes(school.id)
+  const selected = drag.isSelected(school.id)
   const targeted = drag.overSchoolId === school.id && !dragging
   return (
     <div
       data-school-id={school.id}
+      data-pool-select={selectable ? "" : undefined}
+      aria-selected={selectable ? selected : undefined}
       draggable={false}
       onPointerDown={readOnly ? undefined : (event) => drag.startPointerDrag(event, school.id)}
       className={cn(
@@ -28,6 +33,7 @@ export function SchoolTile({
         readOnly ? "" : "cursor-grab active:cursor-grabbing",
         dragging && "opacity-40",
         targeted && "ring-2 ring-foreground",
+        selected && "bg-accent ring-2 ring-foreground",
       )}
     >
       <SchoolMark

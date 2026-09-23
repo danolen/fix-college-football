@@ -125,6 +125,21 @@ export function moveSchool(
   return { ...state, presetId: null, conferences }
 }
 
+export function moveSchools(
+  state: BoardState,
+  schoolIds: string[],
+  targetConferenceId: string | null,
+  beforeId?: string | null,
+): BoardState {
+  const unique = [...new Set(schoolIds.filter(Boolean))]
+  if (unique.length === 0) return state
+  let next = state
+  for (const schoolId of unique) {
+    next = moveSchool(next, schoolId, targetConferenceId, schoolId === unique[0] ? beforeId : null)
+  }
+  return next
+}
+
 export function addFcsSchool(state: BoardState, schoolId: string): BoardState {
   if (state.addedFcsIds.includes(schoolId)) return state
   return { ...state, presetId: null, addedFcsIds: [...state.addedFcsIds, schoolId] }

@@ -9,10 +9,16 @@ export type DropTarget = {
 
 type DragValue = {
   activeId: string | null
+  activeIds: string[]
+  selectedIds: string[]
   overSchoolId: string | null
   overConferenceId: string | null
   overPool: boolean
   startPointerDrag: (event: ReactPointerEvent<HTMLElement>, schoolId: string) => void
+  toggleSelected: (schoolId: string, mode?: "replace" | "toggle" | "range") => void
+  clearSelected: () => void
+  pruneSelected: (allowedIds: Iterable<string>) => void
+  isSelected: (schoolId: string) => boolean
 }
 
 const DragContext = createContext<DragValue | null>(null)
@@ -61,16 +67,26 @@ export function resolveDrop(x: number, y: number, schoolId: string): DropTarget 
   return null
 }
 
+function poolSchoolIds() {
+  return [...document.querySelectorAll<HTMLElement>("[data-pool-select][data-school-id]")]
+    .map((node) => node.dataset.schoolId)
+    .filter((id): id is string => Boolean(id))
+}
+
 export function DragProvider({
   children,
   onDrop,
   overlay,
 }: {
   children: ReactNode
-  onDrop: (schoolId: string, target: DropTarget) => void
-  overlay: (schoolId: string) => ReactNode
+  onDrop: (schoolIds: string[], target: DropTarget) => void
+  overlay: (schoolId: string, count: number) => ReactNode
 }) {
   const [activeId, setActiveId] = useState<string | null>(null)
+  const [activeIds, setActiveIds] = useState<string[]>([])
+  const [selectedIds, setSelectedIds] = useState<string[]>([])
+  const selectedRef = useRef<string[]>([])
+  const lastSelectedRef = useRef<string | null>(null)
   const [over, setOver] = useState<{ schoolId: string | null; conferenceId: string | null; pool: boolean }>({
     schoolId: null,
     conferenceId: null,
@@ -85,6 +101,49 @@ export function DragProvider({
   useEffect(() => {
     onDropRef.current = onDrop
   }, [onDrop])
+
+  useEffect(() => {
+    selectedRef.current = selectedIds
+  }, [selectedIds])
+
+  function toggleSelected(schoolId: string, mode: "replace" | "toggle" | "range" = "toggle") {
+    setSelectedIds((current) => {
+      if (mode === "replace") {
+        lastSelectedRef.current = schoolId
+        return [schoolId]
+      }
+      if (mode === "range") {
+        const order = poolSchoolIds()
+        const from = lastSelectedRef.current ?? schoolId
+        const start = order.indexOf(from)
+        const end = order.indexOf(schoolId)
+        if (start < 0 || end < 0) {
+          lastSelectedRef.current = schoolId
+          return current.includes(schoolId) ? current : [...current, schoolId]
+        }
+        const [lo, hi] = start < end ? [start, end] : [end, start]
+        lastSelectedRef.current = schoolId
+        return order.slice(lo, hi + 1)
+      }
+      lastSelectedRef.current = schoolId
+      return current.includes(schoolId) ? current.filter((id) => id !== schoolId) : [...current, schoolId]
+    })
+  }
+
+  function clearSelected() {
+    lastSelectedRef.current = null
+    setSelectedIds([])
+  }
+
+  function pruneSelected(allowedIds: Iterable<string>) {
+    const allowed = allowedIds instanceof Set ? allowedIds : new Set(allowedIds)
+    setSelectedIds((current) => {
+      const next = current.filter((id) => allowed.has(id))
+      if (next.length === current.length) return current
+      if (lastSelectedRef.current && !allowed.has(lastSelectedRef.current)) lastSelectedRef.current = null
+      return next
+    })
+  }
 
   useLayoutEffect(() => {
     const node = overlayRef.current
@@ -157,9 +216,22 @@ export function DragProvider({
         }
         window.addEventListener("click", blockClick, true)
         const drop = resolveDrop(ev.clientX, ev.clientY, schoolId)
-        if (drop) onDropRef.current(schoolId, drop)
+        if (drop) {
+          const group = selectedRef.current.includes(schoolId) && selectedRef.current.length > 1
+            ? selectedRef.current
+            : [schoolId]
+          onDropRef.current(group, drop)
+          if (group.some((id) => selectedRef.current.includes(id))) clearSelected()
+        }
+      } else {
+        const selectable = handle.hasAttribute("data-pool-select")
+        if (selectable) {
+          const mode = ev.shiftKey ? "range" : ev.metaKey || ev.ctrlKey ? "toggle" : "toggle"
+          toggleSelected(schoolId, mode)
+        }
       }
       setActiveId(null)
+      setActiveIds([])
       setOver({ schoolId: null, conferenceId: null, pool: false })
     }
 
@@ -170,7 +242,11 @@ export function DragProvider({
       if (!moved) {
         if (dx * dx + dy * dy < 16) return
         moved = true
+        const group = selectedRef.current.includes(schoolId) && selectedRef.current.length > 1
+          ? selectedRef.current
+          : [schoolId]
         setActiveId(schoolId)
+        setActiveIds(group)
       }
       if (ev.cancelable) ev.preventDefault()
       const edge = 64
@@ -188,10 +264,16 @@ export function DragProvider({
 
   const value: DragValue = {
     activeId,
+    activeIds,
+    selectedIds,
     overSchoolId: over.schoolId,
     overConferenceId: over.conferenceId,
     overPool: over.pool,
     startPointerDrag,
+    toggleSelected,
+    clearSelected,
+    pruneSelected,
+    isSelected: (schoolId) => selectedIds.includes(schoolId),
   }
 
   return (
@@ -203,7 +285,7 @@ export function DragProvider({
           data-drag-overlay
           className="pointer-events-none fixed top-0 left-0 z-50 -translate-x-1/2 -translate-y-1/2"
         >
-          {overlay(activeId)}
+          {overlay(activeId, activeIds.length || 1)}
         </div>
       )}
     </DragContext.Provider>

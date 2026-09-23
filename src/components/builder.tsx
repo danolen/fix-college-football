@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { Plus } from "lucide-react"
 import { useDrag } from "@/components/drag-context"
 import { ConferenceRow } from "@/components/conference-row"
@@ -9,6 +9,12 @@ import { MapView } from "@/components/map-view"
 import { SchoolTile } from "@/components/school-tile"
 import { useBoard } from "@/components/board-context"
 import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
 import { isIndependents } from "@/lib/board"
 import type { Tier } from "@/lib/types"
@@ -22,7 +28,10 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
     const ids = new Set(board.state.conferences.flatMap((conference) => conference.schoolIds))
     return ids
   }, [board.state.conferences])
-  const unassigned = board.onBoard.filter((school) => !placed.has(school.id))
+  const unassigned = useMemo(
+    () => board.onBoard.filter((school) => !placed.has(school.id)),
+    [board.onBoard, placed],
+  )
   const needle = poolQuery.trim().toLowerCase()
   const visiblePool = needle
     ? unassigned.filter((school) =>
@@ -30,6 +39,16 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
       )
     : unassigned
   const drag = useDrag()
+  useEffect(() => {
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") drag.clearSelected()
+    }
+    window.addEventListener("keydown", onKey)
+    return () => window.removeEventListener("keydown", onKey)
+  }, [drag])
+  useEffect(() => {
+    drag.pruneSelected(unassigned.map((school) => school.id))
+  }, [drag, unassigned])
   const groupCount = board.state.conferences.filter((conference) => conference.tier === "group").length
   const short = board.state.conferences.filter(
     (conference) => !isIndependents(conference) && conference.schoolIds.length < 2,
@@ -148,19 +167,55 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
             <h2 className="font-display text-xl font-semibold tracking-wide">Unassigned</h2>
             <p className="text-xs text-muted-foreground">
               {unassigned.length} of {board.onBoard.length} schools on the board. They can stay here.
+              Click to select more than one, then assign or drag the group.
             </p>
           </div>
-          <Input
-            value={poolQuery}
-            onChange={(event) => setPoolQuery(event.target.value)}
-            placeholder="Find an unassigned school"
-            aria-label="Find an unassigned school"
-            className="sm:max-w-64"
-          />
+          <div className="flex flex-wrap items-center gap-2">
+            {drag.selectedIds.length > 0 && (
+              <>
+                <p className="text-xs font-medium" data-testid="pool-selected-count">
+                  {drag.selectedIds.length} selected
+                </p>
+                <DropdownMenu>
+                  <DropdownMenuTrigger
+                    render={<Button type="button" size="sm" data-testid="assign-selected" />}
+                  >
+                    Assign to
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="min-w-48">
+                    {board.state.conferences.map((conference) => (
+                      <DropdownMenuItem
+                        key={conference.id}
+                        onClick={() => {
+                          board.assignSchools(drag.selectedIds, conference.id)
+                          drag.clearSelected()
+                        }}
+                      >
+                        {conference.name}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+                <Button type="button" size="sm" variant="ghost" onClick={drag.clearSelected}>
+                  Clear
+                </Button>
+              </>
+            )}
+            <Input
+              value={poolQuery}
+              onChange={(event) => setPoolQuery(event.target.value)}
+              placeholder="Find an unassigned school"
+              aria-label="Find an unassigned school"
+              className="sm:max-w-64"
+            />
+          </div>
         </div>
         <div
           data-testid="unassigned-pool"
           data-drop-pool=""
+          onPointerDown={(event) => {
+            if (event.target === event.currentTarget) drag.clearSelected()
+          }}
           className={cn(
             "flex min-h-28 flex-wrap gap-2 rounded-xl border border-dashed p-2",
             drag.overPool ? "border-foreground bg-accent" : "border-border",
@@ -173,7 +228,12 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
             <p className="m-auto text-sm text-muted-foreground">No unassigned school matches that search.</p>
           )}
           {visiblePool.map((school) => (
-            <SchoolTile key={school.id} school={school} onInspect={(item) => onInspect(item.id)} />
+            <SchoolTile
+              key={school.id}
+              school={school}
+              selectable
+              onInspect={(item) => onInspect(item.id)}
+            />
           ))}
         </div>
       </section>

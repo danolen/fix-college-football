@@ -1,0 +1,1586 @@
+{
+  "teams": {
+    "Air Force": {
+      "n": "Air Force",
+      "s": "air-force",
+      "c": "Mountain West",
+      "i": "AF",
+      "rv": [
+        "Army",
+        "Colorado State",
+        "Hawai'i",
+        "Navy"
+      ]
+    },
+    "Akron": {
+      "n": "Akron",
+      "s": "akron",
+      "c": "MAC",
+      "i": "AK",
+      "rv": [
+        "Kent State"
+      ]
+    },
+    "Alabama": {
+      "n": "Alabama",
+      "s": "alabama",
+      "c": "SEC",
+      "i": "AL",
+      "rv": [
+        "Auburn",
+        "LSU",
+        "Mississippi State",
+        "Tennessee"
+      ]
+    },
+    "App State": {
+      "n": "App State",
+      "s": "app-state",
+      "c": "Sun Belt",
+      "i": "AS",
+      "rv": [
+        "Charlotte",
+        "Coastal Carolina",
+        "Georgia Southern",
+        "Marshall"
+      ]
+    },
+    "Arizona": {
+      "n": "Arizona",
+      "s": "arizona",
+      "c": "Big 12",
+      "i": "AR",
+      "rv": [
+        "Arizona State",
+        "New Mexico"
+      ]
+    },
+    "Arizona State": {
+      "n": "Arizona State",
+      "s": "arizona-state",
+      "c": "Big 12",
+      "i": "AS",
+      "rv": [
+        "Arizona"
+      ]
+    },
+    "Arkansas": {
+      "n": "Arkansas",
+      "s": "arkansas",
+      "c": "SEC",
+      "i": "AR",
+      "rv": [
+        "LSU",
+        "Missouri",
+        "Texas",
+        "Texas A&M"
+      ]
+    },
+    "Arkansas State": {
+      "n": "Arkansas State",
+      "s": "arkansas-state",
+      "c": "Sun Belt",
+      "i": "AS",
+      "rv": [
+        "Louisiana",
+        "Louisiana Monroe",
+        "Memphis",
+        "Missouri State"
+      ]
+    },
+    "Army": {
+      "n": "Army",
+      "s": "army",
+      "c": "American",
+      "i": "AR",
+      "rv": [
+        "Air Force",
+        "Navy",
+        "Notre Dame"
+      ]
+    },
+    "Auburn": {
+      "n": "Auburn",
+      "s": "auburn",
+      "c": "SEC",
+      "i": "AU",
+      "rv": [
+        "Alabama",
+        "Florida",
+        "Georgia",
+        "Georgia Tech",
+        "LSU"
+      ]
+    },
+    "BYU": {
+      "n": "BYU",
+      "s": "byu",
+      "c": "Big 12",
+      "i": "BY",
+      "rv": [
+        "Utah",
+        "Utah State",
+        "Wyoming"
+      ]
+    },
+    "Ball State": {
+      "n": "Ball State",
+      "s": "ball-state",
+      "c": "MAC",
+      "i": "BS",
+      "rv": [
+        "Miami (OH)",
+        "Northern Illinois"
+      ]
+    },
+    "Baylor": {
+      "n": "Baylor",
+      "s": "baylor",
+      "c": "Big 12",
+      "i": "BA",
+      "rv": [
+        "Houston",
+        "TCU",
+        "Texas A&M",
+        "Texas Tech"
+      ]
+    },
+    "Boise State": {
+      "n": "Boise State",
+      "s": "boise-state",
+      "c": "Pac-12",
+      "i": "BS",
+      "rv": [
+        "Fresno State",
+        "Nevada",
+        "Washington State"
+      ]
+    },
+    "Boston College": {
+      "n": "Boston College",
+      "s": "boston-college",
+      "c": "ACC",
+      "i": "BC",
+      "rv": [
+        "Clemson",
+        "Notre Dame",
+        "Syracuse",
+        "UMass"
+      ]
+    },
+    "Bowling Green": {
+      "n": "Bowling Green",
+      "s": "bowling-green",
+      "c": "MAC",
+      "i": "BG",
+      "rv": [
+        "Kent State",
+        "Toledo"
+      ]
+    },
+    "Buffalo": {
+      "n": "Buffalo",
+      "s": "buffalo",
+      "c": "MAC",
+      "i": "BU",
+      "rv": [
+        "Temple",
+        "UMass"
+      ]
+    },
+    "California": {
+      "n": "California",
+      "s": "cal",
+      "c": "ACC",
+      "i": "CA",
+      "rv": [
+        "Stanford",
+        "UCLA"
+      ]
+    },
+    "Central Michigan": {
+      "n": "Central Michigan",
+      "s": "central-michigan",
+      "c": "MAC",
+      "i": "CM",
+      "rv": [
+        "Eastern Michigan",
+        "Western Michigan"
+      ]
+    },
+    "Charlotte": {
+      "n": "Charlotte",
+      "s": "charlotte",
+      "c": "American",
+      "i": "CH",
+      "rv": [
+        "App State",
+        "East Carolina",
+        "Old Dominion"
+      ]
+    },
+    "Cincinnati": {
+      "n": "Cincinnati",
+      "s": "cincinnati",
+      "c": "Big 12",
+      "i": "CI",
+      "rv": [
+        "Louisville",
+        "Memphis",
+        "Miami (OH)",
+        "Pittsburgh",
+        "UCF"
+      ]
+    },
+    "Clemson": {
+      "n": "Clemson",
+      "s": "clemson",
+      "c": "ACC",
+      "i": "CL",
+      "rv": [
+        "Boston College",
+        "Florida State",
+        "Georgia",
+        "Georgia Tech",
+        "NC State",
+        "South Carolina"
+      ]
+    },
+    "Coastal Carolina": {
+      "n": "Coastal Carolina",
+      "s": "coastal-carolina",
+      "c": "Sun Belt",
+      "i": "CC",
+      "rv": [
+        "App State",
+        "Liberty"
+      ]
+    },
+    "Colorado": {
+      "n": "Colorado",
+      "s": "colorado",
+      "c": "Big 12",
+      "i": "CO",
+      "rv": [
+        "Colorado State",
+        "Nebraska",
+        "Utah"
+      ]
+    },
+    "Colorado State": {
+      "n": "Colorado State",
+      "s": "colorado-state",
+      "c": "Pac-12",
+      "i": "CS",
+      "rv": [
+        "Air Force",
+        "Colorado",
+        "Wyoming"
+      ]
+    },
+    "Delaware": {
+      "n": "Delaware",
+      "s": "delaware",
+      "c": "C-USA",
+      "i": "DE",
+      "rv": [
+        "James Madison",
+        "Liberty"
+      ]
+    },
+    "Duke": {
+      "n": "Duke",
+      "s": "duke",
+      "c": "ACC",
+      "i": "DU",
+      "rv": [
+        "NC State",
+        "North Carolina",
+        "Wake Forest"
+      ]
+    },
+    "East Carolina": {
+      "n": "East Carolina",
+      "s": "east-carolina",
+      "c": "American",
+      "i": "EC",
+      "rv": [
+        "Charlotte",
+        "Marshall",
+        "NC State",
+        "North Carolina"
+      ]
+    },
+    "Eastern Michigan": {
+      "n": "Eastern Michigan",
+      "s": "eastern-michigan",
+      "c": "MAC",
+      "i": "EM",
+      "rv": [
+        "Central Michigan",
+        "Western Michigan"
+      ]
+    },
+    "FIU": {
+      "n": "FIU",
+      "s": "fiu",
+      "c": "C-USA",
+      "i": "FI",
+      "rv": [
+        "Florida Atlantic"
+      ]
+    },
+    "Florida": {
+      "n": "Florida",
+      "s": "florida",
+      "c": "SEC",
+      "i": "FL",
+      "rv": [
+        "Auburn",
+        "Florida State",
+        "Georgia",
+        "LSU",
+        "Miami",
+        "Tennessee"
+      ]
+    },
+    "Florida Atlantic": {
+      "n": "Florida Atlantic",
+      "s": "fau",
+      "c": "C-USA",
+      "i": "FA",
+      "rv": [
+        "FIU"
+      ]
+    },
+    "Florida State": {
+      "n": "Florida State",
+      "s": "florida-state",
+      "c": "ACC",
+      "i": "FS",
+      "rv": [
+        "Clemson",
+        "Florida",
+        "Miami"
+      ]
+    },
+    "Fresno State": {
+      "n": "Fresno State",
+      "s": "fresno-state",
+      "c": "Pac-12",
+      "i": "FS",
+      "rv": [
+        "Boise State",
+        "Hawai'i",
+        "San Diego St",
+        "San Jose State"
+      ]
+    },
+    "Georgia": {
+      "n": "Georgia",
+      "s": "georgia",
+      "c": "SEC",
+      "i": "GE",
+      "rv": [
+        "Auburn",
+        "Clemson",
+        "Florida",
+        "Georgia Tech",
+        "South Carolina",
+        "Tennessee"
+      ]
+    },
+    "Georgia Southern": {
+      "n": "Georgia Southern",
+      "s": "ga-southern",
+      "c": "Sun Belt",
+      "i": "GS",
+      "rv": [
+        "App State",
+        "Georgia State",
+        "Troy"
+      ]
+    },
+    "Georgia State": {
+      "n": "Georgia State",
+      "s": "georgia-state",
+      "c": "Sun Belt",
+      "i": "GS",
+      "rv": [
+        "Georgia Southern",
+        "Kennesaw State"
+      ]
+    },
+    "Georgia Tech": {
+      "n": "Georgia Tech",
+      "s": "georgia-tech",
+      "c": "ACC",
+      "i": "GT",
+      "rv": [
+        "Auburn",
+        "Clemson",
+        "Georgia",
+        "Vanderbilt",
+        "Virginia Tech"
+      ]
+    },
+    "Hawai'i": {
+      "n": "Hawai'i",
+      "s": "hawaii",
+      "c": "Mountain West",
+      "i": "HA",
+      "rv": [
+        "Air Force",
+        "Fresno State",
+        "San Jose State",
+        "UNLV",
+        "Wyoming"
+      ]
+    },
+    "Houston": {
+      "n": "Houston",
+      "s": "houston",
+      "c": "Big 12",
+      "i": "HO",
+      "rv": [
+        "Baylor",
+        "Rice",
+        "Texas Tech",
+        "Tulsa"
+      ]
+    },
+    "Illinois": {
+      "n": "Illinois",
+      "s": "illinois",
+      "c": "Big Ten",
+      "i": "IL",
+      "rv": [
+        "Missouri",
+        "Northwestern",
+        "Ohio State",
+        "Purdue"
+      ]
+    },
+    "Indiana": {
+      "n": "Indiana",
+      "s": "indiana",
+      "c": "Big Ten",
+      "i": "IN",
+      "rv": [
+        "Kentucky",
+        "Michigan State",
+        "Purdue"
+      ]
+    },
+    "Iowa": {
+      "n": "Iowa",
+      "s": "iowa",
+      "c": "Big Ten",
+      "i": "IO",
+      "rv": [
+        "Iowa State",
+        "Minnesota",
+        "Nebraska",
+        "Wisconsin"
+      ]
+    },
+    "Iowa State": {
+      "n": "Iowa State",
+      "s": "iowa-state",
+      "c": "Big 12",
+      "i": "IS",
+      "rv": [
+        "Iowa",
+        "Kansas State",
+        "Missouri"
+      ]
+    },
+    "Jacksonville State": {
+      "n": "Jacksonville State",
+      "s": "jax-state",
+      "c": "C-USA",
+      "i": "JS",
+      "rv": [
+        "Kennesaw State",
+        "Troy",
+        "UAB"
+      ]
+    },
+    "James Madison": {
+      "n": "James Madison",
+      "s": "james-madison",
+      "c": "Sun Belt",
+      "i": "JM",
+      "rv": [
+        "Delaware",
+        "Liberty",
+        "Marshall",
+        "North Dakota State",
+        "Old Dominion"
+      ]
+    },
+    "Kansas": {
+      "n": "Kansas",
+      "s": "kansas",
+      "c": "Big 12",
+      "i": "KA",
+      "rv": [
+        "Kansas State",
+        "Missouri"
+      ]
+    },
+    "Kansas State": {
+      "n": "Kansas State",
+      "s": "kansas-state",
+      "c": "Big 12",
+      "i": "KS",
+      "rv": [
+        "Iowa State",
+        "Kansas"
+      ]
+    },
+    "Kennesaw State": {
+      "n": "Kennesaw State",
+      "s": "kennesaw-state",
+      "c": "C-USA",
+      "i": "KS",
+      "rv": [
+        "Georgia State",
+        "Jacksonville State"
+      ]
+    },
+    "Kent State": {
+      "n": "Kent State",
+      "s": "kent-state",
+      "c": "MAC",
+      "i": "KS",
+      "rv": [
+        "Akron",
+        "Bowling Green"
+      ]
+    },
+    "Kentucky": {
+      "n": "Kentucky",
+      "s": "kentucky",
+      "c": "SEC",
+      "i": "KE",
+      "rv": [
+        "Indiana",
+        "Louisville",
+        "Tennessee",
+        "Vanderbilt"
+      ]
+    },
+    "LSU": {
+      "n": "LSU",
+      "s": "lsu",
+      "c": "SEC",
+      "i": "LS",
+      "rv": [
+        "Alabama",
+        "Arkansas",
+        "Auburn",
+        "Florida",
+        "Mississippi State",
+        "Ole Miss",
+        "Texas A&M",
+        "Tulane"
+      ]
+    },
+    "Liberty": {
+      "n": "Liberty",
+      "s": "liberty",
+      "c": "C-USA",
+      "i": "LI",
+      "rv": [
+        "Coastal Carolina",
+        "Delaware",
+        "James Madison",
+        "Old Dominion"
+      ]
+    },
+    "Louisiana": {
+      "n": "Louisiana",
+      "s": "louisiana",
+      "c": "Sun Belt",
+      "i": "LO",
+      "rv": [
+        "Arkansas State",
+        "Louisiana Monroe",
+        "Louisiana Tech"
+      ]
+    },
+    "Louisiana Monroe": {
+      "n": "Louisiana Monroe",
+      "s": "ul-monroe",
+      "c": "Sun Belt",
+      "i": "LM",
+      "rv": [
+        "Arkansas State",
+        "Louisiana",
+        "Louisiana Tech"
+      ]
+    },
+    "Louisiana Tech": {
+      "n": "Louisiana Tech",
+      "s": "louisiana-tech",
+      "c": "C-USA",
+      "i": "LT",
+      "rv": [
+        "Louisiana",
+        "Louisiana Monroe",
+        "Southern Miss"
+      ]
+    },
+    "Louisville": {
+      "n": "Louisville",
+      "s": "louisville",
+      "c": "ACC",
+      "i": "LO",
+      "rv": [
+        "Cincinnati",
+        "Kentucky",
+        "Memphis",
+        "West Virginia"
+      ]
+    },
+    "Marshall": {
+      "n": "Marshall",
+      "s": "marshall",
+      "c": "Sun Belt",
+      "i": "MA",
+      "rv": [
+        "App State",
+        "East Carolina",
+        "James Madison",
+        "Ohio",
+        "West Virginia"
+      ]
+    },
+    "Maryland": {
+      "n": "Maryland",
+      "s": "maryland",
+      "c": "Big Ten",
+      "i": "MA",
+      "rv": [
+        "Navy",
+        "Penn State",
+        "Rutgers",
+        "Virginia"
+      ]
+    },
+    "Memphis": {
+      "n": "Memphis",
+      "s": "memphis",
+      "c": "American",
+      "i": "ME",
+      "rv": [
+        "Arkansas State",
+        "Cincinnati",
+        "Louisville",
+        "Ole Miss",
+        "Southern Miss",
+        "Tulane",
+        "UAB"
+      ]
+    },
+    "Miami": {
+      "n": "Miami",
+      "s": "miami",
+      "c": "ACC",
+      "i": "MI",
+      "rv": [
+        "Florida",
+        "Florida State",
+        "Virginia Tech"
+      ]
+    },
+    "Miami (OH)": {
+      "n": "Miami (OH)",
+      "s": "miami-oh",
+      "c": "MAC",
+      "i": "MO",
+      "rv": [
+        "Ball State",
+        "Cincinnati",
+        "Ohio"
+      ]
+    },
+    "Michigan": {
+      "n": "Michigan",
+      "s": "michigan",
+      "c": "Big Ten",
+      "i": "MI",
+      "rv": [
+        "Michigan State",
+        "Minnesota",
+        "Northwestern",
+        "Notre Dame",
+        "Ohio State"
+      ]
+    },
+    "Michigan State": {
+      "n": "Michigan State",
+      "s": "michigan-state",
+      "c": "Big Ten",
+      "i": "MS",
+      "rv": [
+        "Indiana",
+        "Michigan",
+        "Notre Dame",
+        "Penn State"
+      ]
+    },
+    "Middle Tennessee": {
+      "n": "Middle Tennessee",
+      "s": "mid-tennesee-state",
+      "c": "C-USA",
+      "i": "MT",
+      "rv": [
+        "Troy",
+        "Western Kentucky"
+      ]
+    },
+    "Minnesota": {
+      "n": "Minnesota",
+      "s": "minnesota",
+      "c": "Big Ten",
+      "i": "MI",
+      "rv": [
+        "Iowa",
+        "Michigan",
+        "Nebraska",
+        "Penn State",
+        "Wisconsin"
+      ]
+    },
+    "Mississippi State": {
+      "n": "Mississippi State",
+      "s": "mississippi-state",
+      "c": "SEC",
+      "i": "MS",
+      "rv": [
+        "Alabama",
+        "LSU",
+        "Ole Miss"
+      ]
+    },
+    "Missouri": {
+      "n": "Missouri",
+      "s": "missouri",
+      "c": "SEC",
+      "i": "MI",
+      "rv": [
+        "Arkansas",
+        "Illinois",
+        "Iowa State",
+        "Kansas",
+        "Nebraska",
+        "Oklahoma",
+        "South Carolina"
+      ]
+    },
+    "Missouri State": {
+      "n": "Missouri State",
+      "s": "missouri-state",
+      "c": "C-USA",
+      "i": "MS",
+      "rv": [
+        "Arkansas State"
+      ]
+    },
+    "NC State": {
+      "n": "NC State",
+      "s": "nc-state",
+      "c": "ACC",
+      "i": "NS",
+      "rv": [
+        "Clemson",
+        "Duke",
+        "East Carolina",
+        "North Carolina",
+        "Wake Forest"
+      ]
+    },
+    "Navy": {
+      "n": "Navy",
+      "s": "navy",
+      "c": "American",
+      "i": "NA",
+      "rv": [
+        "Air Force",
+        "Army",
+        "Maryland",
+        "Notre Dame",
+        "SMU"
+      ]
+    },
+    "Nebraska": {
+      "n": "Nebraska",
+      "s": "nebraska",
+      "c": "Big Ten",
+      "i": "NE",
+      "rv": [
+        "Colorado",
+        "Iowa",
+        "Minnesota",
+        "Missouri",
+        "Oklahoma",
+        "Texas",
+        "Wisconsin"
+      ]
+    },
+    "Nevada": {
+      "n": "Nevada",
+      "s": "nevada",
+      "c": "Mountain West",
+      "i": "NE",
+      "rv": [
+        "Boise State",
+        "Sacramento State",
+        "UNLV"
+      ]
+    },
+    "New Mexico": {
+      "n": "New Mexico",
+      "s": "new-mexico",
+      "c": "Mountain West",
+      "i": "NM",
+      "rv": [
+        "Arizona",
+        "New Mexico State"
+      ]
+    },
+    "New Mexico State": {
+      "n": "New Mexico State",
+      "s": "new-mexico-state",
+      "c": "C-USA",
+      "i": "NM",
+      "rv": [
+        "New Mexico",
+        "UTEP"
+      ]
+    },
+    "North Carolina": {
+      "n": "North Carolina",
+      "s": "north-carolina",
+      "c": "ACC",
+      "i": "NC",
+      "rv": [
+        "Duke",
+        "East Carolina",
+        "NC State",
+        "South Carolina",
+        "Virginia",
+        "Wake Forest"
+      ]
+    },
+    "North Dakota State": {
+      "n": "North Dakota State",
+      "s": "north-dakota-state",
+      "c": "Mountain West",
+      "i": "ND",
+      "rv": [
+        "James Madison"
+      ]
+    },
+    "North Texas": {
+      "n": "North Texas",
+      "s": "north-texas",
+      "c": "American",
+      "i": "NT",
+      "rv": [
+        "SMU",
+        "UTSA"
+      ]
+    },
+    "Northern Illinois": {
+      "n": "Northern Illinois",
+      "s": "northern-illinois",
+      "c": "Mountain West",
+      "i": "NI",
+      "rv": [
+        "Ball State"
+      ]
+    },
+    "Northwestern": {
+      "n": "Northwestern",
+      "s": "northwestern",
+      "c": "Big Ten",
+      "i": "NO",
+      "rv": [
+        "Illinois",
+        "Michigan",
+        "Notre Dame"
+      ]
+    },
+    "Notre Dame": {
+      "n": "Notre Dame",
+      "s": "notre-dame",
+      "c": "Independent",
+      "i": "ND",
+      "rv": [
+        "Army",
+        "Boston College",
+        "Michigan",
+        "Michigan State",
+        "Navy",
+        "Northwestern",
+        "Pittsburgh",
+        "Purdue",
+        "Stanford",
+        "USC"
+      ]
+    },
+    "Ohio": {
+      "n": "Ohio",
+      "s": "ohio",
+      "c": "MAC",
+      "i": "OH",
+      "rv": [
+        "Marshall",
+        "Miami (OH)"
+      ]
+    },
+    "Ohio State": {
+      "n": "Ohio State",
+      "s": "ohio-state",
+      "c": "Big Ten",
+      "i": "OS",
+      "rv": [
+        "Illinois",
+        "Michigan",
+        "Penn State"
+      ]
+    },
+    "Oklahoma": {
+      "n": "Oklahoma",
+      "s": "oklahoma",
+      "c": "SEC",
+      "i": "OK",
+      "rv": [
+        "Missouri",
+        "Nebraska",
+        "Oklahoma State",
+        "Texas"
+      ]
+    },
+    "Oklahoma State": {
+      "n": "Oklahoma State",
+      "s": "oklahoma-state",
+      "c": "Big 12",
+      "i": "OS",
+      "rv": [
+        "Oklahoma",
+        "Texas Tech",
+        "Tulsa"
+      ]
+    },
+    "Old Dominion": {
+      "n": "Old Dominion",
+      "s": "old-dominion",
+      "c": "Sun Belt",
+      "i": "OD",
+      "rv": [
+        "Charlotte",
+        "James Madison",
+        "Liberty"
+      ]
+    },
+    "Ole Miss": {
+      "n": "Ole Miss",
+      "s": "ole-miss",
+      "c": "SEC",
+      "i": "OM",
+      "rv": [
+        "LSU",
+        "Memphis",
+        "Mississippi State"
+      ]
+    },
+    "Oregon": {
+      "n": "Oregon",
+      "s": "oregon",
+      "c": "Big Ten",
+      "i": "OR",
+      "rv": [
+        "Oregon State",
+        "Washington"
+      ]
+    },
+    "Oregon State": {
+      "n": "Oregon State",
+      "s": "oregon-state",
+      "c": "Pac-12",
+      "i": "OS",
+      "rv": [
+        "Oregon",
+        "Washington State"
+      ]
+    },
+    "Penn State": {
+      "n": "Penn State",
+      "s": "penn-state",
+      "c": "Big Ten",
+      "i": "PS",
+      "rv": [
+        "Maryland",
+        "Michigan State",
+        "Minnesota",
+        "Ohio State",
+        "Pittsburgh",
+        "Syracuse",
+        "Temple"
+      ]
+    },
+    "Pittsburgh": {
+      "n": "Pittsburgh",
+      "s": "pittsburgh",
+      "c": "ACC",
+      "i": "PI",
+      "rv": [
+        "Cincinnati",
+        "Notre Dame",
+        "Penn State",
+        "Syracuse",
+        "West Virginia"
+      ]
+    },
+    "Purdue": {
+      "n": "Purdue",
+      "s": "purdue",
+      "c": "Big Ten",
+      "i": "PU",
+      "rv": [
+        "Illinois",
+        "Indiana",
+        "Notre Dame"
+      ]
+    },
+    "Rice": {
+      "n": "Rice",
+      "s": "rice",
+      "c": "American",
+      "i": "RI",
+      "rv": [
+        "Houston",
+        "SMU",
+        "Tulsa"
+      ]
+    },
+    "Rutgers": {
+      "n": "Rutgers",
+      "s": "rutgers",
+      "c": "Big Ten",
+      "i": "RU",
+      "rv": [
+        "Maryland"
+      ]
+    },
+    "SMU": {
+      "n": "SMU",
+      "s": "smu",
+      "c": "ACC",
+      "i": "SM",
+      "rv": [
+        "Navy",
+        "North Texas",
+        "Rice",
+        "TCU"
+      ]
+    },
+    "Sacramento State": {
+      "n": "Sacramento State",
+      "s": "sacramento-state",
+      "c": "MAC",
+      "i": "SS",
+      "rv": [
+        "Nevada"
+      ]
+    },
+    "Sam Houston": {
+      "n": "Sam Houston",
+      "s": "sam-houston",
+      "c": "C-USA",
+      "i": "SH",
+      "rv": [
+        "Texas State",
+        "UTEP"
+      ]
+    },
+    "San Diego St": {
+      "n": "San Diego St",
+      "s": "san-diego-state",
+      "c": "Pac-12",
+      "i": "SD",
+      "rv": [
+        "Fresno State"
+      ]
+    },
+    "San Jose State": {
+      "n": "San Jose State",
+      "s": "san-jose-state",
+      "c": "Mountain West",
+      "i": "SJ",
+      "rv": [
+        "Fresno State",
+        "Hawai'i",
+        "Stanford"
+      ]
+    },
+    "South Alabama": {
+      "n": "South Alabama",
+      "s": "south-alabama",
+      "c": "Sun Belt",
+      "i": "SA",
+      "rv": [
+        "Southern Miss",
+        "Troy"
+      ]
+    },
+    "South Carolina": {
+      "n": "South Carolina",
+      "s": "south-carolina",
+      "c": "SEC",
+      "i": "SC",
+      "rv": [
+        "Clemson",
+        "Georgia",
+        "Missouri",
+        "North Carolina",
+        "Texas A&M"
+      ]
+    },
+    "Southern Miss": {
+      "n": "Southern Miss",
+      "s": "southern-miss",
+      "c": "Sun Belt",
+      "i": "SM",
+      "rv": [
+        "Louisiana Tech",
+        "Memphis",
+        "South Alabama",
+        "Tulane",
+        "UAB"
+      ]
+    },
+    "Stanford": {
+      "n": "Stanford",
+      "s": "stanford",
+      "c": "ACC",
+      "i": "ST",
+      "rv": [
+        "California",
+        "Notre Dame",
+        "San Jose State",
+        "USC"
+      ]
+    },
+    "Syracuse": {
+      "n": "Syracuse",
+      "s": "syracuse",
+      "c": "ACC",
+      "i": "SY",
+      "rv": [
+        "Boston College",
+        "Penn State",
+        "Pittsburgh",
+        "UConn",
+        "West Virginia"
+      ]
+    },
+    "TCU": {
+      "n": "TCU",
+      "s": "tcu",
+      "c": "Big 12",
+      "i": "TC",
+      "rv": [
+        "Baylor",
+        "SMU",
+        "Texas",
+        "Texas Tech"
+      ]
+    },
+    "Temple": {
+      "n": "Temple",
+      "s": "temple",
+      "c": "American",
+      "i": "TE",
+      "rv": [
+        "Buffalo",
+        "Penn State"
+      ]
+    },
+    "Tennessee": {
+      "n": "Tennessee",
+      "s": "tennessee",
+      "c": "SEC",
+      "i": "TE",
+      "rv": [
+        "Alabama",
+        "Florida",
+        "Georgia",
+        "Kentucky",
+        "Vanderbilt"
+      ]
+    },
+    "Texas": {
+      "n": "Texas",
+      "s": "texas",
+      "c": "SEC",
+      "i": "TE",
+      "rv": [
+        "Arkansas",
+        "Nebraska",
+        "Oklahoma",
+        "TCU",
+        "Texas A&M",
+        "Texas Tech"
+      ]
+    },
+    "Texas A&M": {
+      "n": "Texas A&M",
+      "s": "texas-am",
+      "c": "SEC",
+      "i": "TA",
+      "rv": [
+        "Arkansas",
+        "Baylor",
+        "LSU",
+        "South Carolina",
+        "Texas"
+      ]
+    },
+    "Texas State": {
+      "n": "Texas State",
+      "s": "texas-state",
+      "c": "Pac-12",
+      "i": "TS",
+      "rv": [
+        "Sam Houston",
+        "UTSA"
+      ]
+    },
+    "Texas Tech": {
+      "n": "Texas Tech",
+      "s": "texas-tech",
+      "c": "Big 12",
+      "i": "TT",
+      "rv": [
+        "Baylor",
+        "Houston",
+        "Oklahoma State",
+        "TCU",
+        "Texas"
+      ]
+    },
+    "Toledo": {
+      "n": "Toledo",
+      "s": "toledo",
+      "c": "MAC",
+      "i": "TO",
+      "rv": [
+        "Bowling Green"
+      ]
+    },
+    "Troy": {
+      "n": "Troy",
+      "s": "troy",
+      "c": "Sun Belt",
+      "i": "TR",
+      "rv": [
+        "Georgia Southern",
+        "Jacksonville State",
+        "Middle Tennessee",
+        "South Alabama",
+        "UAB"
+      ]
+    },
+    "Tulane": {
+      "n": "Tulane",
+      "s": "tulane",
+      "c": "American",
+      "i": "TU",
+      "rv": [
+        "LSU",
+        "Memphis",
+        "Southern Miss"
+      ]
+    },
+    "Tulsa": {
+      "n": "Tulsa",
+      "s": "tulsa",
+      "c": "American",
+      "i": "TU",
+      "rv": [
+        "Houston",
+        "Oklahoma State",
+        "Rice"
+      ]
+    },
+    "UAB": {
+      "n": "UAB",
+      "s": "uab",
+      "c": "American",
+      "i": "UA",
+      "rv": [
+        "Jacksonville State",
+        "Memphis",
+        "Southern Miss",
+        "Troy"
+      ]
+    },
+    "UCF": {
+      "n": "UCF",
+      "s": "ucf",
+      "c": "Big 12",
+      "i": "UC",
+      "rv": [
+        "Cincinnati",
+        "UConn",
+        "USF"
+      ]
+    },
+    "UCLA": {
+      "n": "UCLA",
+      "s": "ucla",
+      "c": "Big Ten",
+      "i": "UC",
+      "rv": [
+        "California",
+        "USC"
+      ]
+    },
+    "UConn": {
+      "n": "UConn",
+      "s": "uconn",
+      "c": "Independent",
+      "i": "UC",
+      "rv": [
+        "Syracuse",
+        "UCF",
+        "UMass"
+      ]
+    },
+    "UMass": {
+      "n": "UMass",
+      "s": "umass",
+      "c": "MAC",
+      "i": "UM",
+      "rv": [
+        "Boston College",
+        "Buffalo",
+        "UConn"
+      ]
+    },
+    "UNLV": {
+      "n": "UNLV",
+      "s": "unlv",
+      "c": "Mountain West",
+      "i": "UN",
+      "rv": [
+        "Hawai'i",
+        "Nevada"
+      ]
+    },
+    "USC": {
+      "n": "USC",
+      "s": "usc",
+      "c": "Big Ten",
+      "i": "US",
+      "rv": [
+        "Notre Dame",
+        "Stanford",
+        "UCLA"
+      ]
+    },
+    "USF": {
+      "n": "USF",
+      "s": "usf",
+      "c": "American",
+      "i": "US",
+      "rv": [
+        "UCF"
+      ]
+    },
+    "UTEP": {
+      "n": "UTEP",
+      "s": "utep",
+      "c": "Mountain West",
+      "i": "UT",
+      "rv": [
+        "New Mexico State",
+        "Sam Houston"
+      ]
+    },
+    "UTSA": {
+      "n": "UTSA",
+      "s": "utsa",
+      "c": "American",
+      "i": "UT",
+      "rv": [
+        "North Texas",
+        "Texas State"
+      ]
+    },
+    "Utah": {
+      "n": "Utah",
+      "s": "utah",
+      "c": "Big 12",
+      "i": "UT",
+      "rv": [
+        "BYU",
+        "Colorado",
+        "Utah State"
+      ]
+    },
+    "Utah State": {
+      "n": "Utah State",
+      "s": "utah-state",
+      "c": "Pac-12",
+      "i": "US",
+      "rv": [
+        "BYU",
+        "Utah",
+        "Wyoming"
+      ]
+    },
+    "Vanderbilt": {
+      "n": "Vanderbilt",
+      "s": "vanderbilt",
+      "c": "SEC",
+      "i": "VA",
+      "rv": [
+        "Georgia Tech",
+        "Kentucky",
+        "Tennessee"
+      ]
+    },
+    "Virginia": {
+      "n": "Virginia",
+      "s": "virginia",
+      "c": "ACC",
+      "i": "VI",
+      "rv": [
+        "Maryland",
+        "North Carolina",
+        "Virginia Tech"
+      ]
+    },
+    "Virginia Tech": {
+      "n": "Virginia Tech",
+      "s": "virginia-tech",
+      "c": "ACC",
+      "i": "VT",
+      "rv": [
+        "Georgia Tech",
+        "Miami",
+        "Virginia",
+        "West Virginia"
+      ]
+    },
+    "Wake Forest": {
+      "n": "Wake Forest",
+      "s": "wake-forest",
+      "c": "ACC",
+      "i": "WF",
+      "rv": [
+        "Duke",
+        "NC State",
+        "North Carolina"
+      ]
+    },
+    "Washington": {
+      "n": "Washington",
+      "s": "washington",
+      "c": "Big Ten",
+      "i": "WA",
+      "rv": [
+        "Oregon",
+        "Washington State"
+      ]
+    },
+    "Washington State": {
+      "n": "Washington State",
+      "s": "washington-state",
+      "c": "Pac-12",
+      "i": "WS",
+      "rv": [
+        "Boise State",
+        "Oregon State",
+        "Washington"
+      ]
+    },
+    "West Virginia": {
+      "n": "West Virginia",
+      "s": "west-virginia",
+      "c": "Big 12",
+      "i": "WV",
+      "rv": [
+        "Louisville",
+        "Marshall",
+        "Pittsburgh",
+        "Syracuse",
+        "Virginia Tech"
+      ]
+    },
+    "Western Kentucky": {
+      "n": "Western Kentucky",
+      "s": "western-kentucky",
+      "c": "C-USA",
+      "i": "WK",
+      "rv": [
+        "Middle Tennessee"
+      ]
+    },
+    "Western Michigan": {
+      "n": "Western Michigan",
+      "s": "western-michigan",
+      "c": "MAC",
+      "i": "WM",
+      "rv": [
+        "Central Michigan",
+        "Eastern Michigan"
+      ]
+    },
+    "Wisconsin": {
+      "n": "Wisconsin",
+      "s": "wisconsin",
+      "c": "Big Ten",
+      "i": "WI",
+      "rv": [
+        "Iowa",
+        "Minnesota",
+        "Nebraska"
+      ]
+    },
+    "Wyoming": {
+      "n": "Wyoming",
+      "s": "wyoming",
+      "c": "Mountain West",
+      "i": "WY",
+      "rv": [
+        "BYU",
+        "Colorado State",
+        "Hawai'i",
+        "Utah State"
+      ]
+    }
+  },
+  "order": [
+    "All",
+    "SEC",
+    "Big Ten",
+    "Big 12",
+    "ACC",
+    "Pac-12",
+    "American",
+    "Mountain West",
+    "MAC",
+    "Sun Belt",
+    "C-USA",
+    "Independent"
+  ],
+  "logoBase": "https://web.archive.org/web/20260704155201/https://collegefootball.gg/wp-content/plugins/pipelines/teams/",
+  "def": "All"
+}

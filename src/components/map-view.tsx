@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { getMapPrefs, getServerMapPrefs, setMapPrefs, subscribeMapPrefs } from "@/lib/storage"
 import type { NorthAmericaGeo } from "@/lib/map-layout"
 import { layoutMap, mapDotRadius, mapSchoolMarkSize } from "@/lib/map-layout"
+import { publicUrl } from "@/lib/public-url"
 import type { Conference, MapColorMode, MapShowMode, School } from "@/lib/types"
 import { cn } from "@/lib/utils"
 
@@ -65,7 +66,7 @@ export function MapView({
 
   useEffect(() => {
     let cancelled = false
-    fetch("/geo/north-america.json")
+    fetch(publicUrl("/geo/north-america.json"))
       .then((response) => {
         if (!response.ok) throw new Error("Map data failed to load.")
         return response.json() as Promise<NorthAmericaGeo>

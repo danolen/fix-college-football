@@ -6,6 +6,8 @@ The interaction is inspired by Lily Lavender’s [youTryItThen](https://lilylave
 
 This site is not affiliated with the NCAA, any conference, or any school. Tiles are colored circles in school colors — primary fill, secondary border, school abbreviation — not official athletic marks.
 
+The live site is [https://danolen.github.io/fix-college-football/](https://danolen.github.io/fix-college-football/).
+
 ## Run it
 
 ```bash

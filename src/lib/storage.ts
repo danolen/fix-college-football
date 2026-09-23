@@ -1,6 +1,6 @@
 import { createBlankBoard } from "@/lib/board"
 import { catalog } from "@/lib/catalog"
-import type { BoardState } from "@/lib/types"
+import type { BoardState, MapColorMode, MapShowMode } from "@/lib/types"
 
 const KEY = "fix-college-football-v1"
 
@@ -91,6 +91,54 @@ function readInitial(): BoardSnapshot {
       board: createBlankBoard(makeId),
       loadError: "The board saved in this browser could not be read.",
     }
+  }
+}
+
+export type MapPrefs = {
+  show: MapShowMode
+  colorBy: MapColorMode
+}
+
+export const DEFAULT_MAP_PREFS: MapPrefs = { show: "all", colorBy: "conference" }
+
+const MAP_KEY = "fix-college-football-map-v1"
+
+let mapPrefs: MapPrefs | null = null
+const mapListeners = new Set<() => void>()
+
+export function subscribeMapPrefs(listener: () => void) {
+  mapListeners.add(listener)
+  return () => mapListeners.delete(listener)
+}
+
+export function getMapPrefs(): MapPrefs {
+  mapPrefs ??= readMapPrefs()
+  return mapPrefs
+}
+
+export function getServerMapPrefs(): MapPrefs {
+  return DEFAULT_MAP_PREFS
+}
+
+export function setMapPrefs(next: Partial<MapPrefs>) {
+  const merged: MapPrefs = { ...getMapPrefs(), ...next }
+  mapPrefs = merged
+  if (typeof window !== "undefined") window.localStorage.setItem(MAP_KEY, JSON.stringify(merged))
+  for (const listener of mapListeners) listener()
+}
+
+export function readMapPrefs(): MapPrefs {
+  if (typeof window === "undefined") return DEFAULT_MAP_PREFS
+  try {
+    const raw = window.localStorage.getItem(MAP_KEY)
+    if (!raw) return DEFAULT_MAP_PREFS
+    const parsed = JSON.parse(raw) as Partial<MapPrefs>
+    return {
+      show: parsed.show === "assigned" ? "assigned" : "all",
+      colorBy: parsed.colorBy === "schools" ? "schools" : "conference",
+    }
+  } catch {
+    return DEFAULT_MAP_PREFS
   }
 }
 

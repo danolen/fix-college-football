@@ -67,3 +67,7 @@ export type BoardState = {
 }
 
 export type ScoreTone = "green" | "amber" | "red" | "empty"
+
+export type MapShowMode = "all" | "assigned"
+
+export type MapColorMode = "conference" | "schools"

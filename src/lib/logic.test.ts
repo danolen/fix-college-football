@@ -8,9 +8,11 @@ import {
   deleteConference,
   moveConferenceTier,
   moveSchool,
+  recolorConference,
   setMode,
   shareUnlocked,
 } from "./board.ts"
+import { PALETTE } from "./colors.ts"
 import { scoreRivalries, scoreTone, shareText } from "./scoring.ts"
 import type { Preset, School } from "./types.ts"
 
@@ -102,6 +104,16 @@ describe("board", () => {
       ),
     }
     assert.equal(shareUnlocked(state), false)
+  })
+
+  it("lets recolor pick any palette color, including one already used", () => {
+    let state = createBlankBoard(ids)
+    const first = state.conferences[0]
+    const taken = state.conferences[1].color
+    state = recolorConference(state, first.id, taken)
+    assert.equal(state.conferences[0].color, taken)
+    state = recolorConference(state, first.id, PALETTE[PALETTE.length - 1])
+    assert.equal(state.conferences[0].color, PALETTE[PALETTE.length - 1])
   })
 
   it("applies a preset without dropping membership when the mode changes", () => {

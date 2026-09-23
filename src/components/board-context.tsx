@@ -28,6 +28,7 @@ export type BoardApi = {
   moveTier: (id: string, tier: Tier) => void
   addFcs: (id: string) => void
   removeFcs: (id: string) => void
+  assignSchools: (schoolIds: string[], conferenceId: string | null) => void
   canDelete: (id: string) => boolean
 }
 

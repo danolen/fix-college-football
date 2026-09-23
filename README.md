@@ -21,8 +21,8 @@ Your layout is stored in this browser only. There is no account and no link that
 
 ## What’s in the box
 
-- Build: presets, a flat list or Power and Group of X, an optional FCS picker, and drag-and-drop.
-- Score: rivalries kept together, equal weight. Green and amber follow the same fractions as the inspiration (25/45 and 15/45) of the rivalries whose schools are both on the board.
+- Build: presets, a flat list or Power and Group of X, an optional FCS picker, and drag-and-drop. Click unassigned schools to select more than one, then assign them from the menu or drag the group.
+- Score: rivalries kept together, equal weight. Pairs come from the CFB 27 rival lists (every FBS school has at least one). Distinctive names come from Wikipedia’s list of NCAA rivalry games when that pair is on the video-game list. Green and amber follow the same fractions as the inspiration (25/45 and 15/45) of the rivalries whose schools are both on the board.
 - Share: once every conference other than Independents has at least two schools, download a grid image, download a map image, or post the text to X. Independents can have two, one, or none. The post is text only. The map can show every school or only assigned ones, and can color dots by conference or by school colors. Unassigned schools are gray in conference color mode. Each conference gets one faint blob that hugs the convex hull of its schools. The map is cropped to the continental United States. Scroll, a trackpad, or the plus and minus buttons zoom it, and dragging the map background pans it. Hawaiʻi stays in a fixed inset, not to scale.
 
 School and rivalry data lives in `data/`. The map is drawn from Natural Earth lakes and public-domain country and state outlines in `public/geo/north-america.json`. No map API key.

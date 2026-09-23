@@ -323,6 +323,7 @@ function MapBody({
               d={blob.d}
               fill={blob.color}
               fillOpacity={0.12}
+              fillRule="nonzero"
               stroke={blob.color}
               strokeOpacity={0.28}
               strokeWidth={1.25}
@@ -368,6 +369,7 @@ function MapBody({
               d={blob.d}
               fill={blob.color}
               fillOpacity={0.12}
+              fillRule="nonzero"
               stroke={blob.color}
               strokeOpacity={0.28}
             />

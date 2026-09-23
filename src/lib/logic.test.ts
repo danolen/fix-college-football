@@ -1,4 +1,5 @@
 import assert from "node:assert/strict"
+import { readFileSync } from "node:fs"
 import { describe, it } from "node:test"
 import {
   addConference,
@@ -8,6 +9,7 @@ import {
   deleteConference,
   moveConferenceTier,
   moveSchool,
+  moveSchools,
   recolorConference,
   setMode,
   shareUnlocked,
@@ -106,6 +108,16 @@ describe("board", () => {
     assert.equal(shareUnlocked(state), false)
   })
 
+  it("assigns several schools to a conference in one move", () => {
+    let state = createBlankBoard(ids)
+    const target = state.conferences[0]
+    state = moveSchools(state, ["alpha", "beta", "gamma"], target.id)
+    assert.deepEqual(state.conferences[0].schoolIds, ["alpha", "beta", "gamma"])
+    state = moveSchools(state, ["beta", "gamma"], state.conferences[1].id)
+    assert.deepEqual(state.conferences[0].schoolIds, ["alpha"])
+    assert.deepEqual(state.conferences[1].schoolIds, ["beta", "gamma"])
+  })
+
   it("lets recolor pick any palette color, including one already used", () => {
     let state = createBlankBoard(ids)
     const first = state.conferences[0]
@@ -186,5 +198,38 @@ describe("scoring", () => {
       shareText(12, 40),
       "I tried to fix college football. 12/40 rivalries kept together. Think you can do better? #FixCollegeFootball",
     )
+  })
+})
+
+describe("rivalries", () => {
+  const schools = JSON.parse(readFileSync(new URL("../../data/schools.json", import.meta.url), "utf8")) as Array<{
+    id: string
+    level: string
+  }>
+  const rivalries = JSON.parse(readFileSync(new URL("../../data/rivalries.json", import.meta.url), "utf8")) as Array<{
+    name: string
+    schools: [string, string]
+  }>
+
+  it("gives every FBS school at least one rival", () => {
+    const covered = new Set(rivalries.flatMap((row) => row.schools))
+    const missing = schools.filter((school) => school.level === "fbs" && !covered.has(school.id)).map((school) => school.id)
+    assert.deepEqual(missing, [])
+    assert.ok(rivalries.length >= 200)
+  })
+
+  it("keeps distinctive names from Wikipedia when the CFB 27 pair exists", () => {
+    const names = new Set(rivalries.map((row) => row.name))
+    for (const name of [
+      "Iron Bowl",
+      "Red River Rivalry",
+      "The Game",
+      "Egg Bowl",
+      "Clean, Old-Fashioned Hate",
+      "Paul Bunyan's Axe",
+      "Old Oaken Bucket",
+    ]) {
+      assert.equal(names.has(name), true, name)
+    }
   })
 })

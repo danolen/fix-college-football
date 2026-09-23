@@ -29,7 +29,7 @@ import {
   deleteConference,
   isDirty,
   moveConferenceTier,
-  moveSchool,
+  moveSchools,
   onBoardIds,
   recolorConference,
   removeFcsSchool,
@@ -97,10 +97,10 @@ export function AppShell() {
     if (tab === "share" && !shareUnlocked(next)) setTab("build")
   }
 
-  function dropSchool(schoolId: string, target: DropTarget) {
+  function dropSchool(schoolIds: string[], target: DropTarget) {
     const board = getBoardSnapshot()?.board
     if (!board) return
-    commit(moveSchool(board, schoolId, target.conferenceId, target.beforeId))
+    commit(moveSchools(board, schoolIds, target.conferenceId, target.beforeId))
   }
 
   function commitPreset(preset: Preset) {
@@ -156,6 +156,7 @@ export function AppShell() {
     },
     addFcs: (id) => commit(addFcsSchool(state, id)),
     removeFcs: (id) => commit(removeFcsSchool(state, id)),
+    assignSchools: (schoolIds, conferenceId) => commit(moveSchools(state, schoolIds, conferenceId)),
     canDelete: (id) => canDeleteConference(state, id),
   }
 
@@ -208,9 +209,19 @@ export function AppShell() {
 
         <DragProvider
           onDrop={dropSchool}
-          overlay={(schoolId) => {
+          overlay={(schoolId, count) => {
             const school = schoolsById.get(schoolId)
-            return school ? <SchoolTileFace school={school} /> : null
+            if (!school) return null
+            return (
+              <div className="relative">
+                <SchoolTileFace school={school} />
+                {count > 1 && (
+                  <span className="absolute -right-1 -bottom-1 rounded-full bg-foreground px-1.5 text-[0.65rem] font-semibold text-background">
+                    {count}
+                  </span>
+                )}
+              </div>
+            )
           }}
         >
           <main className="mx-auto max-w-7xl px-4 py-5 sm:px-6">

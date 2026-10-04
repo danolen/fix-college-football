@@ -8,7 +8,13 @@ import { getMapPrefs, getServerMapPrefs, setMapPrefs, subscribeMapPrefs } from "
 import type { NorthAmericaGeo } from "@/lib/map-layout"
 import { layoutMap, mapDotRadius, mapSchoolMarkSize } from "@/lib/map-layout"
 import { publicUrl } from "@/lib/public-url"
-import type { Conference, MapColorMode, MapShowMode, School } from "@/lib/types"
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import type { Conference, MapColorMode, MapShowMode, Mode, School } from "@/lib/types"
 import { cn } from "@/lib/utils"
 
 const MIN_ZOOM = 1
@@ -46,10 +52,12 @@ function zoomAt(camera: Camera, factor: number, px: number, py: number, frame: F
 export function MapView({
   schools,
   conferences,
+  mode = "flat",
   className,
 }: {
   schools: School[]
   conferences: Conference[]
+  mode?: Mode
   className?: string
 }) {
   const clipId = useId().replace(/:/g, "")
@@ -107,6 +115,7 @@ export function MapView({
           height: size.height,
           show: prefs.show,
           colorBy: prefs.colorBy,
+          conferenceIds: prefs.conferenceIds,
         })
       : null
 
@@ -185,44 +194,50 @@ export function MapView({
   }
 
   return (
-    <div ref={setNode} className={cn("relative", className)}>
-      {status === "loading" && (
-        <div className="flex h-full min-h-[22rem] items-center justify-center rounded-2xl border bg-card text-sm text-muted-foreground">
-          Drawing the map…
-        </div>
-      )}
-      {status === "error" && (
-        <div className="flex h-full min-h-[22rem] flex-col items-center justify-center gap-3 rounded-2xl border bg-card px-6 text-center">
-          <p className="text-sm">The map could not be loaded.</p>
-          <Button type="button" variant="outline" onClick={() => {
-            setStatus("loading")
-            setAttempt((value) => value + 1)
-          }}>
-            Try again
-          </Button>
-        </div>
-      )}
-      {scene && (
-        <svg
-          ref={assignSvg}
-          viewBox={`0 0 ${scene.width} ${scene.height}`}
-          role="img"
-          aria-label="Map of conferences across North America"
-          className="block h-full w-full cursor-grab touch-none rounded-2xl border bg-[#d5e3ea] select-none active:cursor-grabbing"
-          onPointerDown={onPointerDown}
-        >
-          <defs>
-            <clipPath id={clipId}>
-              <rect width={scene.width} height={scene.mainHeight} />
-            </clipPath>
-          </defs>
-          <rect width={scene.width} height={scene.height} fill="#d5e3ea" />
-          <MapBody scene={scene} camera={camera} clipId={clipId} colorBy={prefs.colorBy} />
-        </svg>
-      )}
-      {scene && (
-        <>
-          <MapControls show={prefs.show} colorBy={prefs.colorBy} />
+    <div className="flex flex-col gap-2">
+      <MapControls
+        show={prefs.show}
+        colorBy={prefs.colorBy}
+        conferenceIds={prefs.conferenceIds}
+        conferences={conferences}
+        mode={mode}
+      />
+      <div ref={setNode} className={cn("relative", className)}>
+        {status === "loading" && (
+          <div className="flex h-full min-h-[22rem] items-center justify-center rounded-2xl border bg-card text-sm text-muted-foreground">
+            Drawing the map…
+          </div>
+        )}
+        {status === "error" && (
+          <div className="flex h-full min-h-[22rem] flex-col items-center justify-center gap-3 rounded-2xl border bg-card px-6 text-center">
+            <p className="text-sm">The map could not be loaded.</p>
+            <Button type="button" variant="outline" onClick={() => {
+              setStatus("loading")
+              setAttempt((value) => value + 1)
+            }}>
+              Try again
+            </Button>
+          </div>
+        )}
+        {scene && (
+          <svg
+            ref={assignSvg}
+            viewBox={`0 0 ${scene.width} ${scene.height}`}
+            role="img"
+            aria-label="Map of conferences across North America"
+            className="block h-full w-full cursor-grab touch-none rounded-2xl border bg-[#d5e3ea] select-none active:cursor-grabbing"
+            onPointerDown={onPointerDown}
+          >
+            <defs>
+              <clipPath id={clipId}>
+                <rect width={scene.width} height={scene.mainHeight} />
+              </clipPath>
+            </defs>
+            <rect width={scene.width} height={scene.height} fill="#d5e3ea" />
+            <MapBody scene={scene} camera={camera} clipId={clipId} colorBy={prefs.colorBy} />
+          </svg>
+        )}
+        {scene && (
           <div className="absolute top-3 right-3 z-10 flex flex-col gap-1">
             <Button type="button" size="icon-sm" variant="outline" className="bg-background shadow-sm" aria-label="Zoom in" data-testid="map-zoom-in" onClick={() => nudge(1.25)}>
               <Plus />
@@ -231,61 +246,125 @@ export function MapView({
               <Minus />
             </Button>
           </div>
-        </>
-      )}
+        )}
+      </div>
     </div>
   )
 }
 
-function MapControls({ show, colorBy }: { show: MapShowMode; colorBy: MapColorMode }) {
+function MapControls({
+  show,
+  colorBy,
+  conferenceIds,
+  conferences,
+  mode,
+}: {
+  show: MapShowMode
+  colorBy: MapColorMode
+  conferenceIds: string[]
+  conferences: Conference[]
+  mode: Mode
+}) {
+  useEffect(() => {
+    if (mode !== "tiers" && (show === "power" || show === "group" || show === "conferences")) {
+      setMapPrefs({ show: "all" })
+    }
+  }, [mode, show])
+  const groupCount = conferences.filter((conference) => conference.tier === "group").length
+  const selectedCount = conferenceIds.filter((id) => conferences.some((conference) => conference.id === id)).length
+
+  function toggleConference(id: string) {
+    const next = conferenceIds.includes(id) ? conferenceIds.filter((item) => item !== id) : [...conferenceIds, id]
+    setMapPrefs({ show: next.length > 0 ? "conferences" : "all", conferenceIds: next })
+  }
+
   return (
-    <div className="absolute top-3 left-3 z-10 flex max-w-[calc(100%-4.25rem)] flex-col gap-1.5">
-      <div className="flex flex-col gap-1.5 rounded-xl border bg-background/95 p-1.5 shadow-sm sm:flex-row sm:flex-wrap sm:items-center">
-        <div className="flex min-w-0 flex-wrap items-center gap-1.5">
-          <span className="px-1 text-[0.7rem] font-medium text-muted-foreground">Show:</span>
-          <div className="inline-flex rounded-lg border bg-card p-0.5" role="group" aria-label="Show">
-            <Button
-              type="button"
-              size="xs"
-              variant={show === "all" ? "default" : "ghost"}
-              data-testid="map-show-all"
-              onClick={() => setMapPrefs({ show: "all" })}
-            >
-              All schools
-            </Button>
-            <Button
-              type="button"
-              size="xs"
-              variant={show === "assigned" ? "default" : "ghost"}
-              data-testid="map-show-assigned"
-              onClick={() => setMapPrefs({ show: "assigned" })}
-            >
-              Assigned only
-            </Button>
-          </div>
+    <div data-testid="map-controls" className="flex flex-col gap-1.5 rounded-xl border bg-card p-2 sm:flex-row sm:flex-wrap sm:items-center">
+      <div className="flex min-w-0 flex-wrap items-center gap-1.5">
+        <span className="px-1 text-[0.7rem] font-medium text-muted-foreground">Show:</span>
+        <div className="inline-flex flex-wrap rounded-lg border bg-background p-0.5" role="group" aria-label="Show">
+          <Button
+            type="button"
+            size="xs"
+            variant={show === "all" ? "default" : "ghost"}
+            data-testid="map-show-all"
+            onClick={() => setMapPrefs({ show: "all" })}
+          >
+            All teams
+          </Button>
+          {mode === "tiers" && (
+            <>
+              <Button
+                type="button"
+                size="xs"
+                variant={show === "power" ? "default" : "ghost"}
+                data-testid="map-show-power"
+                onClick={() => setMapPrefs({ show: "power" })}
+              >
+                Power
+              </Button>
+              <Button
+                type="button"
+                size="xs"
+                variant={show === "group" ? "default" : "ghost"}
+                data-testid="map-show-group"
+                onClick={() => setMapPrefs({ show: "group" })}
+              >
+                {`Group of ${groupCount}`}
+              </Button>
+            </>
+          )}
         </div>
-        <div className="flex min-w-0 flex-wrap items-center gap-1.5">
-          <span className="px-1 text-[0.7rem] font-medium text-muted-foreground">Color by:</span>
-          <div className="inline-flex rounded-lg border bg-card p-0.5" role="group" aria-label="Color by">
-            <Button
-              type="button"
-              size="xs"
-              variant={colorBy === "conference" ? "default" : "ghost"}
-              data-testid="map-color-conference"
-              onClick={() => setMapPrefs({ colorBy: "conference" })}
+        {mode === "tiers" && (
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              render={
+                <Button
+                  type="button"
+                  size="xs"
+                  variant={show === "conferences" ? "default" : "outline"}
+                  data-testid="map-show-conferences"
+                />
+              }
             >
-              Conference
-            </Button>
-            <Button
-              type="button"
-              size="xs"
-              variant={colorBy === "schools" ? "default" : "ghost"}
-              data-testid="map-color-schools"
-              onClick={() => setMapPrefs({ colorBy: "schools" })}
-            >
-              School colors
-            </Button>
-          </div>
+              {show === "conferences" && selectedCount > 0 ? `${selectedCount} conference${selectedCount === 1 ? "" : "s"}` : "Conferences"}
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="max-h-64 min-w-48 overflow-y-auto">
+              {conferences.map((conference) => (
+                <DropdownMenuCheckboxItem
+                  key={conference.id}
+                  checked={conferenceIds.includes(conference.id)}
+                  closeOnClick={false}
+                  onCheckedChange={() => toggleConference(conference.id)}
+                >
+                  {conference.name}
+                </DropdownMenuCheckboxItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )}
+      </div>
+      <div className="flex min-w-0 flex-wrap items-center gap-1.5">
+        <span className="px-1 text-[0.7rem] font-medium text-muted-foreground">Color by:</span>
+        <div className="inline-flex rounded-lg border bg-background p-0.5" role="group" aria-label="Color by">
+          <Button
+            type="button"
+            size="xs"
+            variant={colorBy === "conference" ? "default" : "ghost"}
+            data-testid="map-color-conference"
+            onClick={() => setMapPrefs({ colorBy: "conference" })}
+          >
+            Conference
+          </Button>
+          <Button
+            type="button"
+            size="xs"
+            variant={colorBy === "schools" ? "default" : "ghost"}
+            data-testid="map-color-schools"
+            onClick={() => setMapPrefs({ colorBy: "schools" })}
+          >
+            School colors
+          </Button>
         </div>
       </div>
     </div>
@@ -318,15 +397,17 @@ function MapBody({
           ))}
           {scene.blobs.map((blob) => (
             <path
-              key={blob.name + blob.d.slice(0, 24)}
+              key={`${blob.kind}-${blob.name}-${blob.d.slice(0, 24)}`}
               data-map-blob={blob.name}
+              data-map-blob-kind={blob.kind}
               d={blob.d}
-              fill={blob.color}
-              fillOpacity={0.12}
+              fill={blob.kind === "division" ? "none" : blob.color}
+              fillOpacity={blob.kind === "division" ? 0 : 0.12}
               fillRule="nonzero"
-              stroke={blob.color}
-              strokeOpacity={0.28}
-              strokeWidth={1.25}
+              stroke={blob.kind === "division" ? "#1c1915" : blob.color}
+              strokeOpacity={blob.kind === "division" ? 0.72 : 0.28}
+              strokeWidth={blob.kind === "division" ? 1.5 : 1.25}
+              strokeDasharray={blob.kind === "division" ? "5 4" : undefined}
             />
           ))}
           {scene.dots.map((dot) => (
@@ -335,12 +416,12 @@ function MapBody({
           {scene.blobs.map((blob) =>
             blob.label ? (
               <text
-                key={`label-${blob.name}-${blob.label[0]}`}
+                key={`label-${blob.kind}-${blob.name}-${blob.label[0]}`}
                 x={blob.label[0]}
-                y={blob.label[1]}
+                y={blob.kind === "division" ? blob.label[1] + 12 : blob.label[1]}
                 textAnchor="middle"
-                fontSize={12}
-                fontWeight={700}
+                fontSize={blob.kind === "division" ? 10 : 12}
+                fontWeight={blob.kind === "division" ? 600 : 700}
                 fill="#1c1915"
                 stroke="#fbf6ec"
                 strokeWidth={3}
@@ -364,14 +445,16 @@ function MapBody({
           ))}
           {inset.blobs.map((blob) => (
             <path
-              key={`${inset.label}-${blob.d.slice(0, 16)}`}
+              key={`${inset.label}-${blob.kind}-${blob.d.slice(0, 16)}`}
               data-map-blob={blob.name}
+              data-map-blob-kind={blob.kind}
               d={blob.d}
-              fill={blob.color}
-              fillOpacity={0.12}
+              fill={blob.kind === "division" ? "none" : blob.color}
+              fillOpacity={blob.kind === "division" ? 0 : 0.12}
               fillRule="nonzero"
-              stroke={blob.color}
-              strokeOpacity={0.28}
+              stroke={blob.kind === "division" ? "#1c1915" : blob.color}
+              strokeOpacity={blob.kind === "division" ? 0.72 : 0.28}
+              strokeDasharray={blob.kind === "division" ? "4 3" : undefined}
             />
           ))}
           {inset.dots.map((dot) => (

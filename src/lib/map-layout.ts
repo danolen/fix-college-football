@@ -1,5 +1,6 @@
 import { geoAlbers, geoBounds, geoPath, type GeoPermissibleObjects } from "d3-geo"
 import type { Feature, Geometry } from "geojson"
+import { conferenceDivisions } from "./board"
 import { blobPath, type Pt } from "./hull"
 import type { Conference, MapColorMode, MapShowMode, School } from "./types"
 
@@ -22,6 +23,7 @@ export type MapBlob = {
   color: string
   name: string
   label: Pt | null
+  kind: "conference" | "division"
 }
 
 export const UNASSIGNED_DOT = "#8d8680"
@@ -95,11 +97,13 @@ export function layoutMap(args: {
   height: number
   show?: MapShowMode
   colorBy?: MapColorMode
+  conferenceIds?: string[]
 }): MapScene {
   const width = Math.max(320, args.width)
   const height = Math.max(260, args.height)
   const show = args.show ?? "all"
   const colorBy = args.colorBy ?? "conference"
+  const selected = new Set(args.conferenceIds ?? [])
   const located = args.schools.filter((school) => Number.isFinite(school.lat) && Number.isFinite(school.lon))
   const membership = new Map<string, Conference>()
   for (const conference of args.conferences) {
@@ -137,28 +141,27 @@ export function layoutMap(args: {
 
   const pad = conferenceBlobPad(width, colorBy)
   const dots: MapDot[] = []
-  const grouped = new Map<string, { conference: Conference; points: Pt[] }>()
+  const grouped = new Map<string, { conference: Conference; points: Pt[]; byDivision: Map<string, Pt[]> }>()
   for (const school of mainSchools) {
     const conference = membership.get(school.id)
     const point = projectMain(school)
     if (!point) continue
     const assigned = Boolean(conference)
-    if (show === "assigned" && !assigned) continue
+    if (!schoolVisible(conference, assigned, show, selected)) continue
     dots.push(makeDot(school, point, conference, colorBy))
-    if (!conference) continue
-    const bucket = grouped.get(conference.id) ?? { conference, points: [] }
+    if (!conference || !conferenceVisible(conference, show, selected)) continue
+    const bucket = grouped.get(conference.id) ?? { conference, points: [], byDivision: new Map<string, Pt[]>() }
     bucket.points.push(point)
+    const division = conferenceDivisions(conference).find((item) => item.schoolIds.includes(school.id))
+    if (division) {
+      const points = bucket.byDivision.get(division.id) ?? []
+      points.push(point)
+      bucket.byDivision.set(division.id, points)
+    }
     grouped.set(conference.id, bucket)
   }
 
-  const blobs = placeLabels(
-    [...grouped.values()].map((bucket) => ({
-      d: blobPath(bucket.points, pad),
-      color: bucket.conference.color,
-      name: bucket.conference.name,
-      label: centroid(bucket.points),
-    })),
-  )
+  const blobs = placeLabels(blobsFromGrouped(grouped, pad))
 
   const insets: MapInset[] = []
   const insetY = mainHeight + 10
@@ -178,6 +181,7 @@ export function layoutMap(args: {
         membership,
         show,
         colorBy,
+        selected,
       }),
     )
   }
@@ -195,6 +199,7 @@ export function layoutMap(args: {
         membership,
         show,
         colorBy,
+        selected,
       }),
     )
   }
@@ -219,6 +224,7 @@ function buildInset(args: {
   membership: Map<string, Conference>
   show: MapShowMode
   colorBy: MapColorMode
+  selected: Set<string>
 }): MapInset {
   const landFeatures = args.geo.regions.filter((item) => item.region === args.region)
   const collection = {
@@ -238,7 +244,7 @@ function buildInset(args: {
   const path = geoPath(projection)
   const land = landFeatures.map((item) => path(item.geometry) ?? "").filter(Boolean)
   const lakes: string[] = []
-  const grouped = new Map<string, { conference: Conference; points: Pt[] }>()
+  const grouped = new Map<string, { conference: Conference; points: Pt[]; byDivision: Map<string, Pt[]> }>()
   const dots: MapDot[] = []
   const pad = conferenceBlobPad(args.width, args.colorBy, true)
   for (const school of args.schools) {
@@ -246,19 +252,20 @@ function buildInset(args: {
     const point = projection([school.lon, school.lat])
     if (!point) continue
     const assigned = Boolean(conference)
-    if (args.show === "assigned" && !assigned) continue
+    if (!schoolVisible(conference, assigned, args.show, args.selected)) continue
     dots.push(makeDot(school, point, conference, args.colorBy))
-    if (!conference) continue
-    const bucket = grouped.get(conference.id) ?? { conference, points: [] }
+    if (!conference || !conferenceVisible(conference, args.show, args.selected)) continue
+    const bucket = grouped.get(conference.id) ?? { conference, points: [], byDivision: new Map<string, Pt[]>() }
     bucket.points.push(point)
+    const division = conferenceDivisions(conference).find((item) => item.schoolIds.includes(school.id))
+    if (division) {
+      const points = bucket.byDivision.get(division.id) ?? []
+      points.push(point)
+      bucket.byDivision.set(division.id, points)
+    }
     grouped.set(conference.id, bucket)
   }
-  const blobs = [...grouped.values()].map((bucket) => ({
-    d: blobPath(bucket.points, pad),
-    color: bucket.conference.color,
-    name: bucket.conference.name,
-    label: null,
-  }))
+  const blobs = blobsFromGrouped(grouped, pad).map((blob) => ({ ...blob, label: null }))
   return {
     x: args.x,
     y: args.y,
@@ -291,6 +298,54 @@ function centroid(points: Pt[]): Pt {
   const x = points.reduce((sum, point) => sum + point[0], 0) / points.length
   const y = points.reduce((sum, point) => sum + point[1], 0) / points.length
   return [x, y]
+}
+
+function conferenceVisible(conference: Conference, show: MapShowMode, selected: Set<string>): boolean {
+  if (show === "all" || show === "assigned") return true
+  if (show === "power") return conference.tier === "power"
+  if (show === "group") return conference.tier === "group"
+  if (show === "conferences") return selected.has(conference.id)
+  return true
+}
+
+function schoolVisible(
+  conference: Conference | undefined,
+  assigned: boolean,
+  show: MapShowMode,
+  selected: Set<string>,
+): boolean {
+  if (show === "all") return true
+  if (!assigned || !conference) return false
+  return conferenceVisible(conference, show, selected)
+}
+
+function blobsFromGrouped(
+  grouped: Map<string, { conference: Conference; points: Pt[]; byDivision: Map<string, Pt[]> }>,
+  pad: number,
+): MapBlob[] {
+  const divisionPad = Math.max(4, pad - 3)
+  const blobs: MapBlob[] = []
+  for (const bucket of grouped.values()) {
+    blobs.push({
+      d: blobPath(bucket.points, pad),
+      color: bucket.conference.color,
+      name: bucket.conference.name,
+      label: centroid(bucket.points),
+      kind: "conference",
+    })
+    for (const division of conferenceDivisions(bucket.conference)) {
+      const points = bucket.byDivision.get(division.id)
+      if (!points || points.length === 0) continue
+      blobs.push({
+        d: blobPath(points, divisionPad),
+        color: bucket.conference.color,
+        name: division.name,
+        label: centroid(points),
+        kind: "division",
+      })
+    }
+  }
+  return blobs
 }
 
 function placeLabels(blobs: MapBlob[]): MapBlob[] {

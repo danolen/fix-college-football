@@ -15,15 +15,31 @@ export function loadBoard(raw: string | null): BoardState | null {
     addedFcsIds: Array.isArray(parsed.addedFcsIds) ? parsed.addedFcsIds.filter((id) => typeof id === "string") : [],
     conferences: parsed.conferences
       .filter((conference) => conference && typeof conference.id === "string" && typeof conference.name === "string")
-      .map((conference) => ({
-        id: conference.id,
-        name: conference.name,
-        color: typeof conference.color === "string" ? conference.color : "#44403C",
-        tier: conference.tier === "power" || conference.tier === "group" ? conference.tier : "none",
-        schoolIds: Array.isArray(conference.schoolIds)
+      .map((conference) => {
+        const schoolIds = Array.isArray(conference.schoolIds)
           ? conference.schoolIds.filter((id): id is string => typeof id === "string")
-          : [],
-      })),
+          : []
+        const allowed = new Set(schoolIds)
+        const divisions = Array.isArray(conference.divisions)
+          ? conference.divisions
+              .filter((division) => division && typeof division.id === "string" && typeof division.name === "string")
+              .map((division) => ({
+                id: division.id,
+                name: division.name,
+                schoolIds: Array.isArray(division.schoolIds)
+                  ? division.schoolIds.filter((id): id is string => typeof id === "string" && allowed.has(id))
+                  : [],
+              }))
+          : []
+        return {
+          id: conference.id,
+          name: conference.name,
+          color: typeof conference.color === "string" ? conference.color : "#44403C",
+          tier: conference.tier === "power" || conference.tier === "group" ? conference.tier : "none",
+          schoolIds,
+          ...(divisions.length > 0 ? { divisions } : {}),
+        }
+      }),
   }
 }
 
@@ -97,9 +113,10 @@ function readInitial(): BoardSnapshot {
 export type MapPrefs = {
   show: MapShowMode
   colorBy: MapColorMode
+  conferenceIds: string[]
 }
 
-export const DEFAULT_MAP_PREFS: MapPrefs = { show: "all", colorBy: "conference" }
+export const DEFAULT_MAP_PREFS: MapPrefs = { show: "all", colorBy: "conference", conferenceIds: [] }
 
 const MAP_KEY = "fix-college-football-map-v1"
 
@@ -127,19 +144,32 @@ export function setMapPrefs(next: Partial<MapPrefs>) {
   for (const listener of mapListeners) listener()
 }
 
-export function readMapPrefs(): MapPrefs {
-  if (typeof window === "undefined") return DEFAULT_MAP_PREFS
+export function parseMapPrefs(raw: string | null): MapPrefs {
+  if (!raw) return DEFAULT_MAP_PREFS
   try {
-    const raw = window.localStorage.getItem(MAP_KEY)
-    if (!raw) return DEFAULT_MAP_PREFS
     const parsed = JSON.parse(raw) as Partial<MapPrefs>
+    const show =
+      parsed.show === "assigned" ||
+      parsed.show === "power" ||
+      parsed.show === "group" ||
+      parsed.show === "conferences"
+        ? parsed.show
+        : "all"
     return {
-      show: parsed.show === "assigned" ? "assigned" : "all",
+      show,
       colorBy: parsed.colorBy === "schools" ? "schools" : "conference",
+      conferenceIds: Array.isArray(parsed.conferenceIds)
+        ? parsed.conferenceIds.filter((id): id is string => typeof id === "string")
+        : [],
     }
   } catch {
     return DEFAULT_MAP_PREFS
   }
+}
+
+export function readMapPrefs(): MapPrefs {
+  if (typeof window === "undefined") return DEFAULT_MAP_PREFS
+  return parseMapPrefs(window.localStorage.getItem(MAP_KEY))
 }
 
 function sanitize(saved: BoardState): BoardState {
@@ -149,10 +179,21 @@ function sanitize(saved: BoardState): BoardState {
   const added = saved.addedFcsIds.filter((id) => fcsIds.has(id))
   const allowed = new Set<string>([...fbsIds, ...added])
   const conferences = saved.conferences
-    .map((conference) => ({
-      ...conference,
-      schoolIds: conference.schoolIds.filter((id) => allowed.has(id) && schoolsById.has(id)),
-    }))
+    .map((conference) => {
+      const schoolIds = conference.schoolIds.filter((id) => allowed.has(id) && schoolsById.has(id))
+      const kept = new Set(schoolIds)
+      const divisions = (conference.divisions ?? [])
+        .map((division) => ({
+          ...division,
+          schoolIds: division.schoolIds.filter((id) => kept.has(id)),
+        }))
+        .filter((division) => division.name.trim().length > 0)
+      return {
+        ...conference,
+        schoolIds,
+        ...(divisions.length > 0 ? { divisions } : { divisions: undefined }),
+      }
+    })
     .filter((conference) => conference.name.trim().length > 0)
   if (conferences.length === 0) return createBlankBoard(makeId)
   return { ...saved, addedFcsIds: added, conferences }

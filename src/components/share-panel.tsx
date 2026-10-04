@@ -8,6 +8,7 @@ import { MapView } from "@/components/map-view"
 import { SchoolTileFace } from "@/components/school-tile"
 import { useBoard } from "@/components/board-context"
 import { Button } from "@/components/ui/button"
+import { conferenceDivisions, undividedSchoolIds } from "@/lib/board"
 import { downloadSvgPng } from "@/lib/download"
 import { shareText } from "@/lib/scoring"
 
@@ -121,12 +122,36 @@ export function SharePanel() {
                       <p className="mb-1 text-sm font-medium" style={{ color: conference.color }}>
                         {conference.name}
                       </p>
-                      <div className="flex flex-wrap gap-2">
-                        {conference.schoolIds.map((id) => {
-                          const school = board.schoolsById.get(id)
-                          return school ? <SchoolTileFace key={id} school={school} /> : null
-                        })}
-                      </div>
+                      {conferenceDivisions(conference).length === 0 ? (
+                        <div className="flex flex-wrap gap-2">
+                          {conference.schoolIds.map((id) => {
+                            const school = board.schoolsById.get(id)
+                            return school ? <SchoolTileFace key={id} school={school} /> : null
+                          })}
+                        </div>
+                      ) : (
+                        <div className="flex flex-col gap-2">
+                          {conferenceDivisions(conference).map((division) => (
+                            <div key={division.id}>
+                              <p className="mb-1 text-xs font-medium text-muted-foreground">{division.name}</p>
+                              <div className="flex flex-wrap gap-2">
+                                {division.schoolIds.map((id) => {
+                                  const school = board.schoolsById.get(id)
+                                  return school ? <SchoolTileFace key={id} school={school} /> : null
+                                })}
+                              </div>
+                            </div>
+                          ))}
+                          {undividedSchoolIds(conference).length > 0 && (
+                            <div className="flex flex-wrap gap-2">
+                              {undividedSchoolIds(conference).map((id) => {
+                                const school = board.schoolsById.get(id)
+                                return school ? <SchoolTileFace key={id} school={school} /> : null
+                              })}
+                            </div>
+                          )}
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -141,6 +166,7 @@ export function SharePanel() {
           <MapView
             schools={board.onBoard}
             conferences={board.state.conferences}
+            mode={board.state.mode}
             className="h-[36rem] w-full"
           />
         </div>

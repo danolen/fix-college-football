@@ -1,14 +1,15 @@
 "use client"
 
 import { useState } from "react"
-import { ArrowLeftRight, Trash2 } from "lucide-react"
+import { ArrowLeftRight, Plus, Trash2 } from "lucide-react"
 import { useDrag } from "@/components/drag-context"
 import { SchoolTile } from "@/components/school-tile"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { conferenceDivisions, undividedSchoolIds } from "@/lib/board"
 import { PALETTE } from "@/lib/colors"
-import type { Conference, School, Tier } from "@/lib/types"
+import type { Conference, Division, School, Tier } from "@/lib/types"
 import { cn } from "@/lib/utils"
 
 export function ConferenceRow({
@@ -20,6 +21,9 @@ export function ConferenceRow({
   onRecolor,
   onDelete,
   onMoveTier,
+  onAddDivision,
+  onRenameDivision,
+  onDeleteDivision,
   onInspect,
 }: {
   conference: Conference
@@ -30,6 +34,9 @@ export function ConferenceRow({
   onRecolor: (color: string) => void
   onDelete: () => void
   onMoveTier: (tier: Tier) => void
+  onAddDivision: () => void
+  onRenameDivision: (divisionId: string, name: string) => void
+  onDeleteDivision: (divisionId: string) => void
   onInspect: (school: School) => void
 }) {
   const [name, setName] = useState(conference.name)
@@ -39,7 +46,13 @@ export function ConferenceRow({
     setName(conference.name)
   }
   const drag = useDrag()
-  const targeted = drag.overConferenceId === conference.id
+  const divisions = conferenceDivisions(conference)
+  const byId = new Map(schools.map((school) => [school.id, school]))
+  const undivided = undividedSchoolIds(conference)
+    .map((id) => byId.get(id))
+    .filter((school): school is School => Boolean(school))
+  const targeted =
+    drag.overConferenceId === conference.id && (divisions.length === 0 || drag.overDivisionId == null)
 
   return (
     <section
@@ -85,6 +98,16 @@ export function ConferenceRow({
         />
         <span className="text-xs text-muted-foreground">{schools.length}</span>
         <div className="ml-auto flex items-center gap-1">
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            data-testid={`add-division-${conference.id}`}
+            onClick={onAddDivision}
+          >
+            <Plus />
+            Add division
+          </Button>
           {showTierMove && conference.tier !== "power" && (
             <Button type="button" variant="outline" size="sm" disabled={conference.tier === "group" && !canDelete} onClick={() => onMoveTier("power")}>
               <ArrowLeftRight />
@@ -108,19 +131,144 @@ export function ConferenceRow({
           </Button>
         </div>
       </div>
-      <div
-        className={cn(
-          "flex min-h-24 flex-wrap gap-2 rounded-xl border border-dashed p-2",
-          targeted ? "border-foreground bg-accent" : "border-border bg-background/40",
-        )}
-      >
-        {schools.length === 0 && (
-          <p className="m-auto text-sm text-muted-foreground">Drop schools here.</p>
-        )}
-        {schools.map((school) => (
-          <SchoolTile key={school.id} school={school} onInspect={onInspect} />
-        ))}
-      </div>
+      {divisions.length === 0 ? (
+        <DropZone conferenceId={conference.id} schools={schools} empty="Drop schools here." onInspect={onInspect} />
+      ) : (
+        <div className="flex flex-col gap-2">
+          {divisions.map((division) => (
+            <DivisionBlock
+              key={division.id}
+              conference={conference}
+              division={division}
+              schools={division.schoolIds
+                .map((id) => byId.get(id))
+                .filter((school): school is School => Boolean(school))}
+              onRename={(next) => onRenameDivision(division.id, next)}
+              onDelete={() => onDeleteDivision(division.id)}
+              onInspect={onInspect}
+            />
+          ))}
+          <div data-division-id="" data-testid={`undivided-${conference.id}`}>
+            <p className="mb-1 text-xs font-medium text-muted-foreground">Undivided</p>
+            <DropZone
+              conferenceId={conference.id}
+              divisionId=""
+              schools={undivided}
+              empty="Schools not in a division."
+              onInspect={onInspect}
+            />
+          </div>
+        </div>
+      )}
     </section>
+  )
+}
+
+function DivisionBlock({
+  conference,
+  division,
+  schools,
+  onRename,
+  onDelete,
+  onInspect,
+}: {
+  conference: Conference
+  division: Division
+  schools: School[]
+  onRename: (name: string) => void
+  onDelete: () => void
+  onInspect: (school: School) => void
+}) {
+  const [name, setName] = useState(division.name)
+  const [sourceName, setSourceName] = useState(division.name)
+  if (division.name !== sourceName) {
+    setSourceName(division.name)
+    setName(division.name)
+  }
+  const drag = useDrag()
+  const targeted = drag.overConferenceId === conference.id && drag.overDivisionId === division.id
+
+  return (
+    <div
+      data-division-id={division.id}
+      data-testid={`division-${division.id}`}
+      className={cn("rounded-xl border border-transparent p-0.5", targeted && "ring-2 ring-foreground")}
+    >
+      <div className="mb-1 flex items-center gap-2">
+        <Input
+          value={name}
+          aria-label={`Rename ${division.name}`}
+          onChange={(event) => setName(event.target.value)}
+          onBlur={() => onRename(name)}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") event.currentTarget.blur()
+            if (event.key === "Escape") {
+              setName(division.name)
+              event.currentTarget.blur()
+            }
+          }}
+          className="h-7 max-w-48 border-transparent bg-transparent text-sm font-medium shadow-none focus-visible:border-border"
+        />
+        <span className="text-xs text-muted-foreground">{schools.length}</span>
+        <Button
+          type="button"
+          variant="ghost"
+          size="icon-xs"
+          className="ml-auto"
+          aria-label={`Delete ${division.name}`}
+          data-testid={`delete-division-${division.id}`}
+          onClick={onDelete}
+        >
+          <Trash2 />
+        </Button>
+      </div>
+      <DropZone
+        conferenceId={conference.id}
+        divisionId={division.id}
+        schools={schools}
+        empty={`Drop schools into ${division.name}.`}
+        onInspect={onInspect}
+      />
+    </div>
+  )
+}
+
+function DropZone({
+  conferenceId,
+  divisionId,
+  schools,
+  empty,
+  onInspect,
+}: {
+  conferenceId: string
+  divisionId?: string
+  schools: School[]
+  empty: string
+  onInspect: (school: School) => void
+}) {
+  const drag = useDrag()
+  const targeted =
+    drag.overConferenceId === conferenceId &&
+    (divisionId === undefined ? drag.overDivisionId == null : (drag.overDivisionId ?? "") === divisionId)
+  return (
+    <div
+      data-division-id={divisionId}
+      data-testid={
+        divisionId === undefined
+          ? `conference-drop-${conferenceId}`
+          : divisionId === ""
+            ? `undivided-drop-${conferenceId}`
+            : `division-drop-${divisionId}`
+      }
+      className={cn(
+        "flex min-h-24 flex-wrap gap-2 rounded-xl border border-dashed p-2",
+        targeted ? "border-foreground bg-accent" : "border-border bg-background/40",
+      )}
+    >
+      {schools.length === 0 && <p className="m-auto text-sm text-muted-foreground">{empty}</p>}
+      {schools.map((school) => (
+        <SchoolTile key={school.id} school={school} onInspect={onInspect} />
+      ))}
+    </div>
   )
 }

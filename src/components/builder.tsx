@@ -12,11 +12,12 @@ import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
-import { isIndependents } from "@/lib/board"
+import { conferenceDivisions, isIndependents } from "@/lib/board"
 import type { Tier } from "@/lib/types"
 import { cn } from "@/lib/utils"
 
@@ -120,11 +121,14 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
       </p>
 
       <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1.7fr)_minmax(17.5rem,0.72fr)]">
-        <MapView
-          schools={board.onBoard}
-          conferences={board.state.conferences}
-          className="h-[28rem] w-full sm:h-[32rem] lg:sticky lg:top-36 lg:h-[calc(100vh-17.5rem)] lg:min-h-[32rem]"
-        />
+        <div className="lg:sticky lg:top-36">
+          <MapView
+            schools={board.onBoard}
+            conferences={board.state.conferences}
+            mode={board.state.mode}
+            className="h-[28rem] w-full sm:h-[32rem] lg:h-[calc(100vh-20rem)] lg:min-h-[30rem]"
+          />
+        </div>
         <div className="flex flex-col gap-4">
           {board.state.mode === "flat" ? (
             <TierBlock
@@ -183,17 +187,32 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
                     Assign to
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="min-w-48">
-                    {board.state.conferences.map((conference) => (
-                      <DropdownMenuItem
-                        key={conference.id}
-                        onClick={() => {
-                          board.assignSchools(drag.selectedIds, conference.id)
-                          drag.clearSelected()
-                        }}
-                      >
-                        {conference.name}
-                      </DropdownMenuItem>
-                    ))}
+                    {board.state.conferences.map((conference) => {
+                      const divisions = conferenceDivisions(conference)
+                      return (
+                        <DropdownMenuGroup key={conference.id}>
+                          <DropdownMenuItem
+                            onClick={() => {
+                              board.assignSchools(drag.selectedIds, conference.id)
+                              drag.clearSelected()
+                            }}
+                          >
+                            {conference.name}
+                          </DropdownMenuItem>
+                          {divisions.map((division) => (
+                            <DropdownMenuItem
+                              key={division.id}
+                              onClick={() => {
+                                board.assignSchools(drag.selectedIds, conference.id, division.id)
+                                drag.clearSelected()
+                              }}
+                            >
+                              {conference.name} · {division.name}
+                            </DropdownMenuItem>
+                          ))}
+                        </DropdownMenuGroup>
+                      )
+                    })}
                   </DropdownMenuContent>
                 </DropdownMenu>
                 <Button type="button" size="sm" variant="ghost" onClick={drag.clearSelected}>
@@ -281,6 +300,9 @@ function TierBlock({
           onRecolor={(color) => board.recolorConference(conference.id, color)}
           onDelete={() => board.requestDelete(conference)}
           onMoveTier={(next) => board.moveTier(conference.id, next)}
+          onAddDivision={() => board.addDivision(conference.id)}
+          onRenameDivision={(divisionId, name) => board.renameDivision(conference.id, divisionId, name)}
+          onDeleteDivision={(divisionId) => board.deleteDivision(conference.id, divisionId)}
           onInspect={(school) => onInspect(school.id)}
         />
       ))}

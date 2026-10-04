@@ -21,12 +21,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { catalog } from "@/lib/catalog"
 import {
   addConference,
+  addDivision,
   addFcsSchool,
   applyPreset,
   canDeleteConference,
   conferenceOf,
   createBlankBoard,
   deleteConference,
+  deleteDivision,
   isDirty,
   moveConferenceTier,
   moveSchools,
@@ -34,6 +36,7 @@ import {
   recolorConference,
   removeFcsSchool,
   renameConference,
+  renameDivision,
   setMode,
   shareUnlocked,
 } from "@/lib/board"
@@ -100,7 +103,7 @@ export function AppShell() {
   function dropSchool(schoolIds: string[], target: DropTarget) {
     const board = getBoardSnapshot()?.board
     if (!board) return
-    commit(moveSchools(board, schoolIds, target.conferenceId, target.beforeId))
+    commit(moveSchools(board, schoolIds, target.conferenceId, target.beforeId, target.divisionId))
   }
 
   function commitPreset(preset: Preset) {
@@ -156,7 +159,11 @@ export function AppShell() {
     },
     addFcs: (id) => commit(addFcsSchool(state, id)),
     removeFcs: (id) => commit(removeFcsSchool(state, id)),
-    assignSchools: (schoolIds, conferenceId) => commit(moveSchools(state, schoolIds, conferenceId)),
+    assignSchools: (schoolIds, conferenceId, divisionId) =>
+      commit(moveSchools(state, schoolIds, conferenceId, null, divisionId)),
+    addDivision: (conferenceId) => commit(addDivision(state, conferenceId, makeId)),
+    renameDivision: (conferenceId, divisionId, name) => commit(renameDivision(state, conferenceId, divisionId, name)),
+    deleteDivision: (conferenceId, divisionId) => commit(deleteDivision(state, conferenceId, divisionId)),
     canDelete: (id) => canDeleteConference(state, id),
   }
 

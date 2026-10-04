@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useLayoutEffect, useRef, useState
 
 export type DropTarget = {
   conferenceId: string | null
+  divisionId: string | null
   beforeId: string | null
 }
 
@@ -13,6 +14,7 @@ type DragValue = {
   selectedIds: string[]
   overSchoolId: string | null
   overConferenceId: string | null
+  overDivisionId: string | null
   overPool: boolean
   startPointerDrag: (event: ReactPointerEvent<HTMLElement>, schoolId: string) => void
   toggleSelected: (schoolId: string, mode?: "replace" | "toggle" | "range") => void
@@ -37,6 +39,7 @@ export function resolveDrop(x: number, y: number, schoolId: string): DropTarget 
   }
   const elements = document.elementsFromPoint(x, y)
   let conferenceId: string | null = null
+  let divisionId: string | null = null
   let sawConference = false
   let sawPool = false
   for (const el of elements) {
@@ -48,9 +51,14 @@ export function resolveDrop(x: number, y: number, schoolId: string): DropTarget 
       if (other && other !== schoolId) {
         const section = schoolNode.closest("[data-conference-id]")
         if (section instanceof HTMLElement && section.dataset.conferenceId) {
-          return { conferenceId: section.dataset.conferenceId, beforeId: other }
+          const divisionNode = schoolNode.closest("[data-division-id]")
+          const divisionId =
+            divisionNode instanceof HTMLElement && divisionNode.dataset.divisionId
+              ? divisionNode.dataset.divisionId
+              : null
+          return { conferenceId: section.dataset.conferenceId, divisionId, beforeId: other }
         }
-        if (schoolNode.closest("[data-drop-pool]")) return { conferenceId: null, beforeId: null }
+        if (schoolNode.closest("[data-drop-pool]")) return { conferenceId: null, divisionId: null, beforeId: null }
       }
     }
     if (!sawConference) {
@@ -58,12 +66,16 @@ export function resolveDrop(x: number, y: number, schoolId: string): DropTarget 
       if (section instanceof HTMLElement && section.dataset.conferenceId) {
         sawConference = true
         conferenceId = section.dataset.conferenceId
+        const divisionNode = el.closest("[data-division-id]")
+        if (divisionNode instanceof HTMLElement && divisionNode.dataset.divisionId) {
+          divisionId = divisionNode.dataset.divisionId
+        }
       }
     }
     if (el.closest("[data-drop-pool]")) sawPool = true
   }
-  if (sawConference) return { conferenceId, beforeId: null }
-  if (sawPool) return { conferenceId: null, beforeId: null }
+  if (sawConference) return { conferenceId, divisionId, beforeId: null }
+  if (sawPool) return { conferenceId: null, divisionId: null, beforeId: null }
   return null
 }
 
@@ -87,9 +99,15 @@ export function DragProvider({
   const [selectedIds, setSelectedIds] = useState<string[]>([])
   const selectedRef = useRef<string[]>([])
   const lastSelectedRef = useRef<string | null>(null)
-  const [over, setOver] = useState<{ schoolId: string | null; conferenceId: string | null; pool: boolean }>({
+  const [over, setOver] = useState<{
+    schoolId: string | null
+    conferenceId: string | null
+    divisionId: string | null
+    pool: boolean
+  }>({
     schoolId: null,
     conferenceId: null,
+    divisionId: null,
     pool: false,
   })
   const onDropRef = useRef(onDrop)
@@ -165,10 +183,14 @@ export function DragProvider({
     const next = {
       schoolId: target?.beforeId ?? null,
       conferenceId: target?.conferenceId ?? null,
+      divisionId: target?.divisionId ?? null,
       pool: Boolean(target && target.conferenceId === null),
     }
     setOver((current) =>
-      current.schoolId === next.schoolId && current.conferenceId === next.conferenceId && current.pool === next.pool
+      current.schoolId === next.schoolId &&
+      current.conferenceId === next.conferenceId &&
+      current.divisionId === next.divisionId &&
+      current.pool === next.pool
         ? current
         : next,
     )
@@ -232,7 +254,7 @@ export function DragProvider({
       }
       setActiveId(null)
       setActiveIds([])
-      setOver({ schoolId: null, conferenceId: null, pool: false })
+      setOver({ schoolId: null, conferenceId: null, divisionId: null, pool: false })
     }
 
     const onMove = (ev: PointerEvent) => {
@@ -268,6 +290,7 @@ export function DragProvider({
     selectedIds,
     overSchoolId: over.schoolId,
     overConferenceId: over.conferenceId,
+    overDivisionId: over.divisionId,
     overPool: over.pool,
     startPointerDrag,
     toggleSelected,

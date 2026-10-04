@@ -162,6 +162,51 @@ describe("map layout", () => {
     assert.equal(assigned.dots.every((dot) => dot.assigned), true)
   })
 
+  it("can show only power conferences or a chosen conference", () => {
+    const power = layoutMap({ geo, schools, conferences, width: 960, height: 640, show: "power" })
+    assert.equal(power.dots.some((dot) => dot.id === "oregon"), true)
+    assert.equal(power.dots.some((dot) => dot.id === "hawaii"), false)
+    assert.equal(power.dots.some((dot) => dot.id === "loose"), false)
+    const chosen = layoutMap({
+      geo,
+      schools,
+      conferences,
+      width: 960,
+      height: 640,
+      show: "conferences",
+      conferenceIds: ["mw"],
+    })
+    assert.equal(chosen.dots.some((dot) => dot.id === "hawaii"), false)
+    assert.equal(chosen.insets[0].dots.some((dot) => dot.id === "hawaii"), true)
+    assert.equal(chosen.dots.some((dot) => dot.id === "oregon"), false)
+    const group = layoutMap({ geo, schools, conferences, width: 960, height: 640, show: "group" })
+    assert.equal(group.dots.some((dot) => dot.id === "oregon"), false)
+    assert.equal(group.insets[0].dots.some((dot) => dot.id === "hawaii"), true)
+    assert.equal(group.blobs.length, 0)
+    assert.equal(group.insets[0].blobs.some((blob) => blob.name === "Mountain West"), true)
+  })
+
+  it("draws a dashed division outline only when a conference has divisions", () => {
+    const plain = layoutMap({ geo, schools, conferences, width: 960, height: 640 })
+    assert.equal(plain.blobs.every((blob) => blob.kind === "conference"), true)
+    const split: Conference[] = [
+      {
+        ...conferences[0],
+        divisions: [
+          { id: "west", name: "West", schoolIds: ["oregon", "iowa"] },
+          { id: "east", name: "East", schoolIds: ["rutgers"] },
+        ],
+      },
+      conferences[1],
+    ]
+    const scene = layoutMap({ geo, schools, conferences: split, width: 960, height: 640 })
+    const divisions = scene.blobs.filter((blob) => blob.kind === "division")
+    assert.equal(divisions.length, 2)
+    assert.ok(divisions.some((blob) => blob.name === "West"))
+    assert.ok(divisions.some((blob) => blob.name === "East"))
+    assert.ok(scene.blobs.some((blob) => blob.kind === "conference" && blob.name === "Big Ten"))
+  })
+
   it("uses school colors when color by is school colors", () => {
     const scene = layoutMap({
       geo,

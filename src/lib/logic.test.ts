@@ -3,19 +3,25 @@ import { readFileSync } from "node:fs"
 import { describe, it } from "node:test"
 import {
   addConference,
+  addDivision,
   applyPreset,
   canDeleteConference,
+  conferenceDivisions,
   createBlankBoard,
   deleteConference,
+  deleteDivision,
   moveConferenceTier,
   moveSchool,
   moveSchools,
   recolorConference,
+  renameDivision,
   setMode,
   shareUnlocked,
+  undividedSchoolIds,
 } from "./board.ts"
 import { PALETTE } from "./colors.ts"
 import { scoreRivalries, scoreTone, shareText } from "./scoring.ts"
+import { loadBoard, parseMapPrefs } from "./storage.ts"
 import type { Preset, School } from "./types.ts"
 
 const ids = (() => {
@@ -118,6 +124,39 @@ describe("board", () => {
     assert.deepEqual(state.conferences[1].schoolIds, ["beta", "gamma"])
   })
 
+  it("adds, renames, and deletes a division without dropping schools", () => {
+    let state = createBlankBoard(ids)
+    const target = state.conferences[0]
+    assert.deepEqual(conferenceDivisions(target), [])
+    state = moveSchool(state, "alpha", target.id)
+    assert.equal(state.conferences[0].divisions, undefined)
+    state = addDivision(state, target.id, ids)
+    const created = conferenceDivisions(state.conferences[0])
+    assert.equal(created.length, 1)
+    assert.equal(created[0].name, "Division 1")
+    state = renameDivision(state, target.id, created[0].id, "East")
+    state = moveSchool(state, "beta", target.id, null, created[0].id)
+    assert.deepEqual(state.conferences[0].schoolIds, ["alpha", "beta"])
+    assert.deepEqual(conferenceDivisions(state.conferences[0])[0].schoolIds, ["beta"])
+    assert.deepEqual(undividedSchoolIds(state.conferences[0]), ["alpha"])
+    state = deleteDivision(state, target.id, created[0].id)
+    assert.deepEqual(conferenceDivisions(state.conferences[0]), [])
+    assert.deepEqual(state.conferences[0].schoolIds, ["alpha", "beta"])
+  })
+
+  it("moves several schools into a named division", () => {
+    let state = createBlankBoard(ids)
+    const target = state.conferences[0]
+    state = addDivision(state, target.id, ids)
+    const division = conferenceDivisions(state.conferences[0])[0]
+    state = moveSchools(state, ["alpha", "beta", "gamma"], target.id, null, division.id)
+    assert.deepEqual(state.conferences[0].schoolIds, ["alpha", "beta", "gamma"])
+    assert.deepEqual(conferenceDivisions(state.conferences[0])[0].schoolIds, ["alpha", "beta", "gamma"])
+    state = moveSchools(state, ["beta", "gamma"], target.id)
+    assert.deepEqual(undividedSchoolIds(state.conferences[0]), ["beta", "gamma"])
+    assert.deepEqual(conferenceDivisions(state.conferences[0])[0].schoolIds, ["alpha"])
+  })
+
   it("lets recolor pick any palette color, including one already used", () => {
     let state = createBlankBoard(ids)
     const first = state.conferences[0]
@@ -139,7 +178,17 @@ describe("board", () => {
         { name: "MAC", tier: "group", color: "#222222", schools: ["ohio"] },
       ],
     }
-    const flat = applyPreset(preset, "flat", ids)
+    const withDivisions: Preset = {
+      ...preset,
+      conferences: [
+        {
+          ...preset.conferences[0],
+          divisions: [{ name: "East", schools: ["uga"] }],
+        },
+        preset.conferences[1],
+      ],
+    }
+    const flat = applyPreset(withDivisions, "flat", ids)
     const tiers = setMode(flat, "tiers")
     assert.deepEqual(
       tiers.conferences.map((conference) => [conference.name, conference.tier, conference.schoolIds]),
@@ -148,6 +197,36 @@ describe("board", () => {
         ["MAC", "group", ["ohio"]],
       ],
     )
+    assert.deepEqual(
+      conferenceDivisions(tiers.conferences[0]).map((division) => [division.name, division.schoolIds]),
+      [["East", ["uga"]]],
+    )
+    assert.equal(tiers.conferences[1].divisions, undefined)
+  })
+})
+
+describe("saved boards and map prefs", () => {
+  it("loads an old board that has no divisions", () => {
+    const loaded = loadBoard(
+      JSON.stringify({
+        v: 1,
+        mode: "flat",
+        presetId: null,
+        addedFcsIds: [],
+        conferences: [{ id: "c1", name: "SEC", color: "#111111", tier: "power", schoolIds: ["alabama"] }],
+      }),
+    )
+    assert.ok(loaded)
+    assert.equal(loaded.conferences[0].divisions, undefined)
+    assert.deepEqual(loaded.conferences[0].schoolIds, ["alabama"])
+  })
+
+  it("keeps assigned show mode and conference ids from saved map prefs", () => {
+    assert.equal(parseMapPrefs('{"show":"assigned","colorBy":"schools"}').show, "assigned")
+    assert.equal(parseMapPrefs('{"show":"assigned","colorBy":"schools"}').colorBy, "schools")
+    const selected = parseMapPrefs('{"show":"conferences","conferenceIds":["sec","b1g"]}')
+    assert.equal(selected.show, "conferences")
+    assert.deepEqual(selected.conferenceIds, ["sec", "b1g"])
   })
 })
 

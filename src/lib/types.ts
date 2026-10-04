@@ -21,11 +21,17 @@ export type Rivalry = {
 
 export type Tier = "power" | "group" | "none"
 
+export type PresetDivision = {
+  name: string
+  schools: string[]
+}
+
 export type PresetConference = {
   name: string
   tier: Tier
   color: string
   schools: string[]
+  divisions?: PresetDivision[]
 }
 
 export type Preset = {
@@ -51,12 +57,19 @@ export type Catalog = {
 
 export type Mode = "flat" | "tiers"
 
+export type Division = {
+  id: string
+  name: string
+  schoolIds: string[]
+}
+
 export type Conference = {
   id: string
   name: string
   color: string
   tier: Tier
   schoolIds: string[]
+  divisions?: Division[]
 }
 
 export type BoardState = {
@@ -68,6 +81,6 @@ export type BoardState = {
 
 export type ScoreTone = "green" | "amber" | "red" | "empty"
 
-export type MapShowMode = "all" | "assigned"
+export type MapShowMode = "all" | "assigned" | "power" | "group" | "conferences"
 
 export type MapColorMode = "conference" | "schools"

@@ -204,6 +204,10 @@ function sanitize(saved: BoardState): BoardState {
   const placed = new Set(conferences.flatMap((conference) => conference.schoolIds))
   const ignoredIds = [...ignored].filter((id) => !placed.has(id))
   const knownRivalries = new Set(catalog.rivalries.map((rivalry) => rivalry.id))
+  const conferenceIds = new Set(conferences.map((conference) => conference.id))
+  const conferenceRules = Object.fromEntries(
+    Object.entries(saved.hardMode.conferenceRules).filter(([id]) => conferenceIds.has(id)),
+  )
   return {
     ...saved,
     addedFcsIds: added,
@@ -212,6 +216,7 @@ function sanitize(saved: BoardState): BoardState {
     hardMode: normalizeHardMode({
       ...saved.hardMode,
       annualRivalryIds: saved.hardMode.annualRivalryIds.filter((id) => knownRivalries.has(id)),
+      conferenceRules,
     }),
   }
 }

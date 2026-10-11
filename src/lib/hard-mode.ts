@@ -1,4 +1,4 @@
-import type { BoardState, Conference, HardModeSettings, TitleGameFormat } from "@/lib/types"
+import type { BoardState, Conference, ConferenceRuleOverride, ConferenceScheduleStyle, HardModeSettings, TitleGameFormat } from "@/lib/types"
 
 export function defaultHardMode(): HardModeSettings {
   return {
@@ -13,6 +13,7 @@ export function defaultHardMode(): HardModeSettings {
     sameTierNonConference: false,
     conferenceSchedule: "set-count",
     annualRivalryIds: [],
+    conferenceRules: {},
   }
 }
 
@@ -51,6 +52,7 @@ export function normalizeHardMode(input: Partial<HardModeSettings> | null | unde
     sameTierNonConference: Boolean(input?.sameTierNonConference),
     conferenceSchedule,
     annualRivalryIds,
+    conferenceRules: normalizeConferenceRules(input?.conferenceRules),
   }
 }
 
@@ -67,7 +69,8 @@ export function sameHardMode(a: HardModeSettings, b: HardModeSettings): boolean 
     a.sameTierNonConference === b.sameTierNonConference &&
     a.conferenceSchedule === b.conferenceSchedule &&
     a.annualRivalryIds.length === b.annualRivalryIds.length &&
-    a.annualRivalryIds.every((id, index) => id === b.annualRivalryIds[index])
+    a.annualRivalryIds.every((id, index) => id === b.annualRivalryIds[index]) &&
+    sameConferenceRules(a.conferenceRules, b.conferenceRules)
   )
 }
 
@@ -79,6 +82,42 @@ export function updateHardMode(state: BoardState, patch: Partial<HardModeSetting
   const hardMode = normalizeHardMode({ ...state.hardMode, ...patch })
   if (sameHardMode(hardMode, state.hardMode)) return state
   return { ...state, hardMode }
+}
+
+export type ResolvedConferenceRules = {
+  titleGame: TitleGameFormat
+  conferenceSchedule: ConferenceScheduleStyle
+  conferenceGames: number
+  custom: boolean
+}
+
+export function resolveConferenceRules(settings: HardModeSettings, conferenceId: string): ResolvedConferenceRules {
+  const override = settings.conferenceRules[conferenceId] ?? {}
+  return {
+    titleGame: override.titleGame ?? settings.titleGame,
+    conferenceSchedule: override.conferenceSchedule ?? settings.conferenceSchedule,
+    conferenceGames: override.conferenceGames ?? settings.conferenceGames,
+    custom:
+      override.titleGame !== undefined || override.conferenceSchedule !== undefined || override.conferenceGames !== undefined,
+  }
+}
+
+export function updateConferenceRules(state: BoardState, conferenceId: string, patch: ConferenceRuleOverride): BoardState {
+  const current = state.hardMode.conferenceRules[conferenceId] ?? {}
+  const conferenceRules = {
+    ...state.hardMode.conferenceRules,
+    [conferenceId]: normalizeOverride({ ...current, ...patch }),
+  }
+  const hardMode = { ...state.hardMode, conferenceRules }
+  if (sameHardMode(hardMode, state.hardMode)) return state
+  return { ...state, hardMode }
+}
+
+export function clearConferenceRules(state: BoardState, conferenceId: string): BoardState {
+  if (!state.hardMode.conferenceRules[conferenceId]) return state
+  const conferenceRules = { ...state.hardMode.conferenceRules }
+  delete conferenceRules[conferenceId]
+  return { ...state, hardMode: { ...state.hardMode, conferenceRules } }
 }
 
 export type TitlePlan = {
@@ -94,7 +133,7 @@ export function titlePlans(state: BoardState): TitlePlan[] {
     plans.push({
       conferenceId: conference.id,
       conferenceName: conference.name,
-      summary: titleSummary(conference, state.hardMode.titleGame),
+      summary: titleSummary(conference, resolveConferenceRules(state.hardMode, conference.id).titleGame),
     })
   }
   return plans
@@ -210,6 +249,42 @@ function bracketLines(teams: number, byes: number): string[] {
     `The first round is ${pairs.join(", ")}.`,
     `Those winners join the bye teams in a ${byes + pairs.length}-team bracket.`,
   ]
+}
+
+function normalizeConferenceRules(input: unknown): Record<string, ConferenceRuleOverride> {
+  if (!input || typeof input !== "object") return {}
+  const rules: Record<string, ConferenceRuleOverride> = {}
+  for (const [id, raw] of Object.entries(input)) {
+    if (!id || !raw || typeof raw !== "object") continue
+    const override = normalizeOverride(raw as ConferenceRuleOverride)
+    if (override.titleGame || override.conferenceSchedule || override.conferenceGames !== undefined) rules[id] = override
+  }
+  return rules
+}
+
+function normalizeOverride(raw: ConferenceRuleOverride): ConferenceRuleOverride {
+  const override: ConferenceRuleOverride = {}
+  if (raw.titleGame === "division-winners" || raw.titleGame === "top-two" || raw.titleGame === "four-team") {
+    override.titleGame = raw.titleGame
+  }
+  if (raw.conferenceSchedule === "set-count" || raw.conferenceSchedule === "all-division" || raw.conferenceSchedule === "all-conference") {
+    override.conferenceSchedule = raw.conferenceSchedule
+  }
+  if (typeof raw.conferenceGames === "number" && Number.isFinite(raw.conferenceGames)) {
+    override.conferenceGames = clampInt(raw.conferenceGames, 0, 20, 8)
+  }
+  return override
+}
+
+function sameConferenceRules(left: Record<string, ConferenceRuleOverride>, right: Record<string, ConferenceRuleOverride>): boolean {
+  const leftIds = Object.keys(left).sort()
+  const rightIds = Object.keys(right).sort()
+  if (leftIds.length !== rightIds.length || leftIds.some((id, index) => id !== rightIds[index])) return false
+  return leftIds.every((id) => {
+    const a = left[id]
+    const b = right[id]
+    return a.titleGame === b.titleGame && a.conferenceSchedule === b.conferenceSchedule && a.conferenceGames === b.conferenceGames
+  })
 }
 
 function isIndependents(conference: { name: string }): boolean {

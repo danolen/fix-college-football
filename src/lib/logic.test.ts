@@ -240,6 +240,7 @@ describe("saved boards and map prefs", () => {
     assert.equal(loaded.hardMode.playoffByes, 4)
     assert.equal(loaded.hardMode.conferenceGames, 8)
     assert.deepEqual(loaded.hardMode.annualRivalryIds, [])
+    assert.deepEqual(loaded.hardMode.conferenceRules, {})
   })
 
   it("keeps ignored schools from a saved board", () => {

@@ -1,4 +1,5 @@
 import { isIndependents } from "@/lib/board"
+import { resolveConferenceRules } from "@/lib/hard-mode"
 import type { BoardState, Rivalry, Tier } from "@/lib/types"
 
 export type ScheduleGame = {
@@ -80,12 +81,13 @@ export function buildSchedule(state: BoardState, rivalries: Rivalry[]): BuiltSch
     if (ids.length < 2) continue
     const idSet = new Set(ids)
     const locked = new Set<string>()
-    const playEveryone = settings.conferenceSchedule === "all-conference" || settings.conferenceGames >= ids.length - 1
+    const rules = resolveConferenceRules(settings, conference.id)
+    const playEveryone = rules.conferenceSchedule === "all-conference" || rules.conferenceGames >= ids.length - 1
     if (playEveryone) {
       for (let i = 0; i < ids.length; i += 1) {
         for (let j = i + 1; j < ids.length; j += 1) locked.add(pairKey(ids[i], ids[j]))
       }
-    } else if (settings.conferenceSchedule === "all-division") {
+    } else if (rules.conferenceSchedule === "all-division") {
       for (const division of conference.divisions ?? []) {
         const divisionIds = division.schoolIds.filter((id) => idSet.has(id)).sort()
         for (let i = 0; i < divisionIds.length; i += 1) {
@@ -107,12 +109,12 @@ export function buildSchedule(state: BoardState, rivalries: Rivalry[]): BuiltSch
       degree.set(right, (degree.get(right) ?? 0) + 1)
       addEdge(left, right, "conference", true)
     }
-    if (settings.conferenceSchedule !== "all-conference" && ids.some((id) => (degree.get(id) ?? 0) > settings.conferenceGames)) {
+    if (rules.conferenceSchedule !== "all-conference" && ids.some((id) => (degree.get(id) ?? 0) > rules.conferenceGames)) {
       warnings.push(
-        `${conference.name} keeps locked conference games that run past the ${settings.conferenceGames}-game target.`,
+        `${conference.name} keeps locked conference games that run past the ${rules.conferenceGames}-game target.`,
       )
     }
-    if (settings.conferenceSchedule === "all-conference" && ids.length - 1 > settings.totalGames) {
+    if (rules.conferenceSchedule === "all-conference" && ids.length - 1 > settings.totalGames) {
       warnings.push(
         `${conference.name} plays every conference opponent, ${ids.length - 1} games, which runs past the ${settings.totalGames}-game season.`,
       )
@@ -122,7 +124,7 @@ export function buildSchedule(state: BoardState, rivalries: Rivalry[]): BuiltSch
       ids,
       (id) => {
         const current = degree.get(id) ?? 0
-        const cap = settings.conferenceSchedule === "all-conference" ? ids.length - 1 : settings.conferenceGames
+        const cap = rules.conferenceSchedule === "all-conference" ? ids.length - 1 : rules.conferenceGames
         return Math.min(ids.length - 1, Math.max(cap, current)) - current
       },
       (left, right) => !played.has(pairKey(left, right)),

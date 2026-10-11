@@ -76,6 +76,12 @@ export type TitleGameFormat = "division-winners" | "top-two" | "four-team"
 
 export type ConferenceScheduleStyle = "set-count" | "all-division" | "all-conference"
 
+export type ConferenceRuleOverride = {
+  titleGame?: TitleGameFormat
+  conferenceSchedule?: ConferenceScheduleStyle
+  conferenceGames?: number
+}
+
 export type HardModeSettings = {
   enabled: boolean
   titleGame: TitleGameFormat
@@ -88,6 +94,7 @@ export type HardModeSettings = {
   sameTierNonConference: boolean
   conferenceSchedule: ConferenceScheduleStyle
   annualRivalryIds: string[]
+  conferenceRules: Record<string, ConferenceRuleOverride>
 }
 
 export type BoardState = {

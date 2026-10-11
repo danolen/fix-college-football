@@ -1,7 +1,7 @@
 import assert from "node:assert/strict"
 import { describe, it } from "node:test"
 import { applyPreset, createBlankBoard } from "./board.ts"
-import { defaultByes, defaultHardMode, playoffPlans, titlePlans, updateHardMode } from "./hard-mode.ts"
+import { clearConferenceRules, defaultByes, defaultHardMode, playoffPlans, resolveConferenceRules, titlePlans, updateConferenceRules, updateHardMode } from "./hard-mode.ts"
 import { buildSchedule } from "./schedule.ts"
 import { loadBoard } from "./storage.ts"
 import type { BoardState, Conference, HardModeSettings, Rivalry } from "./types.ts"
@@ -91,7 +91,7 @@ describe("championship and playoff rules", () => {
             { id: "west", name: "West", schoolIds: ["w1", "w2"] },
           ],
         }),
-        conference({ id: "acc", name: "ACC", schoolIds: ["a", "b", "c"] }),
+        conference({ id: "acc", name: "ACC", schoolIds: ["a", "b", "c", "d"] }),
         conference({ id: "ind", name: "Independents", schoolIds: ["nd"] }),
       ],
     })
@@ -102,6 +102,12 @@ describe("championship and playoff rules", () => {
       "The two teams with the best records play for the championship.",
     )
     assert.equal(plans.some((plan) => plan.conferenceName === "Independents"), false)
+    const custom = updateConferenceRules(state, "acc", { titleGame: "four-team" })
+    assert.equal(titlePlans(custom).find((plan) => plan.conferenceName === "ACC")?.summary.includes("four teams"), true)
+    assert.equal(titlePlans(custom).find((plan) => plan.conferenceName === "SEC")?.summary.includes("East winner"), true)
+    const cleared = clearConferenceRules(custom, "acc")
+    assert.equal(resolveConferenceRules(cleared.hardMode, "acc").custom, false)
+    assert.equal(titlePlans(cleared).find((plan) => plan.conferenceName === "ACC")?.summary.includes("two teams"), true)
   })
 
   it("describes the current playoff field for one set and for two tiers", () => {
@@ -258,6 +264,26 @@ describe("schedules", () => {
     assert.equal(nd?.games.length, 2)
     assert.equal(nd?.games.every((game) => game.kind === "non-conference"), true)
     assert.equal(built.bySchool.get("a")?.games.find((game) => game.opponentId === "b")?.kind, "conference")
+  })
+
+  it("keeps a different schedule and championship for one conference", () => {
+    const built = buildSchedule(
+      board(
+        {
+          conferences: [
+            conference({ id: "big", name: "Big", schoolIds: ["a", "b", "c", "d", "e"] }),
+            conference({ id: "small", name: "Small", schoolIds: ["w", "x", "y"] }),
+          ],
+        },
+        { totalGames: 4, conferenceGames: 2, conferenceRules: { small: { conferenceSchedule: "all-conference" } } },
+      ),
+      [rivalry("wx", ["w", "x"]), rivalry("ab", ["a", "b"])],
+    )
+    assert.equal(built.bySchool.get("w")?.games.filter((game) => game.kind === "conference").length, 2)
+    assert.equal(built.bySchool.get("a")?.games.filter((game) => game.kind === "conference").length, 2)
+    assert.equal(built.bySchool.get("w")?.games.find((game) => game.opponentId === "x")?.annual, true)
+    assert.equal(built.bySchool.get("a")?.games.find((game) => game.opponentId === "b")?.annual, false)
+    assert.equal(built.annualGames, 1)
   })
 
   it("leaves ignored and unassigned schools off the slate", () => {

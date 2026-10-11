@@ -108,10 +108,13 @@ export function canDeleteConference(state: BoardState, id: string): boolean {
 
 export function deleteConference(state: BoardState, id: string): BoardState | null {
   if (!canDeleteConference(state, id)) return null
+  const conferenceRules = { ...state.hardMode.conferenceRules }
+  delete conferenceRules[id]
   return {
     ...state,
     presetId: null,
     conferences: state.conferences.filter((conference) => conference.id !== id),
+    hardMode: { ...state.hardMode, conferenceRules },
   }
 }
 

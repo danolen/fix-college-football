@@ -5,10 +5,9 @@ import { useBoard } from "@/components/board-context"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { isIndependents } from "@/lib/board"
-import { defaultByes, playoffPlans, titlePlans } from "@/lib/hard-mode"
-import type { TitlePlan } from "@/lib/hard-mode"
+import { defaultByes, playoffPlans, resolveConferenceRules, titlePlans } from "@/lib/hard-mode"
 import type { BuiltSchedule } from "@/lib/schedule"
-import type { ConferenceScheduleStyle } from "@/lib/types"
+import type { Conference, ConferenceScheduleStyle } from "@/lib/types"
 
 export function HardMode({
   onInspect,
@@ -50,15 +49,11 @@ export function HardMode({
 
       {settings.enabled && (
         <>
-          <Section title="Conference championships">
+          <Section title="Default championship">
             <p className="text-sm text-muted-foreground">
-              {settings.titleGame === "top-two"
-                ? "The two best records in each conference play for the title."
-                : settings.titleGame === "four-team"
-                  ? "The four best records in each conference play a championship. A shorter conference uses its two best records."
-                  : "With divisions, each division winner plays for the title. A conference without divisions sends its two best records."}
+              Every conference starts with this title game. Change a conference on its own when its size or divisions need a different championship.
             </p>
-            <div className="flex flex-wrap gap-2" role="group" aria-label="Championship format">
+            <div className="flex flex-wrap gap-2" role="group" aria-label="Default championship format">
               <Choice
                 pressed={settings.titleGame === "division-winners"}
                 testId="title-division-winners"
@@ -81,13 +76,6 @@ export function HardMode({
                 Four-team playoff
               </Choice>
             </div>
-            <ul className="flex flex-col gap-2" data-testid="title-plans">
-              {groupTitlePlans(titles).map((group) => (
-                <li key={group.summary} className="text-sm">
-                  <span className="font-medium">{group.names.join(", ")}.</span> {group.summary}
-                </li>
-              ))}
-            </ul>
           </Section>
 
           <Section title="National champion">
@@ -160,7 +148,7 @@ export function HardMode({
                 onChange={(totalGames) => board.setHardMode({ totalGames })}
               />
               <NumberField
-                label="Conference games"
+                label="Default conference games"
                 value={settings.conferenceGames}
                 min={0}
                 max={20}
@@ -168,7 +156,7 @@ export function HardMode({
                 onChange={(conferenceGames) => board.setHardMode({ conferenceGames })}
               />
             </div>
-            <div className="flex flex-wrap gap-2" role="group" aria-label="Conference schedule">
+            <div className="flex flex-wrap gap-2" role="group" aria-label="Default conference schedule">
               <Choice
                 pressed={settings.conferenceSchedule === "set-count"}
                 testId="schedule-set-count"
@@ -191,7 +179,9 @@ export function HardMode({
                 Play the whole conference
               </Choice>
             </div>
-            <p className="text-sm text-muted-foreground">{scheduleCopy(settings.conferenceSchedule)}</p>
+            <p className="text-sm text-muted-foreground">
+              {scheduleCopy(settings.conferenceSchedule)} Each conference can keep a different schedule below.
+            </p>
             <label className="flex items-start gap-2 text-sm">
               <input
                 type="checkbox"
@@ -214,6 +204,8 @@ export function HardMode({
               </ul>
             )}
           </Section>
+
+          <ConferenceRules titles={titles} />
 
           <PermanentRivals />
 
@@ -255,6 +247,123 @@ export function HardMode({
             </Section>
           )}
         </>
+      )}
+    </div>
+  )
+}
+
+function ConferenceRules({ titles }: { titles: ReturnType<typeof titlePlans> }) {
+  const board = useBoard()
+  const summaries = new Map(titles.map((plan) => [plan.conferenceId, plan.summary]))
+  const conferences = board.state.conferences.filter((conference) =>
+    isIndependents(conference) ? conference.schoolIds.length > 0 : conference.schoolIds.length >= 2,
+  )
+  return (
+    <Section title="Each conference">
+      <p className="text-sm text-muted-foreground">
+        A bigger conference can play more league games, or crown its champion a different way, without changing the rest of the board.
+      </p>
+      <div className="flex flex-col gap-3" data-testid="title-plans">
+        {conferences.map((conference) => (
+          <ConferenceRuleCard
+            key={conference.id}
+            conference={conference}
+            summary={summaries.get(conference.id) ?? "Independents play an all non-conference schedule."}
+          />
+        ))}
+      </div>
+    </Section>
+  )
+}
+
+function ConferenceRuleCard({ conference, summary }: { conference: Conference; summary: string }) {
+  const board = useBoard()
+  const rules = resolveConferenceRules(board.state.hardMode, conference.id)
+  const independent = isIndependents(conference)
+  const divisions = (conference.divisions ?? []).filter((division) => division.schoolIds.length > 0).length
+  const size = `${conference.schoolIds.length} teams${divisions > 0 ? ` · ${divisions} divisions` : ""}`
+  return (
+    <div className="rounded-xl border p-3" data-conference-rules={conference.id} data-testid={`rules-${conference.id}`}>
+      <div className="flex flex-wrap items-baseline justify-between gap-2">
+        <p className="font-medium">
+          {conference.name}
+          <span className="font-normal text-muted-foreground"> · {size}</span>
+        </p>
+        {rules.custom && (
+          <Button type="button" size="sm" variant="ghost" data-testid={`rules-reset-${conference.id}`} onClick={() => board.clearConferenceRules(conference.id)}>
+            Use the default
+          </Button>
+        )}
+      </div>
+      {independent ? (
+        <p className="mt-2 text-sm text-muted-foreground">{summary}</p>
+      ) : (
+        <div className="mt-3 flex flex-col gap-3">
+          <div>
+            <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">Championship</p>
+            <div className="mt-1.5 flex flex-wrap gap-2">
+              <Choice
+                pressed={rules.titleGame === "division-winners"}
+                testId={`rules-title-${conference.id}-division-winners`}
+                onClick={() => board.setConferenceRules(conference.id, { titleGame: "division-winners" })}
+              >
+                Division winners
+              </Choice>
+              <Choice
+                pressed={rules.titleGame === "top-two"}
+                testId={`rules-title-${conference.id}-top-two`}
+                onClick={() => board.setConferenceRules(conference.id, { titleGame: "top-two" })}
+              >
+                Top two records
+              </Choice>
+              <Choice
+                pressed={rules.titleGame === "four-team"}
+                testId={`rules-title-${conference.id}-four-team`}
+                onClick={() => board.setConferenceRules(conference.id, { titleGame: "four-team" })}
+              >
+                Four-team playoff
+              </Choice>
+            </div>
+            <p className="mt-1.5 text-sm">{summary}</p>
+          </div>
+          <div>
+            <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">Schedule</p>
+            <div className="mt-1.5 grid gap-3 sm:grid-cols-[10rem_minmax(0,1fr)] sm:items-end">
+              <NumberField
+                label="Conference games"
+                value={rules.conferenceGames}
+                min={0}
+                max={20}
+                testId={`rules-games-${conference.id}`}
+                onChange={(conferenceGames) => board.setConferenceRules(conference.id, { conferenceGames })}
+              />
+              <div className="flex flex-wrap gap-2">
+                <Choice
+                  pressed={rules.conferenceSchedule === "set-count"}
+                  testId={`rules-schedule-${conference.id}-set-count`}
+                  onClick={() => board.setConferenceRules(conference.id, { conferenceSchedule: "set-count" })}
+                >
+                  Set number
+                </Choice>
+                <Choice
+                  pressed={rules.conferenceSchedule === "all-division"}
+                  testId={`rules-schedule-${conference.id}-all-division`}
+                  onClick={() => board.setConferenceRules(conference.id, { conferenceSchedule: "all-division" })}
+                >
+                  Whole division
+                </Choice>
+                <Choice
+                  pressed={rules.conferenceSchedule === "all-conference"}
+                  testId={`rules-schedule-${conference.id}-all-conference`}
+                  onClick={() => board.setConferenceRules(conference.id, { conferenceSchedule: "all-conference" })}
+                >
+                  Whole conference
+                </Choice>
+              </div>
+            </div>
+            <p className="mt-1.5 text-sm text-muted-foreground">{scheduleDetail(rules.conferenceSchedule, rules.conferenceGames, conference.schoolIds.length)}</p>
+          </div>
+        </div>
       )}
     </div>
   )
@@ -400,14 +509,10 @@ function NumberField({
   )
 }
 
-function groupTitlePlans(plans: TitlePlan[]): Array<{ summary: string; names: string[] }> {
-  const groups: Array<{ summary: string; names: string[] }> = []
-  for (const plan of plans) {
-    const existing = groups.find((group) => group.summary === plan.summary)
-    if (existing) existing.names.push(plan.conferenceName)
-    else groups.push({ summary: plan.summary, names: [plan.conferenceName] })
-  }
-  return groups
+function scheduleDetail(style: ConferenceScheduleStyle, games: number, teams: number): string {
+  if (style === "all-conference") return `Every team plays the other ${Math.max(0, teams - 1)} conference opponents.`
+  if (style === "all-division") return `Every team plays its division, then fills out to ${games} conference games.`
+  return `Each team plays ${games} conference games. The remaining conference dates rotate.`
 }
 
 function scheduleCopy(style: ConferenceScheduleStyle): string {

@@ -42,7 +42,7 @@ import {
   setMode,
   shareUnlocked,
 } from "@/lib/board"
-import { updateHardMode } from "@/lib/hard-mode"
+import { clearConferenceRules, updateConferenceRules, updateHardMode } from "@/lib/hard-mode"
 import { buildSchedule } from "@/lib/schedule"
 import { scoreRivalries, scoreTone } from "@/lib/scoring"
 import { discardSavedBoard, getBoardSnapshot, getServerBoardSnapshot, makeId, replaceBoard, subscribeBoard } from "@/lib/storage"
@@ -161,6 +161,14 @@ export function AppShell() {
     setHardMode: (patch) => {
       const current = getBoardSnapshot()?.board
       if (current) commit(updateHardMode(current, patch))
+    },
+    setConferenceRules: (conferenceId, patch) => {
+      const current = getBoardSnapshot()?.board
+      if (current) commit(updateConferenceRules(current, conferenceId, patch))
+    },
+    clearConferenceRules: (conferenceId) => {
+      const current = getBoardSnapshot()?.board
+      if (current) commit(clearConferenceRules(current, conferenceId))
     },
     setMode: (mode: Mode) => commit(setMode(state, mode)),
     requestPreset: (preset) => {

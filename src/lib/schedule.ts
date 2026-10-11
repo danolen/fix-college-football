@@ -4,6 +4,17 @@ import type { BoardState, Rivalry, Tier } from "@/lib/types"
 
 export type OpponentTier = "power" | "group" | "either"
 
+export type AnnualReason = "division" | "protected" | "full-conference" | "nonconference"
+
+const REASON_ORDER: AnnualReason[] = ["division", "protected", "full-conference", "nonconference"]
+
+const REASON_LABEL: Record<AnnualReason, string> = {
+  division: "In division",
+  protected: "In-conference protected rival",
+  "full-conference": "Plays the whole conference",
+  nonconference: "Non-conference annual rivalry",
+}
+
 export type ScheduleGame = {
   key: string
   kind: "conference" | "non-conference"
@@ -14,6 +25,7 @@ export type ScheduleGame = {
   tier: OpponentTier | null
   rivalryId: string | null
   rivalryName: string | null
+  reasons: AnnualReason[]
 }
 
 export type TeamSchedule = {
@@ -41,6 +53,7 @@ type Edge = {
   annual: boolean
   rivalryId: string | null
   rivalryName: string | null
+  reasons: AnnualReason[]
 }
 
 export function buildSchedule(state: BoardState, rivalries: Rivalry[]): BuiltSchedule {
@@ -62,23 +75,31 @@ export function buildSchedule(state: BoardState, rivalries: Rivalry[]): BuiltSch
   members.sort((left, right) => left.id.localeCompare(right.id))
   const memberById = new Map(members.map((member) => [member.id, member]))
 
-  const played = new Set<string>()
+  const edgeByKey = new Map<string, Edge>()
   const edges: Edge[] = []
   const warnings: string[] = []
 
-  function addEdge(a: string, b: string, kind: "conference" | "non-conference", annual: boolean) {
+  function addEdge(a: string, b: string, kind: "conference" | "non-conference", annual: boolean, reasons: AnnualReason[]) {
     const key = pairKey(a, b)
-    if (a === b || played.has(key)) return
-    played.add(key)
+    if (a === b) return
+    const existing = edgeByKey.get(key)
+    if (existing) {
+      if (annual) existing.annual = true
+      existing.reasons = sortReasons([...existing.reasons, ...reasons])
+      return
+    }
     const rivalry = rivalryByPair.get(key) ?? null
-    edges.push({
+    const edge: Edge = {
       a,
       b,
       kind,
       annual,
       rivalryId: rivalry?.id ?? null,
       rivalryName: rivalry?.name ?? null,
-    })
+      reasons: sortReasons(reasons),
+    }
+    edgeByKey.set(key, edge)
+    edges.push(edge)
   }
 
   for (const conference of state.conferences) {
@@ -86,34 +107,41 @@ export function buildSchedule(state: BoardState, rivalries: Rivalry[]): BuiltSch
     const ids = [...conference.schoolIds].sort()
     if (ids.length < 2) continue
     const idSet = new Set(ids)
-    const locked = new Set<string>()
+    const reasonsByPair = new Map<string, AnnualReason[]>()
+    const note = (key: string, reason: AnnualReason) => {
+      const current = reasonsByPair.get(key)
+      if (current) {
+        if (!current.includes(reason)) current.push(reason)
+      } else reasonsByPair.set(key, [reason])
+    }
     const rules = resolveConferenceRules(settings, conference.id)
     const playEveryone = rules.conferenceSchedule === "all-conference" || rules.conferenceGames >= ids.length - 1
     if (playEveryone) {
       for (let i = 0; i < ids.length; i += 1) {
-        for (let j = i + 1; j < ids.length; j += 1) locked.add(pairKey(ids[i], ids[j]))
+        for (let j = i + 1; j < ids.length; j += 1) note(pairKey(ids[i], ids[j]), "full-conference")
       }
-    } else if (rules.conferenceSchedule === "all-division") {
+    }
+    if (playEveryone || rules.conferenceSchedule === "all-division") {
       for (const division of conference.divisions ?? []) {
         const divisionIds = division.schoolIds.filter((id) => idSet.has(id)).sort()
         for (let i = 0; i < divisionIds.length; i += 1) {
-          for (let j = i + 1; j < divisionIds.length; j += 1) locked.add(pairKey(divisionIds[i], divisionIds[j]))
+          for (let j = i + 1; j < divisionIds.length; j += 1) note(pairKey(divisionIds[i], divisionIds[j]), "division")
         }
       }
     }
-    for (const rivalryId of settings.annualRivalryIds) {
-      const rivalry = rivalryById.get(rivalryId)
-      if (!rivalry) continue
-      const [left, right] = rivalry.schools
-      if (idSet.has(left) && idSet.has(right)) locked.add(pairKey(left, right))
+    if (rules.protectedGames > 0) {
+      for (const pair of rules.protectedPairs) {
+        const [left, right] = pair.split("|")
+        if (left && right && idSet.has(left) && idSet.has(right)) note(pairKey(left, right), "protected")
+      }
     }
 
     const degree = new Map(ids.map((id) => [id, 0]))
-    for (const key of locked) {
+    for (const [key, reasons] of reasonsByPair) {
       const [left, right] = key.split("|")
       degree.set(left, (degree.get(left) ?? 0) + 1)
       degree.set(right, (degree.get(right) ?? 0) + 1)
-      addEdge(left, right, "conference", true)
+      addEdge(left, right, "conference", true, reasons)
     }
     if (rules.conferenceSchedule !== "all-conference" && ids.some((id) => (degree.get(id) ?? 0) > rules.conferenceGames)) {
       warnings.push(
@@ -135,7 +163,7 @@ export function buildSchedule(state: BoardState, rivalries: Rivalry[]): BuiltSch
     const memberB = memberById.get(right)
     if (!memberA || !memberB) continue
     if (memberA.conferenceId === memberB.conferenceId && !memberA.independent) continue
-    addEdge(left, right, "non-conference", true)
+    addEdge(left, right, "non-conference", true, ["nonconference"])
   }
 
   const conferenceIds = new Map<string, string[]>()
@@ -179,6 +207,7 @@ export function buildSchedule(state: BoardState, rivalries: Rivalry[]): BuiltSch
         tier: null,
         rivalryId: null,
         rivalryName: null,
+        reasons: [],
       })
     }
     const named = schedule.games.reduce((total, game) => total + (game.opponentId ? game.count : 0), 0)
@@ -194,6 +223,7 @@ export function buildSchedule(state: BoardState, rivalries: Rivalry[]): BuiltSch
         tier: nonConferenceTier(member, state),
         rivalryId: null,
         rivalryName: null,
+        reasons: [],
       })
     }
     schedule.games.sort(compareGames)
@@ -215,6 +245,12 @@ export function buildSchedule(state: BoardState, rivalries: Rivalry[]): BuiltSch
 
 export function scheduleGameCount(games: ScheduleGame[]): number {
   return games.reduce((total, game) => total + game.count, 0)
+}
+
+export function annualReasonNote(reasons: AnnualReason[]): string {
+  return REASON_ORDER.filter((reason) => reasons.includes(reason))
+    .map((reason) => REASON_LABEL[reason])
+    .join(" · ")
 }
 
 export function describeScheduleGame(game: ScheduleGame, nameOf: (id: string) => string): string {
@@ -254,7 +290,12 @@ function toGame(edge: Edge, opponentId: string): ScheduleGame {
     tier: null,
     rivalryId: edge.rivalryId,
     rivalryName: edge.rivalryName,
+    reasons: edge.reasons,
   }
+}
+
+function sortReasons(reasons: AnnualReason[]): AnnualReason[] {
+  return REASON_ORDER.filter((reason) => reasons.includes(reason))
 }
 
 function formatNameList(names: string[]): string {

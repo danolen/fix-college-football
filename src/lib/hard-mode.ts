@@ -88,26 +88,83 @@ export type ResolvedConferenceRules = {
   titleGame: TitleGameFormat
   conferenceSchedule: ConferenceScheduleStyle
   conferenceGames: number
+  protectedGames: number
+  protectedPairs: string[]
   custom: boolean
 }
 
 export function resolveConferenceRules(settings: HardModeSettings, conferenceId: string): ResolvedConferenceRules {
   const override = settings.conferenceRules[conferenceId] ?? {}
+  const protectedGames = override.protectedGames ?? 0
+  const protectedPairs = override.protectedPairs ?? []
   return {
     titleGame: override.titleGame ?? settings.titleGame,
     conferenceSchedule: override.conferenceSchedule ?? settings.conferenceSchedule,
     conferenceGames: override.conferenceGames ?? settings.conferenceGames,
+    protectedGames,
+    protectedPairs,
     custom:
-      override.titleGame !== undefined || override.conferenceSchedule !== undefined || override.conferenceGames !== undefined,
+      override.titleGame !== undefined ||
+      override.conferenceSchedule !== undefined ||
+      override.conferenceGames !== undefined ||
+      protectedGames > 0 ||
+      protectedPairs.length > 0,
   }
+}
+
+export function pairKey(left: string, right: string): string {
+  return left < right ? `${left}|${right}` : `${right}|${left}`
+}
+
+export type ProtectedPairStatus = {
+  degree: Map<string, number>
+  possible: boolean
+  complete: boolean
+}
+
+export function protectedPairStatus(schoolIds: string[], pairs: string[], target: number): ProtectedPairStatus {
+  const ids = new Set(schoolIds)
+  const degree = new Map(schoolIds.map((id) => [id, 0]))
+  const seen = new Set<string>()
+  for (const pair of pairs) {
+    const [left, right] = pair.split("|")
+    if (!left || !right || left === right || !ids.has(left) || !ids.has(right)) continue
+    const key = pairKey(left, right)
+    if (seen.has(key)) continue
+    seen.add(key)
+    degree.set(left, (degree.get(left) ?? 0) + 1)
+    degree.set(right, (degree.get(right) ?? 0) + 1)
+  }
+  const possible = target === 0 || (schoolIds.length >= 2 && target < schoolIds.length && (schoolIds.length * target) % 2 === 0)
+  const complete = possible && target > 0 && schoolIds.every((id) => (degree.get(id) ?? 0) === target)
+  return { degree, possible, complete }
+}
+
+export function keptConferenceRules(
+  rules: Record<string, ConferenceRuleOverride>,
+  conferences: { id: string; schoolIds: string[] }[],
+): Record<string, ConferenceRuleOverride> {
+  const members = new Map(conferences.map((conference) => [conference.id, new Set(conference.schoolIds)]))
+  const next: Record<string, ConferenceRuleOverride> = {}
+  for (const [id, override] of Object.entries(rules)) {
+    const ids = members.get(id)
+    if (!ids) continue
+    const protectedPairs = (override.protectedPairs ?? []).filter((pair) => {
+      const [left, right] = pair.split("|")
+      return Boolean(left && right && ids.has(left) && ids.has(right))
+    })
+    next[id] =
+      protectedPairs.length === (override.protectedPairs?.length ?? 0) ? override : { ...override, protectedPairs }
+  }
+  return next
 }
 
 export function updateConferenceRules(state: BoardState, conferenceId: string, patch: ConferenceRuleOverride): BoardState {
   const current = state.hardMode.conferenceRules[conferenceId] ?? {}
-  const conferenceRules = {
-    ...state.hardMode.conferenceRules,
-    [conferenceId]: normalizeOverride({ ...current, ...patch }),
-  }
+  const next = normalizeOverride({ ...current, ...patch })
+  const conferenceRules = { ...state.hardMode.conferenceRules }
+  if (overrideIsEmpty(next)) delete conferenceRules[conferenceId]
+  else conferenceRules[conferenceId] = next
   const hardMode = { ...state.hardMode, conferenceRules }
   if (sameHardMode(hardMode, state.hardMode)) return state
   return { ...state, hardMode }
@@ -257,7 +314,7 @@ function normalizeConferenceRules(input: unknown): Record<string, ConferenceRule
   for (const [id, raw] of Object.entries(input)) {
     if (!id || !raw || typeof raw !== "object") continue
     const override = normalizeOverride(raw as ConferenceRuleOverride)
-    if (override.titleGame || override.conferenceSchedule || override.conferenceGames !== undefined) rules[id] = override
+    if (!overrideIsEmpty(override)) rules[id] = override
   }
   return rules
 }
@@ -273,7 +330,35 @@ function normalizeOverride(raw: ConferenceRuleOverride): ConferenceRuleOverride 
   if (typeof raw.conferenceGames === "number" && Number.isFinite(raw.conferenceGames)) {
     override.conferenceGames = clampInt(raw.conferenceGames, 0, 20, 8)
   }
+  if (typeof raw.protectedGames === "number" && Number.isFinite(raw.protectedGames)) {
+    const protectedGames = clampInt(raw.protectedGames, 0, 19, 0)
+    if (protectedGames > 0) override.protectedGames = protectedGames
+  }
+  const protectedPairs = normalizePairs(raw.protectedPairs)
+  if (protectedPairs.length > 0) override.protectedPairs = protectedPairs
   return override
+}
+
+function normalizePairs(raw: unknown): string[] {
+  if (!Array.isArray(raw)) return []
+  const pairs = new Set<string>()
+  for (const item of raw) {
+    if (typeof item !== "string") continue
+    const [left, right] = item.split("|")
+    if (!left || !right || left === right || item.split("|").length !== 2) continue
+    pairs.add(pairKey(left, right))
+  }
+  return [...pairs].sort()
+}
+
+function overrideIsEmpty(override: ConferenceRuleOverride): boolean {
+  return (
+    override.titleGame === undefined &&
+    override.conferenceSchedule === undefined &&
+    override.conferenceGames === undefined &&
+    override.protectedGames === undefined &&
+    (override.protectedPairs?.length ?? 0) === 0
+  )
 }
 
 function sameConferenceRules(left: Record<string, ConferenceRuleOverride>, right: Record<string, ConferenceRuleOverride>): boolean {
@@ -283,7 +368,16 @@ function sameConferenceRules(left: Record<string, ConferenceRuleOverride>, right
   return leftIds.every((id) => {
     const a = left[id]
     const b = right[id]
-    return a.titleGame === b.titleGame && a.conferenceSchedule === b.conferenceSchedule && a.conferenceGames === b.conferenceGames
+    const aPairs = a.protectedPairs ?? []
+    const bPairs = b.protectedPairs ?? []
+    return (
+      a.titleGame === b.titleGame &&
+      a.conferenceSchedule === b.conferenceSchedule &&
+      a.conferenceGames === b.conferenceGames &&
+      a.protectedGames === b.protectedGames &&
+      aPairs.length === bPairs.length &&
+      aPairs.every((pair, index) => pair === bPairs[index])
+    )
   })
 }
 

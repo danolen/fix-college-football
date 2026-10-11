@@ -1,6 +1,6 @@
 import { createBlankBoard } from "@/lib/board"
 import { catalog } from "@/lib/catalog"
-import { normalizeHardMode } from "@/lib/hard-mode"
+import { keptConferenceRules, normalizeHardMode } from "@/lib/hard-mode"
 import type { BoardState, MapColorMode, MapShowMode } from "@/lib/types"
 
 const KEY = "fix-college-football-v1"
@@ -10,39 +10,44 @@ export function loadBoard(raw: string | null): BoardState | null {
   const parsed = JSON.parse(raw) as Partial<BoardState> & { v?: number }
   if (!parsed || !Array.isArray(parsed.conferences)) throw new Error("Saved board is unreadable.")
   if (parsed.mode !== "flat" && parsed.mode !== "tiers") throw new Error("Saved board is unreadable.")
+  const conferences = parsed.conferences
+    .filter((conference) => conference && typeof conference.id === "string" && typeof conference.name === "string")
+    .map((conference) => {
+      const schoolIds = Array.isArray(conference.schoolIds)
+        ? conference.schoolIds.filter((id): id is string => typeof id === "string")
+        : []
+      const allowed = new Set(schoolIds)
+      const divisions = Array.isArray(conference.divisions)
+        ? conference.divisions
+            .filter((division) => division && typeof division.id === "string" && typeof division.name === "string")
+            .map((division) => ({
+              id: division.id,
+              name: division.name,
+              schoolIds: Array.isArray(division.schoolIds)
+                ? division.schoolIds.filter((id): id is string => typeof id === "string" && allowed.has(id))
+                : [],
+            }))
+        : []
+      return {
+        id: conference.id,
+        name: conference.name,
+        color: typeof conference.color === "string" ? conference.color : "#44403C",
+        tier: conference.tier === "power" || conference.tier === "group" ? conference.tier : "none",
+        schoolIds,
+        ...(divisions.length > 0 ? { divisions } : {}),
+      }
+    })
+  const hardMode = normalizeHardMode(parsed.hardMode)
   return {
     mode: parsed.mode,
     presetId: typeof parsed.presetId === "string" || parsed.presetId === null ? parsed.presetId : null,
     addedFcsIds: Array.isArray(parsed.addedFcsIds) ? parsed.addedFcsIds.filter((id) => typeof id === "string") : [],
     ignoredIds: Array.isArray(parsed.ignoredIds) ? parsed.ignoredIds.filter((id) => typeof id === "string") : [],
-    hardMode: normalizeHardMode(parsed.hardMode),
-    conferences: parsed.conferences
-      .filter((conference) => conference && typeof conference.id === "string" && typeof conference.name === "string")
-      .map((conference) => {
-        const schoolIds = Array.isArray(conference.schoolIds)
-          ? conference.schoolIds.filter((id): id is string => typeof id === "string")
-          : []
-        const allowed = new Set(schoolIds)
-        const divisions = Array.isArray(conference.divisions)
-          ? conference.divisions
-              .filter((division) => division && typeof division.id === "string" && typeof division.name === "string")
-              .map((division) => ({
-                id: division.id,
-                name: division.name,
-                schoolIds: Array.isArray(division.schoolIds)
-                  ? division.schoolIds.filter((id): id is string => typeof id === "string" && allowed.has(id))
-                  : [],
-              }))
-          : []
-        return {
-          id: conference.id,
-          name: conference.name,
-          color: typeof conference.color === "string" ? conference.color : "#44403C",
-          tier: conference.tier === "power" || conference.tier === "group" ? conference.tier : "none",
-          schoolIds,
-          ...(divisions.length > 0 ? { divisions } : {}),
-        }
-      }),
+    hardMode: normalizeHardMode({
+      ...hardMode,
+      conferenceRules: keptConferenceRules(hardMode.conferenceRules, conferences),
+    }),
+    conferences,
   }
 }
 
@@ -205,8 +210,9 @@ function sanitize(saved: BoardState): BoardState {
   const ignoredIds = [...ignored].filter((id) => !placed.has(id))
   const knownRivalries = new Set(catalog.rivalries.map((rivalry) => rivalry.id))
   const conferenceIds = new Set(conferences.map((conference) => conference.id))
-  const conferenceRules = Object.fromEntries(
-    Object.entries(saved.hardMode.conferenceRules).filter(([id]) => conferenceIds.has(id)),
+  const conferenceRules = keptConferenceRules(
+    Object.fromEntries(Object.entries(saved.hardMode.conferenceRules).filter(([id]) => conferenceIds.has(id))),
+    conferences,
   )
   return {
     ...saved,

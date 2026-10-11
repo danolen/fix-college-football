@@ -80,6 +80,8 @@ export type ConferenceRuleOverride = {
   titleGame?: TitleGameFormat
   conferenceSchedule?: ConferenceScheduleStyle
   conferenceGames?: number
+  protectedGames?: number
+  protectedPairs?: string[]
 }
 
 export type HardModeSettings = {

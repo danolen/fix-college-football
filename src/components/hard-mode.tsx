@@ -539,11 +539,13 @@ function protectedStatusCopy(
   if (!status.possible) {
     return `${teams} teams × ${target} protected games is ${teams * target}. A complete pairing needs an even number of ends, so change the protected-game count.`
   }
-  const exact = [...status.degree.values()].filter((degree) => degree === target).length
-  const over = [...status.degree.values()].filter((degree) => degree > target).length
+  const degrees = [...status.degree.values()]
+  const exact = degrees.filter((degree) => degree === target).length
+  const over = degrees.filter((degree) => degree > target).length
+  const filled = degrees.reduce((total, degree) => total + degree, 0)
   const rival = target === 1 ? "rival" : "rivals"
   if (status.complete) return `Every team has ${target} protected ${rival}.`
-  const progress = `${exact} of ${teams} teams have ${target} protected ${rival}.`
+  const progress = `${exact} of ${teams} teams have ${target} protected ${rival}. ${filled} of ${teams * target} spots are filled.`
   if (over > 0) return `${progress} ${over} ${over === 1 ? "team has" : "teams have"} more than ${target}. Remove pairs until every team has ${target}.`
   return progress
 }

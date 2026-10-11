@@ -175,7 +175,10 @@ export function AppShell() {
     removeFcs: (id) => commit(removeFcsSchool(state, id)),
     assignSchools: (schoolIds, conferenceId, divisionId) =>
       commit(moveSchools(state, schoolIds, conferenceId, null, divisionId)),
-    setIgnored: (schoolIds, ignored) => commit(setSchoolsIgnored(state, schoolIds, ignored)),
+    setIgnored: (schoolIds, ignored) => {
+      const current = getBoardSnapshot()?.board
+      if (current) commit(setSchoolsIgnored(current, schoolIds, ignored))
+    },
     addDivision: (conferenceId) => commit(addDivision(state, conferenceId, makeId)),
     renameDivision: (conferenceId, divisionId, name) => commit(renameDivision(state, conferenceId, divisionId, name)),
     deleteDivision: (conferenceId, divisionId) => commit(deleteDivision(state, conferenceId, divisionId)),
@@ -273,10 +276,12 @@ export function AppShell() {
         rows={score.rows}
         ignored={inspectId ? state.ignoredIds.includes(inspectId) : false}
         onIgnore={() => {
-          if (inspectId) commit(setSchoolsIgnored(state, [inspectId], true))
+          const current = getBoardSnapshot()?.board
+          if (inspectId && current) commit(setSchoolsIgnored(current, [inspectId], true))
         }}
         onRestore={() => {
-          if (inspectId) commit(setSchoolsIgnored(state, [inspectId], false))
+          const current = getBoardSnapshot()?.board
+          if (inspectId && current) commit(setSchoolsIgnored(current, [inspectId], false))
         }}
         onOpenChange={(open) => {
           if (!open) setInspectId(null)

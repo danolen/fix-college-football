@@ -1,8 +1,9 @@
 import assert from "node:assert/strict"
+import { readFileSync } from "node:fs"
 import { describe, it } from "node:test"
 import { nextColor, PALETTE } from "./colors.ts"
 import { blobOutline, blobPath, boundsOf, pointInPolygon, signedArea, type Pt } from "./hull.ts"
-import { layoutMap, type NorthAmericaGeo } from "./map-layout.ts"
+import { layoutMap, mapDotRadius, mapSchoolMarkSize, type NorthAmericaGeo } from "./map-layout.ts"
 import type { Conference, School } from "./types.ts"
 
 describe("palette", () => {
@@ -240,6 +241,49 @@ describe("map layout", () => {
     const oregon = scene.dots.find((dot) => dot.id === "oregon")
     assert.equal(loose?.color, "#8d8680")
     assert.equal(oregon?.color, "#9E2A2B")
+  })
+
+  it("offsets USC and UCLA so the dots do not cover each other", () => {
+    const realGeo = JSON.parse(
+      readFileSync(new URL("../../public/geo/north-america.json", import.meta.url), "utf8"),
+    ) as NorthAmericaGeo
+    const pair = [
+      school({ id: "ucla", lat: 34.0522, lon: -118.2437, primary: "#2774AE", secondary: "#F2A900", abbr: "UCLA" }),
+      school({ id: "usc", lat: 34.0522, lon: -118.2037, primary: "#9D2235", secondary: "#FFC72C", abbr: "USC" }),
+      school({ id: "oregon", lat: 44.05, lon: -123.07 }),
+    ]
+    const scene = layoutMap({ geo: realGeo, schools: pair, conferences: [], width: 960, height: 640 })
+    const ucla = scene.dots.find((dot) => dot.id === "ucla")
+    const usc = scene.dots.find((dot) => dot.id === "usc")
+    const oregon = scene.dots.find((dot) => dot.id === "oregon")
+    assert.ok(ucla && usc && oregon)
+    const gap = Math.hypot(ucla.x - usc.x, ucla.y - usc.y)
+    const minGap = mapDotRadius(960) * 2
+    assert.ok(gap >= minGap, `gap ${gap} should clear ${minGap}`)
+    assert.ok(gap < 40, `gap ${gap} should stay a small nudge`)
+    const alone = layoutMap({
+      geo: realGeo,
+      schools: [pair[2]],
+      conferences: [],
+      width: 960,
+      height: 640,
+    })
+    const oregonAlone = alone.dots.find((dot) => dot.id === "oregon")
+    assert.ok(oregonAlone)
+    assert.ok(Math.hypot(oregon.x - oregonAlone.x, oregon.y - oregonAlone.y) < 0.5)
+    const colored = layoutMap({
+      geo: realGeo,
+      schools: pair.slice(0, 2),
+      conferences: [],
+      width: 960,
+      height: 640,
+      colorBy: "schools",
+    })
+    const coloredUcla = colored.dots.find((dot) => dot.id === "ucla")
+    const coloredUsc = colored.dots.find((dot) => dot.id === "usc")
+    assert.ok(coloredUcla && coloredUsc)
+    const coloredGap = Math.hypot(coloredUcla.x - coloredUsc.x, coloredUcla.y - coloredUsc.y)
+    assert.ok(coloredGap >= mapSchoolMarkSize(960))
   })
 
   it("keeps a Hawaiʻi inset instead of stretching the mainland crop", () => {

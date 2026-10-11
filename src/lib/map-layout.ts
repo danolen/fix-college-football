@@ -144,26 +144,15 @@ export function layoutMap(args: {
   }
 
   const pad = conferenceBlobPad(width, colorBy)
-  const dots: MapDot[] = []
-  const grouped = new Map<string, { conference: Conference; points: Pt[]; byDivision: Map<string, Pt[]> }>()
-  for (const school of mainSchools) {
-    const conference = membership.get(school.id)
-    const point = projectMain(school)
-    if (!point) continue
-    const assigned = Boolean(conference)
-    if (!schoolVisible(conference, assigned, show, selected)) continue
-    dots.push(makeDot(school, point, conference, colorBy))
-    if (!conference || !conferenceVisible(conference, show, selected)) continue
-    const bucket = grouped.get(conference.id) ?? { conference, points: [], byDivision: new Map<string, Pt[]>() }
-    bucket.points.push(point)
-    const division = conferenceDivisions(conference).find((item) => item.schoolIds.includes(school.id))
-    if (division) {
-      const points = bucket.byDivision.get(division.id) ?? []
-      points.push(point)
-      bucket.byDivision.set(division.id, points)
-    }
-    grouped.set(conference.id, bucket)
-  }
+  const { dots, grouped } = placeSchools({
+    schools: mainSchools,
+    project: projectMain,
+    membership,
+    show,
+    colorBy,
+    selected,
+    minDist: dotSeparation(width, colorBy),
+  })
 
   const blobs = placeLabels(blobsFromGrouped(grouped, pad))
 
@@ -248,27 +237,19 @@ function buildInset(args: {
   const path = geoPath(projection)
   const land = landFeatures.map((item) => path(item.geometry) ?? "").filter(Boolean)
   const lakes: string[] = []
-  const grouped = new Map<string, { conference: Conference; points: Pt[]; byDivision: Map<string, Pt[]> }>()
-  const dots: MapDot[] = []
   const pad = conferenceBlobPad(args.width, args.colorBy, true)
-  for (const school of args.schools) {
-    const conference = args.membership.get(school.id)
-    const point = projection([school.lon, school.lat])
-    if (!point) continue
-    const assigned = Boolean(conference)
-    if (!schoolVisible(conference, assigned, args.show, args.selected)) continue
-    dots.push(makeDot(school, point, conference, args.colorBy))
-    if (!conference || !conferenceVisible(conference, args.show, args.selected)) continue
-    const bucket = grouped.get(conference.id) ?? { conference, points: [], byDivision: new Map<string, Pt[]>() }
-    bucket.points.push(point)
-    const division = conferenceDivisions(conference).find((item) => item.schoolIds.includes(school.id))
-    if (division) {
-      const points = bucket.byDivision.get(division.id) ?? []
-      points.push(point)
-      bucket.byDivision.set(division.id, points)
-    }
-    grouped.set(conference.id, bucket)
-  }
+  const { dots, grouped } = placeSchools({
+    schools: args.schools,
+    project: (school) => {
+      const point = projection([school.lon, school.lat])
+      return point ? [point[0], point[1]] : null
+    },
+    membership: args.membership,
+    show: args.show,
+    colorBy: args.colorBy,
+    selected: args.selected,
+    minDist: dotSeparation(args.width, args.colorBy, true),
+  })
   const blobs = blobsFromGrouped(grouped, pad).map((blob) => ({ ...blob, label: null }))
   return {
     x: args.x,
@@ -281,6 +262,122 @@ function buildInset(args: {
     blobs,
     dots,
   }
+}
+
+type PlacedGroup = { conference: Conference; points: Pt[]; byDivision: Map<string, Pt[]> }
+
+function dotSeparation(width: number, colorBy: MapColorMode, inset = false): number {
+  if (colorBy === "schools") return mapSchoolMarkSize(width, inset) + 2
+  const radius = inset ? 5 : mapDotRadius(width)
+  return radius * 2 + 2
+}
+
+function placeSchools(args: {
+  schools: School[]
+  project: (school: School) => Pt | null
+  membership: Map<string, Conference>
+  show: MapShowMode
+  colorBy: MapColorMode
+  selected: Set<string>
+  minDist: number
+}): { dots: MapDot[]; grouped: Map<string, PlacedGroup> } {
+  const visible: Array<{ school: School; conference: Conference | undefined; point: Pt }> = []
+  for (const school of args.schools) {
+    const conference = args.membership.get(school.id)
+    const point = args.project(school)
+    if (!point) continue
+    if (!schoolVisible(conference, Boolean(conference), args.show, args.selected)) continue
+    visible.push({ school, conference, point })
+  }
+  const separated = separateOverlaps(
+    visible.map((item) => ({ id: item.school.id, x: item.point[0], y: item.point[1] })),
+    args.minDist,
+  )
+  const dots: MapDot[] = []
+  const grouped = new Map<string, PlacedGroup>()
+  for (const item of visible) {
+    const point = separated.get(item.school.id) ?? item.point
+    dots.push(makeDot(item.school, point, item.conference, args.colorBy))
+    const conference = item.conference
+    if (!conference || !conferenceVisible(conference, args.show, args.selected)) continue
+    const bucket = grouped.get(conference.id) ?? { conference, points: [], byDivision: new Map<string, Pt[]>() }
+    bucket.points.push(point)
+    const division = conferenceDivisions(conference).find((division) => division.schoolIds.includes(item.school.id))
+    if (division) {
+      const points = bucket.byDivision.get(division.id) ?? []
+      points.push(point)
+      bucket.byDivision.set(division.id, points)
+    }
+    grouped.set(conference.id, bucket)
+  }
+  return { dots, grouped }
+}
+
+function separateOverlaps(points: Array<{ id: string; x: number; y: number }>, minDist: number): Map<string, Pt> {
+  const placed = points.map((point) => ({ ...point }))
+  const origin = new Map(points.map((point) => [point.id, [point.x, point.y] as Pt]))
+  for (let pass = 0; pass < 8; pass += 1) {
+    let moved = false
+    for (let i = 0; i < placed.length; i += 1) {
+      for (let j = i + 1; j < placed.length; j += 1) {
+        const left = placed[i]
+        const right = placed[j]
+        let dx = right.x - left.x
+        let dy = right.y - left.y
+        let dist = Math.hypot(dx, dy)
+        if (dist >= minDist) continue
+        if (dist < 0.5) {
+          const angle = overlapAngle(left.id, right.id)
+          dx = Math.cos(angle)
+          dy = Math.sin(angle)
+          dist = 1
+        }
+        const push = (minDist - dist) / 2
+        const ux = dx / dist
+        const uy = dy / dist
+        nudge(left, origin.get(left.id), -ux * push, -uy * push, minDist)
+        nudge(right, origin.get(right.id), ux * push, uy * push, minDist)
+        moved = true
+      }
+    }
+    if (!moved) break
+  }
+  return new Map(placed.map((point) => [point.id, [point.x, point.y]]))
+}
+
+function nudge(
+  point: { x: number; y: number },
+  origin: Pt | undefined,
+  dx: number,
+  dy: number,
+  maxShift: number,
+) {
+  if (!origin) {
+    point.x += dx
+    point.y += dy
+    return
+  }
+  const nextX = point.x + dx
+  const nextY = point.y + dy
+  const shiftX = nextX - origin[0]
+  const shiftY = nextY - origin[1]
+  const shift = Math.hypot(shiftX, shiftY)
+  if (shift <= maxShift || shift === 0) {
+    point.x = nextX
+    point.y = nextY
+    return
+  }
+  const scale = maxShift / shift
+  point.x = origin[0] + shiftX * scale
+  point.y = origin[1] + shiftY * scale
+}
+
+function overlapAngle(left: string, right: string): number {
+  const [a, b] = left < right ? [left, right] : [right, left]
+  let hash = 0
+  const text = `${a}|${b}`
+  for (let index = 0; index < text.length; index += 1) hash = (hash * 33 + text.charCodeAt(index)) >>> 0
+  return ((hash % 360) * Math.PI) / 180
 }
 
 function makeDot(school: School, point: Pt, conference: Conference | undefined, colorBy: MapColorMode): MapDot {

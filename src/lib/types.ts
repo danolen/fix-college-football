@@ -72,12 +72,31 @@ export type Conference = {
   divisions?: Division[]
 }
 
+export type TitleGameFormat = "division-winners" | "top-two" | "four-team"
+
+export type ConferenceScheduleStyle = "set-count" | "all-division" | "all-conference"
+
+export type HardModeSettings = {
+  enabled: boolean
+  titleGame: TitleGameFormat
+  playoffTeams: number
+  playoffByes: number
+  separatePlayoffs: boolean
+  autoBidChampions: number
+  totalGames: number
+  conferenceGames: number
+  sameTierNonConference: boolean
+  conferenceSchedule: ConferenceScheduleStyle
+  annualRivalryIds: string[]
+}
+
 export type BoardState = {
   mode: Mode
   conferences: Conference[]
   addedFcsIds: string[]
   ignoredIds: string[]
   presetId: string | null
+  hardMode: HardModeSettings
 }
 
 export type ScoreTone = "green" | "amber" | "red" | "empty"

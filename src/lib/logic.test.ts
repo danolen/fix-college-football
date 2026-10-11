@@ -235,6 +235,11 @@ describe("saved boards and map prefs", () => {
     assert.equal(loaded.conferences[0].divisions, undefined)
     assert.deepEqual(loaded.conferences[0].schoolIds, ["alabama"])
     assert.deepEqual(loaded.ignoredIds, [])
+    assert.equal(loaded.hardMode.enabled, false)
+    assert.equal(loaded.hardMode.playoffTeams, 12)
+    assert.equal(loaded.hardMode.playoffByes, 4)
+    assert.equal(loaded.hardMode.conferenceGames, 8)
+    assert.deepEqual(loaded.hardMode.annualRivalryIds, [])
   })
 
   it("keeps ignored schools from a saved board", () => {

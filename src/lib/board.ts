@@ -1,4 +1,5 @@
 import { nextColor } from "@/lib/colors"
+import { defaultHardMode, hardModeIsDefault } from "@/lib/hard-mode"
 import type { BoardState, Conference, Division, Mode, Preset, Tier } from "@/lib/types"
 
 export function conferenceDivisions(conference: Conference): Division[] {
@@ -27,7 +28,7 @@ export function createBlankBoard(ids: () => string): BoardState {
       schoolIds: [],
     })
   }
-  return { mode: "flat", conferences, addedFcsIds: [], ignoredIds: [], presetId: "blank" }
+  return { mode: "flat", conferences, addedFcsIds: [], ignoredIds: [], presetId: "blank", hardMode: defaultHardMode() }
 }
 
 export function applyPreset(preset: Preset, mode: Mode, ids: () => string): BoardState {
@@ -55,6 +56,7 @@ export function applyPreset(preset: Preset, mode: Mode, ids: () => string): Boar
     addedFcsIds: [],
     ignoredIds: [],
     presetId: preset.id,
+    hardMode: defaultHardMode(),
   }
 }
 
@@ -280,6 +282,7 @@ export function conferenceOf(state: BoardState): Map<string, string> {
 export function isDirty(state: BoardState): boolean {
   if (state.addedFcsIds.length > 0) return true
   if (state.ignoredIds.length > 0) return true
+  if (!hardModeIsDefault(state.hardMode)) return true
   if (state.presetId !== "blank") return true
   return state.conferences.some((conference) => conference.schoolIds.length > 0)
 }

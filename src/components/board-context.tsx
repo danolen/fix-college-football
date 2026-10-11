@@ -1,7 +1,7 @@
 "use client"
 
 import { createContext, useContext, type ReactNode } from "react"
-import type { BoardState, Catalog, Conference, Mode, Preset, School, Tier } from "@/lib/types"
+import type { BoardState, Catalog, Conference, HardModeSettings, Mode, Preset, School, Tier } from "@/lib/types"
 import type { ScoredRivalry } from "@/lib/scoring"
 
 export type BoardApi = {
@@ -15,8 +15,9 @@ export type BoardApi = {
   scoreTotal: number
   scoreRows: ScoredRivalry[]
   unlocked: boolean
-  tab: "build" | "share"
-  setTab: (tab: "build" | "share") => void
+  tab: "build" | "hard" | "share"
+  setTab: (tab: "build" | "hard" | "share") => void
+  setHardMode: (patch: Partial<HardModeSettings>) => void
   setMode: (mode: Mode) => void
   requestPreset: (preset: Preset) => void
   requestBlank: () => void

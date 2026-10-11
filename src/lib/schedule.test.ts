@@ -2,7 +2,7 @@ import assert from "node:assert/strict"
 import { describe, it } from "node:test"
 import { applyPreset, createBlankBoard } from "./board.ts"
 import { clearConferenceRules, defaultByes, defaultHardMode, playoffPlans, resolveConferenceRules, titlePlans, updateConferenceRules, updateHardMode } from "./hard-mode.ts"
-import { buildSchedule } from "./schedule.ts"
+import { buildSchedule, describeScheduleGame, scheduleGameCount } from "./schedule.ts"
 import { loadBoard } from "./storage.ts"
 import type { BoardState, Conference, HardModeSettings, Rivalry } from "./types.ts"
 
@@ -161,7 +161,13 @@ describe("schedules", () => {
     const rivalries = [rivalry("ab", ["a", "b"]), rivalry("ac", ["a", "c"])]
     const open = buildSchedule(state, rivalries)
     assert.equal(open.annualGames, 0)
-    for (const schedule of open.bySchool.values()) assert.equal(schedule.games.length, 2)
+    for (const schedule of open.bySchool.values()) {
+      assert.equal(scheduleGameCount(schedule.games), 2)
+      const rotating = schedule.games.find((game) => game.key === "conference-rotation")
+      assert.equal(rotating?.count, 2)
+      assert.equal(rotating?.poolIds.length, 4)
+      assert.equal(schedule.games.some((game) => game.opponentId), false)
+    }
 
     const locked = buildSchedule(
       board(state, { annualRivalryIds: ["ab"] }),
@@ -172,6 +178,9 @@ describe("schedules", () => {
     assert.equal(game?.annual, true)
     assert.equal(game?.kind, "conference")
     assert.equal(game?.rivalryName, "ab")
+    const rotating = locked.bySchool.get("a")?.games.find((item) => item.key === "conference-rotation")
+    assert.equal(describeScheduleGame(rotating!, (id) => id), "One of c, d, and e")
+    assert.equal(rotating?.poolIds.includes("b"), false)
   })
 
   it("treats a full round robin as an annual rivalry", () => {
@@ -236,15 +245,18 @@ describe("schedules", () => {
       board({ mode: "tiers", conferences }, { totalGames: 3, conferenceGames: 1, sameTierNonConference: true }),
       [],
     )
-    assert.equal(limited.bySchool.get("a1")?.games.some((game) => game.opponentId.startsWith("b")), false)
-    assert.equal(limited.bySchool.get("a1")?.games.length, 1)
+    const powerGames = limited.bySchool.get("a1")?.games ?? []
+    assert.equal(powerGames.some((game) => game.opponentId?.startsWith("b")), false)
+    assert.equal(scheduleGameCount(powerGames), 3)
+    assert.equal(describeScheduleGame(powerGames.find((game) => game.tier === "power")!, (id) => id), "2 non-conference games vs Power tier")
 
     const open = buildSchedule(
       board({ mode: "tiers", conferences }, { totalGames: 3, conferenceGames: 1, sameTierNonConference: false }),
       [],
     )
-    assert.equal(open.bySchool.get("a1")?.games.length, 3)
-    assert.equal(open.bySchool.get("a1")?.games.some((game) => game.opponentId === "b1"), true)
+    const openGames = open.bySchool.get("a1")?.games ?? []
+    assert.equal(openGames.some((game) => game.opponentId === "b1"), false)
+    assert.equal(describeScheduleGame(openGames.find((game) => game.tier === "either")!, (id) => id), "2 non-conference games vs either tier")
   })
 
   it("gives independents a non-conference schedule", () => {
@@ -261,8 +273,9 @@ describe("schedules", () => {
       [],
     )
     const nd = built.bySchool.get("nd")
-    assert.equal(nd?.games.length, 2)
-    assert.equal(nd?.games.every((game) => game.kind === "non-conference"), true)
+    assert.equal(scheduleGameCount(nd?.games ?? []), 2)
+    assert.equal(nd?.games.every((game) => game.kind === "non-conference" && !game.opponentId), true)
+    assert.equal(describeScheduleGame(nd!.games[0], (id) => id), "2 non-conference games vs either tier")
     assert.equal(built.bySchool.get("a")?.games.find((game) => game.opponentId === "b")?.kind, "conference")
   })
 
@@ -279,10 +292,12 @@ describe("schedules", () => {
       ),
       [rivalry("wx", ["w", "x"]), rivalry("ab", ["a", "b"])],
     )
-    assert.equal(built.bySchool.get("w")?.games.filter((game) => game.kind === "conference").length, 2)
-    assert.equal(built.bySchool.get("a")?.games.filter((game) => game.kind === "conference").length, 2)
+    assert.equal(scheduleGameCount(built.bySchool.get("w")?.games.filter((game) => game.kind === "conference") ?? []), 2)
+    assert.equal(scheduleGameCount(built.bySchool.get("a")?.games.filter((game) => game.kind === "conference") ?? []), 2)
     assert.equal(built.bySchool.get("w")?.games.find((game) => game.opponentId === "x")?.annual, true)
-    assert.equal(built.bySchool.get("a")?.games.find((game) => game.opponentId === "b")?.annual, false)
+    assert.equal(built.bySchool.get("a")?.games.find((game) => game.opponentId === "b"), undefined)
+    const bigRotation = built.bySchool.get("a")?.games.find((game) => game.key === "conference-rotation")
+    assert.equal(bigRotation?.poolIds.includes("b"), true)
     assert.equal(built.annualGames, 1)
   })
 

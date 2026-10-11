@@ -5,6 +5,7 @@ import { RotateCcw } from "lucide-react"
 import { BoardProvider, type BoardApi } from "@/components/board-context"
 import { Builder } from "@/components/builder"
 import { DragProvider, type DropTarget } from "@/components/drag-context"
+import { HardMode } from "@/components/hard-mode"
 import { SchoolDetail } from "@/components/school-detail"
 import { SchoolTileFace } from "@/components/school-tile"
 import { SharePanel } from "@/components/share-panel"
@@ -41,13 +42,17 @@ import {
   setMode,
   shareUnlocked,
 } from "@/lib/board"
+import { clearConferenceRules, updateConferenceRules, updateHardMode } from "@/lib/hard-mode"
+import { buildSchedule } from "@/lib/schedule"
 import { scoreRivalries, scoreTone } from "@/lib/scoring"
 import { discardSavedBoard, getBoardSnapshot, getServerBoardSnapshot, makeId, replaceBoard, subscribeBoard } from "@/lib/storage"
 import type { BoardState, Conference, Mode, Preset, Tier } from "@/lib/types"
 
+type AppTab = "build" | "hard" | "share"
+
 export function AppShell() {
   const snapshot = useSyncExternalStore(subscribeBoard, getBoardSnapshot, getServerBoardSnapshot)
-  const [tab, setTab] = useState<"build" | "share">("build")
+  const [tab, setTab] = useState<AppTab>("build")
   const [inspectId, setInspectId] = useState<string | null>(null)
   const [pending, setPending] = useState<
     | { kind: "preset"; preset: Preset }
@@ -84,6 +89,11 @@ export function AppShell() {
     })
   }, [onBoard, schoolsById, draft])
 
+  const schedule = useMemo(() => {
+    if (!draft?.hardMode.enabled) return null
+    return buildSchedule(draft, catalog.rivalries)
+  }, [draft])
+
   if (!snapshot || !draft) {
     return (
       <main className="mx-auto flex min-h-full max-w-3xl flex-col justify-center px-6 py-16">
@@ -99,7 +109,12 @@ export function AppShell() {
   const tone = scoreTone(score.kept, score.total, catalog.thresholds)
   function commit(next: BoardState) {
     replaceBoard(next)
-    if (tab === "share" && !shareUnlocked(next)) setTab("build")
+    if ((tab === "share" || tab === "hard") && !shareUnlocked(next)) setTab("build")
+  }
+
+  function selectTab(next: AppTab) {
+    if ((next === "share" || next === "hard") && !unlocked) return
+    setTab(next)
   }
 
   function dropSchool(schoolIds: string[], target: DropTarget) {
@@ -142,9 +157,18 @@ export function AppShell() {
     scoreRows: score.rows,
     unlocked,
     tab,
-    setTab: (next) => {
-      if (next === "share" && !unlocked) return
-      setTab(next)
+    setTab: selectTab,
+    setHardMode: (patch) => {
+      const current = getBoardSnapshot()?.board
+      if (current) commit(updateHardMode(current, patch))
+    },
+    setConferenceRules: (conferenceId, patch) => {
+      const current = getBoardSnapshot()?.board
+      if (current) commit(updateConferenceRules(current, conferenceId, patch))
+    },
+    clearConferenceRules: (conferenceId) => {
+      const current = getBoardSnapshot()?.board
+      if (current) commit(clearConferenceRules(current, conferenceId))
     },
     setMode: (mode: Mode) => commit(setMode(state, mode)),
     requestPreset: (preset) => {
@@ -199,17 +223,30 @@ export function AppShell() {
                   I tried to fix college football.
                 </p>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <ScorePill kept={score.kept} total={score.total} tone={tone} />
+                {state.hardMode.enabled && schedule && (
+                  <p
+                    data-testid="annual-rivalries"
+                    aria-live="polite"
+                    title="Rivalry games locked in every year: permanent rivals, plus matchups the division or conference rules guarantee."
+                    className="rounded-full bg-card px-3 py-1 text-sm font-medium"
+                  >
+                    {schedule.annualGames} rivalry games every year
+                  </p>
+                )}
                 <Button type="button" variant="outline" size="sm" onClick={() => api.requestReset()}>
                   <RotateCcw />
                   Reset
                 </Button>
               </div>
             </div>
-            <Tabs value={tab} onValueChange={(value) => api.setTab(value as "build" | "share")}>
+            <Tabs value={tab} onValueChange={(value) => api.setTab(value as AppTab)}>
               <TabsList>
-                <TabsTrigger value="build">Build</TabsTrigger>
+                <TabsTrigger value="build">Easy</TabsTrigger>
+                <TabsTrigger value="hard" disabled={!unlocked} data-testid="hard-tab">
+                  Hard
+                </TabsTrigger>
                 <TabsTrigger value="share" disabled={!unlocked} data-testid="share-tab">
                   Share
                 </TabsTrigger>
@@ -250,9 +287,12 @@ export function AppShell() {
           }}
         >
           <main className="mx-auto max-w-7xl px-4 py-5 sm:px-6">
-            <Tabs value={tab} onValueChange={(value) => api.setTab(value as "build" | "share")}>
+            <Tabs value={tab} onValueChange={(value) => api.setTab(value as AppTab)}>
               <TabsContent value="build">
                 <Builder onInspect={setInspectId} />
+              </TabsContent>
+              <TabsContent value="hard">
+                <HardMode onInspect={setInspectId} schedule={schedule} />
               </TabsContent>
               <TabsContent value="share">
                 <SharePanel />
@@ -275,6 +315,9 @@ export function AppShell() {
         school={inspectId ? schoolsById.get(inspectId) ?? null : null}
         rows={score.rows}
         ignored={inspectId ? state.ignoredIds.includes(inspectId) : false}
+        showSchedule={state.hardMode.enabled && !(inspectId ? state.ignoredIds.includes(inspectId) : false)}
+        schedule={inspectId && schedule ? schedule.bySchool.get(inspectId)?.games ?? null : null}
+        schoolsById={schoolsById}
         onIgnore={() => {
           const current = getBoardSnapshot()?.board
           if (inspectId && current) commit(setSchoolsIgnored(current, [inspectId], true))

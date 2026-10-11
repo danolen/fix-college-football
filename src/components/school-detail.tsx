@@ -9,6 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
+import type { ScheduleGame } from "@/lib/schedule"
 import type { ScoredRivalry } from "@/lib/scoring"
 import type { School } from "@/lib/types"
 
@@ -16,6 +17,9 @@ export function SchoolDetail({
   school,
   rows,
   ignored,
+  showSchedule,
+  schedule,
+  schoolsById,
   onIgnore,
   onRestore,
   onOpenChange,
@@ -23,6 +27,9 @@ export function SchoolDetail({
   school: School | null
   rows: ScoredRivalry[]
   ignored: boolean
+  showSchedule: boolean
+  schedule: ScheduleGame[] | null
+  schoolsById: Map<string, School>
   onIgnore: () => void
   onRestore: () => void
   onOpenChange: (open: boolean) => void
@@ -32,13 +39,39 @@ export function SchoolDetail({
     : []
   return (
     <Dialog open={Boolean(school)} onOpenChange={onOpenChange}>
-      <DialogContent>
+      <DialogContent className="max-h-[min(42rem,calc(100%-2rem))] overflow-y-auto sm:max-w-md">
         <DialogHeader>
           <DialogTitle>{school?.name}</DialogTitle>
           <DialogDescription>
             {school ? `${school.city}, ${school.region} · ${school.abbr}` : ""}
           </DialogDescription>
         </DialogHeader>
+        {showSchedule && (
+          <div data-testid="team-schedule" className="flex flex-col gap-2">
+            <p className="font-medium">Schedule</p>
+            {schedule && schedule.length > 0 && (
+              <ul className="flex flex-col gap-1.5">
+                {schedule.map((game) => (
+                  <li key={game.opponentId} className="text-sm" data-testid={`game-${game.opponentId}`}>
+                    <span className="font-medium">{schoolsById.get(game.opponentId)?.name ?? game.opponentId}</span>
+                    <span className="text-muted-foreground">
+                      {" "}
+                      · {game.kind === "conference" ? "Conference" : "Non-conference"}
+                    </span>
+                    {game.rivalryName && <span className="text-muted-foreground"> · {game.rivalryName}</span>}
+                    {game.annual && <span className="text-green-800"> · Every year</span>}
+                  </li>
+                ))}
+              </ul>
+            )}
+            {schedule && schedule.length === 0 && (
+              <p className="text-sm text-muted-foreground">This schedule has no games yet.</p>
+            )}
+            {!schedule && (
+              <p className="text-sm text-muted-foreground">Assign this school to a conference to give it a schedule.</p>
+            )}
+          </div>
+        )}
         {ignored && (
           <p className="text-sm text-muted-foreground">
             This school is ignored, so every rivalry that includes it is left out of the count.

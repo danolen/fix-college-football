@@ -1,5 +1,6 @@
 import { createBlankBoard } from "@/lib/board"
 import { catalog } from "@/lib/catalog"
+import { normalizeHardMode } from "@/lib/hard-mode"
 import type { BoardState, MapColorMode, MapShowMode } from "@/lib/types"
 
 const KEY = "fix-college-football-v1"
@@ -14,6 +15,7 @@ export function loadBoard(raw: string | null): BoardState | null {
     presetId: typeof parsed.presetId === "string" || parsed.presetId === null ? parsed.presetId : null,
     addedFcsIds: Array.isArray(parsed.addedFcsIds) ? parsed.addedFcsIds.filter((id) => typeof id === "string") : [],
     ignoredIds: Array.isArray(parsed.ignoredIds) ? parsed.ignoredIds.filter((id) => typeof id === "string") : [],
+    hardMode: normalizeHardMode(parsed.hardMode),
     conferences: parsed.conferences
       .filter((conference) => conference && typeof conference.id === "string" && typeof conference.name === "string")
       .map((conference) => {
@@ -201,5 +203,20 @@ function sanitize(saved: BoardState): BoardState {
   if (conferences.length === 0) return createBlankBoard(makeId)
   const placed = new Set(conferences.flatMap((conference) => conference.schoolIds))
   const ignoredIds = [...ignored].filter((id) => !placed.has(id))
-  return { ...saved, addedFcsIds: added, ignoredIds, conferences }
+  const knownRivalries = new Set(catalog.rivalries.map((rivalry) => rivalry.id))
+  const conferenceIds = new Set(conferences.map((conference) => conference.id))
+  const conferenceRules = Object.fromEntries(
+    Object.entries(saved.hardMode.conferenceRules).filter(([id]) => conferenceIds.has(id)),
+  )
+  return {
+    ...saved,
+    addedFcsIds: added,
+    ignoredIds,
+    conferences,
+    hardMode: normalizeHardMode({
+      ...saved.hardMode,
+      annualRivalryIds: saved.hardMode.annualRivalryIds.filter((id) => knownRivalries.has(id)),
+      conferenceRules,
+    }),
+  }
 }

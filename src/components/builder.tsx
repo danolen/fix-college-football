@@ -134,8 +134,8 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
       </p>
       <p className="text-sm" data-testid="share-lock">
         {board.unlocked
-          ? "Share is open. Every conference besides Independents has at least two schools."
-          : `Share is locked. ${short.map((conference) => `${conference.name} (${conference.schoolIds.length})`).join(", ") || "Add a conference"} still need two schools.`}
+          ? "Share and Hard mode are open. Every conference besides Independents has at least two schools."
+          : `Share and Hard mode are locked. ${short.map((conference) => `${conference.name} (${conference.schoolIds.length})`).join(", ") || "Add a conference"} still need two schools.`}
       </p>
 
       <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1.7fr)_minmax(17.5rem,0.72fr)]">

@@ -267,9 +267,8 @@ function buildInset(args: {
 type PlacedGroup = { conference: Conference; points: Pt[]; byDivision: Map<string, Pt[]> }
 
 function dotSeparation(width: number, colorBy: MapColorMode, inset = false): number {
-  if (colorBy === "schools") return mapSchoolMarkSize(width, inset) + 2
-  const radius = inset ? 5 : mapDotRadius(width)
-  return radius * 2 + 2
+  const size = colorBy === "schools" ? mapSchoolMarkSize(width, inset) : (inset ? 5 : mapDotRadius(width)) * 2
+  return size * 0.62
 }
 
 function placeSchools(args: {

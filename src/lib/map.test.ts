@@ -243,7 +243,7 @@ describe("map layout", () => {
     assert.equal(oregon?.color, "#9E2A2B")
   })
 
-  it("offsets USC and UCLA so the dots do not cover each other", () => {
+  it("offsets USC and UCLA enough to see two dots", () => {
     const realGeo = JSON.parse(
       readFileSync(new URL("../../public/geo/north-america.json", import.meta.url), "utf8"),
     ) as NorthAmericaGeo
@@ -258,9 +258,9 @@ describe("map layout", () => {
     const oregon = scene.dots.find((dot) => dot.id === "oregon")
     assert.ok(ucla && usc && oregon)
     const gap = Math.hypot(ucla.x - usc.x, ucla.y - usc.y)
-    const minGap = mapDotRadius(960) * 2
-    assert.ok(gap >= minGap, `gap ${gap} should clear ${minGap}`)
-    assert.ok(gap < 40, `gap ${gap} should stay a small nudge`)
+    const diameter = mapDotRadius(960) * 2
+    assert.ok(gap >= diameter * 0.5, `gap ${gap} should show a second dot past ${diameter * 0.5}`)
+    assert.ok(gap < diameter, `gap ${gap} should still overlap a ${diameter}px dot`)
     const alone = layoutMap({
       geo: realGeo,
       schools: [pair[2]],
@@ -283,7 +283,9 @@ describe("map layout", () => {
     const coloredUsc = colored.dots.find((dot) => dot.id === "usc")
     assert.ok(coloredUcla && coloredUsc)
     const coloredGap = Math.hypot(coloredUcla.x - coloredUsc.x, coloredUcla.y - coloredUsc.y)
-    assert.ok(coloredGap >= mapSchoolMarkSize(960))
+    const mark = mapSchoolMarkSize(960)
+    assert.ok(coloredGap >= mark * 0.5, `colored gap ${coloredGap} should show two marks`)
+    assert.ok(coloredGap < mark, `colored gap ${coloredGap} should overlap a ${mark}px mark`)
   })
 
   it("keeps a Hawaiʻi inset instead of stretching the mainland crop", () => {

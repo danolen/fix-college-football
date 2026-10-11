@@ -76,7 +76,7 @@ export function SharePanel() {
       <div className="rounded-2xl border bg-card p-6">
         <h2 className="font-display text-2xl font-semibold">Share is locked</h2>
         <p className="mt-2 max-w-xl text-sm text-muted-foreground">
-          Every conference other than Independents needs at least two schools. Independents can be empty. Other empty conferences count against you — fill them or delete them. Schools left unassigned can stay in the pool. On the map they stay as gray dots.
+          Every conference other than Independents needs at least two schools. Independents can be empty. Other empty conferences count against you — fill them or delete them. Schools left unassigned can stay in the pool, and their rivalries still count as misses. Ignored schools are left out of the count. On the map, unassigned schools stay as gray dots.
         </p>
       </div>
     )
@@ -164,7 +164,7 @@ export function SharePanel() {
       <div className="overflow-x-auto">
         <div ref={mapFrame} className="min-w-[720px]">
           <MapView
-            schools={board.onBoard}
+            schools={board.onBoard.filter((school) => !board.state.ignoredIds.includes(school.id))}
             conferences={board.state.conferences}
             mode={board.state.mode}
             className="h-[36rem] w-full"

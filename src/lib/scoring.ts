@@ -12,11 +12,14 @@ export function scoreRivalries(args: {
   schoolsById: Map<string, School>
   onBoard: Set<string>
   conferenceOf: Map<string, string>
+  ignored?: Set<string>
 }): { kept: number; total: number; rows: ScoredRivalry[] } {
   const rows: ScoredRivalry[] = []
+  const ignored = args.ignored ?? new Set<string>()
   for (const rivalry of args.rivalries) {
     const [left, right] = rivalry.schools
     if (!args.onBoard.has(left) || !args.onBoard.has(right)) continue
+    if (ignored.has(left) || ignored.has(right)) continue
     const schoolA = args.schoolsById.get(left)
     const schoolB = args.schoolsById.get(right)
     if (!schoolA || !schoolB) continue

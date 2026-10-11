@@ -29,6 +29,7 @@ export type BoardApi = {
   addFcs: (id: string) => void
   removeFcs: (id: string) => void
   assignSchools: (schoolIds: string[], conferenceId: string | null, divisionId?: string | null) => void
+  setIgnored: (schoolIds: string[], ignored: boolean) => void
   addDivision: (conferenceId: string) => void
   renameDivision: (conferenceId: string, divisionId: string, name: string) => void
   deleteDivision: (conferenceId: string, divisionId: string) => void

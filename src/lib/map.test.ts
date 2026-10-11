@@ -162,11 +162,21 @@ describe("map layout", () => {
     assert.equal(assigned.dots.every((dot) => dot.assigned), true)
   })
 
+  it("shows only unassigned schools when show is unassigned", () => {
+    const scene = layoutMap({ geo, schools, conferences, width: 960, height: 640, show: "unassigned" })
+    assert.equal(scene.dots.some((dot) => dot.id === "loose"), true)
+    assert.equal(scene.dots.some((dot) => dot.id === "oregon"), false)
+    assert.equal(scene.dots.every((dot) => !dot.assigned), true)
+    assert.equal(scene.blobs.length, 0)
+    assert.equal(scene.insets.some((inset) => inset.dots.some((dot) => dot.id === "hawaii")), false)
+  })
+
   it("can show only power conferences or a chosen conference", () => {
     const power = layoutMap({ geo, schools, conferences, width: 960, height: 640, show: "power" })
     assert.equal(power.dots.some((dot) => dot.id === "oregon"), true)
     assert.equal(power.dots.some((dot) => dot.id === "hawaii"), false)
     assert.equal(power.dots.some((dot) => dot.id === "loose"), false)
+    assert.equal(power.insets.some((inset) => inset.label === "Hawaiʻi"), false)
     const chosen = layoutMap({
       geo,
       schools,

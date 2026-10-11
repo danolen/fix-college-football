@@ -109,8 +109,12 @@ export function layoutMap(args: {
   for (const conference of args.conferences) {
     for (const schoolId of conference.schoolIds) membership.set(schoolId, conference)
   }
-  const showHawaii = located.some((school) => geoRegion(school.lat, school.lon) === "hawaii")
-  const showAlaska = located.some((school) => geoRegion(school.lat, school.lon) === "alaska")
+  const showHawaii = located.some(
+    (school) => geoRegion(school.lat, school.lon) === "hawaii" && schoolOnMap(school, membership, show, selected),
+  )
+  const showAlaska = located.some(
+    (school) => geoRegion(school.lat, school.lon) === "alaska" && schoolOnMap(school, membership, show, selected),
+  )
   const band = showHawaii || showAlaska ? 128 : 0
   const mainHeight = height - band
 
@@ -300,12 +304,23 @@ function centroid(points: Pt[]): Pt {
   return [x, y]
 }
 
+function schoolOnMap(
+  school: School,
+  membership: Map<string, Conference>,
+  show: MapShowMode,
+  selected: Set<string>,
+): boolean {
+  const conference = membership.get(school.id)
+  return schoolVisible(conference, Boolean(conference), show, selected)
+}
+
 function conferenceVisible(conference: Conference, show: MapShowMode, selected: Set<string>): boolean {
+  if (show === "unassigned") return false
   if (show === "all" || show === "assigned") return true
   if (show === "power") return conference.tier === "power"
   if (show === "group") return conference.tier === "group"
   if (show === "conferences") return selected.has(conference.id)
-  return true
+  return false
 }
 
 function schoolVisible(
@@ -315,6 +330,7 @@ function schoolVisible(
   selected: Set<string>,
 ): boolean {
   if (show === "all") return true
+  if (show === "unassigned") return !assigned
   if (!assigned || !conference) return false
   return conferenceVisible(conference, show, selected)
 }

@@ -27,7 +27,7 @@ export function createBlankBoard(ids: () => string): BoardState {
       schoolIds: [],
     })
   }
-  return { mode: "flat", conferences, addedFcsIds: [], presetId: "blank" }
+  return { mode: "flat", conferences, addedFcsIds: [], ignoredIds: [], presetId: "blank" }
 }
 
 export function applyPreset(preset: Preset, mode: Mode, ids: () => string): BoardState {
@@ -53,6 +53,7 @@ export function applyPreset(preset: Preset, mode: Mode, ids: () => string): Boar
       }
     }),
     addedFcsIds: [],
+    ignoredIds: [],
     presetId: preset.id,
   }
 }
@@ -148,7 +149,9 @@ export function moveSchool(
       }
     }
   }
-  return { ...state, presetId: null, conferences }
+  const placed = Boolean(targetConferenceId) && conferences.some((conference) => conference.schoolIds.includes(schoolId))
+  const ignoredIds = placed ? state.ignoredIds.filter((id) => id !== schoolId) : state.ignoredIds
+  return { ...state, presetId: null, conferences, ignoredIds }
 }
 
 export function moveSchools(
@@ -220,8 +223,35 @@ export function removeFcsSchool(state: BoardState, schoolId: string): BoardState
     ...state,
     presetId: null,
     addedFcsIds: state.addedFcsIds.filter((id) => id !== schoolId),
+    ignoredIds: state.ignoredIds.filter((id) => id !== schoolId),
     conferences: state.conferences.map((conference) => stripSchool(conference, schoolId)),
   }
+}
+
+export function setSchoolsIgnored(state: BoardState, schoolIds: string[], ignored: boolean): BoardState {
+  const unique = [...new Set(schoolIds.filter(Boolean))]
+  if (unique.length === 0) return state
+  const current = new Set(state.ignoredIds)
+  let conferences = state.conferences
+  let changed = false
+  if (ignored) {
+    for (const id of unique) {
+      if (!current.has(id)) {
+        current.add(id)
+        changed = true
+      }
+      if (conferences.some((conference) => conference.schoolIds.includes(id))) {
+        conferences = conferences.map((conference) => stripSchool(conference, id))
+        changed = true
+      }
+    }
+  } else {
+    for (const id of unique) {
+      if (current.delete(id)) changed = true
+    }
+  }
+  if (!changed) return state
+  return { ...state, presetId: null, ignoredIds: [...current], conferences }
 }
 
 export function isIndependents(conference: { name: string }): boolean {
@@ -249,6 +279,7 @@ export function conferenceOf(state: BoardState): Map<string, string> {
 
 export function isDirty(state: BoardState): boolean {
   if (state.addedFcsIds.length > 0) return true
+  if (state.ignoredIds.length > 0) return true
   if (state.presetId !== "blank") return true
   return state.conferences.some((conference) => conference.schoolIds.length > 0)
 }

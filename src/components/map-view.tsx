@@ -292,6 +292,24 @@ function MapControls({
           >
             All teams
           </Button>
+          <Button
+            type="button"
+            size="xs"
+            variant={show === "assigned" ? "default" : "ghost"}
+            data-testid="map-show-assigned"
+            onClick={() => setMapPrefs({ show: "assigned" })}
+          >
+            Assigned teams
+          </Button>
+          <Button
+            type="button"
+            size="xs"
+            variant={show === "unassigned" ? "default" : "ghost"}
+            data-testid="map-show-unassigned"
+            onClick={() => setMapPrefs({ show: "unassigned" })}
+          >
+            Unassigned teams
+          </Button>
           {mode === "tiers" && (
             <>
               <Button

@@ -33,6 +33,7 @@ import {
   moveConferenceTier,
   moveSchools,
   onBoardIds,
+  setSchoolsIgnored,
   recolorConference,
   removeFcsSchool,
   renameConference,
@@ -79,6 +80,7 @@ export function AppShell() {
       schoolsById,
       onBoard: new Set(onBoard.map((school) => school.id)),
       conferenceOf: draft ? conferenceOf(draft) : new Map(),
+      ignored: new Set(draft?.ignoredIds ?? []),
     })
   }, [onBoard, schoolsById, draft])
 
@@ -103,7 +105,19 @@ export function AppShell() {
   function dropSchool(schoolIds: string[], target: DropTarget) {
     const board = getBoardSnapshot()?.board
     if (!board) return
-    commit(moveSchools(board, schoolIds, target.conferenceId, target.beforeId, target.divisionId))
+    if (target.ignore) {
+      commit(setSchoolsIgnored(board, schoolIds, true))
+      return
+    }
+    const next =
+      target.conferenceId === null
+        ? setSchoolsIgnored(
+            board,
+            schoolIds.filter((id) => board.ignoredIds.includes(id)),
+            false,
+          )
+        : board
+    commit(moveSchools(next, schoolIds, target.conferenceId, target.beforeId, target.divisionId))
   }
 
   function commitPreset(preset: Preset) {
@@ -161,6 +175,7 @@ export function AppShell() {
     removeFcs: (id) => commit(removeFcsSchool(state, id)),
     assignSchools: (schoolIds, conferenceId, divisionId) =>
       commit(moveSchools(state, schoolIds, conferenceId, null, divisionId)),
+    setIgnored: (schoolIds, ignored) => commit(setSchoolsIgnored(state, schoolIds, ignored)),
     addDivision: (conferenceId) => commit(addDivision(state, conferenceId, makeId)),
     renameDivision: (conferenceId, divisionId, name) => commit(renameDivision(state, conferenceId, divisionId, name)),
     deleteDivision: (conferenceId, divisionId) => commit(deleteDivision(state, conferenceId, divisionId)),
@@ -256,6 +271,13 @@ export function AppShell() {
       <SchoolDetail
         school={inspectId ? schoolsById.get(inspectId) ?? null : null}
         rows={score.rows}
+        ignored={inspectId ? state.ignoredIds.includes(inspectId) : false}
+        onIgnore={() => {
+          if (inspectId) commit(setSchoolsIgnored(state, [inspectId], true))
+        }}
+        onRestore={() => {
+          if (inspectId) commit(setSchoolsIgnored(state, [inspectId], false))
+        }}
         onOpenChange={(open) => {
           if (!open) setInspectId(null)
         }}
@@ -305,7 +327,7 @@ function ScorePill({ kept, total, tone }: { kept: number; total: number; tone: s
     <p
       data-testid="rivalry-score"
       aria-live="polite"
-      title="Green from 25/45 of the rivalries on the board, amber from 15/45. Each pair weighs the same."
+      title="Green from 25/45 of the rivalries that count, amber from 15/45. A rivalry counts when both schools are on the board and neither is ignored. Unassigned schools still count as misses. Each pair weighs the same."
       className={`rounded-full px-3 py-1 text-sm font-medium ${color}`}
     >
       {kept}/{total} rivalries kept together

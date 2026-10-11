@@ -9,9 +9,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import type { ScheduleGame } from "@/lib/schedule"
+import { describeScheduleGame, scheduleGameCount, type ScheduleGame } from "@/lib/schedule"
 import type { ScoredRivalry } from "@/lib/scoring"
 import type { School } from "@/lib/types"
+import { cn } from "@/lib/utils"
 
 export function SchoolDetail({
   school,
@@ -47,30 +48,27 @@ export function SchoolDetail({
           </DialogDescription>
         </DialogHeader>
         {showSchedule && (
-          <div data-testid="team-schedule" className="flex flex-col gap-2">
-            <p className="font-medium">Schedule</p>
+          <section data-testid="team-schedule" className="rounded-xl border border-foreground/15 bg-background p-3">
+            <div className="flex items-baseline justify-between gap-3">
+              <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">Schedule</p>
+              {schedule && schedule.length > 0 && (
+                <p className="text-xs text-muted-foreground">{scheduleGameCount(schedule)} games</p>
+              )}
+            </div>
             {schedule && schedule.length > 0 && (
-              <ul className="flex flex-col gap-1.5">
+              <ul className="mt-2 flex flex-col gap-1.5">
                 {schedule.map((game) => (
-                  <li key={game.opponentId} className="text-sm" data-testid={`game-${game.opponentId}`}>
-                    <span className="font-medium">{schoolsById.get(game.opponentId)?.name ?? game.opponentId}</span>
-                    <span className="text-muted-foreground">
-                      {" "}
-                      · {game.kind === "conference" ? "Conference" : "Non-conference"}
-                    </span>
-                    {game.rivalryName && <span className="text-muted-foreground"> · {game.rivalryName}</span>}
-                    {game.annual && <span className="text-green-800"> · Every year</span>}
-                  </li>
+                  <ScheduleRow key={game.key} game={game} schoolsById={schoolsById} />
                 ))}
               </ul>
             )}
             {schedule && schedule.length === 0 && (
-              <p className="text-sm text-muted-foreground">This schedule has no games yet.</p>
+              <p className="mt-2 text-sm text-muted-foreground">This schedule has no games yet.</p>
             )}
             {!schedule && (
-              <p className="text-sm text-muted-foreground">Assign this school to a conference to give it a schedule.</p>
+              <p className="mt-2 text-sm text-muted-foreground">Assign this school to a conference to give it a schedule.</p>
             )}
-          </div>
+          </section>
         )}
         {ignored && (
           <p className="text-sm text-muted-foreground">
@@ -83,22 +81,25 @@ export function SchoolDetail({
           </p>
         )}
         {!ignored && related.length > 0 && (
-          <ul className="flex flex-col gap-2">
-            {related.map((row) => {
-              const other = row.schoolA.id === school?.id ? row.schoolB : row.schoolA
-              return (
-                <li key={row.rivalry.id} className="flex items-center justify-between gap-3 text-sm">
-                  <span>
-                    <span className="font-medium">{row.rivalry.name}</span>
-                    <span className="text-muted-foreground"> · {other.name}</span>
-                  </span>
-                  <span className={row.kept ? "text-green-800" : "text-rose-800"}>
-                    {row.kept ? "Together" : "Split"}
-                  </span>
-                </li>
-              )
-            })}
-          </ul>
+          <section data-testid="team-rivalries" className="rounded-xl bg-muted p-3">
+            <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">Rivalries</p>
+            <ul className="mt-2 flex flex-col gap-2">
+              {related.map((row) => {
+                const other = row.schoolA.id === school?.id ? row.schoolB : row.schoolA
+                return (
+                  <li key={row.rivalry.id} className="flex items-center justify-between gap-3 text-sm">
+                    <span>
+                      <span className="font-medium">{row.rivalry.name}</span>
+                      <span className="text-muted-foreground"> · {other.name}</span>
+                    </span>
+                    <span className={cn("rounded-full px-2 py-0.5 text-xs font-medium", row.kept ? "bg-green-100 text-green-800" : "bg-rose-100 text-rose-800")}>
+                      {row.kept ? "Together" : "Split"}
+                    </span>
+                  </li>
+                )
+              })}
+            </ul>
+          </section>
         )}
         <div className="flex flex-col gap-2">
           {ignored ? (
@@ -120,5 +121,24 @@ export function SchoolDetail({
         </div>
       </DialogContent>
     </Dialog>
+  )
+}
+
+function ScheduleRow({ game, schoolsById }: { game: ScheduleGame; schoolsById: Map<string, School> }) {
+  const label = describeScheduleGame(game, (id) => schoolsById.get(id)?.name ?? id)
+  return (
+    <li
+      data-testid={game.opponentId ? `game-${game.opponentId}` : `game-rotating-${game.kind}`}
+      className={cn("rounded-lg px-2.5 py-2 text-sm", game.annual ? "bg-green-100" : "bg-muted")}
+    >
+      <p className="font-medium">{label}</p>
+      {game.opponentId && (
+        <p className="text-muted-foreground">
+          {game.kind === "conference" ? "Conference" : "Non-conference"}
+          {game.rivalryName ? ` · ${game.rivalryName}` : ""}
+          {game.annual ? " · Every year" : ""}
+        </p>
+      )}
+    </li>
   )
 }

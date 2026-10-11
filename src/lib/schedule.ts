@@ -2,10 +2,16 @@ import { isIndependents } from "@/lib/board"
 import { resolveConferenceRules } from "@/lib/hard-mode"
 import type { BoardState, Rivalry, Tier } from "@/lib/types"
 
+export type OpponentTier = "power" | "group" | "either"
+
 export type ScheduleGame = {
-  opponentId: string
+  key: string
   kind: "conference" | "non-conference"
   annual: boolean
+  count: number
+  opponentId: string | null
+  poolIds: string[]
+  tier: OpponentTier | null
   rivalryId: string | null
   rivalryName: string | null
 }
@@ -119,21 +125,6 @@ export function buildSchedule(state: BoardState, rivalries: Rivalry[]): BuiltSch
         `${conference.name} plays every conference opponent, ${ids.length - 1} games, which runs past the ${settings.totalGames}-game season.`,
       )
     }
-
-    fillPairs(
-      ids,
-      (id) => {
-        const current = degree.get(id) ?? 0
-        const cap = rules.conferenceSchedule === "all-conference" ? ids.length - 1 : rules.conferenceGames
-        return Math.min(ids.length - 1, Math.max(cap, current)) - current
-      },
-      (left, right) => !played.has(pairKey(left, right)),
-      (left, right) => {
-        degree.set(left, (degree.get(left) ?? 0) + 1)
-        degree.set(right, (degree.get(right) ?? 0) + 1)
-        addEdge(left, right, "conference", false)
-      },
-    )
   }
 
   for (const rivalryId of settings.annualRivalryIds) {
@@ -147,30 +138,20 @@ export function buildSchedule(state: BoardState, rivalries: Rivalry[]): BuiltSch
     addEdge(left, right, "non-conference", true)
   }
 
-  const degree = new Map(members.map((member) => [member.id, 0]))
-  for (const edge of edges) {
-    degree.set(edge.a, (degree.get(edge.a) ?? 0) + 1)
-    degree.set(edge.b, (degree.get(edge.b) ?? 0) + 1)
+  const conferenceIds = new Map<string, string[]>()
+  for (const conference of state.conferences) {
+    if (!isIndependents(conference)) conferenceIds.set(conference.id, [...conference.schoolIds].sort())
   }
-  fillPairs(
-    members.map((member) => member.id),
-    (id) => Math.max(0, settings.totalGames - (degree.get(id) ?? 0)),
-    (left, right) => {
-      if (played.has(pairKey(left, right))) return false
-      const memberA = memberById.get(left)
-      const memberB = memberById.get(right)
-      if (!memberA || !memberB) return false
-      if (memberA.conferenceId === memberB.conferenceId && !memberA.independent) return false
-      if (!settings.sameTierNonConference || state.mode !== "tiers") return true
-      if (memberA.tier === "none" || memberB.tier === "none") return true
-      return memberA.tier === memberB.tier
-    },
-    (left, right) => {
-      degree.set(left, (degree.get(left) ?? 0) + 1)
-      degree.set(right, (degree.get(right) ?? 0) + 1)
-      addEdge(left, right, "non-conference", false)
-    },
-  )
+  const conferenceDegree = new Map(members.map((member) => [member.id, 0]))
+  const playedOpponents = new Map(members.map((member) => [member.id, new Set<string>()]))
+  for (const edge of edges) {
+    playedOpponents.get(edge.a)?.add(edge.b)
+    playedOpponents.get(edge.b)?.add(edge.a)
+    if (edge.kind === "conference") {
+      conferenceDegree.set(edge.a, (conferenceDegree.get(edge.a) ?? 0) + 1)
+      conferenceDegree.set(edge.b, (conferenceDegree.get(edge.b) ?? 0) + 1)
+    }
+  }
 
   const bySchool = new Map<string, TeamSchedule>()
   for (const member of members) bySchool.set(member.id, { schoolId: member.id, games: [] })
@@ -178,24 +159,50 @@ export function buildSchedule(state: BoardState, rivalries: Rivalry[]): BuiltSch
     bySchool.get(edge.a)?.games.push(toGame(edge, edge.b))
     bySchool.get(edge.b)?.games.push(toGame(edge, edge.a))
   }
-  for (const schedule of bySchool.values()) {
-    schedule.games.sort((left, right) => {
-      if (left.kind !== right.kind) return left.kind === "conference" ? -1 : 1
-      if (left.annual !== right.annual) return left.annual ? -1 : 1
-      return left.opponentId.localeCompare(right.opponentId)
-    })
+  for (const member of members) {
+    const mates = member.independent ? [] : conferenceIds.get(member.conferenceId) ?? []
+    const locked = conferenceDegree.get(member.id) ?? 0
+    const rules = resolveConferenceRules(settings, member.conferenceId)
+    const cap = rules.conferenceSchedule === "all-conference" ? Math.max(0, mates.length - 1) : rules.conferenceGames
+    const rotating = member.independent ? 0 : Math.max(0, Math.min(Math.max(0, mates.length - 1), Math.max(cap, locked)) - locked)
+    const poolIds = mates.filter((id) => id !== member.id && !playedOpponents.get(member.id)?.has(id))
+    const schedule = bySchool.get(member.id)
+    if (!schedule) continue
+    if (rotating > 0 && poolIds.length > 0) {
+      schedule.games.push({
+        key: "conference-rotation",
+        kind: "conference",
+        annual: false,
+        count: rotating,
+        opponentId: null,
+        poolIds,
+        tier: null,
+        rivalryId: null,
+        rivalryName: null,
+      })
+    }
+    const named = schedule.games.reduce((total, game) => total + (game.opponentId ? game.count : 0), 0)
+    const openDates = Math.max(0, settings.totalGames - named - (rotating > 0 ? rotating : 0))
+    if (openDates > 0) {
+      schedule.games.push({
+        key: "nonconference-rotation",
+        kind: "non-conference",
+        annual: false,
+        count: openDates,
+        opponentId: null,
+        poolIds: [],
+        tier: nonConferenceTier(member, state),
+        rivalryId: null,
+        rivalryName: null,
+      })
+    }
+    schedule.games.sort(compareGames)
   }
 
-  const over = members.filter((member) => (bySchool.get(member.id)?.games.length ?? 0) > settings.totalGames).length
-  const short = members.filter((member) => (bySchool.get(member.id)?.games.length ?? 0) < settings.totalGames).length
+  const over = members.filter((member) => scheduleGameCount(bySchool.get(member.id)?.games ?? []) > settings.totalGames).length
   if (over > 0) {
     warnings.push(
       `${over} ${over === 1 ? "team plays" : "teams play"} more than ${settings.totalGames} games so locked games stay on the schedule.`,
-    )
-  }
-  if (short > 0) {
-    warnings.push(
-      `${short} ${short === 1 ? "team still has" : "teams still have"} an open date. There are not enough opponents under these rules.`,
     )
   }
 
@@ -206,49 +213,54 @@ export function buildSchedule(state: BoardState, rivalries: Rivalry[]): BuiltSch
   }
 }
 
-function fillPairs(
-  ids: string[],
-  needOf: (id: string) => number,
-  allowed: (left: string, right: string) => boolean,
-  add: (left: string, right: string) => void,
-) {
-  const need = new Map(ids.map((id) => [id, needOf(id)]))
-  const guard = ids.length * ids.length + 2
-  for (let step = 0; step < guard; step += 1) {
-    let bestRank = ""
-    let bestA = ""
-    let bestB = ""
-    for (let i = 0; i < ids.length; i += 1) {
-      for (let j = i + 1; j < ids.length; j += 1) {
-        const left = ids[i]
-        const right = ids[j]
-        const leftNeed = need.get(left) ?? 0
-        const rightNeed = need.get(right) ?? 0
-        if (leftNeed <= 0 || rightNeed <= 0) continue
-        if (!allowed(left, right)) continue
-        const rank = `${String(100 - Math.min(leftNeed, rightNeed)).padStart(3, "0")}|${String(100 - Math.max(leftNeed, rightNeed)).padStart(3, "0")}|${pairKey(left, right)}`
-        if (!bestRank || rank < bestRank) {
-          bestRank = rank
-          bestA = left
-          bestB = right
-        }
-      }
-    }
-    if (!bestRank) break
-    need.set(bestA, (need.get(bestA) ?? 0) - 1)
-    need.set(bestB, (need.get(bestB) ?? 0) - 1)
-    add(bestA, bestB)
+export function scheduleGameCount(games: ScheduleGame[]): number {
+  return games.reduce((total, game) => total + game.count, 0)
+}
+
+export function describeScheduleGame(game: ScheduleGame, nameOf: (id: string) => string): string {
+  if (game.opponentId) return nameOf(game.opponentId)
+  if (game.kind === "conference") {
+    const list = formatNameList(game.poolIds.map(nameOf).sort((left, right) => left.localeCompare(right)))
+    if (game.count === 1) return `One of ${list}`
+    return `${game.count} conference games, each one of ${list}`
   }
+  const tier = game.tier === "power" ? "Power tier" : game.tier === "group" ? "Group tier" : "either tier"
+  if (game.count === 1) return `Non-conference game vs ${tier}`
+  return `${game.count} non-conference games vs ${tier}`
+}
+
+function compareGames(left: ScheduleGame, right: ScheduleGame): number {
+  if (left.kind !== right.kind) return left.kind === "conference" ? -1 : 1
+  if (left.opponentId && !right.opponentId) return -1
+  if (!left.opponentId && right.opponentId) return 1
+  return (left.opponentId ?? "").localeCompare(right.opponentId ?? "")
+}
+
+function nonConferenceTier(member: Member, state: BoardState): OpponentTier {
+  if (!state.hardMode.sameTierNonConference || state.mode !== "tiers") return "either"
+  if (member.tier === "power") return "power"
+  if (member.tier === "group") return "group"
+  return "either"
 }
 
 function toGame(edge: Edge, opponentId: string): ScheduleGame {
   return {
-    opponentId,
+    key: opponentId,
     kind: edge.kind,
     annual: edge.annual,
+    count: 1,
+    opponentId,
+    poolIds: [],
+    tier: null,
     rivalryId: edge.rivalryId,
     rivalryName: edge.rivalryName,
   }
+}
+
+function formatNameList(names: string[]): string {
+  if (names.length <= 1) return names[0] ?? "the rest of the conference"
+  if (names.length === 2) return `${names[0]} and ${names[1]}`
+  return `${names.slice(0, -1).join(", ")}, and ${names.at(-1)}`
 }
 
 function pairKey(left: string, right: string): string {

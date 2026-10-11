@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { isIndependents } from "@/lib/board"
 import { defaultByes, playoffPlans, resolveConferenceRules, titlePlans } from "@/lib/hard-mode"
-import type { BuiltSchedule } from "@/lib/schedule"
+import { scheduleGameCount, type BuiltSchedule } from "@/lib/schedule"
 import type { Conference, ConferenceScheduleStyle } from "@/lib/types"
 
 export function HardMode({
@@ -212,7 +212,7 @@ export function HardMode({
           {schedule && (
             <Section title="Schedules">
               <p className="text-sm text-muted-foreground">
-                Open a team to see its slate. Games marked every year are the ones in the rivalry counter. The other dates fill out the season and can rotate.
+                Open a team to see its slate. Games marked every year name the opponent. Rotating conference dates say which teams they can be, and the other dates say which tier they come from.
               </p>
               <div className="flex flex-col gap-4">
                 {board.state.conferences.map((conference) => {
@@ -235,7 +235,7 @@ export function HardMode({
                           >
                             {school.abbr}
                             <span className="text-muted-foreground">
-                              {schedule.bySchool.get(school.id)?.games.length ?? 0}
+                              {scheduleGameCount(schedule.bySchool.get(school.id)?.games ?? [])}
                             </span>
                           </Button>
                         ))}
@@ -363,7 +363,79 @@ function ConferenceRuleCard({ conference, summary }: { conference: Conference; s
             </div>
             <p className="mt-1.5 text-sm text-muted-foreground">{scheduleDetail(rules.conferenceSchedule, rules.conferenceGames, conference.schoolIds.length)}</p>
           </div>
+          <ConferencePermanentRivals conference={conference} />
         </div>
+      )}
+    </div>
+  )
+}
+
+function ConferencePermanentRivals({ conference }: { conference: Conference }) {
+  const board = useBoard()
+  const [query, setQuery] = useState("")
+  const selected = new Set(board.state.hardMode.annualRivalryIds)
+  const rows = useMemo(() => {
+    const ids = new Set(conference.schoolIds)
+    return board.catalog.rivalries
+      .filter((rivalry) => ids.has(rivalry.schools[0]) && ids.has(rivalry.schools[1]))
+      .map((rivalry) => ({
+        id: rivalry.id,
+        name: rivalry.name,
+        matchup: `${board.schoolsById.get(rivalry.schools[0])?.name ?? rivalry.schools[0]} vs ${board.schoolsById.get(rivalry.schools[1])?.name ?? rivalry.schools[1]}`,
+      }))
+      .sort((left, right) => left.name.localeCompare(right.name))
+  }, [board.catalog.rivalries, board.schoolsById, conference.schoolIds])
+  const needle = query.trim().toLowerCase()
+  const visible = needle ? rows.filter((row) => `${row.name} ${row.matchup}`.toLowerCase().includes(needle)) : rows
+  const chosen = rows.filter((row) => selected.has(row.id)).length
+
+  function toggle(id: string) {
+    const next = selected.has(id)
+      ? board.state.hardMode.annualRivalryIds.filter((rivalryId) => rivalryId !== id)
+      : [...board.state.hardMode.annualRivalryIds, id]
+    board.setHardMode({ annualRivalryIds: next })
+  }
+
+  return (
+    <div>
+      <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">Permanent conference games</p>
+      <p className="mt-1 text-sm text-muted-foreground">
+        Checked rivalries are played every year, even when the rest of this conference rotates. They count toward the conference-game number.
+      </p>
+      {rows.length === 0 ? (
+        <p className="mt-2 text-sm text-muted-foreground">No listed rivalry has both schools in this conference.</p>
+      ) : (
+        <>
+          <Input
+            value={query}
+            placeholder={`Search ${conference.name} rivalries`}
+            className="mt-2"
+            data-testid={`conference-rivalry-search-${conference.id}`}
+            onChange={(event) => setQuery(event.target.value)}
+          />
+          <p className="mt-1 text-xs text-muted-foreground">
+            {chosen} of {rows.length} locked in every year
+          </p>
+          <ul className="mt-1 flex max-h-40 flex-col gap-1 overflow-y-auto">
+            {visible.map((row) => (
+              <li key={row.id}>
+                <label className="flex items-start gap-2 rounded-lg px-1 py-1 text-sm hover:bg-muted">
+                  <input
+                    type="checkbox"
+                    className="mt-0.5"
+                    data-testid={`conference-rivalry-${conference.id}-${row.id}`}
+                    checked={selected.has(row.id)}
+                    onChange={() => toggle(row.id)}
+                  />
+                  <span>
+                    <span className="font-medium">{row.name}</span>
+                    <span className="text-muted-foreground"> · {row.matchup}</span>
+                  </span>
+                </label>
+              </li>
+            ))}
+          </ul>
+        </>
       )}
     </div>
   )
@@ -412,7 +484,7 @@ function PermanentRivals() {
   return (
     <Section title="Permanent rivals">
       <p className="text-sm text-muted-foreground">
-        Checked games are played every year and count in the rivalry total. A pair in the same conference is a conference game. A pair in different conferences is a non-conference game.
+        Checked games are played every year and count in the rivalry total. In-conference rivalries can also be locked on each conference above. A pair in different conferences is a non-conference game, and it replaces one open non-conference date.
       </p>
       <Input
         value={query}

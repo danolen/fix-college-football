@@ -1,8 +1,8 @@
 import assert from "node:assert/strict"
 import { describe, it } from "node:test"
 import { applyPreset, createBlankBoard } from "./board.ts"
-import { clearConferenceRules, defaultByes, defaultHardMode, playoffPlans, resolveConferenceRules, titlePlans, updateConferenceRules, updateHardMode } from "./hard-mode.ts"
-import { buildSchedule, describeScheduleGame, scheduleGameCount } from "./schedule.ts"
+import { clearConferenceRules, defaultByes, defaultHardMode, playoffPlans, protectedPairStatus, resolveConferenceRules, titlePlans, updateConferenceRules, updateHardMode } from "./hard-mode.ts"
+import { annualReasonNote, buildSchedule, describeScheduleGame, scheduleGameCount } from "./schedule.ts"
 import { loadBoard } from "./storage.ts"
 import type { BoardState, Conference, HardModeSettings, Rivalry } from "./types.ts"
 
@@ -55,7 +55,15 @@ describe("hard mode defaults", () => {
         mode: "tiers",
         presetId: "2026",
         conferences: [{ id: "c1", name: "SEC", color: "#111", tier: "power", schoolIds: ["alabama", "auburn"] }],
-        hardMode: { enabled: true, playoffTeams: 8, annualRivalryIds: ["r-006", "missing", 4] },
+        hardMode: {
+          enabled: true,
+          playoffTeams: 8,
+          annualRivalryIds: ["r-006", "missing", 4],
+          conferenceRules: {
+            c1: { protectedGames: 3, protectedPairs: ["auburn|alabama", "alabama|missing", "bad"] },
+            gone: { protectedGames: 1, protectedPairs: ["alabama|auburn"] },
+          },
+        },
       }),
     )
     assert.ok(loaded)
@@ -63,6 +71,9 @@ describe("hard mode defaults", () => {
     assert.equal(loaded.hardMode.playoffTeams, 8)
     assert.equal(loaded.hardMode.playoffByes, 0)
     assert.deepEqual(loaded.hardMode.annualRivalryIds, ["missing", "r-006"])
+    assert.equal(loaded.hardMode.conferenceRules.c1?.protectedGames, 3)
+    assert.deepEqual(loaded.hardMode.conferenceRules.c1?.protectedPairs, ["alabama|auburn"])
+    assert.equal(loaded.hardMode.conferenceRules.gone, undefined)
   })
 
   it("resets hard mode when a preset is applied", () => {
@@ -169,8 +180,12 @@ describe("schedules", () => {
       assert.equal(schedule.games.some((game) => game.opponentId), false)
     }
 
+    const listed = buildSchedule(board(state, { annualRivalryIds: ["ab"] }), rivalries)
+    assert.equal(listed.annualGames, 0)
+    assert.equal(listed.bySchool.get("a")?.games.some((game) => game.opponentId === "b"), false)
+
     const locked = buildSchedule(
-      board(state, { annualRivalryIds: ["ab"] }),
+      board(state, { conferenceRules: { big: { protectedGames: 1, protectedPairs: ["a|b"] } } }),
       rivalries,
     )
     assert.equal(locked.annualGames, 1)
@@ -178,9 +193,17 @@ describe("schedules", () => {
     assert.equal(game?.annual, true)
     assert.equal(game?.kind, "conference")
     assert.equal(game?.rivalryName, "ab")
+    assert.deepEqual(game?.reasons, ["protected"])
+    assert.equal(annualReasonNote(game?.reasons ?? []), "In-conference protected rival")
     const rotating = locked.bySchool.get("a")?.games.find((item) => item.key === "conference-rotation")
     assert.equal(describeScheduleGame(rotating!, (id) => id), "One of c, d, and e")
     assert.equal(rotating?.poolIds.includes("b"), false)
+
+    const stored = buildSchedule(
+      board(state, { conferenceRules: { big: { protectedPairs: ["a|b"] } } }),
+      rivalries,
+    )
+    assert.equal(stored.bySchool.get("a")?.games.some((item) => item.opponentId === "b"), false)
   })
 
   it("treats a full round robin as an annual rivalry", () => {
@@ -193,6 +216,9 @@ describe("schedules", () => {
     const built = buildSchedule(state, [rivalry("ab", ["a", "b"])])
     assert.equal(built.annualGames, 1)
     assert.equal(built.bySchool.get("c")?.games.every((game) => game.kind === "conference"), true)
+    const game = built.bySchool.get("a")?.games.find((item) => item.opponentId === "b")
+    assert.deepEqual(game?.reasons, ["full-conference"])
+    assert.equal(annualReasonNote(game?.reasons ?? []), "Plays the whole conference")
   })
 
   it("keeps division games every year and rotates cross-division games", () => {
@@ -216,7 +242,24 @@ describe("schedules", () => {
     assert.equal(built.annualGames, 1)
     const eastGame = built.bySchool.get("e1")?.games.find((game) => game.opponentId === "e2")
     assert.equal(eastGame?.annual, true)
+    assert.deepEqual(eastGame?.reasons, ["division"])
+    assert.equal(annualReasonNote(eastGame?.reasons ?? []), "In division")
     assert.equal(built.bySchool.get("e1")?.games.some((game) => game.opponentId === "w1"), false)
+
+    const protectedCross = buildSchedule(
+      board(state, {
+        conferenceRules: {
+          sec: { conferenceSchedule: "all-division", conferenceGames: 2, protectedGames: 1, protectedPairs: ["e1|w1", "e1|e2"] },
+        },
+      }),
+      [rivalry("east", ["e1", "e2"]), rivalry("cross", ["e1", "w1"])],
+    )
+    const divisionMate = protectedCross.bySchool.get("e1")?.games.find((game) => game.opponentId === "e2")
+    const protectedGame = protectedCross.bySchool.get("e1")?.games.find((game) => game.opponentId === "w1")
+    assert.deepEqual(divisionMate?.reasons, ["division", "protected"])
+    assert.equal(annualReasonNote(divisionMate?.reasons ?? []), "In division · In-conference protected rival")
+    assert.deepEqual(protectedGame?.reasons, ["protected"])
+    assert.equal(protectedCross.annualGames, 2)
   })
 
   it("plays a permanent non-conference rivalry every year", () => {
@@ -234,6 +277,8 @@ describe("schedules", () => {
     const game = built.bySchool.get("ala")?.games.find((item) => item.opponentId === "osu")
     assert.equal(game?.kind, "non-conference")
     assert.equal(game?.annual, true)
+    assert.deepEqual(game?.reasons, ["nonconference"])
+    assert.equal(annualReasonNote(game?.reasons ?? []), "Non-conference annual rivalry")
   })
 
   it("keeps filler non-conference games inside a tier when that rule is on", () => {
@@ -312,5 +357,32 @@ describe("schedules", () => {
     assert.equal(built.bySchool.has("gone"), false)
     assert.equal(built.bySchool.has("pool"), false)
     assert.equal(built.annualGames, 0)
+  })
+
+  it("requires every team in a conference to carry the same protected-rival count", () => {
+    const open = protectedPairStatus(["a", "b", "c", "d"], ["a|b"], 1)
+    assert.equal(open.possible, true)
+    assert.equal(open.complete, false)
+    assert.equal(open.degree.get("a"), 1)
+    assert.equal(open.degree.get("c"), 0)
+    const done = protectedPairStatus(["a", "b", "c", "d"], ["a|b", "c|d"], 1)
+    assert.equal(done.complete, true)
+    const odd = protectedPairStatus(["a", "b", "c"], [], 1)
+    assert.equal(odd.possible, false)
+    assert.equal(odd.complete, false)
+    const full = protectedPairStatus(["a", "b", "c", "d"], [], 4)
+    assert.equal(full.possible, false)
+    const cleared = updateConferenceRules(
+      board(
+        { conferences: [conference({ id: "big", name: "Big", schoolIds: ["a", "b"] })] },
+        { conferenceRules: { big: { protectedGames: 1, protectedPairs: ["a|b"] } } },
+      ),
+      "big",
+      { protectedGames: 0 },
+    )
+    assert.deepEqual(cleared.hardMode.conferenceRules.big?.protectedPairs, ["a|b"])
+    assert.equal(cleared.hardMode.conferenceRules.big?.protectedGames, undefined)
+    assert.equal(resolveConferenceRules(cleared.hardMode, "big").protectedGames, 0)
+    assert.equal(resolveConferenceRules(cleared.hardMode, "big").custom, true)
   })
 })

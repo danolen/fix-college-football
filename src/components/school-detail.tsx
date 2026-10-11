@@ -9,7 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { describeScheduleGame, scheduleGameCount, type ScheduleGame } from "@/lib/schedule"
+import { annualReasonNote, describeScheduleGame, scheduleGameCount, type ScheduleGame } from "@/lib/schedule"
 import type { ScoredRivalry } from "@/lib/scoring"
 import type { School } from "@/lib/types"
 import { cn } from "@/lib/utils"
@@ -126,6 +126,7 @@ export function SchoolDetail({
 
 function ScheduleRow({ game, schoolsById }: { game: ScheduleGame; schoolsById: Map<string, School> }) {
   const label = describeScheduleGame(game, (id) => schoolsById.get(id)?.name ?? id)
+  const why = game.annual ? annualReasonNote(game.reasons) : ""
   return (
     <li
       data-testid={game.opponentId ? `game-${game.opponentId}` : `game-rotating-${game.kind}`}
@@ -137,6 +138,7 @@ function ScheduleRow({ game, schoolsById }: { game: ScheduleGame; schoolsById: M
           {game.kind === "conference" ? "Conference" : "Non-conference"}
           {game.rivalryName ? ` · ${game.rivalryName}` : ""}
           {game.annual ? " · Every year" : ""}
+          {why ? ` · ${why}` : ""}
         </p>
       )}
     </li>

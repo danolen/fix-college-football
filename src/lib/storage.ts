@@ -1,7 +1,7 @@
 import { createBlankBoard } from "@/lib/board"
 import { catalog } from "@/lib/catalog"
 import { keptConferenceRules, normalizeHardMode } from "@/lib/hard-mode"
-import type { BoardState, MapColorMode, MapShowMode } from "@/lib/types"
+import type { BoardState, Conference, MapColorMode, MapShowMode } from "@/lib/types"
 
 const KEY = "fix-college-football-v1"
 
@@ -10,9 +10,9 @@ export function loadBoard(raw: string | null): BoardState | null {
   const parsed = JSON.parse(raw) as Partial<BoardState> & { v?: number }
   if (!parsed || !Array.isArray(parsed.conferences)) throw new Error("Saved board is unreadable.")
   if (parsed.mode !== "flat" && parsed.mode !== "tiers") throw new Error("Saved board is unreadable.")
-  const conferences = parsed.conferences
+  const conferences: Conference[] = parsed.conferences
     .filter((conference) => conference && typeof conference.id === "string" && typeof conference.name === "string")
-    .map((conference) => {
+    .map((conference): Conference => {
       const schoolIds = Array.isArray(conference.schoolIds)
         ? conference.schoolIds.filter((id): id is string => typeof id === "string")
         : []

@@ -76,11 +76,12 @@ export type BoardState = {
   mode: Mode
   conferences: Conference[]
   addedFcsIds: string[]
+  ignoredIds: string[]
   presetId: string | null
 }
 
 export type ScoreTone = "green" | "amber" | "red" | "empty"
 
-export type MapShowMode = "all" | "assigned" | "power" | "group" | "conferences"
+export type MapShowMode = "all" | "assigned" | "unassigned" | "power" | "group" | "conferences"
 
 export type MapColorMode = "conference" | "schools"

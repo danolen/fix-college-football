@@ -13,6 +13,7 @@ export function loadBoard(raw: string | null): BoardState | null {
     mode: parsed.mode,
     presetId: typeof parsed.presetId === "string" || parsed.presetId === null ? parsed.presetId : null,
     addedFcsIds: Array.isArray(parsed.addedFcsIds) ? parsed.addedFcsIds.filter((id) => typeof id === "string") : [],
+    ignoredIds: Array.isArray(parsed.ignoredIds) ? parsed.ignoredIds.filter((id) => typeof id === "string") : [],
     conferences: parsed.conferences
       .filter((conference) => conference && typeof conference.id === "string" && typeof conference.name === "string")
       .map((conference) => {
@@ -150,6 +151,7 @@ export function parseMapPrefs(raw: string | null): MapPrefs {
     const parsed = JSON.parse(raw) as Partial<MapPrefs>
     const show =
       parsed.show === "assigned" ||
+      parsed.show === "unassigned" ||
       parsed.show === "power" ||
       parsed.show === "group" ||
       parsed.show === "conferences"
@@ -178,9 +180,10 @@ function sanitize(saved: BoardState): BoardState {
   const fbsIds = new Set(catalog.schools.filter((school) => school.level === "fbs").map((school) => school.id))
   const added = saved.addedFcsIds.filter((id) => fcsIds.has(id))
   const allowed = new Set<string>([...fbsIds, ...added])
+  const ignored = new Set(saved.ignoredIds.filter((id) => allowed.has(id) && schoolsById.has(id)))
   const conferences = saved.conferences
     .map((conference) => {
-      const schoolIds = conference.schoolIds.filter((id) => allowed.has(id) && schoolsById.has(id))
+      const schoolIds = conference.schoolIds.filter((id) => allowed.has(id) && schoolsById.has(id) && !ignored.has(id))
       const kept = new Set(schoolIds)
       const divisions = (conference.divisions ?? [])
         .map((division) => ({
@@ -196,5 +199,7 @@ function sanitize(saved: BoardState): BoardState {
     })
     .filter((conference) => conference.name.trim().length > 0)
   if (conferences.length === 0) return createBlankBoard(makeId)
-  return { ...saved, addedFcsIds: added, conferences }
+  const placed = new Set(conferences.flatMap((conference) => conference.schoolIds))
+  const ignoredIds = [...ignored].filter((id) => !placed.has(id))
+  return { ...saved, addedFcsIds: added, ignoredIds, conferences }
 }

@@ -1,6 +1,6 @@
 "use client"
 
-import { Info } from "lucide-react"
+import { EyeOff, Info, Undo2 } from "lucide-react"
 import type { School } from "@/lib/types"
 import { SchoolMark } from "@/components/school-mark"
 import { useDrag } from "@/components/drag-context"
@@ -11,11 +11,15 @@ export function SchoolTile({
   readOnly = false,
   selectable = false,
   onInspect,
+  onIgnore,
+  onRestore,
 }: {
   school: School
   readOnly?: boolean
   selectable?: boolean
   onInspect?: (school: School) => void
+  onIgnore?: (school: School) => void
+  onRestore?: (school: School) => void
 }) {
   const drag = useDrag()
   const dragging = drag.activeId === school.id || drag.activeIds.includes(school.id)
@@ -43,6 +47,38 @@ export function SchoolTile({
         className="size-[4.6rem]"
       />
       <span className="max-w-full truncate text-[0.65rem] text-muted-foreground">{school.name}</span>
+      {onIgnore && (
+        <button
+          type="button"
+          className="absolute top-0 left-0 rounded-full bg-background/90 p-0.5 text-foreground shadow-sm"
+          aria-label={`Ignore ${school.name}`}
+          title={`Ignore ${school.name}. Its rivalries leave the count.`}
+          data-testid={`ignore-${school.id}`}
+          onPointerDown={(event) => event.stopPropagation()}
+          onClick={(event) => {
+            event.stopPropagation()
+            onIgnore(school)
+          }}
+        >
+          <EyeOff className="size-3" />
+        </button>
+      )}
+      {onRestore && (
+        <button
+          type="button"
+          className="absolute top-0 left-0 rounded-full bg-background/90 p-0.5 text-foreground shadow-sm"
+          aria-label={`Put ${school.name} back with unassigned`}
+          title={`Put ${school.name} back with the unassigned schools.`}
+          data-testid={`restore-${school.id}`}
+          onPointerDown={(event) => event.stopPropagation()}
+          onClick={(event) => {
+            event.stopPropagation()
+            onRestore(school)
+          }}
+        >
+          <Undo2 className="size-3" />
+        </button>
+      )}
       {onInspect && (
         <button
           type="button"

@@ -6,6 +6,7 @@ export type DropTarget = {
   conferenceId: string | null
   divisionId: string | null
   beforeId: string | null
+  ignore?: boolean
 }
 
 type DragValue = {
@@ -16,6 +17,7 @@ type DragValue = {
   overConferenceId: string | null
   overDivisionId: string | null
   overPool: boolean
+  overIgnore: boolean
   startPointerDrag: (event: ReactPointerEvent<HTMLElement>, schoolId: string) => void
   toggleSelected: (schoolId: string, mode?: "replace" | "toggle" | "range") => void
   clearSelected: () => void
@@ -42,6 +44,7 @@ export function resolveDrop(x: number, y: number, schoolId: string): DropTarget 
   let divisionId: string | null = null
   let sawConference = false
   let sawPool = false
+  let sawIgnore = false
   for (const el of elements) {
     if (!(el instanceof Element)) continue
     if (source instanceof HTMLElement && (el === source || source.contains(el))) continue
@@ -58,6 +61,9 @@ export function resolveDrop(x: number, y: number, schoolId: string): DropTarget 
               : null
           return { conferenceId: section.dataset.conferenceId, divisionId, beforeId: other }
         }
+        if (schoolNode.closest("[data-drop-ignore]")) {
+          return { conferenceId: null, divisionId: null, beforeId: null, ignore: true }
+        }
         if (schoolNode.closest("[data-drop-pool]")) return { conferenceId: null, divisionId: null, beforeId: null }
       }
     }
@@ -72,9 +78,11 @@ export function resolveDrop(x: number, y: number, schoolId: string): DropTarget 
         }
       }
     }
+    if (el.closest("[data-drop-ignore]")) sawIgnore = true
     if (el.closest("[data-drop-pool]")) sawPool = true
   }
   if (sawConference) return { conferenceId, divisionId, beforeId: null }
+  if (sawIgnore) return { conferenceId: null, divisionId: null, beforeId: null, ignore: true }
   if (sawPool) return { conferenceId: null, divisionId: null, beforeId: null }
   return null
 }
@@ -104,11 +112,13 @@ export function DragProvider({
     conferenceId: string | null
     divisionId: string | null
     pool: boolean
+    ignore: boolean
   }>({
     schoolId: null,
     conferenceId: null,
     divisionId: null,
     pool: false,
+    ignore: false,
   })
   const onDropRef = useRef(onDrop)
   const overlayRef = useRef<HTMLDivElement>(null)
@@ -184,13 +194,15 @@ export function DragProvider({
       schoolId: target?.beforeId ?? null,
       conferenceId: target?.conferenceId ?? null,
       divisionId: target?.divisionId ?? null,
-      pool: Boolean(target && target.conferenceId === null),
+      pool: Boolean(target && target.conferenceId === null && !target.ignore),
+      ignore: Boolean(target?.ignore),
     }
     setOver((current) =>
       current.schoolId === next.schoolId &&
       current.conferenceId === next.conferenceId &&
       current.divisionId === next.divisionId &&
-      current.pool === next.pool
+      current.pool === next.pool &&
+      current.ignore === next.ignore
         ? current
         : next,
     )
@@ -254,7 +266,7 @@ export function DragProvider({
       }
       setActiveId(null)
       setActiveIds([])
-      setOver({ schoolId: null, conferenceId: null, divisionId: null, pool: false })
+      setOver({ schoolId: null, conferenceId: null, divisionId: null, pool: false, ignore: false })
     }
 
     const onMove = (ev: PointerEvent) => {
@@ -292,6 +304,7 @@ export function DragProvider({
     overConferenceId: over.conferenceId,
     overDivisionId: over.divisionId,
     overPool: over.pool,
+    overIgnore: over.ignore,
     startPointerDrag,
     toggleSelected,
     clearSelected,

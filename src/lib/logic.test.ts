@@ -16,6 +16,7 @@ import {
   recolorConference,
   renameDivision,
   setMode,
+  setSchoolsIgnored,
   shareUnlocked,
   undividedSchoolIds,
 } from "./board.ts"
@@ -144,6 +145,20 @@ describe("board", () => {
     assert.deepEqual(state.conferences[0].schoolIds, ["alpha", "beta"])
   })
 
+  it("pulls an ignored school out of its conference and puts it back when assigned", () => {
+    let state = createBlankBoard(ids)
+    const target = state.conferences[0]
+    state = moveSchools(state, ["alpha", "beta"], target.id)
+    state = setSchoolsIgnored(state, ["beta", "gamma"], true)
+    assert.deepEqual(state.ignoredIds, ["beta", "gamma"])
+    assert.deepEqual(state.conferences[0].schoolIds, ["alpha"])
+    state = setSchoolsIgnored(state, ["gamma"], false)
+    assert.deepEqual(state.ignoredIds, ["beta"])
+    state = moveSchool(state, "beta", target.id)
+    assert.deepEqual(state.ignoredIds, [])
+    assert.deepEqual(state.conferences[0].schoolIds, ["alpha", "beta"])
+  })
+
   it("moves several schools into a named division", () => {
     let state = createBlankBoard(ids)
     const target = state.conferences[0]
@@ -219,10 +234,27 @@ describe("saved boards and map prefs", () => {
     assert.ok(loaded)
     assert.equal(loaded.conferences[0].divisions, undefined)
     assert.deepEqual(loaded.conferences[0].schoolIds, ["alabama"])
+    assert.deepEqual(loaded.ignoredIds, [])
+  })
+
+  it("keeps ignored schools from a saved board", () => {
+    const loaded = loadBoard(
+      JSON.stringify({
+        v: 1,
+        mode: "flat",
+        presetId: null,
+        addedFcsIds: [],
+        ignoredIds: ["army", 12, "navy"],
+        conferences: [{ id: "c1", name: "SEC", color: "#111111", tier: "none", schoolIds: ["alabama"] }],
+      }),
+    )
+    assert.ok(loaded)
+    assert.deepEqual(loaded.ignoredIds, ["army", "navy"])
   })
 
   it("keeps assigned show mode and conference ids from saved map prefs", () => {
     assert.equal(parseMapPrefs('{"show":"assigned","colorBy":"schools"}').show, "assigned")
+    assert.equal(parseMapPrefs('{"show":"unassigned"}').show, "unassigned")
     assert.equal(parseMapPrefs('{"show":"assigned","colorBy":"schools"}').colorBy, "schools")
     const selected = parseMapPrefs('{"show":"conferences","conferenceIds":["sec","b1g"]}')
     assert.equal(selected.show, "conferences")
@@ -262,6 +294,31 @@ describe("scoring", () => {
     })
     assert.equal(shown.total, 2)
     assert.equal(shown.kept, 1)
+  })
+
+  it("leaves a rivalry out of the count when either school is ignored", () => {
+    const rivalries = [
+      { id: "kept", name: "Kept", schools: ["a", "b"] as [string, string] },
+      { id: "miss", name: "Miss", schools: ["a", "c"] as [string, string] },
+      { id: "gone", name: "Gone", schools: ["c", "d"] as [string, string] },
+    ]
+    const scored = scoreRivalries({
+      rivalries,
+      schoolsById,
+      onBoard: new Set(["a", "b", "c", "d"]),
+      conferenceOf: new Map([
+        ["a", "sec"],
+        ["b", "sec"],
+        ["d", "sec"],
+      ]),
+      ignored: new Set(["c"]),
+    })
+    assert.equal(scored.total, 1)
+    assert.equal(scored.kept, 1)
+    assert.deepEqual(
+      scored.rows.map((row) => row.rivalry.id),
+      ["kept"],
+    )
   })
 
   it("uses the 25/45 and 15/45 cuts", () => {

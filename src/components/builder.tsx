@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useState } from "react"
-import { Plus } from "lucide-react"
+import { EyeOff, Plus, Undo2 } from "lucide-react"
 import { useDrag } from "@/components/drag-context"
 import { ConferenceRow } from "@/components/conference-row"
 import { FcsPicker } from "@/components/fcs-picker"
@@ -24,14 +24,24 @@ import { cn } from "@/lib/utils"
 export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
   const board = useBoard()
   const [poolQuery, setPoolQuery] = useState("")
+  const [ignoredQuery, setIgnoredQuery] = useState("")
   const [fcsOpen, setFcsOpen] = useState(false)
   const placed = useMemo(() => {
     const ids = new Set(board.state.conferences.flatMap((conference) => conference.schoolIds))
     return ids
   }, [board.state.conferences])
+  const ignored = useMemo(() => new Set(board.state.ignoredIds), [board.state.ignoredIds])
   const unassigned = useMemo(
-    () => board.onBoard.filter((school) => !placed.has(school.id)),
-    [board.onBoard, placed],
+    () => board.onBoard.filter((school) => !placed.has(school.id) && !ignored.has(school.id)),
+    [board.onBoard, placed, ignored],
+  )
+  const ignoredSchools = useMemo(
+    () => board.onBoard.filter((school) => ignored.has(school.id)),
+    [board.onBoard, ignored],
+  )
+  const mapSchools = useMemo(
+    () => board.onBoard.filter((school) => !ignored.has(school.id)),
+    [board.onBoard, ignored],
   )
   const needle = poolQuery.trim().toLowerCase()
   const visiblePool = needle
@@ -39,6 +49,12 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
         [school.name, school.abbr, school.city, school.region].join(" ").toLowerCase().includes(needle),
       )
     : unassigned
+  const ignoredNeedle = ignoredQuery.trim().toLowerCase()
+  const visibleIgnored = ignoredNeedle
+    ? ignoredSchools.filter((school) =>
+        [school.name, school.abbr, school.city, school.region].join(" ").toLowerCase().includes(ignoredNeedle),
+      )
+    : ignoredSchools
   const drag = useDrag()
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -48,8 +64,10 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
     return () => window.removeEventListener("keydown", onKey)
   }, [drag])
   useEffect(() => {
-    drag.pruneSelected(unassigned.map((school) => school.id))
-  }, [drag, unassigned])
+    drag.pruneSelected([...unassigned, ...ignoredSchools].map((school) => school.id))
+  }, [drag, unassigned, ignoredSchools])
+  const selectedUnassigned = drag.selectedIds.filter((id) => unassigned.some((school) => school.id === id))
+  const selectedIgnored = drag.selectedIds.filter((id) => ignored.has(id))
   const groupCount = board.state.conferences.filter((conference) => conference.tier === "group").length
   const short = board.state.conferences.filter(
     (conference) => !isIndependents(conference) && conference.schoolIds.length < 2,
@@ -123,7 +141,7 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
       <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1.7fr)_minmax(17.5rem,0.72fr)]">
         <div className="lg:sticky lg:top-36">
           <MapView
-            schools={board.onBoard}
+            schools={mapSchools}
             conferences={board.state.conferences}
             mode={board.state.mode}
             className="h-[28rem] w-full sm:h-[32rem] lg:h-[calc(100vh-20rem)] lg:min-h-[30rem]"
@@ -170,51 +188,29 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
           <div>
             <h2 className="font-display text-xl font-semibold tracking-wide">Unassigned</h2>
             <p className="text-xs text-muted-foreground">
-              {unassigned.length} of {board.onBoard.length} schools on the board. They can stay here.
-              Click to select more than one, then assign or drag the group.
+              {unassigned.length} still to place. Their rivalries still count as misses. Ignore a school to leave those rivalries out of the count. Click to select more than one, then assign, ignore, or drag the group.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            {drag.selectedIds.length > 0 && (
+            {selectedUnassigned.length > 0 && (
               <>
                 <p className="text-xs font-medium" data-testid="pool-selected-count">
-                  {drag.selectedIds.length} selected
+                  {selectedUnassigned.length} selected
                 </p>
-                <DropdownMenu>
-                  <DropdownMenuTrigger
-                    render={<Button type="button" size="sm" data-testid="assign-selected" />}
-                  >
-                    Assign to
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="min-w-48">
-                    {board.state.conferences.map((conference) => {
-                      const divisions = conferenceDivisions(conference)
-                      return (
-                        <DropdownMenuGroup key={conference.id}>
-                          <DropdownMenuItem
-                            onClick={() => {
-                              board.assignSchools(drag.selectedIds, conference.id)
-                              drag.clearSelected()
-                            }}
-                          >
-                            {conference.name}
-                          </DropdownMenuItem>
-                          {divisions.map((division) => (
-                            <DropdownMenuItem
-                              key={division.id}
-                              onClick={() => {
-                                board.assignSchools(drag.selectedIds, conference.id, division.id)
-                                drag.clearSelected()
-                              }}
-                            >
-                              {conference.name} · {division.name}
-                            </DropdownMenuItem>
-                          ))}
-                        </DropdownMenuGroup>
-                      )
-                    })}
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                <AssignMenu ids={selectedUnassigned} testId="assign-selected" />
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  data-testid="ignore-selected"
+                  onClick={() => {
+                    board.setIgnored(selectedUnassigned, true)
+                    drag.clearSelected()
+                  }}
+                >
+                  <EyeOff />
+                  Ignore
+                </Button>
                 <Button type="button" size="sm" variant="ghost" onClick={drag.clearSelected}>
                   Clear
                 </Button>
@@ -241,7 +237,11 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
           )}
         >
           {unassigned.length === 0 && (
-            <p className="m-auto text-sm text-muted-foreground">Every school on the board has a conference.</p>
+            <p className="m-auto text-sm text-muted-foreground">
+              {ignoredSchools.length > 0
+                ? "No schools are waiting to be placed."
+                : "Every school on the board has a conference."}
+            </p>
           )}
           {unassigned.length > 0 && visiblePool.length === 0 && (
             <p className="m-auto text-sm text-muted-foreground">No unassigned school matches that search.</p>
@@ -252,12 +252,122 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
               school={school}
               selectable
               onInspect={(item) => onInspect(item.id)}
+              onIgnore={(item) => board.setIgnored([item.id], true)}
             />
           ))}
         </div>
       </section>
+      {ignoredSchools.length > 0 && (
+        <section className="rounded-2xl border bg-card p-3">
+          <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h2 className="font-display text-xl font-semibold tracking-wide">Ignored</h2>
+              <p className="text-xs text-muted-foreground">
+                {ignoredSchools.length} left out of the rivalry count and off the map. Put one back when you want to place it, or drag it into a conference.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              {selectedIgnored.length > 0 && (
+                <>
+                  <p className="text-xs font-medium" data-testid="ignored-selected-count">
+                    {selectedIgnored.length} selected
+                  </p>
+                  <AssignMenu ids={selectedIgnored} testId="assign-ignored" />
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="outline"
+                    data-testid="restore-selected"
+                    onClick={() => {
+                      board.setIgnored(selectedIgnored, false)
+                      drag.clearSelected()
+                    }}
+                  >
+                    <Undo2 />
+                    Put back
+                  </Button>
+                  <Button type="button" size="sm" variant="ghost" onClick={drag.clearSelected}>
+                    Clear
+                  </Button>
+                </>
+              )}
+              <Input
+                value={ignoredQuery}
+                onChange={(event) => setIgnoredQuery(event.target.value)}
+                placeholder="Find an ignored school"
+                aria-label="Find an ignored school"
+                className="sm:max-w-64"
+              />
+            </div>
+          </div>
+          <div
+            data-testid="ignored-pool"
+            data-drop-ignore=""
+            onPointerDown={(event) => {
+              if (event.target === event.currentTarget) drag.clearSelected()
+            }}
+            className={cn(
+              "flex min-h-28 flex-wrap gap-2 rounded-xl border border-dashed p-2",
+              drag.overIgnore ? "border-foreground bg-accent" : "border-border",
+            )}
+          >
+            {visibleIgnored.length === 0 && (
+              <p className="m-auto text-sm text-muted-foreground">No ignored school matches that search.</p>
+            )}
+            {visibleIgnored.map((school) => (
+              <SchoolTile
+                key={school.id}
+                school={school}
+                selectable
+                onInspect={(item) => onInspect(item.id)}
+                onRestore={(item) => board.setIgnored([item.id], false)}
+              />
+            ))}
+          </div>
+        </section>
+      )}
       <FcsGate open={fcsOpen} onOpenChange={setFcsOpen} />
     </div>
+  )
+}
+
+function AssignMenu({ ids, testId }: { ids: string[]; testId: string }) {
+  const board = useBoard()
+  const drag = useDrag()
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger render={<Button type="button" size="sm" data-testid={testId} />}>
+        Assign to
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="min-w-48">
+        {board.state.conferences.map((conference) => {
+          const divisions = conferenceDivisions(conference)
+          return (
+            <DropdownMenuGroup key={conference.id}>
+              <DropdownMenuItem
+                onClick={() => {
+                  board.assignSchools(ids, conference.id)
+                  drag.clearSelected()
+                }}
+              >
+                {conference.name}
+              </DropdownMenuItem>
+              {divisions.map((division) => (
+                <DropdownMenuItem
+                  key={division.id}
+                  onClick={() => {
+                    board.assignSchools(ids, conference.id, division.id)
+                    drag.clearSelected()
+                  }}
+                >
+                  {conference.name} · {division.name}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuGroup>
+          )
+        })}
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }
 

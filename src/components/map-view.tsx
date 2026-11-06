@@ -412,6 +412,20 @@ function MapBody({
           {scene.land.map((d, index) => (
             <path key={`land-${index}`} d={d} fill="#e7efe4" stroke="#7f9788" strokeWidth={0.6} />
           ))}
+          {scene.labels.map((label) => (
+            <text
+              key={label.text}
+              x={label.x}
+              y={label.y}
+              textAnchor="middle"
+              fontSize={10}
+              fontWeight={700}
+              fill="#1c1915"
+              fontFamily="Arial, Helvetica, sans-serif"
+            >
+              {label.text}
+            </text>
+          ))}
           {scene.lakes.map((d, index) => (
             <path key={`lake-${index}`} d={d} fill="#d5e3ea" />
           ))}

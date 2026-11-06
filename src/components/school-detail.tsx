@@ -9,7 +9,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { annualReasonNote, describeScheduleGame, scheduleGameCount, type ScheduleGame } from "@/lib/schedule"
 import type { ScoredRivalry } from "@/lib/scoring"
 import type { School } from "@/lib/types"
 import { cn } from "@/lib/utils"
@@ -18,9 +17,6 @@ export function SchoolDetail({
   school,
   rows,
   ignored,
-  showSchedule,
-  schedule,
-  schoolsById,
   onIgnore,
   onRestore,
   onOpenChange,
@@ -28,9 +24,6 @@ export function SchoolDetail({
   school: School | null
   rows: ScoredRivalry[]
   ignored: boolean
-  showSchedule: boolean
-  schedule: ScheduleGame[] | null
-  schoolsById: Map<string, School>
   onIgnore: () => void
   onRestore: () => void
   onOpenChange: (open: boolean) => void
@@ -47,29 +40,6 @@ export function SchoolDetail({
             {school ? `${school.city}, ${school.region} · ${school.abbr}` : ""}
           </DialogDescription>
         </DialogHeader>
-        {showSchedule && (
-          <section data-testid="team-schedule" className="rounded-xl border border-foreground/15 bg-background p-3">
-            <div className="flex items-baseline justify-between gap-3">
-              <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">Schedule</p>
-              {schedule && schedule.length > 0 && (
-                <p className="text-xs text-muted-foreground">{scheduleGameCount(schedule)} games</p>
-              )}
-            </div>
-            {schedule && schedule.length > 0 && (
-              <ul className="mt-2 flex flex-col gap-1.5">
-                {schedule.map((game) => (
-                  <ScheduleRow key={game.key} game={game} schoolsById={schoolsById} />
-                ))}
-              </ul>
-            )}
-            {schedule && schedule.length === 0 && (
-              <p className="mt-2 text-sm text-muted-foreground">This schedule has no games yet.</p>
-            )}
-            {!schedule && (
-              <p className="mt-2 text-sm text-muted-foreground">Assign this school to a conference to give it a schedule.</p>
-            )}
-          </section>
-        )}
         {ignored && (
           <p className="text-sm text-muted-foreground">
             This school is ignored, so every rivalry that includes it is left out of the count.
@@ -121,26 +91,5 @@ export function SchoolDetail({
         </div>
       </DialogContent>
     </Dialog>
-  )
-}
-
-function ScheduleRow({ game, schoolsById }: { game: ScheduleGame; schoolsById: Map<string, School> }) {
-  const label = describeScheduleGame(game, (id) => schoolsById.get(id)?.name ?? id)
-  const why = game.annual ? annualReasonNote(game.reasons) : ""
-  return (
-    <li
-      data-testid={game.opponentId ? `game-${game.opponentId}` : `game-rotating-${game.kind}`}
-      className={cn("rounded-lg px-2.5 py-2 text-sm", game.annual ? "bg-green-100" : "bg-muted")}
-    >
-      <p className="font-medium">{label}</p>
-      {game.opponentId && (
-        <p className="text-muted-foreground">
-          {game.kind === "conference" ? "Conference" : "Non-conference"}
-          {game.rivalryName ? ` · ${game.rivalryName}` : ""}
-          {game.annual ? " · Every year" : ""}
-          {why ? ` · ${why}` : ""}
-        </p>
-      )}
-    </li>
   )
 }

@@ -235,12 +235,28 @@ describe("saved boards and map prefs", () => {
     assert.equal(loaded.conferences[0].divisions, undefined)
     assert.deepEqual(loaded.conferences[0].schoolIds, ["alabama"])
     assert.deepEqual(loaded.ignoredIds, [])
-    assert.equal(loaded.hardMode.enabled, false)
-    assert.equal(loaded.hardMode.playoffTeams, 12)
-    assert.equal(loaded.hardMode.playoffByes, 4)
-    assert.equal(loaded.hardMode.conferenceGames, 8)
-    assert.deepEqual(loaded.hardMode.annualRivalryIds, [])
-    assert.deepEqual(loaded.hardMode.conferenceRules, {})
+    assert.equal("hardMode" in loaded, false)
+  })
+
+  it("keeps the conferences when an older save includes hard mode", () => {
+    const loaded = loadBoard(
+      JSON.stringify({
+        v: 1,
+        mode: "tiers",
+        presetId: "2026",
+        addedFcsIds: ["ndsu"],
+        ignoredIds: ["army"],
+        hardMode: { enabled: true, playoffTeams: 4, conferenceRules: { c1: { protectedGames: 3 } } },
+        conferences: [{ id: "c1", name: "SEC", color: "#111111", tier: "power", schoolIds: ["alabama", "georgia"] }],
+      }),
+    )
+    assert.ok(loaded)
+    assert.equal(loaded.mode, "tiers")
+    assert.equal(loaded.presetId, "2026")
+    assert.deepEqual(loaded.addedFcsIds, ["ndsu"])
+    assert.deepEqual(loaded.ignoredIds, ["army"])
+    assert.deepEqual(loaded.conferences[0].schoolIds, ["alabama", "georgia"])
+    assert.equal("hardMode" in loaded, false)
   })
 
   it("keeps ignored schools from a saved board", () => {

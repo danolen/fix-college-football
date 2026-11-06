@@ -1,5 +1,4 @@
 import { nextColor } from "@/lib/colors"
-import { defaultHardMode, hardModeIsDefault } from "@/lib/hard-mode"
 import type { BoardState, Conference, Division, Mode, Preset, Tier } from "@/lib/types"
 
 export function conferenceDivisions(conference: Conference): Division[] {
@@ -28,7 +27,7 @@ export function createBlankBoard(ids: () => string): BoardState {
       schoolIds: [],
     })
   }
-  return { mode: "flat", conferences, addedFcsIds: [], ignoredIds: [], presetId: "blank", hardMode: defaultHardMode() }
+  return { mode: "flat", conferences, addedFcsIds: [], ignoredIds: [], presetId: "blank" }
 }
 
 export function applyPreset(preset: Preset, mode: Mode, ids: () => string): BoardState {
@@ -56,7 +55,6 @@ export function applyPreset(preset: Preset, mode: Mode, ids: () => string): Boar
     addedFcsIds: [],
     ignoredIds: [],
     presetId: preset.id,
-    hardMode: defaultHardMode(),
   }
 }
 
@@ -108,13 +106,10 @@ export function canDeleteConference(state: BoardState, id: string): boolean {
 
 export function deleteConference(state: BoardState, id: string): BoardState | null {
   if (!canDeleteConference(state, id)) return null
-  const conferenceRules = { ...state.hardMode.conferenceRules }
-  delete conferenceRules[id]
   return {
     ...state,
     presetId: null,
     conferences: state.conferences.filter((conference) => conference.id !== id),
-    hardMode: { ...state.hardMode, conferenceRules },
   }
 }
 
@@ -285,7 +280,6 @@ export function conferenceOf(state: BoardState): Map<string, string> {
 export function isDirty(state: BoardState): boolean {
   if (state.addedFcsIds.length > 0) return true
   if (state.ignoredIds.length > 0) return true
-  if (!hardModeIsDefault(state.hardMode)) return true
   if (state.presetId !== "blank") return true
   return state.conferences.some((conference) => conference.schoolIds.length > 0)
 }

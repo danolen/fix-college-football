@@ -26,6 +26,7 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
   const [poolQuery, setPoolQuery] = useState("")
   const [ignoredQuery, setIgnoredQuery] = useState("")
   const [fcsOpen, setFcsOpen] = useState(false)
+  const [collapsedIds, setCollapsedIds] = useState<Set<string>>(() => new Set())
   const placed = useMemo(() => {
     const ids = new Set(board.state.conferences.flatMap((conference) => conference.schoolIds))
     return ids
@@ -73,6 +74,23 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
   const short = board.state.conferences.filter(
     (conference) => !isIndependents(conference) && conference.schoolIds.length < 2,
   )
+  const allCollapsed =
+    board.state.conferences.length > 0 && board.state.conferences.every((conference) => collapsedIds.has(conference.id))
+
+  function toggleCollapsed(id: string) {
+    setCollapsedIds((current) => {
+      const next = new Set(current)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+  }
+
+  function toggleAllCollapsed() {
+    setCollapsedIds(
+      allCollapsed ? new Set() : new Set(board.state.conferences.map((conference) => conference.id)),
+    )
+  }
 
   return (
     <div className="flex flex-col gap-5">
@@ -158,11 +176,18 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
           />
         </div>
         <div className="flex flex-col gap-4">
+          <div className="flex justify-end">
+            <Button type="button" size="sm" variant="outline" data-testid="toggle-conference-collapse" onClick={toggleAllCollapsed}>
+              {allCollapsed ? "Expand conferences" : "Collapse conferences"}
+            </Button>
+          </div>
           {board.state.mode === "flat" ? (
             <TierBlock
               title="Conferences"
               tier="none"
               conferences={board.state.conferences}
+              collapsedIds={collapsedIds}
+              onToggleCollapsed={toggleCollapsed}
               onInspect={onInspect}
             />
           ) : (
@@ -172,6 +197,8 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
                 tier="power"
                 empty="Move a conference here, or add one."
                 conferences={board.state.conferences.filter((conference) => conference.tier === "power")}
+                collapsedIds={collapsedIds}
+                onToggleCollapsed={toggleCollapsed}
                 onInspect={onInspect}
               />
               <TierBlock
@@ -179,6 +206,8 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
                 tier="group"
                 empty="The non-power tier. Add a conference or move one here."
                 conferences={board.state.conferences.filter((conference) => conference.tier === "group")}
+                collapsedIds={collapsedIds}
+                onToggleCollapsed={toggleCollapsed}
                 onInspect={onInspect}
               />
               <TierBlock
@@ -186,6 +215,8 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
                 tier="none"
                 empty="Conferences here stay out of Power and out of Group of X."
                 conferences={board.state.conferences.filter((conference) => conference.tier === "none")}
+                collapsedIds={collapsedIds}
+                onToggleCollapsed={toggleCollapsed}
                 onInspect={onInspect}
               />
             </>
@@ -385,12 +416,16 @@ function TierBlock({
   title,
   tier,
   conferences,
+  collapsedIds,
+  onToggleCollapsed,
   onInspect,
   empty = "This tier has no conferences yet.",
 }: {
   title: string
   tier: Tier
   conferences: ReturnType<typeof useBoard>["state"]["conferences"]
+  collapsedIds: Set<string>
+  onToggleCollapsed: (id: string) => void
   onInspect: (id: string) => void
   empty?: string
 }) {
@@ -416,6 +451,8 @@ function TierBlock({
             .filter((school): school is NonNullable<typeof school> => Boolean(school))}
           canDelete={board.canDelete(conference.id)}
           showTierMove={board.state.mode === "tiers"}
+          collapsed={collapsedIds.has(conference.id)}
+          onToggleCollapsed={() => onToggleCollapsed(conference.id)}
           onRename={(name) => board.renameConference(conference.id, name)}
           onRecolor={(color) => board.recolorConference(conference.id, color)}
           onDelete={() => board.requestDelete(conference)}

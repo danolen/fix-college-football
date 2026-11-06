@@ -2,7 +2,7 @@
   {
     "id": "2026",
     "label": "2026",
-    "detail": "FBS membership for the 2026 season. The Pac-12 adds six schools. North Dakota State and Sacramento State start FBS play.",
+    "detail": "FBS membership for the 2026 season. Boise State, Colorado State, Fresno State, San Diego State, Texas State, and Utah State join the Pac-12. North Dakota State, Northern Illinois, and UTEP join the Mountain West. Louisiana Tech joins the Sun Belt, and Sacramento State starts FBS play in the MAC.",
     "basedOn2026": true,
     "conferences": [
       {
@@ -446,7 +446,7 @@
   {
     "id": "2024",
     "label": "2024",
-    "detail": "FBS membership for the 2024 season. Oklahoma and Texas join the SEC. The Pac-12 is down to Oregon State and Washington State. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
+    "detail": "FBS membership for the 2024 season. Oklahoma and Texas join the SEC. Oregon, UCLA, USC, and Washington join the Big Ten. Arizona, Arizona State, Colorado, and Utah join the Big 12. California, Stanford, and SMU join the ACC. Army joins the American, and Kennesaw State starts FBS play in Conference USA. The Pac-12 is down to Oregon State and Washington State. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
     "basedOn2026": false,
     "conferences": [
       {
@@ -665,7 +665,7 @@
   {
     "id": "2023",
     "label": "2023",
-    "detail": "FBS membership for the 2023 season. BYU, Cincinnati, Houston, and UCF join the Big 12. Oklahoma and Texas are still in the Big 12. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
+    "detail": "FBS membership for the 2023 season. BYU, Cincinnati, Houston, and UCF join the Big 12. The American adds Charlotte, Florida Atlantic, North Texas, Rice, UAB, and UTSA. Liberty and New Mexico State join Conference USA, which also adds Jacksonville State and Sam Houston. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
     "basedOn2026": false,
     "conferences": [
       {
@@ -1529,7 +1529,7 @@
   {
     "id": "2019",
     "label": "2019",
-    "detail": "FBS membership for the 2019 season. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
+    "detail": "FBS membership for the 2019 season. No teams change conferences. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
     "basedOn2026": false,
     "conferences": [
       {
@@ -2600,7 +2600,7 @@
   {
     "id": "2014",
     "label": "2014",
-    "detail": "FBS membership for the 2014 season. Maryland and Rutgers join the Big Ten, and Louisville joins the ACC. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
+    "detail": "FBS membership for the 2014 season. Maryland and Rutgers join the Big Ten, and Louisville joins the ACC. East Carolina, Tulane, and Tulsa join the American. Western Kentucky joins Conference USA, which also adds Old Dominion. Appalachian State, Georgia Southern, Idaho, and New Mexico State join the Sun Belt. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
     "basedOn2026": false,
     "conferences": [
       {
@@ -2813,7 +2813,7 @@
   {
     "id": "2013",
     "label": "2013",
-    "detail": "FBS membership for the 2013 season. The American replaces Big East football. Pittsburgh and Syracuse join the ACC, and the WAC drops football. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
+    "detail": "FBS membership for the 2013 season. Pittsburgh and Syracuse join the ACC. Big East football becomes the American and adds Houston, Memphis, SMU, and UCF. Conference USA adds Florida Atlantic, FIU, Middle Tennessee, North Texas, Louisiana Tech, and UTSA. San Jose State and Utah State join the Mountain West. Texas State moves to the Sun Belt, which also adds Georgia State. Idaho and New Mexico State become independent, and the WAC drops football. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
     "basedOn2026": false,
     "conferences": [
       {
@@ -3023,7 +3023,7 @@
   {
     "id": "2012",
     "label": "2012",
-    "detail": "FBS membership for the 2012 season. Missouri and Texas A&M join the SEC. TCU and West Virginia join the Big 12. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
+    "detail": "FBS membership for the 2012 season. Missouri and Texas A&M join the SEC. TCU and West Virginia join the Big 12, and Temple joins the Big East. Fresno State, Hawai'i, and Nevada join the Mountain West. UMass joins the MAC, South Alabama joins the Sun Belt, and Texas State and UTSA start FBS play in the WAC. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
     "basedOn2026": false,
     "conferences": [
       {
@@ -3239,7 +3239,7 @@
   {
     "id": "2011",
     "label": "2011",
-    "detail": "FBS membership for the 2011 season. Nebraska joins the Big Ten. Colorado and Utah join the Pac-12, and BYU becomes an independent. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
+    "detail": "FBS membership for the 2011 season. Nebraska joins the Big Ten. Colorado and Utah join the Pac-12, and the Pac-10 takes that name. Boise State joins the Mountain West, and BYU becomes an independent. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
     "basedOn2026": false,
     "conferences": [
       {

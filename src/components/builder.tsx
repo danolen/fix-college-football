@@ -78,11 +78,11 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
     <div className="flex flex-col gap-5">
       <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
         <div className="flex min-w-0 flex-col gap-2">
-          <label className="flex w-fit items-center gap-2 text-sm">
-            <span className="font-medium">Season</span>
+          <label className="flex max-w-full flex-wrap items-center gap-2 text-sm">
+            <span className="font-medium">Start with conferences from season</span>
             <span className="relative">
               <select
-                aria-label="Season preset"
+                aria-label="Start with conferences from season"
                 data-testid="preset-select"
                 className="h-7 appearance-none rounded-lg border border-border bg-background pr-8 pl-2.5 text-[0.8rem] font-medium outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
                 value={board.state.presetId ?? "custom"}

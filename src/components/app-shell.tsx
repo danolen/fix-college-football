@@ -205,7 +205,7 @@ export function AppShell() {
                   Fix College Football
                 </p>
                 <p className="mt-1 font-serif text-sm text-muted-foreground sm:text-base">
-                  I tried to fix college football.
+                  The current conferences are just not it. Let’s see if you can fix them.
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-2">

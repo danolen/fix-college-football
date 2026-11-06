@@ -128,7 +128,12 @@ export function AppShell() {
   }
 
   function commitPreset(preset: Preset) {
-    commit(applyPreset(preset, state.mode, makeId))
+    commit(
+      applyPreset(preset, state.mode, makeId, {
+        fbsIds: fbs.map((school) => school.id),
+        fcsIds: fcs.map((school) => school.id),
+      }),
+    )
     setTab("build")
   }
 

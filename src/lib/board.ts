@@ -30,30 +30,38 @@ export function createBlankBoard(ids: () => string): BoardState {
   return { mode: "flat", conferences, addedFcsIds: [], ignoredIds: [], presetId: "blank" }
 }
 
-export function applyPreset(preset: Preset, mode: Mode, ids: () => string): BoardState {
+export function applyPreset(
+  preset: Preset,
+  mode: Mode,
+  ids: () => string,
+  levels?: { fbsIds?: readonly string[]; fcsIds?: readonly string[] },
+): BoardState {
+  const conferences = preset.conferences.map((conference) => {
+    const schoolIds = [...conference.schools]
+    const allowed = new Set(schoolIds)
+    const divisions = (conference.divisions ?? [])
+      .filter((division) => division.name.trim())
+      .map((division) => ({
+        id: ids(),
+        name: division.name.trim(),
+        schoolIds: division.schools.filter((id) => allowed.has(id)),
+      }))
+    return {
+      id: ids(),
+      name: conference.name,
+      tier: conference.tier,
+      color: conference.color,
+      schoolIds,
+      ...(divisions.length > 0 ? { divisions } : {}),
+    }
+  })
+  const placed = new Set(conferences.flatMap((conference) => conference.schoolIds))
+  const fcsIds = new Set(levels?.fcsIds ?? [])
   return {
     mode,
-    conferences: preset.conferences.map((conference) => {
-      const schoolIds = [...conference.schools]
-      const allowed = new Set(schoolIds)
-      const divisions = (conference.divisions ?? [])
-        .filter((division) => division.name.trim())
-        .map((division) => ({
-          id: ids(),
-          name: division.name.trim(),
-          schoolIds: division.schools.filter((id) => allowed.has(id)),
-        }))
-      return {
-        id: ids(),
-        name: conference.name,
-        tier: conference.tier,
-        color: conference.color,
-        schoolIds,
-        ...(divisions.length > 0 ? { divisions } : {}),
-      }
-    }),
-    addedFcsIds: [],
-    ignoredIds: [],
+    conferences,
+    addedFcsIds: [...placed].filter((id) => fcsIds.has(id)),
+    ignoredIds: [...new Set(levels?.fbsIds ?? [])].filter((id) => !placed.has(id)),
     presetId: preset.id,
   }
 }

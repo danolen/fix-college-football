@@ -103,7 +103,7 @@ function readInitial(): BoardSnapshot {
   try {
     const saved = readSavedBoard()
     if (!saved) return { board: createBlankBoard(makeId), loadError: null }
-    return { board: sanitize(saved), loadError: null }
+    return { board: sanitizeBoard(saved), loadError: null }
   } catch {
     return {
       board: createBlankBoard(makeId),
@@ -175,11 +175,12 @@ export function readMapPrefs(): MapPrefs {
   return parseMapPrefs(window.localStorage.getItem(MAP_KEY))
 }
 
-function sanitize(saved: BoardState): BoardState {
+export function sanitizeBoard(saved: BoardState): BoardState {
   const schoolsById = new Map(catalog.schools.map((school) => [school.id, school]))
   const fcsIds = new Set(catalog.schools.filter((school) => school.level === "fcs").map((school) => school.id))
   const fbsIds = new Set(catalog.schools.filter((school) => school.level === "fbs").map((school) => school.id))
-  const added = saved.addedFcsIds.filter((id) => fcsIds.has(id))
+  const placedFcs = saved.conferences.flatMap((conference) => conference.schoolIds).filter((id) => fcsIds.has(id))
+  const added = [...new Set([...saved.addedFcsIds.filter((id) => fcsIds.has(id)), ...placedFcs])]
   const allowed = new Set<string>([...fbsIds, ...added])
   const ignored = new Set(saved.ignoredIds.filter((id) => allowed.has(id) && schoolsById.has(id)))
   const conferences = saved.conferences

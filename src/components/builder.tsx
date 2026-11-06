@@ -69,6 +69,7 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
   const selectedUnassigned = drag.selectedIds.filter((id) => unassigned.some((school) => school.id === id))
   const selectedIgnored = drag.selectedIds.filter((id) => ignored.has(id))
   const groupCount = board.state.conferences.filter((conference) => conference.tier === "group").length
+  const activePreset = board.catalog.presets.find((preset) => preset.id === board.state.presetId) ?? null
   const short = board.state.conferences.filter(
     (conference) => !isIndependents(conference) && conference.schoolIds.length < 2,
   )
@@ -76,28 +77,32 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
-        <div className="flex gap-2 overflow-x-auto pb-1">
-          {board.catalog.presets.map((preset) => (
+        <div className="flex min-w-0 flex-col gap-2">
+          <div className="flex flex-wrap gap-2">
+            {board.catalog.presets.map((preset) => (
+              <Button
+                key={preset.id}
+                type="button"
+                size="sm"
+                variant={board.state.presetId === preset.id ? "default" : "outline"}
+                data-testid={`preset-${preset.id}`}
+                title={preset.detail}
+                onClick={() => board.requestPreset(preset)}
+              >
+                {preset.label}
+              </Button>
+            ))}
             <Button
-              key={preset.id}
               type="button"
               size="sm"
-              variant={board.state.presetId === preset.id ? "default" : "outline"}
-              data-testid={`preset-${preset.id}`}
-              onClick={() => board.requestPreset(preset)}
+              variant={board.state.presetId === "blank" ? "default" : "outline"}
+              data-testid="preset-blank"
+              onClick={board.requestBlank}
             >
-              {preset.label}
+              Blank
             </Button>
-          ))}
-          <Button
-            type="button"
-            size="sm"
-            variant={board.state.presetId === "blank" ? "default" : "outline"}
-            data-testid="preset-blank"
-            onClick={board.requestBlank}
-          >
-            Blank
-          </Button>
+          </div>
+          {activePreset ? <p className="max-w-3xl text-sm text-muted-foreground">{activePreset.detail}</p> : null}
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <div className="inline-flex rounded-lg border bg-card p-0.5" role="group" aria-label="Conference structure">

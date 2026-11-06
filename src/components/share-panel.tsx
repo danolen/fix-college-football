@@ -1,22 +1,39 @@
 "use client"
 
-import { useRef, useState } from "react"
-import { toPng } from "html-to-image"
+import { useEffect, useRef, useState } from "react"
+import { toBlob } from "html-to-image"
 import { toast } from "sonner"
 import { Download, Share2 } from "lucide-react"
 import { MapView } from "@/components/map-view"
 import { SchoolTileFace } from "@/components/school-tile"
 import { useBoard } from "@/components/board-context"
 import { Button } from "@/components/ui/button"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
 import { conferenceDivisions, undividedSchoolIds } from "@/lib/board"
-import { downloadSvgPng } from "@/lib/download"
+import { canvasPixelRatio, needsShareSheet, savePngBlob, sharePngFile, svgElementToPngBlob, withTimeout } from "@/lib/download"
 import { shareText } from "@/lib/scoring"
+
+type PicturePreview = {
+  url: string
+  filename: string
+  blob: Blob
+  label: string
+}
 
 export function SharePanel() {
   const board = useBoard()
   const gridRef = useRef<HTMLDivElement>(null)
   const mapFrame = useRef<HTMLDivElement>(null)
   const [busy, setBusy] = useState<"grid" | "map" | null>(null)
+  const [preview, setPreview] = useState<PicturePreview | null>(null)
+  const previewRef = useRef<PicturePreview | null>(null)
   const text = shareText(board.scoreKept, board.scoreTotal)
   const outside = board.state.conferences.filter((conference) => conference.tier === "none")
   const sections =
@@ -31,17 +48,73 @@ export function SharePanel() {
         ]
       : [{ title: "Conferences", conferences: board.state.conferences }]
 
+  useEffect(() => {
+    previewRef.current = preview
+  }, [preview])
+
+  useEffect(() => {
+    return () => {
+      if (previewRef.current) URL.revokeObjectURL(previewRef.current.url)
+    }
+  }, [])
+
+  function closePreview() {
+    setPreview((current) => {
+      if (current) URL.revokeObjectURL(current.url)
+      return null
+    })
+  }
+
+  function showPreview(next: PicturePreview) {
+    setPreview((current) => {
+      if (current) URL.revokeObjectURL(current.url)
+      return next
+    })
+  }
+
+  async function keepPicture(blob: Blob, filename: string, label: string) {
+    const result = await savePngBlob(blob, filename)
+    if (result === "cancelled") return
+    if (result === "preview") {
+      showPreview({ url: URL.createObjectURL(blob), filename, blob, label })
+      return
+    }
+    toast.success(result === "shared" ? `Saved the ${label}.` : `Downloaded the ${label}.`)
+  }
+
+  async function saveFromPreview() {
+    if (!preview) return
+    const result = await sharePngFile(preview.blob, preview.filename)
+    if (result === "cancelled") return
+    if (result === "shared") {
+      toast.success(`Saved the ${preview.label}.`)
+      closePreview()
+      return
+    }
+    toast.message(`Press and hold the picture, then tap Add to Photos.`)
+  }
+
   async function saveGrid() {
     const node = gridRef.current
     if (!node) return
     setBusy("grid")
     try {
-      const url = await toPng(node, { pixelRatio: 2, backgroundColor: "#f3ead7", cacheBust: true })
-      const link = document.createElement("a")
-      link.href = url
-      link.download = "fix-college-football-grid.png"
-      link.click()
-      toast.success("Downloaded the grid.")
+      const ios = needsShareSheet({
+        userAgent: navigator.userAgent,
+        platform: navigator.platform,
+        maxTouchPoints: navigator.maxTouchPoints ?? 0,
+      })
+      const blob = await withTimeout(
+        toBlob(node, {
+          pixelRatio: canvasPixelRatio(node.scrollWidth, node.scrollHeight),
+          backgroundColor: "#f3ead7",
+          cacheBust: !ios,
+          skipFonts: ios,
+        }),
+        20000,
+      )
+      if (!blob) throw new Error("The grid image could not be saved.")
+      await keepPicture(blob, "fix-college-football-grid.png", "grid")
     } catch {
       toast.error("The grid image could not be saved.")
     } finally {
@@ -57,8 +130,8 @@ export function SharePanel() {
     }
     setBusy("map")
     try {
-      await downloadSvgPng(svg, "fix-college-football-map.png")
-      toast.success("Downloaded the map.")
+      const blob = await svgElementToPngBlob(svg)
+      await keepPicture(blob, "fix-college-football-map.png", "map")
     } catch {
       toast.error("The map image could not be saved.")
     } finally {
@@ -104,7 +177,7 @@ export function SharePanel() {
           </Button>
         </div>
         <p className="mt-3 text-xs text-muted-foreground">
-          Posting sends the text only. The pictures stay on this device — download them if you want to attach one.
+          Posting sends the text only. The pictures stay on this device — download them if you want to attach one. On iPhone, Download opens the share sheet so you can tap Save Image.
         </p>
       </div>
 
@@ -171,6 +244,35 @@ export function SharePanel() {
           />
         </div>
       </div>
+
+      <Dialog open={preview !== null} onOpenChange={(open) => !open && closePreview()}>
+        <DialogContent className="max-h-[calc(100%-2rem)] overflow-y-auto sm:max-w-3xl">
+          <DialogHeader>
+            <DialogTitle>Save the {preview?.label}</DialogTitle>
+            <DialogDescription>
+              Press and hold the picture, then tap Add to Photos. Save opens the share sheet when this iPhone allows it.
+            </DialogDescription>
+          </DialogHeader>
+          {preview && (
+            // eslint-disable-next-line @next/next/no-img-element -- a blob preview the user long-presses to save on iPhone
+            <img
+              src={preview.url}
+              alt={`Fix College Football ${preview.label}`}
+              className="max-h-[70vh] w-full rounded-lg object-contain"
+              style={{ WebkitTouchCallout: "default" }}
+            />
+          )}
+          <DialogFooter>
+            <Button type="button" variant="outline" onClick={closePreview}>
+              Close
+            </Button>
+            <Button type="button" onClick={saveFromPreview}>
+              <Download />
+              Save
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }

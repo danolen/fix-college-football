@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useState } from "react"
-import { EyeOff, Plus, Undo2 } from "lucide-react"
+import { ChevronDown, EyeOff, Plus, Undo2 } from "lucide-react"
 import { useDrag } from "@/components/drag-context"
 import { ConferenceRow } from "@/components/conference-row"
 import { FcsPicker } from "@/components/fcs-picker"
@@ -69,6 +69,7 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
   const selectedUnassigned = drag.selectedIds.filter((id) => unassigned.some((school) => school.id === id))
   const selectedIgnored = drag.selectedIds.filter((id) => ignored.has(id))
   const groupCount = board.state.conferences.filter((conference) => conference.tier === "group").length
+  const activePreset = board.catalog.presets.find((preset) => preset.id === board.state.presetId) ?? null
   const short = board.state.conferences.filter(
     (conference) => !isIndependents(conference) && conference.schoolIds.length < 2,
   )
@@ -76,28 +77,37 @@ export function Builder({ onInspect }: { onInspect: (id: string) => void }) {
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
-        <div className="flex gap-2 overflow-x-auto pb-1">
-          {board.catalog.presets.map((preset) => (
-            <Button
-              key={preset.id}
-              type="button"
-              size="sm"
-              variant={board.state.presetId === preset.id ? "default" : "outline"}
-              data-testid={`preset-${preset.id}`}
-              onClick={() => board.requestPreset(preset)}
-            >
-              {preset.label}
-            </Button>
-          ))}
-          <Button
-            type="button"
-            size="sm"
-            variant={board.state.presetId === "blank" ? "default" : "outline"}
-            data-testid="preset-blank"
-            onClick={board.requestBlank}
-          >
-            Blank
-          </Button>
+        <div className="flex min-w-0 flex-col gap-2">
+          <label className="flex max-w-full flex-wrap items-center gap-2 text-sm">
+            <span className="font-medium">Start with conferences from season</span>
+            <span className="relative">
+              <select
+                aria-label="Start with conferences from season"
+                data-testid="preset-select"
+                className="h-7 appearance-none rounded-lg border border-border bg-background pr-8 pl-2.5 text-[0.8rem] font-medium outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+                value={board.state.presetId ?? "custom"}
+                onChange={(event) => {
+                  const id = event.target.value
+                  if (id === "blank") {
+                    board.requestBlank()
+                    return
+                  }
+                  const preset = board.catalog.presets.find((item) => item.id === id)
+                  if (preset) board.requestPreset(preset)
+                }}
+              >
+                {board.state.presetId == null ? <option value="custom">Custom</option> : null}
+                {board.catalog.presets.map((preset) => (
+                  <option key={preset.id} value={preset.id}>
+                    {preset.label}
+                  </option>
+                ))}
+                <option value="blank">Blank</option>
+              </select>
+              <ChevronDown className="pointer-events-none absolute top-1/2 right-2 size-3.5 -translate-y-1/2 text-muted-foreground" />
+            </span>
+          </label>
+          {activePreset ? <p className="max-w-3xl text-sm text-muted-foreground">{activePreset.detail}</p> : null}
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <div className="inline-flex rounded-lg border bg-card p-0.5" role="group" aria-label="Conference structure">

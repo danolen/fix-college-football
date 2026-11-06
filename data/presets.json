@@ -1,8 +1,8 @@
 [
   {
     "id": "2026",
-    "label": "2026 conferences",
-    "detail": "FBS membership for 2026. Notre Dame and UConn sit in Independents, outside Power and Group of X.",
+    "label": "2026",
+    "detail": "FBS membership for the 2026 season. The Pac-12 adds six schools. North Dakota State and Sacramento State start FBS play.",
     "basedOn2026": true,
     "conferences": [
       {
@@ -218,6 +218,3444 @@
         "schools": [
           "notre-dame",
           "uconn"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2025",
+    "label": "2025",
+    "detail": "FBS membership for the 2025 season. Delaware and Missouri State start FBS play in Conference USA. UMass returns to the MAC. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
+    "basedOn2026": false,
+    "conferences": [
+      {
+        "name": "ACC",
+        "tier": "power",
+        "color": "#1D4E89",
+        "schools": [
+          "boston-college",
+          "california",
+          "clemson",
+          "duke",
+          "florida-state",
+          "georgia-tech",
+          "louisville",
+          "miami-fl",
+          "nc-state",
+          "north-carolina",
+          "pittsburgh",
+          "smu",
+          "stanford",
+          "syracuse",
+          "virginia",
+          "virginia-tech",
+          "wake-forest"
+        ]
+      },
+      {
+        "name": "Big Ten",
+        "tier": "power",
+        "color": "#9E2A2B",
+        "schools": [
+          "illinois",
+          "indiana",
+          "iowa",
+          "maryland",
+          "michigan",
+          "michigan-state",
+          "minnesota",
+          "nebraska",
+          "northwestern",
+          "ohio-state",
+          "oregon",
+          "penn-state",
+          "purdue",
+          "rutgers",
+          "ucla",
+          "usc",
+          "washington",
+          "wisconsin"
+        ]
+      },
+      {
+        "name": "Big 12",
+        "tier": "power",
+        "color": "#C2410C",
+        "schools": [
+          "arizona",
+          "arizona-state",
+          "baylor",
+          "byu",
+          "cincinnati",
+          "colorado",
+          "houston",
+          "iowa-state",
+          "kansas",
+          "kansas-state",
+          "oklahoma-state",
+          "tcu",
+          "texas-tech",
+          "ucf",
+          "utah",
+          "west-virginia"
+        ]
+      },
+      {
+        "name": "SEC",
+        "tier": "power",
+        "color": "#6D28D9",
+        "schools": [
+          "alabama",
+          "arkansas",
+          "auburn",
+          "florida",
+          "georgia",
+          "kentucky",
+          "lsu",
+          "mississippi-state",
+          "missouri",
+          "oklahoma",
+          "ole-miss",
+          "south-carolina",
+          "tennessee",
+          "texas",
+          "texas-a-m",
+          "vanderbilt"
+        ]
+      },
+      {
+        "name": "American",
+        "tier": "group",
+        "color": "#0E7490",
+        "schools": [
+          "army",
+          "charlotte",
+          "east-carolina",
+          "florida-atlantic",
+          "memphis",
+          "navy",
+          "north-texas",
+          "rice",
+          "south-florida",
+          "temple",
+          "tulane",
+          "tulsa",
+          "uab",
+          "utsa"
+        ]
+      },
+      {
+        "name": "Conference USA",
+        "tier": "group",
+        "color": "#B45309",
+        "schools": [
+          "delaware",
+          "fiu",
+          "jacksonville-state",
+          "kennesaw-state",
+          "liberty",
+          "louisiana-tech",
+          "middle-tennessee",
+          "missouri-state",
+          "new-mexico-state",
+          "sam-houston",
+          "utep",
+          "western-kentucky"
+        ]
+      },
+      {
+        "name": "MAC",
+        "tier": "group",
+        "color": "#0F6E56",
+        "schools": [
+          "akron",
+          "ball-state",
+          "bowling-green",
+          "buffalo",
+          "central-michigan",
+          "eastern-michigan",
+          "kent-state",
+          "miami-oh",
+          "northern-illinois",
+          "ohio",
+          "toledo",
+          "umass",
+          "western-michigan"
+        ]
+      },
+      {
+        "name": "Mountain West",
+        "tier": "group",
+        "color": "#1E3A8A",
+        "schools": [
+          "air-force",
+          "boise-state",
+          "colorado-state",
+          "fresno-state",
+          "hawaii",
+          "nevada",
+          "new-mexico",
+          "san-diego-state",
+          "san-jose-state",
+          "unlv",
+          "utah-state",
+          "wyoming"
+        ]
+      },
+      {
+        "name": "Pac-12",
+        "tier": "group",
+        "color": "#4C1D95",
+        "schools": [
+          "oregon-state",
+          "washington-state"
+        ]
+      },
+      {
+        "name": "Sun Belt",
+        "tier": "group",
+        "color": "#9A3412",
+        "schools": [
+          "appalachian-state",
+          "arkansas-state",
+          "coastal-carolina",
+          "georgia-southern",
+          "georgia-state",
+          "james-madison",
+          "louisiana",
+          "marshall",
+          "old-dominion",
+          "south-alabama",
+          "southern-miss",
+          "texas-state",
+          "troy",
+          "ulm"
+        ]
+      },
+      {
+        "name": "Independents",
+        "tier": "none",
+        "color": "#57534E",
+        "schools": [
+          "notre-dame",
+          "uconn"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2024",
+    "label": "2024",
+    "detail": "FBS membership for the 2024 season. Oklahoma and Texas join the SEC. The Pac-12 is down to Oregon State and Washington State. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
+    "basedOn2026": false,
+    "conferences": [
+      {
+        "name": "ACC",
+        "tier": "power",
+        "color": "#1D4E89",
+        "schools": [
+          "boston-college",
+          "california",
+          "clemson",
+          "duke",
+          "florida-state",
+          "georgia-tech",
+          "louisville",
+          "miami-fl",
+          "nc-state",
+          "north-carolina",
+          "pittsburgh",
+          "smu",
+          "stanford",
+          "syracuse",
+          "virginia",
+          "virginia-tech",
+          "wake-forest"
+        ]
+      },
+      {
+        "name": "Big Ten",
+        "tier": "power",
+        "color": "#9E2A2B",
+        "schools": [
+          "illinois",
+          "indiana",
+          "iowa",
+          "maryland",
+          "michigan",
+          "michigan-state",
+          "minnesota",
+          "nebraska",
+          "northwestern",
+          "ohio-state",
+          "oregon",
+          "penn-state",
+          "purdue",
+          "rutgers",
+          "ucla",
+          "usc",
+          "washington",
+          "wisconsin"
+        ]
+      },
+      {
+        "name": "Big 12",
+        "tier": "power",
+        "color": "#C2410C",
+        "schools": [
+          "arizona",
+          "arizona-state",
+          "baylor",
+          "byu",
+          "cincinnati",
+          "colorado",
+          "houston",
+          "iowa-state",
+          "kansas",
+          "kansas-state",
+          "oklahoma-state",
+          "tcu",
+          "texas-tech",
+          "ucf",
+          "utah",
+          "west-virginia"
+        ]
+      },
+      {
+        "name": "SEC",
+        "tier": "power",
+        "color": "#6D28D9",
+        "schools": [
+          "alabama",
+          "arkansas",
+          "auburn",
+          "florida",
+          "georgia",
+          "kentucky",
+          "lsu",
+          "mississippi-state",
+          "missouri",
+          "oklahoma",
+          "ole-miss",
+          "south-carolina",
+          "tennessee",
+          "texas",
+          "texas-a-m",
+          "vanderbilt"
+        ]
+      },
+      {
+        "name": "American",
+        "tier": "group",
+        "color": "#0E7490",
+        "schools": [
+          "army",
+          "charlotte",
+          "east-carolina",
+          "florida-atlantic",
+          "memphis",
+          "navy",
+          "north-texas",
+          "rice",
+          "south-florida",
+          "temple",
+          "tulane",
+          "tulsa",
+          "uab",
+          "utsa"
+        ]
+      },
+      {
+        "name": "Conference USA",
+        "tier": "group",
+        "color": "#B45309",
+        "schools": [
+          "fiu",
+          "jacksonville-state",
+          "kennesaw-state",
+          "liberty",
+          "louisiana-tech",
+          "middle-tennessee",
+          "new-mexico-state",
+          "sam-houston",
+          "utep",
+          "western-kentucky"
+        ]
+      },
+      {
+        "name": "MAC",
+        "tier": "group",
+        "color": "#0F6E56",
+        "schools": [
+          "akron",
+          "ball-state",
+          "bowling-green",
+          "buffalo",
+          "central-michigan",
+          "eastern-michigan",
+          "kent-state",
+          "miami-oh",
+          "northern-illinois",
+          "ohio",
+          "toledo",
+          "western-michigan"
+        ]
+      },
+      {
+        "name": "Mountain West",
+        "tier": "group",
+        "color": "#1E3A8A",
+        "schools": [
+          "air-force",
+          "boise-state",
+          "colorado-state",
+          "fresno-state",
+          "hawaii",
+          "nevada",
+          "new-mexico",
+          "san-diego-state",
+          "san-jose-state",
+          "unlv",
+          "utah-state",
+          "wyoming"
+        ]
+      },
+      {
+        "name": "Pac-12",
+        "tier": "group",
+        "color": "#4C1D95",
+        "schools": [
+          "oregon-state",
+          "washington-state"
+        ]
+      },
+      {
+        "name": "Sun Belt",
+        "tier": "group",
+        "color": "#9A3412",
+        "schools": [
+          "appalachian-state",
+          "arkansas-state",
+          "coastal-carolina",
+          "georgia-southern",
+          "georgia-state",
+          "james-madison",
+          "louisiana",
+          "marshall",
+          "old-dominion",
+          "south-alabama",
+          "southern-miss",
+          "texas-state",
+          "troy",
+          "ulm"
+        ]
+      },
+      {
+        "name": "Independents",
+        "tier": "none",
+        "color": "#57534E",
+        "schools": [
+          "notre-dame",
+          "uconn",
+          "umass"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2023",
+    "label": "2023",
+    "detail": "FBS membership for the 2023 season. BYU, Cincinnati, Houston, and UCF join the Big 12. Oklahoma and Texas are still in the Big 12. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
+    "basedOn2026": false,
+    "conferences": [
+      {
+        "name": "ACC",
+        "tier": "power",
+        "color": "#1D4E89",
+        "schools": [
+          "boston-college",
+          "clemson",
+          "duke",
+          "florida-state",
+          "georgia-tech",
+          "louisville",
+          "miami-fl",
+          "nc-state",
+          "north-carolina",
+          "pittsburgh",
+          "syracuse",
+          "virginia",
+          "virginia-tech",
+          "wake-forest"
+        ]
+      },
+      {
+        "name": "Big Ten",
+        "tier": "power",
+        "color": "#9E2A2B",
+        "schools": [
+          "illinois",
+          "indiana",
+          "iowa",
+          "maryland",
+          "michigan",
+          "michigan-state",
+          "minnesota",
+          "nebraska",
+          "northwestern",
+          "ohio-state",
+          "penn-state",
+          "purdue",
+          "rutgers",
+          "wisconsin"
+        ]
+      },
+      {
+        "name": "Big 12",
+        "tier": "power",
+        "color": "#C2410C",
+        "schools": [
+          "baylor",
+          "byu",
+          "cincinnati",
+          "houston",
+          "iowa-state",
+          "kansas",
+          "kansas-state",
+          "oklahoma",
+          "oklahoma-state",
+          "tcu",
+          "texas",
+          "texas-tech",
+          "ucf",
+          "west-virginia"
+        ]
+      },
+      {
+        "name": "Pac-12",
+        "tier": "power",
+        "color": "#4C1D95",
+        "schools": [
+          "arizona",
+          "arizona-state",
+          "california",
+          "colorado",
+          "oregon",
+          "oregon-state",
+          "stanford",
+          "ucla",
+          "usc",
+          "utah",
+          "washington",
+          "washington-state"
+        ]
+      },
+      {
+        "name": "SEC",
+        "tier": "power",
+        "color": "#6D28D9",
+        "schools": [
+          "alabama",
+          "arkansas",
+          "auburn",
+          "florida",
+          "georgia",
+          "kentucky",
+          "lsu",
+          "mississippi-state",
+          "missouri",
+          "ole-miss",
+          "south-carolina",
+          "tennessee",
+          "texas-a-m",
+          "vanderbilt"
+        ]
+      },
+      {
+        "name": "American",
+        "tier": "group",
+        "color": "#0E7490",
+        "schools": [
+          "charlotte",
+          "east-carolina",
+          "florida-atlantic",
+          "memphis",
+          "navy",
+          "north-texas",
+          "rice",
+          "smu",
+          "south-florida",
+          "temple",
+          "tulane",
+          "tulsa",
+          "uab",
+          "utsa"
+        ]
+      },
+      {
+        "name": "Conference USA",
+        "tier": "group",
+        "color": "#B45309",
+        "schools": [
+          "fiu",
+          "jacksonville-state",
+          "liberty",
+          "louisiana-tech",
+          "middle-tennessee",
+          "new-mexico-state",
+          "sam-houston",
+          "utep",
+          "western-kentucky"
+        ]
+      },
+      {
+        "name": "MAC",
+        "tier": "group",
+        "color": "#0F6E56",
+        "schools": [
+          "akron",
+          "ball-state",
+          "bowling-green",
+          "buffalo",
+          "central-michigan",
+          "eastern-michigan",
+          "kent-state",
+          "miami-oh",
+          "northern-illinois",
+          "ohio",
+          "toledo",
+          "western-michigan"
+        ]
+      },
+      {
+        "name": "Mountain West",
+        "tier": "group",
+        "color": "#1E3A8A",
+        "schools": [
+          "air-force",
+          "boise-state",
+          "colorado-state",
+          "fresno-state",
+          "hawaii",
+          "nevada",
+          "new-mexico",
+          "san-diego-state",
+          "san-jose-state",
+          "unlv",
+          "utah-state",
+          "wyoming"
+        ]
+      },
+      {
+        "name": "Sun Belt",
+        "tier": "group",
+        "color": "#9A3412",
+        "schools": [
+          "appalachian-state",
+          "arkansas-state",
+          "coastal-carolina",
+          "georgia-southern",
+          "georgia-state",
+          "james-madison",
+          "louisiana",
+          "marshall",
+          "old-dominion",
+          "south-alabama",
+          "southern-miss",
+          "texas-state",
+          "troy",
+          "ulm"
+        ]
+      },
+      {
+        "name": "Independents",
+        "tier": "none",
+        "color": "#57534E",
+        "schools": [
+          "army",
+          "notre-dame",
+          "uconn",
+          "umass"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2022",
+    "label": "2022",
+    "detail": "FBS membership for the 2022 season. James Madison starts FBS play in the Sun Belt, which also adds Marshall, Old Dominion, and Southern Miss. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
+    "basedOn2026": false,
+    "conferences": [
+      {
+        "name": "ACC",
+        "tier": "power",
+        "color": "#1D4E89",
+        "schools": [
+          "boston-college",
+          "clemson",
+          "duke",
+          "florida-state",
+          "georgia-tech",
+          "louisville",
+          "miami-fl",
+          "nc-state",
+          "north-carolina",
+          "pittsburgh",
+          "syracuse",
+          "virginia",
+          "virginia-tech",
+          "wake-forest"
+        ]
+      },
+      {
+        "name": "Big Ten",
+        "tier": "power",
+        "color": "#9E2A2B",
+        "schools": [
+          "illinois",
+          "indiana",
+          "iowa",
+          "maryland",
+          "michigan",
+          "michigan-state",
+          "minnesota",
+          "nebraska",
+          "northwestern",
+          "ohio-state",
+          "penn-state",
+          "purdue",
+          "rutgers",
+          "wisconsin"
+        ]
+      },
+      {
+        "name": "Big 12",
+        "tier": "power",
+        "color": "#C2410C",
+        "schools": [
+          "baylor",
+          "iowa-state",
+          "kansas",
+          "kansas-state",
+          "oklahoma",
+          "oklahoma-state",
+          "tcu",
+          "texas",
+          "texas-tech",
+          "west-virginia"
+        ]
+      },
+      {
+        "name": "Pac-12",
+        "tier": "power",
+        "color": "#4C1D95",
+        "schools": [
+          "arizona",
+          "arizona-state",
+          "california",
+          "colorado",
+          "oregon",
+          "oregon-state",
+          "stanford",
+          "ucla",
+          "usc",
+          "utah",
+          "washington",
+          "washington-state"
+        ]
+      },
+      {
+        "name": "SEC",
+        "tier": "power",
+        "color": "#6D28D9",
+        "schools": [
+          "alabama",
+          "arkansas",
+          "auburn",
+          "florida",
+          "georgia",
+          "kentucky",
+          "lsu",
+          "mississippi-state",
+          "missouri",
+          "ole-miss",
+          "south-carolina",
+          "tennessee",
+          "texas-a-m",
+          "vanderbilt"
+        ]
+      },
+      {
+        "name": "American",
+        "tier": "group",
+        "color": "#0E7490",
+        "schools": [
+          "cincinnati",
+          "east-carolina",
+          "houston",
+          "memphis",
+          "navy",
+          "smu",
+          "south-florida",
+          "temple",
+          "tulane",
+          "tulsa",
+          "ucf"
+        ]
+      },
+      {
+        "name": "Conference USA",
+        "tier": "group",
+        "color": "#B45309",
+        "schools": [
+          "charlotte",
+          "fiu",
+          "florida-atlantic",
+          "louisiana-tech",
+          "middle-tennessee",
+          "north-texas",
+          "rice",
+          "uab",
+          "utep",
+          "utsa",
+          "western-kentucky"
+        ]
+      },
+      {
+        "name": "MAC",
+        "tier": "group",
+        "color": "#0F6E56",
+        "schools": [
+          "akron",
+          "ball-state",
+          "bowling-green",
+          "buffalo",
+          "central-michigan",
+          "eastern-michigan",
+          "kent-state",
+          "miami-oh",
+          "northern-illinois",
+          "ohio",
+          "toledo",
+          "western-michigan"
+        ]
+      },
+      {
+        "name": "Mountain West",
+        "tier": "group",
+        "color": "#1E3A8A",
+        "schools": [
+          "air-force",
+          "boise-state",
+          "colorado-state",
+          "fresno-state",
+          "hawaii",
+          "nevada",
+          "new-mexico",
+          "san-diego-state",
+          "san-jose-state",
+          "unlv",
+          "utah-state",
+          "wyoming"
+        ]
+      },
+      {
+        "name": "Sun Belt",
+        "tier": "group",
+        "color": "#9A3412",
+        "schools": [
+          "appalachian-state",
+          "arkansas-state",
+          "coastal-carolina",
+          "georgia-southern",
+          "georgia-state",
+          "james-madison",
+          "louisiana",
+          "marshall",
+          "old-dominion",
+          "south-alabama",
+          "southern-miss",
+          "texas-state",
+          "troy",
+          "ulm"
+        ]
+      },
+      {
+        "name": "Independents",
+        "tier": "none",
+        "color": "#57534E",
+        "schools": [
+          "army",
+          "byu",
+          "liberty",
+          "new-mexico-state",
+          "notre-dame",
+          "uconn",
+          "umass"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2021",
+    "label": "2021",
+    "detail": "FBS membership for the 2021 season. Notre Dame returns to independence. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
+    "basedOn2026": false,
+    "conferences": [
+      {
+        "name": "ACC",
+        "tier": "power",
+        "color": "#1D4E89",
+        "schools": [
+          "boston-college",
+          "clemson",
+          "duke",
+          "florida-state",
+          "georgia-tech",
+          "louisville",
+          "miami-fl",
+          "nc-state",
+          "north-carolina",
+          "pittsburgh",
+          "syracuse",
+          "virginia",
+          "virginia-tech",
+          "wake-forest"
+        ]
+      },
+      {
+        "name": "Big Ten",
+        "tier": "power",
+        "color": "#9E2A2B",
+        "schools": [
+          "illinois",
+          "indiana",
+          "iowa",
+          "maryland",
+          "michigan",
+          "michigan-state",
+          "minnesota",
+          "nebraska",
+          "northwestern",
+          "ohio-state",
+          "penn-state",
+          "purdue",
+          "rutgers",
+          "wisconsin"
+        ]
+      },
+      {
+        "name": "Big 12",
+        "tier": "power",
+        "color": "#C2410C",
+        "schools": [
+          "baylor",
+          "iowa-state",
+          "kansas",
+          "kansas-state",
+          "oklahoma",
+          "oklahoma-state",
+          "tcu",
+          "texas",
+          "texas-tech",
+          "west-virginia"
+        ]
+      },
+      {
+        "name": "Pac-12",
+        "tier": "power",
+        "color": "#4C1D95",
+        "schools": [
+          "arizona",
+          "arizona-state",
+          "california",
+          "colorado",
+          "oregon",
+          "oregon-state",
+          "stanford",
+          "ucla",
+          "usc",
+          "utah",
+          "washington",
+          "washington-state"
+        ]
+      },
+      {
+        "name": "SEC",
+        "tier": "power",
+        "color": "#6D28D9",
+        "schools": [
+          "alabama",
+          "arkansas",
+          "auburn",
+          "florida",
+          "georgia",
+          "kentucky",
+          "lsu",
+          "mississippi-state",
+          "missouri",
+          "ole-miss",
+          "south-carolina",
+          "tennessee",
+          "texas-a-m",
+          "vanderbilt"
+        ]
+      },
+      {
+        "name": "American",
+        "tier": "group",
+        "color": "#0E7490",
+        "schools": [
+          "cincinnati",
+          "east-carolina",
+          "houston",
+          "memphis",
+          "navy",
+          "smu",
+          "south-florida",
+          "temple",
+          "tulane",
+          "tulsa",
+          "ucf"
+        ]
+      },
+      {
+        "name": "Conference USA",
+        "tier": "group",
+        "color": "#B45309",
+        "schools": [
+          "charlotte",
+          "fiu",
+          "florida-atlantic",
+          "louisiana-tech",
+          "marshall",
+          "middle-tennessee",
+          "north-texas",
+          "old-dominion",
+          "rice",
+          "southern-miss",
+          "uab",
+          "utep",
+          "utsa",
+          "western-kentucky"
+        ]
+      },
+      {
+        "name": "MAC",
+        "tier": "group",
+        "color": "#0F6E56",
+        "schools": [
+          "akron",
+          "ball-state",
+          "bowling-green",
+          "buffalo",
+          "central-michigan",
+          "eastern-michigan",
+          "kent-state",
+          "miami-oh",
+          "northern-illinois",
+          "ohio",
+          "toledo",
+          "western-michigan"
+        ]
+      },
+      {
+        "name": "Mountain West",
+        "tier": "group",
+        "color": "#1E3A8A",
+        "schools": [
+          "air-force",
+          "boise-state",
+          "colorado-state",
+          "fresno-state",
+          "hawaii",
+          "nevada",
+          "new-mexico",
+          "san-diego-state",
+          "san-jose-state",
+          "unlv",
+          "utah-state",
+          "wyoming"
+        ]
+      },
+      {
+        "name": "Sun Belt",
+        "tier": "group",
+        "color": "#9A3412",
+        "schools": [
+          "appalachian-state",
+          "arkansas-state",
+          "coastal-carolina",
+          "georgia-southern",
+          "georgia-state",
+          "louisiana",
+          "south-alabama",
+          "texas-state",
+          "troy",
+          "ulm"
+        ]
+      },
+      {
+        "name": "Independents",
+        "tier": "none",
+        "color": "#57534E",
+        "schools": [
+          "army",
+          "byu",
+          "liberty",
+          "new-mexico-state",
+          "notre-dame",
+          "uconn",
+          "umass"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2020",
+    "label": "2020",
+    "detail": "FBS membership for the 2020 season. Notre Dame plays the season in the ACC. UConn becomes an independent. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
+    "basedOn2026": false,
+    "conferences": [
+      {
+        "name": "ACC",
+        "tier": "power",
+        "color": "#1D4E89",
+        "schools": [
+          "boston-college",
+          "clemson",
+          "duke",
+          "florida-state",
+          "georgia-tech",
+          "louisville",
+          "miami-fl",
+          "nc-state",
+          "north-carolina",
+          "notre-dame",
+          "pittsburgh",
+          "syracuse",
+          "virginia",
+          "virginia-tech",
+          "wake-forest"
+        ]
+      },
+      {
+        "name": "Big Ten",
+        "tier": "power",
+        "color": "#9E2A2B",
+        "schools": [
+          "illinois",
+          "indiana",
+          "iowa",
+          "maryland",
+          "michigan",
+          "michigan-state",
+          "minnesota",
+          "nebraska",
+          "northwestern",
+          "ohio-state",
+          "penn-state",
+          "purdue",
+          "rutgers",
+          "wisconsin"
+        ]
+      },
+      {
+        "name": "Big 12",
+        "tier": "power",
+        "color": "#C2410C",
+        "schools": [
+          "baylor",
+          "iowa-state",
+          "kansas",
+          "kansas-state",
+          "oklahoma",
+          "oklahoma-state",
+          "tcu",
+          "texas",
+          "texas-tech",
+          "west-virginia"
+        ]
+      },
+      {
+        "name": "Pac-12",
+        "tier": "power",
+        "color": "#4C1D95",
+        "schools": [
+          "arizona",
+          "arizona-state",
+          "california",
+          "colorado",
+          "oregon",
+          "oregon-state",
+          "stanford",
+          "ucla",
+          "usc",
+          "utah",
+          "washington",
+          "washington-state"
+        ]
+      },
+      {
+        "name": "SEC",
+        "tier": "power",
+        "color": "#6D28D9",
+        "schools": [
+          "alabama",
+          "arkansas",
+          "auburn",
+          "florida",
+          "georgia",
+          "kentucky",
+          "lsu",
+          "mississippi-state",
+          "missouri",
+          "ole-miss",
+          "south-carolina",
+          "tennessee",
+          "texas-a-m",
+          "vanderbilt"
+        ]
+      },
+      {
+        "name": "American",
+        "tier": "group",
+        "color": "#0E7490",
+        "schools": [
+          "cincinnati",
+          "east-carolina",
+          "houston",
+          "memphis",
+          "navy",
+          "smu",
+          "south-florida",
+          "temple",
+          "tulane",
+          "tulsa",
+          "ucf"
+        ]
+      },
+      {
+        "name": "Conference USA",
+        "tier": "group",
+        "color": "#B45309",
+        "schools": [
+          "charlotte",
+          "fiu",
+          "florida-atlantic",
+          "louisiana-tech",
+          "marshall",
+          "middle-tennessee",
+          "north-texas",
+          "old-dominion",
+          "rice",
+          "southern-miss",
+          "uab",
+          "utep",
+          "utsa",
+          "western-kentucky"
+        ]
+      },
+      {
+        "name": "MAC",
+        "tier": "group",
+        "color": "#0F6E56",
+        "schools": [
+          "akron",
+          "ball-state",
+          "bowling-green",
+          "buffalo",
+          "central-michigan",
+          "eastern-michigan",
+          "kent-state",
+          "miami-oh",
+          "northern-illinois",
+          "ohio",
+          "toledo",
+          "western-michigan"
+        ]
+      },
+      {
+        "name": "Mountain West",
+        "tier": "group",
+        "color": "#1E3A8A",
+        "schools": [
+          "air-force",
+          "boise-state",
+          "colorado-state",
+          "fresno-state",
+          "hawaii",
+          "nevada",
+          "new-mexico",
+          "san-diego-state",
+          "san-jose-state",
+          "unlv",
+          "utah-state",
+          "wyoming"
+        ]
+      },
+      {
+        "name": "Sun Belt",
+        "tier": "group",
+        "color": "#9A3412",
+        "schools": [
+          "appalachian-state",
+          "arkansas-state",
+          "coastal-carolina",
+          "georgia-southern",
+          "georgia-state",
+          "louisiana",
+          "south-alabama",
+          "texas-state",
+          "troy",
+          "ulm"
+        ]
+      },
+      {
+        "name": "Independents",
+        "tier": "none",
+        "color": "#57534E",
+        "schools": [
+          "army",
+          "byu",
+          "liberty",
+          "new-mexico-state",
+          "uconn",
+          "umass"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2019",
+    "label": "2019",
+    "detail": "FBS membership for the 2019 season. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
+    "basedOn2026": false,
+    "conferences": [
+      {
+        "name": "ACC",
+        "tier": "power",
+        "color": "#1D4E89",
+        "schools": [
+          "boston-college",
+          "clemson",
+          "duke",
+          "florida-state",
+          "georgia-tech",
+          "louisville",
+          "miami-fl",
+          "nc-state",
+          "north-carolina",
+          "pittsburgh",
+          "syracuse",
+          "virginia",
+          "virginia-tech",
+          "wake-forest"
+        ]
+      },
+      {
+        "name": "Big Ten",
+        "tier": "power",
+        "color": "#9E2A2B",
+        "schools": [
+          "illinois",
+          "indiana",
+          "iowa",
+          "maryland",
+          "michigan",
+          "michigan-state",
+          "minnesota",
+          "nebraska",
+          "northwestern",
+          "ohio-state",
+          "penn-state",
+          "purdue",
+          "rutgers",
+          "wisconsin"
+        ]
+      },
+      {
+        "name": "Big 12",
+        "tier": "power",
+        "color": "#C2410C",
+        "schools": [
+          "baylor",
+          "iowa-state",
+          "kansas",
+          "kansas-state",
+          "oklahoma",
+          "oklahoma-state",
+          "tcu",
+          "texas",
+          "texas-tech",
+          "west-virginia"
+        ]
+      },
+      {
+        "name": "Pac-12",
+        "tier": "power",
+        "color": "#4C1D95",
+        "schools": [
+          "arizona",
+          "arizona-state",
+          "california",
+          "colorado",
+          "oregon",
+          "oregon-state",
+          "stanford",
+          "ucla",
+          "usc",
+          "utah",
+          "washington",
+          "washington-state"
+        ]
+      },
+      {
+        "name": "SEC",
+        "tier": "power",
+        "color": "#6D28D9",
+        "schools": [
+          "alabama",
+          "arkansas",
+          "auburn",
+          "florida",
+          "georgia",
+          "kentucky",
+          "lsu",
+          "mississippi-state",
+          "missouri",
+          "ole-miss",
+          "south-carolina",
+          "tennessee",
+          "texas-a-m",
+          "vanderbilt"
+        ]
+      },
+      {
+        "name": "American",
+        "tier": "group",
+        "color": "#0E7490",
+        "schools": [
+          "cincinnati",
+          "east-carolina",
+          "houston",
+          "memphis",
+          "navy",
+          "smu",
+          "south-florida",
+          "temple",
+          "tulane",
+          "tulsa",
+          "ucf",
+          "uconn"
+        ]
+      },
+      {
+        "name": "Conference USA",
+        "tier": "group",
+        "color": "#B45309",
+        "schools": [
+          "charlotte",
+          "fiu",
+          "florida-atlantic",
+          "louisiana-tech",
+          "marshall",
+          "middle-tennessee",
+          "north-texas",
+          "old-dominion",
+          "rice",
+          "southern-miss",
+          "uab",
+          "utep",
+          "utsa",
+          "western-kentucky"
+        ]
+      },
+      {
+        "name": "MAC",
+        "tier": "group",
+        "color": "#0F6E56",
+        "schools": [
+          "akron",
+          "ball-state",
+          "bowling-green",
+          "buffalo",
+          "central-michigan",
+          "eastern-michigan",
+          "kent-state",
+          "miami-oh",
+          "northern-illinois",
+          "ohio",
+          "toledo",
+          "western-michigan"
+        ]
+      },
+      {
+        "name": "Mountain West",
+        "tier": "group",
+        "color": "#1E3A8A",
+        "schools": [
+          "air-force",
+          "boise-state",
+          "colorado-state",
+          "fresno-state",
+          "hawaii",
+          "nevada",
+          "new-mexico",
+          "san-diego-state",
+          "san-jose-state",
+          "unlv",
+          "utah-state",
+          "wyoming"
+        ]
+      },
+      {
+        "name": "Sun Belt",
+        "tier": "group",
+        "color": "#9A3412",
+        "schools": [
+          "appalachian-state",
+          "arkansas-state",
+          "coastal-carolina",
+          "georgia-southern",
+          "georgia-state",
+          "louisiana",
+          "south-alabama",
+          "texas-state",
+          "troy",
+          "ulm"
+        ]
+      },
+      {
+        "name": "Independents",
+        "tier": "none",
+        "color": "#57534E",
+        "schools": [
+          "army",
+          "byu",
+          "liberty",
+          "new-mexico-state",
+          "notre-dame",
+          "umass"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2018",
+    "label": "2018",
+    "detail": "FBS membership for the 2018 season. Liberty starts FBS play as an independent. Idaho drops to FCS, and New Mexico State becomes an independent. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
+    "basedOn2026": false,
+    "conferences": [
+      {
+        "name": "ACC",
+        "tier": "power",
+        "color": "#1D4E89",
+        "schools": [
+          "boston-college",
+          "clemson",
+          "duke",
+          "florida-state",
+          "georgia-tech",
+          "louisville",
+          "miami-fl",
+          "nc-state",
+          "north-carolina",
+          "pittsburgh",
+          "syracuse",
+          "virginia",
+          "virginia-tech",
+          "wake-forest"
+        ]
+      },
+      {
+        "name": "Big Ten",
+        "tier": "power",
+        "color": "#9E2A2B",
+        "schools": [
+          "illinois",
+          "indiana",
+          "iowa",
+          "maryland",
+          "michigan",
+          "michigan-state",
+          "minnesota",
+          "nebraska",
+          "northwestern",
+          "ohio-state",
+          "penn-state",
+          "purdue",
+          "rutgers",
+          "wisconsin"
+        ]
+      },
+      {
+        "name": "Big 12",
+        "tier": "power",
+        "color": "#C2410C",
+        "schools": [
+          "baylor",
+          "iowa-state",
+          "kansas",
+          "kansas-state",
+          "oklahoma",
+          "oklahoma-state",
+          "tcu",
+          "texas",
+          "texas-tech",
+          "west-virginia"
+        ]
+      },
+      {
+        "name": "Pac-12",
+        "tier": "power",
+        "color": "#4C1D95",
+        "schools": [
+          "arizona",
+          "arizona-state",
+          "california",
+          "colorado",
+          "oregon",
+          "oregon-state",
+          "stanford",
+          "ucla",
+          "usc",
+          "utah",
+          "washington",
+          "washington-state"
+        ]
+      },
+      {
+        "name": "SEC",
+        "tier": "power",
+        "color": "#6D28D9",
+        "schools": [
+          "alabama",
+          "arkansas",
+          "auburn",
+          "florida",
+          "georgia",
+          "kentucky",
+          "lsu",
+          "mississippi-state",
+          "missouri",
+          "ole-miss",
+          "south-carolina",
+          "tennessee",
+          "texas-a-m",
+          "vanderbilt"
+        ]
+      },
+      {
+        "name": "American",
+        "tier": "group",
+        "color": "#0E7490",
+        "schools": [
+          "cincinnati",
+          "east-carolina",
+          "houston",
+          "memphis",
+          "navy",
+          "smu",
+          "south-florida",
+          "temple",
+          "tulane",
+          "tulsa",
+          "ucf",
+          "uconn"
+        ]
+      },
+      {
+        "name": "Conference USA",
+        "tier": "group",
+        "color": "#B45309",
+        "schools": [
+          "charlotte",
+          "fiu",
+          "florida-atlantic",
+          "louisiana-tech",
+          "marshall",
+          "middle-tennessee",
+          "north-texas",
+          "old-dominion",
+          "rice",
+          "southern-miss",
+          "uab",
+          "utep",
+          "utsa",
+          "western-kentucky"
+        ]
+      },
+      {
+        "name": "MAC",
+        "tier": "group",
+        "color": "#0F6E56",
+        "schools": [
+          "akron",
+          "ball-state",
+          "bowling-green",
+          "buffalo",
+          "central-michigan",
+          "eastern-michigan",
+          "kent-state",
+          "miami-oh",
+          "northern-illinois",
+          "ohio",
+          "toledo",
+          "western-michigan"
+        ]
+      },
+      {
+        "name": "Mountain West",
+        "tier": "group",
+        "color": "#1E3A8A",
+        "schools": [
+          "air-force",
+          "boise-state",
+          "colorado-state",
+          "fresno-state",
+          "hawaii",
+          "nevada",
+          "new-mexico",
+          "san-diego-state",
+          "san-jose-state",
+          "unlv",
+          "utah-state",
+          "wyoming"
+        ]
+      },
+      {
+        "name": "Sun Belt",
+        "tier": "group",
+        "color": "#9A3412",
+        "schools": [
+          "appalachian-state",
+          "arkansas-state",
+          "coastal-carolina",
+          "georgia-southern",
+          "georgia-state",
+          "louisiana",
+          "south-alabama",
+          "texas-state",
+          "troy",
+          "ulm"
+        ]
+      },
+      {
+        "name": "Independents",
+        "tier": "none",
+        "color": "#57534E",
+        "schools": [
+          "army",
+          "byu",
+          "liberty",
+          "new-mexico-state",
+          "notre-dame",
+          "umass"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2017",
+    "label": "2017",
+    "detail": "FBS membership for the 2017 season. UAB returns to Conference USA, and Coastal Carolina starts FBS play in the Sun Belt. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
+    "basedOn2026": false,
+    "conferences": [
+      {
+        "name": "ACC",
+        "tier": "power",
+        "color": "#1D4E89",
+        "schools": [
+          "boston-college",
+          "clemson",
+          "duke",
+          "florida-state",
+          "georgia-tech",
+          "louisville",
+          "miami-fl",
+          "nc-state",
+          "north-carolina",
+          "pittsburgh",
+          "syracuse",
+          "virginia",
+          "virginia-tech",
+          "wake-forest"
+        ]
+      },
+      {
+        "name": "Big Ten",
+        "tier": "power",
+        "color": "#9E2A2B",
+        "schools": [
+          "illinois",
+          "indiana",
+          "iowa",
+          "maryland",
+          "michigan",
+          "michigan-state",
+          "minnesota",
+          "nebraska",
+          "northwestern",
+          "ohio-state",
+          "penn-state",
+          "purdue",
+          "rutgers",
+          "wisconsin"
+        ]
+      },
+      {
+        "name": "Big 12",
+        "tier": "power",
+        "color": "#C2410C",
+        "schools": [
+          "baylor",
+          "iowa-state",
+          "kansas",
+          "kansas-state",
+          "oklahoma",
+          "oklahoma-state",
+          "tcu",
+          "texas",
+          "texas-tech",
+          "west-virginia"
+        ]
+      },
+      {
+        "name": "Pac-12",
+        "tier": "power",
+        "color": "#4C1D95",
+        "schools": [
+          "arizona",
+          "arizona-state",
+          "california",
+          "colorado",
+          "oregon",
+          "oregon-state",
+          "stanford",
+          "ucla",
+          "usc",
+          "utah",
+          "washington",
+          "washington-state"
+        ]
+      },
+      {
+        "name": "SEC",
+        "tier": "power",
+        "color": "#6D28D9",
+        "schools": [
+          "alabama",
+          "arkansas",
+          "auburn",
+          "florida",
+          "georgia",
+          "kentucky",
+          "lsu",
+          "mississippi-state",
+          "missouri",
+          "ole-miss",
+          "south-carolina",
+          "tennessee",
+          "texas-a-m",
+          "vanderbilt"
+        ]
+      },
+      {
+        "name": "American",
+        "tier": "group",
+        "color": "#0E7490",
+        "schools": [
+          "cincinnati",
+          "east-carolina",
+          "houston",
+          "memphis",
+          "navy",
+          "smu",
+          "south-florida",
+          "temple",
+          "tulane",
+          "tulsa",
+          "ucf",
+          "uconn"
+        ]
+      },
+      {
+        "name": "Conference USA",
+        "tier": "group",
+        "color": "#B45309",
+        "schools": [
+          "charlotte",
+          "fiu",
+          "florida-atlantic",
+          "louisiana-tech",
+          "marshall",
+          "middle-tennessee",
+          "north-texas",
+          "old-dominion",
+          "rice",
+          "southern-miss",
+          "uab",
+          "utep",
+          "utsa",
+          "western-kentucky"
+        ]
+      },
+      {
+        "name": "MAC",
+        "tier": "group",
+        "color": "#0F6E56",
+        "schools": [
+          "akron",
+          "ball-state",
+          "bowling-green",
+          "buffalo",
+          "central-michigan",
+          "eastern-michigan",
+          "kent-state",
+          "miami-oh",
+          "northern-illinois",
+          "ohio",
+          "toledo",
+          "western-michigan"
+        ]
+      },
+      {
+        "name": "Mountain West",
+        "tier": "group",
+        "color": "#1E3A8A",
+        "schools": [
+          "air-force",
+          "boise-state",
+          "colorado-state",
+          "fresno-state",
+          "hawaii",
+          "nevada",
+          "new-mexico",
+          "san-diego-state",
+          "san-jose-state",
+          "unlv",
+          "utah-state",
+          "wyoming"
+        ]
+      },
+      {
+        "name": "Sun Belt",
+        "tier": "group",
+        "color": "#9A3412",
+        "schools": [
+          "appalachian-state",
+          "arkansas-state",
+          "coastal-carolina",
+          "georgia-southern",
+          "georgia-state",
+          "idaho",
+          "louisiana",
+          "new-mexico-state",
+          "south-alabama",
+          "texas-state",
+          "troy",
+          "ulm"
+        ]
+      },
+      {
+        "name": "Independents",
+        "tier": "none",
+        "color": "#57534E",
+        "schools": [
+          "army",
+          "byu",
+          "notre-dame",
+          "umass"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2016",
+    "label": "2016",
+    "detail": "FBS membership for the 2016 season. UMass leaves the MAC and becomes an independent. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
+    "basedOn2026": false,
+    "conferences": [
+      {
+        "name": "ACC",
+        "tier": "power",
+        "color": "#1D4E89",
+        "schools": [
+          "boston-college",
+          "clemson",
+          "duke",
+          "florida-state",
+          "georgia-tech",
+          "louisville",
+          "miami-fl",
+          "nc-state",
+          "north-carolina",
+          "pittsburgh",
+          "syracuse",
+          "virginia",
+          "virginia-tech",
+          "wake-forest"
+        ]
+      },
+      {
+        "name": "Big Ten",
+        "tier": "power",
+        "color": "#9E2A2B",
+        "schools": [
+          "illinois",
+          "indiana",
+          "iowa",
+          "maryland",
+          "michigan",
+          "michigan-state",
+          "minnesota",
+          "nebraska",
+          "northwestern",
+          "ohio-state",
+          "penn-state",
+          "purdue",
+          "rutgers",
+          "wisconsin"
+        ]
+      },
+      {
+        "name": "Big 12",
+        "tier": "power",
+        "color": "#C2410C",
+        "schools": [
+          "baylor",
+          "iowa-state",
+          "kansas",
+          "kansas-state",
+          "oklahoma",
+          "oklahoma-state",
+          "tcu",
+          "texas",
+          "texas-tech",
+          "west-virginia"
+        ]
+      },
+      {
+        "name": "Pac-12",
+        "tier": "power",
+        "color": "#4C1D95",
+        "schools": [
+          "arizona",
+          "arizona-state",
+          "california",
+          "colorado",
+          "oregon",
+          "oregon-state",
+          "stanford",
+          "ucla",
+          "usc",
+          "utah",
+          "washington",
+          "washington-state"
+        ]
+      },
+      {
+        "name": "SEC",
+        "tier": "power",
+        "color": "#6D28D9",
+        "schools": [
+          "alabama",
+          "arkansas",
+          "auburn",
+          "florida",
+          "georgia",
+          "kentucky",
+          "lsu",
+          "mississippi-state",
+          "missouri",
+          "ole-miss",
+          "south-carolina",
+          "tennessee",
+          "texas-a-m",
+          "vanderbilt"
+        ]
+      },
+      {
+        "name": "American",
+        "tier": "group",
+        "color": "#0E7490",
+        "schools": [
+          "cincinnati",
+          "east-carolina",
+          "houston",
+          "memphis",
+          "navy",
+          "smu",
+          "south-florida",
+          "temple",
+          "tulane",
+          "tulsa",
+          "ucf",
+          "uconn"
+        ]
+      },
+      {
+        "name": "Conference USA",
+        "tier": "group",
+        "color": "#B45309",
+        "schools": [
+          "charlotte",
+          "fiu",
+          "florida-atlantic",
+          "louisiana-tech",
+          "marshall",
+          "middle-tennessee",
+          "north-texas",
+          "old-dominion",
+          "rice",
+          "southern-miss",
+          "utep",
+          "utsa",
+          "western-kentucky"
+        ]
+      },
+      {
+        "name": "MAC",
+        "tier": "group",
+        "color": "#0F6E56",
+        "schools": [
+          "akron",
+          "ball-state",
+          "bowling-green",
+          "buffalo",
+          "central-michigan",
+          "eastern-michigan",
+          "kent-state",
+          "miami-oh",
+          "northern-illinois",
+          "ohio",
+          "toledo",
+          "western-michigan"
+        ]
+      },
+      {
+        "name": "Mountain West",
+        "tier": "group",
+        "color": "#1E3A8A",
+        "schools": [
+          "air-force",
+          "boise-state",
+          "colorado-state",
+          "fresno-state",
+          "hawaii",
+          "nevada",
+          "new-mexico",
+          "san-diego-state",
+          "san-jose-state",
+          "unlv",
+          "utah-state",
+          "wyoming"
+        ]
+      },
+      {
+        "name": "Sun Belt",
+        "tier": "group",
+        "color": "#9A3412",
+        "schools": [
+          "appalachian-state",
+          "arkansas-state",
+          "georgia-southern",
+          "georgia-state",
+          "idaho",
+          "louisiana",
+          "new-mexico-state",
+          "south-alabama",
+          "texas-state",
+          "troy",
+          "ulm"
+        ]
+      },
+      {
+        "name": "Independents",
+        "tier": "none",
+        "color": "#57534E",
+        "schools": [
+          "army",
+          "byu",
+          "notre-dame",
+          "umass"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2015",
+    "label": "2015",
+    "detail": "FBS membership for the 2015 season. Navy joins the American. Charlotte starts FBS play, and UAB drops football. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
+    "basedOn2026": false,
+    "conferences": [
+      {
+        "name": "ACC",
+        "tier": "power",
+        "color": "#1D4E89",
+        "schools": [
+          "boston-college",
+          "clemson",
+          "duke",
+          "florida-state",
+          "georgia-tech",
+          "louisville",
+          "miami-fl",
+          "nc-state",
+          "north-carolina",
+          "pittsburgh",
+          "syracuse",
+          "virginia",
+          "virginia-tech",
+          "wake-forest"
+        ]
+      },
+      {
+        "name": "Big Ten",
+        "tier": "power",
+        "color": "#9E2A2B",
+        "schools": [
+          "illinois",
+          "indiana",
+          "iowa",
+          "maryland",
+          "michigan",
+          "michigan-state",
+          "minnesota",
+          "nebraska",
+          "northwestern",
+          "ohio-state",
+          "penn-state",
+          "purdue",
+          "rutgers",
+          "wisconsin"
+        ]
+      },
+      {
+        "name": "Big 12",
+        "tier": "power",
+        "color": "#C2410C",
+        "schools": [
+          "baylor",
+          "iowa-state",
+          "kansas",
+          "kansas-state",
+          "oklahoma",
+          "oklahoma-state",
+          "tcu",
+          "texas",
+          "texas-tech",
+          "west-virginia"
+        ]
+      },
+      {
+        "name": "Pac-12",
+        "tier": "power",
+        "color": "#4C1D95",
+        "schools": [
+          "arizona",
+          "arizona-state",
+          "california",
+          "colorado",
+          "oregon",
+          "oregon-state",
+          "stanford",
+          "ucla",
+          "usc",
+          "utah",
+          "washington",
+          "washington-state"
+        ]
+      },
+      {
+        "name": "SEC",
+        "tier": "power",
+        "color": "#6D28D9",
+        "schools": [
+          "alabama",
+          "arkansas",
+          "auburn",
+          "florida",
+          "georgia",
+          "kentucky",
+          "lsu",
+          "mississippi-state",
+          "missouri",
+          "ole-miss",
+          "south-carolina",
+          "tennessee",
+          "texas-a-m",
+          "vanderbilt"
+        ]
+      },
+      {
+        "name": "American",
+        "tier": "group",
+        "color": "#0E7490",
+        "schools": [
+          "cincinnati",
+          "east-carolina",
+          "houston",
+          "memphis",
+          "navy",
+          "smu",
+          "south-florida",
+          "temple",
+          "tulane",
+          "tulsa",
+          "ucf",
+          "uconn"
+        ]
+      },
+      {
+        "name": "Conference USA",
+        "tier": "group",
+        "color": "#B45309",
+        "schools": [
+          "charlotte",
+          "fiu",
+          "florida-atlantic",
+          "louisiana-tech",
+          "marshall",
+          "middle-tennessee",
+          "north-texas",
+          "old-dominion",
+          "rice",
+          "southern-miss",
+          "utep",
+          "utsa",
+          "western-kentucky"
+        ]
+      },
+      {
+        "name": "MAC",
+        "tier": "group",
+        "color": "#0F6E56",
+        "schools": [
+          "akron",
+          "ball-state",
+          "bowling-green",
+          "buffalo",
+          "central-michigan",
+          "eastern-michigan",
+          "kent-state",
+          "miami-oh",
+          "northern-illinois",
+          "ohio",
+          "toledo",
+          "umass",
+          "western-michigan"
+        ]
+      },
+      {
+        "name": "Mountain West",
+        "tier": "group",
+        "color": "#1E3A8A",
+        "schools": [
+          "air-force",
+          "boise-state",
+          "colorado-state",
+          "fresno-state",
+          "hawaii",
+          "nevada",
+          "new-mexico",
+          "san-diego-state",
+          "san-jose-state",
+          "unlv",
+          "utah-state",
+          "wyoming"
+        ]
+      },
+      {
+        "name": "Sun Belt",
+        "tier": "group",
+        "color": "#9A3412",
+        "schools": [
+          "appalachian-state",
+          "arkansas-state",
+          "georgia-southern",
+          "georgia-state",
+          "idaho",
+          "louisiana",
+          "new-mexico-state",
+          "south-alabama",
+          "texas-state",
+          "troy",
+          "ulm"
+        ]
+      },
+      {
+        "name": "Independents",
+        "tier": "none",
+        "color": "#57534E",
+        "schools": [
+          "army",
+          "byu",
+          "notre-dame"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2014",
+    "label": "2014",
+    "detail": "FBS membership for the 2014 season. Maryland and Rutgers join the Big Ten, and Louisville joins the ACC. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
+    "basedOn2026": false,
+    "conferences": [
+      {
+        "name": "ACC",
+        "tier": "power",
+        "color": "#1D4E89",
+        "schools": [
+          "boston-college",
+          "clemson",
+          "duke",
+          "florida-state",
+          "georgia-tech",
+          "louisville",
+          "miami-fl",
+          "nc-state",
+          "north-carolina",
+          "pittsburgh",
+          "syracuse",
+          "virginia",
+          "virginia-tech",
+          "wake-forest"
+        ]
+      },
+      {
+        "name": "Big Ten",
+        "tier": "power",
+        "color": "#9E2A2B",
+        "schools": [
+          "illinois",
+          "indiana",
+          "iowa",
+          "maryland",
+          "michigan",
+          "michigan-state",
+          "minnesota",
+          "nebraska",
+          "northwestern",
+          "ohio-state",
+          "penn-state",
+          "purdue",
+          "rutgers",
+          "wisconsin"
+        ]
+      },
+      {
+        "name": "Big 12",
+        "tier": "power",
+        "color": "#C2410C",
+        "schools": [
+          "baylor",
+          "iowa-state",
+          "kansas",
+          "kansas-state",
+          "oklahoma",
+          "oklahoma-state",
+          "tcu",
+          "texas",
+          "texas-tech",
+          "west-virginia"
+        ]
+      },
+      {
+        "name": "Pac-12",
+        "tier": "power",
+        "color": "#4C1D95",
+        "schools": [
+          "arizona",
+          "arizona-state",
+          "california",
+          "colorado",
+          "oregon",
+          "oregon-state",
+          "stanford",
+          "ucla",
+          "usc",
+          "utah",
+          "washington",
+          "washington-state"
+        ]
+      },
+      {
+        "name": "SEC",
+        "tier": "power",
+        "color": "#6D28D9",
+        "schools": [
+          "alabama",
+          "arkansas",
+          "auburn",
+          "florida",
+          "georgia",
+          "kentucky",
+          "lsu",
+          "mississippi-state",
+          "missouri",
+          "ole-miss",
+          "south-carolina",
+          "tennessee",
+          "texas-a-m",
+          "vanderbilt"
+        ]
+      },
+      {
+        "name": "American",
+        "tier": "group",
+        "color": "#0E7490",
+        "schools": [
+          "cincinnati",
+          "east-carolina",
+          "houston",
+          "memphis",
+          "smu",
+          "south-florida",
+          "temple",
+          "tulane",
+          "tulsa",
+          "ucf",
+          "uconn"
+        ]
+      },
+      {
+        "name": "Conference USA",
+        "tier": "group",
+        "color": "#B45309",
+        "schools": [
+          "fiu",
+          "florida-atlantic",
+          "louisiana-tech",
+          "marshall",
+          "middle-tennessee",
+          "north-texas",
+          "old-dominion",
+          "rice",
+          "southern-miss",
+          "uab",
+          "utep",
+          "utsa",
+          "western-kentucky"
+        ]
+      },
+      {
+        "name": "MAC",
+        "tier": "group",
+        "color": "#0F6E56",
+        "schools": [
+          "akron",
+          "ball-state",
+          "bowling-green",
+          "buffalo",
+          "central-michigan",
+          "eastern-michigan",
+          "kent-state",
+          "miami-oh",
+          "northern-illinois",
+          "ohio",
+          "toledo",
+          "umass",
+          "western-michigan"
+        ]
+      },
+      {
+        "name": "Mountain West",
+        "tier": "group",
+        "color": "#1E3A8A",
+        "schools": [
+          "air-force",
+          "boise-state",
+          "colorado-state",
+          "fresno-state",
+          "hawaii",
+          "nevada",
+          "new-mexico",
+          "san-diego-state",
+          "san-jose-state",
+          "unlv",
+          "utah-state",
+          "wyoming"
+        ]
+      },
+      {
+        "name": "Sun Belt",
+        "tier": "group",
+        "color": "#9A3412",
+        "schools": [
+          "appalachian-state",
+          "arkansas-state",
+          "georgia-southern",
+          "georgia-state",
+          "idaho",
+          "louisiana",
+          "new-mexico-state",
+          "south-alabama",
+          "texas-state",
+          "troy",
+          "ulm"
+        ]
+      },
+      {
+        "name": "Independents",
+        "tier": "none",
+        "color": "#57534E",
+        "schools": [
+          "army",
+          "byu",
+          "navy",
+          "notre-dame"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2013",
+    "label": "2013",
+    "detail": "FBS membership for the 2013 season. The American replaces Big East football. Pittsburgh and Syracuse join the ACC, and the WAC drops football. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
+    "basedOn2026": false,
+    "conferences": [
+      {
+        "name": "ACC",
+        "tier": "power",
+        "color": "#1D4E89",
+        "schools": [
+          "boston-college",
+          "clemson",
+          "duke",
+          "florida-state",
+          "georgia-tech",
+          "maryland",
+          "miami-fl",
+          "nc-state",
+          "north-carolina",
+          "pittsburgh",
+          "syracuse",
+          "virginia",
+          "virginia-tech",
+          "wake-forest"
+        ]
+      },
+      {
+        "name": "Big Ten",
+        "tier": "power",
+        "color": "#9E2A2B",
+        "schools": [
+          "illinois",
+          "indiana",
+          "iowa",
+          "michigan",
+          "michigan-state",
+          "minnesota",
+          "nebraska",
+          "northwestern",
+          "ohio-state",
+          "penn-state",
+          "purdue",
+          "wisconsin"
+        ]
+      },
+      {
+        "name": "Big 12",
+        "tier": "power",
+        "color": "#C2410C",
+        "schools": [
+          "baylor",
+          "iowa-state",
+          "kansas",
+          "kansas-state",
+          "oklahoma",
+          "oklahoma-state",
+          "tcu",
+          "texas",
+          "texas-tech",
+          "west-virginia"
+        ]
+      },
+      {
+        "name": "Pac-12",
+        "tier": "power",
+        "color": "#4C1D95",
+        "schools": [
+          "arizona",
+          "arizona-state",
+          "california",
+          "colorado",
+          "oregon",
+          "oregon-state",
+          "stanford",
+          "ucla",
+          "usc",
+          "utah",
+          "washington",
+          "washington-state"
+        ]
+      },
+      {
+        "name": "SEC",
+        "tier": "power",
+        "color": "#6D28D9",
+        "schools": [
+          "alabama",
+          "arkansas",
+          "auburn",
+          "florida",
+          "georgia",
+          "kentucky",
+          "lsu",
+          "mississippi-state",
+          "missouri",
+          "ole-miss",
+          "south-carolina",
+          "tennessee",
+          "texas-a-m",
+          "vanderbilt"
+        ]
+      },
+      {
+        "name": "American",
+        "tier": "group",
+        "color": "#0E7490",
+        "schools": [
+          "cincinnati",
+          "houston",
+          "louisville",
+          "memphis",
+          "rutgers",
+          "smu",
+          "south-florida",
+          "temple",
+          "ucf",
+          "uconn"
+        ]
+      },
+      {
+        "name": "Conference USA",
+        "tier": "group",
+        "color": "#B45309",
+        "schools": [
+          "east-carolina",
+          "fiu",
+          "florida-atlantic",
+          "louisiana-tech",
+          "marshall",
+          "middle-tennessee",
+          "north-texas",
+          "rice",
+          "southern-miss",
+          "tulane",
+          "tulsa",
+          "uab",
+          "utep",
+          "utsa"
+        ]
+      },
+      {
+        "name": "MAC",
+        "tier": "group",
+        "color": "#0F6E56",
+        "schools": [
+          "akron",
+          "ball-state",
+          "bowling-green",
+          "buffalo",
+          "central-michigan",
+          "eastern-michigan",
+          "kent-state",
+          "miami-oh",
+          "northern-illinois",
+          "ohio",
+          "toledo",
+          "umass",
+          "western-michigan"
+        ]
+      },
+      {
+        "name": "Mountain West",
+        "tier": "group",
+        "color": "#1E3A8A",
+        "schools": [
+          "air-force",
+          "boise-state",
+          "colorado-state",
+          "fresno-state",
+          "hawaii",
+          "nevada",
+          "new-mexico",
+          "san-diego-state",
+          "san-jose-state",
+          "unlv",
+          "utah-state",
+          "wyoming"
+        ]
+      },
+      {
+        "name": "Sun Belt",
+        "tier": "group",
+        "color": "#9A3412",
+        "schools": [
+          "arkansas-state",
+          "georgia-state",
+          "louisiana",
+          "south-alabama",
+          "texas-state",
+          "troy",
+          "ulm",
+          "western-kentucky"
+        ]
+      },
+      {
+        "name": "Independents",
+        "tier": "none",
+        "color": "#57534E",
+        "schools": [
+          "army",
+          "byu",
+          "idaho",
+          "navy",
+          "new-mexico-state",
+          "notre-dame"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2012",
+    "label": "2012",
+    "detail": "FBS membership for the 2012 season. Missouri and Texas A&M join the SEC. TCU and West Virginia join the Big 12. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
+    "basedOn2026": false,
+    "conferences": [
+      {
+        "name": "ACC",
+        "tier": "power",
+        "color": "#1D4E89",
+        "schools": [
+          "boston-college",
+          "clemson",
+          "duke",
+          "florida-state",
+          "georgia-tech",
+          "maryland",
+          "miami-fl",
+          "nc-state",
+          "north-carolina",
+          "virginia",
+          "virginia-tech",
+          "wake-forest"
+        ]
+      },
+      {
+        "name": "Big East",
+        "tier": "power",
+        "color": "#1E40AF",
+        "schools": [
+          "cincinnati",
+          "louisville",
+          "pittsburgh",
+          "rutgers",
+          "south-florida",
+          "syracuse",
+          "temple",
+          "uconn"
+        ]
+      },
+      {
+        "name": "Big Ten",
+        "tier": "power",
+        "color": "#9E2A2B",
+        "schools": [
+          "illinois",
+          "indiana",
+          "iowa",
+          "michigan",
+          "michigan-state",
+          "minnesota",
+          "nebraska",
+          "northwestern",
+          "ohio-state",
+          "penn-state",
+          "purdue",
+          "wisconsin"
+        ]
+      },
+      {
+        "name": "Big 12",
+        "tier": "power",
+        "color": "#C2410C",
+        "schools": [
+          "baylor",
+          "iowa-state",
+          "kansas",
+          "kansas-state",
+          "oklahoma",
+          "oklahoma-state",
+          "tcu",
+          "texas",
+          "texas-tech",
+          "west-virginia"
+        ]
+      },
+      {
+        "name": "Pac-12",
+        "tier": "power",
+        "color": "#4C1D95",
+        "schools": [
+          "arizona",
+          "arizona-state",
+          "california",
+          "colorado",
+          "oregon",
+          "oregon-state",
+          "stanford",
+          "ucla",
+          "usc",
+          "utah",
+          "washington",
+          "washington-state"
+        ]
+      },
+      {
+        "name": "SEC",
+        "tier": "power",
+        "color": "#6D28D9",
+        "schools": [
+          "alabama",
+          "arkansas",
+          "auburn",
+          "florida",
+          "georgia",
+          "kentucky",
+          "lsu",
+          "mississippi-state",
+          "missouri",
+          "ole-miss",
+          "south-carolina",
+          "tennessee",
+          "texas-a-m",
+          "vanderbilt"
+        ]
+      },
+      {
+        "name": "Conference USA",
+        "tier": "group",
+        "color": "#B45309",
+        "schools": [
+          "east-carolina",
+          "houston",
+          "marshall",
+          "memphis",
+          "rice",
+          "smu",
+          "southern-miss",
+          "tulane",
+          "tulsa",
+          "uab",
+          "ucf",
+          "utep"
+        ]
+      },
+      {
+        "name": "MAC",
+        "tier": "group",
+        "color": "#0F6E56",
+        "schools": [
+          "akron",
+          "ball-state",
+          "bowling-green",
+          "buffalo",
+          "central-michigan",
+          "eastern-michigan",
+          "kent-state",
+          "miami-oh",
+          "northern-illinois",
+          "ohio",
+          "toledo",
+          "umass",
+          "western-michigan"
+        ]
+      },
+      {
+        "name": "Mountain West",
+        "tier": "group",
+        "color": "#1E3A8A",
+        "schools": [
+          "air-force",
+          "boise-state",
+          "colorado-state",
+          "fresno-state",
+          "hawaii",
+          "nevada",
+          "new-mexico",
+          "san-diego-state",
+          "unlv",
+          "wyoming"
+        ]
+      },
+      {
+        "name": "Sun Belt",
+        "tier": "group",
+        "color": "#9A3412",
+        "schools": [
+          "arkansas-state",
+          "fiu",
+          "florida-atlantic",
+          "louisiana",
+          "middle-tennessee",
+          "north-texas",
+          "south-alabama",
+          "troy",
+          "ulm",
+          "western-kentucky"
+        ]
+      },
+      {
+        "name": "WAC",
+        "tier": "group",
+        "color": "#3F6212",
+        "schools": [
+          "idaho",
+          "louisiana-tech",
+          "new-mexico-state",
+          "san-jose-state",
+          "texas-state",
+          "utah-state",
+          "utsa"
+        ]
+      },
+      {
+        "name": "Independents",
+        "tier": "none",
+        "color": "#57534E",
+        "schools": [
+          "army",
+          "byu",
+          "navy",
+          "notre-dame"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2011",
+    "label": "2011",
+    "detail": "FBS membership for the 2011 season. Nebraska joins the Big Ten. Colorado and Utah join the Pac-12, and BYU becomes an independent. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
+    "basedOn2026": false,
+    "conferences": [
+      {
+        "name": "ACC",
+        "tier": "power",
+        "color": "#1D4E89",
+        "schools": [
+          "boston-college",
+          "clemson",
+          "duke",
+          "florida-state",
+          "georgia-tech",
+          "maryland",
+          "miami-fl",
+          "nc-state",
+          "north-carolina",
+          "virginia",
+          "virginia-tech",
+          "wake-forest"
+        ]
+      },
+      {
+        "name": "Big East",
+        "tier": "power",
+        "color": "#1E40AF",
+        "schools": [
+          "cincinnati",
+          "louisville",
+          "pittsburgh",
+          "rutgers",
+          "south-florida",
+          "syracuse",
+          "uconn",
+          "west-virginia"
+        ]
+      },
+      {
+        "name": "Big Ten",
+        "tier": "power",
+        "color": "#9E2A2B",
+        "schools": [
+          "illinois",
+          "indiana",
+          "iowa",
+          "michigan",
+          "michigan-state",
+          "minnesota",
+          "nebraska",
+          "northwestern",
+          "ohio-state",
+          "penn-state",
+          "purdue",
+          "wisconsin"
+        ]
+      },
+      {
+        "name": "Big 12",
+        "tier": "power",
+        "color": "#C2410C",
+        "schools": [
+          "baylor",
+          "iowa-state",
+          "kansas",
+          "kansas-state",
+          "missouri",
+          "oklahoma",
+          "oklahoma-state",
+          "texas",
+          "texas-a-m",
+          "texas-tech"
+        ]
+      },
+      {
+        "name": "Pac-12",
+        "tier": "power",
+        "color": "#4C1D95",
+        "schools": [
+          "arizona",
+          "arizona-state",
+          "california",
+          "colorado",
+          "oregon",
+          "oregon-state",
+          "stanford",
+          "ucla",
+          "usc",
+          "utah",
+          "washington",
+          "washington-state"
+        ]
+      },
+      {
+        "name": "SEC",
+        "tier": "power",
+        "color": "#6D28D9",
+        "schools": [
+          "alabama",
+          "arkansas",
+          "auburn",
+          "florida",
+          "georgia",
+          "kentucky",
+          "lsu",
+          "mississippi-state",
+          "ole-miss",
+          "south-carolina",
+          "tennessee",
+          "vanderbilt"
+        ]
+      },
+      {
+        "name": "Conference USA",
+        "tier": "group",
+        "color": "#B45309",
+        "schools": [
+          "east-carolina",
+          "houston",
+          "marshall",
+          "memphis",
+          "rice",
+          "smu",
+          "southern-miss",
+          "tulane",
+          "tulsa",
+          "uab",
+          "ucf",
+          "utep"
+        ]
+      },
+      {
+        "name": "MAC",
+        "tier": "group",
+        "color": "#0F6E56",
+        "schools": [
+          "akron",
+          "ball-state",
+          "bowling-green",
+          "buffalo",
+          "central-michigan",
+          "eastern-michigan",
+          "kent-state",
+          "miami-oh",
+          "northern-illinois",
+          "ohio",
+          "temple",
+          "toledo",
+          "western-michigan"
+        ]
+      },
+      {
+        "name": "Mountain West",
+        "tier": "group",
+        "color": "#1E3A8A",
+        "schools": [
+          "air-force",
+          "boise-state",
+          "colorado-state",
+          "new-mexico",
+          "san-diego-state",
+          "tcu",
+          "unlv",
+          "wyoming"
+        ]
+      },
+      {
+        "name": "Sun Belt",
+        "tier": "group",
+        "color": "#9A3412",
+        "schools": [
+          "arkansas-state",
+          "fiu",
+          "florida-atlantic",
+          "louisiana",
+          "middle-tennessee",
+          "north-texas",
+          "troy",
+          "ulm",
+          "western-kentucky"
+        ]
+      },
+      {
+        "name": "WAC",
+        "tier": "group",
+        "color": "#3F6212",
+        "schools": [
+          "fresno-state",
+          "hawaii",
+          "idaho",
+          "louisiana-tech",
+          "nevada",
+          "new-mexico-state",
+          "san-jose-state",
+          "utah-state"
+        ]
+      },
+      {
+        "name": "Independents",
+        "tier": "none",
+        "color": "#57534E",
+        "schools": [
+          "army",
+          "byu",
+          "navy",
+          "notre-dame"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2010",
+    "label": "2010",
+    "detail": "FBS membership for the 2010 season. Nebraska and Colorado are still in the Big 12, and the WAC still plays football. Schools that joined FBS in a later season are set aside. Put one back to add it to the board.",
+    "basedOn2026": false,
+    "conferences": [
+      {
+        "name": "ACC",
+        "tier": "power",
+        "color": "#1D4E89",
+        "schools": [
+          "boston-college",
+          "clemson",
+          "duke",
+          "florida-state",
+          "georgia-tech",
+          "maryland",
+          "miami-fl",
+          "nc-state",
+          "north-carolina",
+          "virginia",
+          "virginia-tech",
+          "wake-forest"
+        ]
+      },
+      {
+        "name": "Big East",
+        "tier": "power",
+        "color": "#1E40AF",
+        "schools": [
+          "cincinnati",
+          "louisville",
+          "pittsburgh",
+          "rutgers",
+          "south-florida",
+          "syracuse",
+          "uconn",
+          "west-virginia"
+        ]
+      },
+      {
+        "name": "Big Ten",
+        "tier": "power",
+        "color": "#9E2A2B",
+        "schools": [
+          "illinois",
+          "indiana",
+          "iowa",
+          "michigan",
+          "michigan-state",
+          "minnesota",
+          "northwestern",
+          "ohio-state",
+          "penn-state",
+          "purdue",
+          "wisconsin"
+        ]
+      },
+      {
+        "name": "Big 12",
+        "tier": "power",
+        "color": "#C2410C",
+        "schools": [
+          "baylor",
+          "colorado",
+          "iowa-state",
+          "kansas",
+          "kansas-state",
+          "missouri",
+          "nebraska",
+          "oklahoma",
+          "oklahoma-state",
+          "texas",
+          "texas-a-m",
+          "texas-tech"
+        ]
+      },
+      {
+        "name": "Pac-10",
+        "tier": "power",
+        "color": "#4C1D95",
+        "schools": [
+          "arizona",
+          "arizona-state",
+          "california",
+          "oregon",
+          "oregon-state",
+          "stanford",
+          "ucla",
+          "usc",
+          "washington",
+          "washington-state"
+        ]
+      },
+      {
+        "name": "SEC",
+        "tier": "power",
+        "color": "#6D28D9",
+        "schools": [
+          "alabama",
+          "arkansas",
+          "auburn",
+          "florida",
+          "georgia",
+          "kentucky",
+          "lsu",
+          "mississippi-state",
+          "ole-miss",
+          "south-carolina",
+          "tennessee",
+          "vanderbilt"
+        ]
+      },
+      {
+        "name": "Conference USA",
+        "tier": "group",
+        "color": "#B45309",
+        "schools": [
+          "east-carolina",
+          "houston",
+          "marshall",
+          "memphis",
+          "rice",
+          "smu",
+          "southern-miss",
+          "tulane",
+          "tulsa",
+          "uab",
+          "ucf",
+          "utep"
+        ]
+      },
+      {
+        "name": "MAC",
+        "tier": "group",
+        "color": "#0F6E56",
+        "schools": [
+          "akron",
+          "ball-state",
+          "bowling-green",
+          "buffalo",
+          "central-michigan",
+          "eastern-michigan",
+          "kent-state",
+          "miami-oh",
+          "northern-illinois",
+          "ohio",
+          "temple",
+          "toledo",
+          "western-michigan"
+        ]
+      },
+      {
+        "name": "Mountain West",
+        "tier": "group",
+        "color": "#1E3A8A",
+        "schools": [
+          "air-force",
+          "byu",
+          "colorado-state",
+          "new-mexico",
+          "san-diego-state",
+          "tcu",
+          "unlv",
+          "utah",
+          "wyoming"
+        ]
+      },
+      {
+        "name": "Sun Belt",
+        "tier": "group",
+        "color": "#9A3412",
+        "schools": [
+          "arkansas-state",
+          "fiu",
+          "florida-atlantic",
+          "louisiana",
+          "middle-tennessee",
+          "north-texas",
+          "troy",
+          "ulm",
+          "western-kentucky"
+        ]
+      },
+      {
+        "name": "WAC",
+        "tier": "group",
+        "color": "#3F6212",
+        "schools": [
+          "boise-state",
+          "fresno-state",
+          "hawaii",
+          "idaho",
+          "louisiana-tech",
+          "nevada",
+          "new-mexico-state",
+          "san-jose-state",
+          "utah-state"
+        ]
+      },
+      {
+        "name": "Independents",
+        "tier": "none",
+        "color": "#57534E",
+        "schools": [
+          "army",
+          "navy",
+          "notre-dame"
         ]
       }
     ]

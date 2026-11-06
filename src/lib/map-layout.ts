@@ -246,7 +246,9 @@ function placeHawaiiBesideCalifornia(args: {
   const west = Math.min(...drafted.map((point) => point[0]))
   if (west + shift < 6) shift = 6 - west
   const [translateX, translateY] = local.translate()
-  local.translate([translateX + shift, translateY])
+  const draftedSouth = Math.max(...drafted.map((point) => point[1]))
+  const drop = maxY - draftedSouth
+  local.translate([translateX + shift, translateY + drop])
   const placed = islands.flatMap((item) => projectedVertices(item.geometry, local))
   const labelX = (Math.min(...placed.map((point) => point[0])) + Math.max(...placed.map((point) => point[0]))) / 2
   const labelY = Math.min(...placed.map((point) => point[1])) - 6

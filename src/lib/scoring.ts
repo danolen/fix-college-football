@@ -40,6 +40,11 @@ export function scoreTone(kept: number, total: number, thresholds: ScoringThresh
   return "red"
 }
 
+export function rivalryCountLabel(kept: number, total: number): string {
+  const percent = total <= 0 ? 0 : Math.round((kept / total) * 100)
+  return `${kept}/${total} (${percent}%)`
+}
+
 export function shareText(kept: number, total: number): string {
-  return `I tried to fix college football. ${kept}/${total} rivalries kept together. Think you can do better? #FixCollegeFootball`
+  return `I tried to fix college football. ${rivalryCountLabel(kept, total)} rivalries kept together. Think you can do better? #FixCollegeFootball`
 }

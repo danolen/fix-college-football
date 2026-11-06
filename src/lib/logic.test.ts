@@ -21,7 +21,7 @@ import {
   undividedSchoolIds,
 } from "./board.ts"
 import { PALETTE } from "./colors.ts"
-import { scoreRivalries, scoreTone, shareText } from "./scoring.ts"
+import { rivalryCountLabel, scoreRivalries, scoreTone, shareText } from "./scoring.ts"
 import { loadBoard, parseMapPrefs } from "./storage.ts"
 import type { Preset, School } from "./types.ts"
 
@@ -352,9 +352,13 @@ describe("scoring", () => {
   })
 
   it("builds the share sentence", () => {
+    assert.equal(rivalryCountLabel(12, 40), "12/40 (30%)")
+    assert.equal(rivalryCountLabel(1, 3), "1/3 (33%)")
+    assert.equal(rivalryCountLabel(2, 3), "2/3 (67%)")
+    assert.equal(rivalryCountLabel(0, 0), "0/0 (0%)")
     assert.equal(
       shareText(12, 40),
-      "I tried to fix college football. 12/40 rivalries kept together. Think you can do better? #FixCollegeFootball",
+      "I tried to fix college football. 12/40 (30%) rivalries kept together. Think you can do better? #FixCollegeFootball",
     )
   })
 })

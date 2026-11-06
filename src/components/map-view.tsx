@@ -266,10 +266,14 @@ function MapControls({
   mode: Mode
 }) {
   useEffect(() => {
-    if (mode !== "tiers" && (show === "power" || show === "group" || show === "conferences")) {
+    if (mode !== "tiers" && (show === "power" || show === "group")) {
       setMapPrefs({ show: "all" })
+      return
     }
-  }, [mode, show])
+    if (show === "conferences" && !conferences.some((conference) => conferenceIds.includes(conference.id))) {
+      setMapPrefs({ show: "all", conferenceIds: [] })
+    }
+  }, [mode, show, conferences, conferenceIds])
   const groupCount = conferences.filter((conference) => conference.tier === "group").length
   const selectedCount = conferenceIds.filter((id) => conferences.some((conference) => conference.id === id)).length
 
@@ -333,34 +337,32 @@ function MapControls({
             </>
           )}
         </div>
-        {mode === "tiers" && (
-          <DropdownMenu>
-            <DropdownMenuTrigger
-              render={
-                <Button
-                  type="button"
-                  size="xs"
-                  variant={show === "conferences" ? "default" : "outline"}
-                  data-testid="map-show-conferences"
-                />
-              }
-            >
-              {show === "conferences" && selectedCount > 0 ? `${selectedCount} conference${selectedCount === 1 ? "" : "s"}` : "Conferences"}
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="max-h-64 min-w-48 overflow-y-auto">
-              {conferences.map((conference) => (
-                <DropdownMenuCheckboxItem
-                  key={conference.id}
-                  checked={conferenceIds.includes(conference.id)}
-                  closeOnClick={false}
-                  onCheckedChange={() => toggleConference(conference.id)}
-                >
-                  {conference.name}
-                </DropdownMenuCheckboxItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-        )}
+        <DropdownMenu>
+          <DropdownMenuTrigger
+            render={
+              <Button
+                type="button"
+                size="xs"
+                variant={show === "conferences" ? "default" : "outline"}
+                data-testid="map-show-conferences"
+              />
+            }
+          >
+            {show === "conferences" && selectedCount > 0 ? `${selectedCount} conference${selectedCount === 1 ? "" : "s"}` : "Conferences"}
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="start" className="max-h-64 min-w-48 overflow-y-auto">
+            {conferences.map((conference) => (
+              <DropdownMenuCheckboxItem
+                key={conference.id}
+                checked={conferenceIds.includes(conference.id)}
+                closeOnClick={false}
+                onCheckedChange={() => toggleConference(conference.id)}
+              >
+                {conference.name}
+              </DropdownMenuCheckboxItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
       <div className="flex min-w-0 flex-wrap items-center gap-1.5">
         <span className="px-1 text-[0.7rem] font-medium text-muted-foreground">Color by:</span>
@@ -409,6 +411,20 @@ function MapBody({
         <g transform={transform}>
           {scene.land.map((d, index) => (
             <path key={`land-${index}`} d={d} fill="#e7efe4" stroke="#7f9788" strokeWidth={0.6} />
+          ))}
+          {scene.labels.map((label) => (
+            <text
+              key={label.text}
+              x={label.x}
+              y={label.y}
+              textAnchor="middle"
+              fontSize={10}
+              fontWeight={700}
+              fill="#1c1915"
+              fontFamily="Arial, Helvetica, sans-serif"
+            >
+              {label.text}
+            </text>
           ))}
           {scene.lakes.map((d, index) => (
             <path key={`lake-${index}`} d={d} fill="#d5e3ea" />

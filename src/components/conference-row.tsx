@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { ArrowLeftRight, Plus, Trash2 } from "lucide-react"
+import { ArrowLeftRight, ChevronDown, ChevronRight, Plus, Trash2 } from "lucide-react"
 import { useDrag } from "@/components/drag-context"
 import { SchoolTile } from "@/components/school-tile"
 import { Button } from "@/components/ui/button"
@@ -17,6 +17,8 @@ export function ConferenceRow({
   schools,
   canDelete,
   showTierMove,
+  collapsed,
+  onToggleCollapsed,
   onRename,
   onRecolor,
   onDelete,
@@ -30,6 +32,8 @@ export function ConferenceRow({
   schools: School[]
   canDelete: boolean
   showTierMove: boolean
+  collapsed: boolean
+  onToggleCollapsed: () => void
   onRename: (name: string) => void
   onRecolor: (color: string) => void
   onDelete: () => void
@@ -58,8 +62,20 @@ export function ConferenceRow({
     <section
       className={cn("rounded-2xl border bg-card p-3 shadow-sm", targeted && "ring-2 ring-foreground")}
       data-conference-id={conference.id}
+      data-collapsed={collapsed ? "" : undefined}
     >
-      <div className="mb-2 flex flex-wrap items-center gap-2">
+      <div className={cn("flex items-center gap-2", collapsed ? "flex-nowrap" : "mb-2 flex-wrap")}>
+        <Button
+          type="button"
+          variant="ghost"
+          size="icon-sm"
+          aria-expanded={!collapsed}
+          aria-label={`${collapsed ? "Expand" : "Collapse"} ${conference.name}`}
+          data-testid={`collapse-${conference.id}`}
+          onClick={onToggleCollapsed}
+        >
+          {collapsed ? <ChevronRight /> : <ChevronDown />}
+        </Button>
         <Popover>
           <PopoverTrigger
             className="size-7 rounded-full border-2 border-background shadow-sm ring-1 ring-foreground/15"
@@ -94,27 +110,29 @@ export function ConferenceRow({
               event.currentTarget.blur()
             }
           }}
-          className="h-8 max-w-52 border-transparent bg-transparent font-display text-lg font-semibold tracking-wide shadow-none focus-visible:border-border"
+          className="h-8 min-w-0 max-w-52 border-transparent bg-transparent font-display text-lg font-semibold tracking-wide shadow-none focus-visible:border-border"
         />
         <span className="text-xs text-muted-foreground">{schools.length}</span>
         <div className="ml-auto flex items-center gap-1">
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            data-testid={`add-division-${conference.id}`}
-            onClick={onAddDivision}
-          >
-            <Plus />
-            Add division
-          </Button>
-          {showTierMove && conference.tier !== "power" && (
+          {!collapsed && (
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              data-testid={`add-division-${conference.id}`}
+              onClick={onAddDivision}
+            >
+              <Plus />
+              Add division
+            </Button>
+          )}
+          {!collapsed && showTierMove && conference.tier !== "power" && (
             <Button type="button" variant="outline" size="sm" disabled={conference.tier === "group" && !canDelete} onClick={() => onMoveTier("power")}>
               <ArrowLeftRight />
               To Power
             </Button>
           )}
-          {showTierMove && conference.tier !== "group" && (
+          {!collapsed && showTierMove && conference.tier !== "group" && (
             <Button type="button" variant="outline" size="sm" disabled={conference.tier === "power" && !canDelete} onClick={() => onMoveTier("group")}>
               To Group
             </Button>
@@ -131,7 +149,7 @@ export function ConferenceRow({
           </Button>
         </div>
       </div>
-      {divisions.length === 0 ? (
+      {!collapsed && (divisions.length === 0 ? (
         <DropZone conferenceId={conference.id} schools={schools} empty="Drop schools here." onInspect={onInspect} />
       ) : (
         <div className="flex flex-col gap-2">
@@ -159,7 +177,7 @@ export function ConferenceRow({
             />
           </div>
         </div>
-      )}
+      ))}
     </section>
   )
 }

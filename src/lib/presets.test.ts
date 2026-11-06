@@ -182,4 +182,31 @@ describe("FBS season presets", () => {
     assert.deepEqual(modern.ignoredIds, [])
     assert.doesNotMatch(season("2026").detail, /set aside/)
   })
+
+  it("names every conference membership change in the season note", () => {
+    const expected: Record<string, string[]> = {
+      "2011": ["Boise State", "Mountain West", "BYU", "Nebraska", "Big Ten", "Colorado", "Utah", "Pac-12"],
+      "2012": ["Missouri", "Texas A&M", "SEC", "TCU", "West Virginia", "Big 12", "Temple", "Big East", "Fresno State", "Hawai'i", "Nevada", "UMass", "South Alabama", "Texas State", "UTSA"],
+      "2013": ["Pittsburgh", "Syracuse", "ACC", "American", "Houston", "Memphis", "SMU", "UCF", "Florida Atlantic", "FIU", "Middle Tennessee", "North Texas", "Louisiana Tech", "UTSA", "San Jose State", "Utah State", "Texas State", "Georgia State", "Idaho", "New Mexico State", "WAC"],
+      "2014": ["Maryland", "Rutgers", "Big Ten", "Louisville", "ACC", "East Carolina", "Tulane", "Tulsa", "Western Kentucky", "Old Dominion", "Appalachian State", "Georgia Southern", "Idaho", "New Mexico State"],
+      "2015": ["Navy", "Charlotte", "UAB"],
+      "2016": ["UMass"],
+      "2017": ["UAB", "Coastal Carolina"],
+      "2018": ["Liberty", "Idaho", "New Mexico State"],
+      "2019": ["No teams change conferences"],
+      "2020": ["Notre Dame", "ACC", "UConn"],
+      "2021": ["Notre Dame"],
+      "2022": ["James Madison", "Marshall", "Old Dominion", "Southern Miss"],
+      "2023": ["BYU", "Cincinnati", "Houston", "UCF", "Big 12", "Charlotte", "Florida Atlantic", "North Texas", "Rice", "UAB", "UTSA", "Liberty", "New Mexico State", "Jacksonville State", "Sam Houston"],
+      "2024": ["Oklahoma", "Texas", "SEC", "Oregon", "UCLA", "USC", "Washington", "Big Ten", "Arizona State", "Colorado", "Utah", "Big 12", "Stanford", "SMU", "ACC", "Army", "Kennesaw State", "Oregon State", "Washington State"],
+      "2025": ["Delaware", "Missouri State", "UMass"],
+      "2026": ["Boise State", "Colorado State", "Fresno State", "San Diego State", "Texas State", "Utah State", "Pac-12", "North Dakota State", "Northern Illinois", "UTEP", "Louisiana Tech", "Sacramento State"],
+    }
+    for (const [year, phrases] of Object.entries(expected)) {
+      const detail = season(year).detail
+      for (const phrase of phrases) {
+        assert.equal(detail.includes(phrase), true, `${year} note is missing ${phrase}`)
+      }
+    }
+  })
 })

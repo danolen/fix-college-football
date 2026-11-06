@@ -86,17 +86,51 @@ const geo: NorthAmericaGeo = {
   regions: [
     {
       region: "main",
-      name: "lower-48",
+      name: "California",
       kind: "state",
       geometry: {
         type: "Polygon",
         coordinates: [
           [
-            [-125, 24],
-            [-66, 24],
-            [-66, 49],
-            [-125, 49],
-            [-125, 24],
+            [-124.4, 32.5],
+            [-124.4, 42],
+            [-114.1, 42],
+            [-114.1, 32.5],
+            [-124.4, 32.5],
+          ],
+        ],
+      },
+    },
+    {
+      region: "main",
+      name: "Midwest",
+      kind: "state",
+      geometry: {
+        type: "Polygon",
+        coordinates: [
+          [
+            [-104, 29],
+            [-104, 45],
+            [-88, 45],
+            [-88, 29],
+            [-104, 29],
+          ],
+        ],
+      },
+    },
+    {
+      region: "main",
+      name: "East",
+      kind: "state",
+      geometry: {
+        type: "Polygon",
+        coordinates: [
+          [
+            [-85, 30],
+            [-85, 45],
+            [-70, 45],
+            [-70, 30],
+            [-85, 30],
           ],
         ],
       },
@@ -110,9 +144,9 @@ const geo: NorthAmericaGeo = {
         coordinates: [
           [
             [-160, 18],
-            [-154, 18],
-            [-154, 23],
             [-160, 23],
+            [-154, 23],
+            [-154, 18],
             [-160, 18],
           ],
         ],
@@ -169,6 +203,7 @@ describe("map layout", () => {
     assert.equal(scene.dots.some((dot) => dot.id === "oregon"), false)
     assert.equal(scene.dots.every((dot) => !dot.assigned), true)
     assert.equal(scene.blobs.length, 0)
+    assert.equal(scene.dots.some((dot) => dot.id === "hawaii"), false)
     assert.equal(scene.insets.some((inset) => inset.dots.some((dot) => dot.id === "hawaii")), false)
   })
 
@@ -187,14 +222,14 @@ describe("map layout", () => {
       show: "conferences",
       conferenceIds: ["mw"],
     })
-    assert.equal(chosen.dots.some((dot) => dot.id === "hawaii"), false)
-    assert.equal(chosen.insets[0].dots.some((dot) => dot.id === "hawaii"), true)
+    assert.equal(chosen.dots.some((dot) => dot.id === "hawaii"), true)
+    assert.equal(chosen.insets.some((inset) => inset.label === "Hawaiʻi"), false)
     assert.equal(chosen.dots.some((dot) => dot.id === "oregon"), false)
     const group = layoutMap({ geo, schools, conferences, width: 960, height: 640, show: "group" })
     assert.equal(group.dots.some((dot) => dot.id === "oregon"), false)
-    assert.equal(group.insets[0].dots.some((dot) => dot.id === "hawaii"), true)
-    assert.equal(group.blobs.length, 0)
-    assert.equal(group.insets[0].blobs.some((blob) => blob.name === "Mountain West"), true)
+    assert.equal(group.dots.some((dot) => dot.id === "hawaii"), true)
+    assert.equal(group.blobs.some((blob) => blob.name === "Mountain West"), true)
+    assert.equal(group.insets.some((inset) => inset.label === "Hawaiʻi"), false)
   })
 
   it("draws a dashed division outline only when a conference has divisions", () => {
@@ -288,10 +323,16 @@ describe("map layout", () => {
     assert.ok(coloredGap < mark, `colored gap ${coloredGap} should overlap a ${mark}px mark`)
   })
 
-  it("keeps a Hawaiʻi inset instead of stretching the mainland crop", () => {
+  it("places Hawaiʻi beside the west coast instead of in an inset", () => {
     const scene = layoutMap({ geo, schools, conferences, width: 960, height: 640 })
-    assert.equal(scene.insets.some((inset) => inset.label === "Hawaiʻi"), true)
-    assert.equal(scene.dots.some((dot) => dot.id === "hawaii"), false)
-    assert.equal(scene.insets[0].dots.some((dot) => dot.id === "hawaii"), true)
+    const hawaii = scene.dots.find((dot) => dot.id === "hawaii")
+    const oregon = scene.dots.find((dot) => dot.id === "oregon")
+    assert.ok(hawaii)
+    assert.ok(oregon)
+    assert.equal(scene.insets.some((inset) => inset.label === "Hawaiʻi"), false)
+    assert.ok(hawaii.x < oregon.x)
+    assert.ok(hawaii.x > 0 && hawaii.y > 0 && hawaii.y < scene.mainHeight)
+    assert.ok(scene.mainHeight > scene.height - 20)
+    assert.equal(scene.labels.some((label) => label.text === "Hawaiʻi"), true)
   })
 })

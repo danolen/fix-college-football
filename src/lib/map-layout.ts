@@ -79,6 +79,7 @@ export type MapScene = {
   blobs: MapBlob[]
   dots: MapDot[]
   insets: MapInset[]
+  labels: Array<{ x: number; y: number; text: string }>
 }
 
 export function geoRegion(lat: number, lon: number): MapRegion {
@@ -115,8 +116,10 @@ export function layoutMap(args: {
   const showAlaska = located.some(
     (school) => geoRegion(school.lat, school.lon) === "alaska" && schoolOnMap(school, membership, show, selected),
   )
-  const band = showHawaii || showAlaska ? 128 : 0
+  const band = showAlaska ? 128 : 0
   const mainHeight = height - band
+  const hawaiiBox = showHawaii ? Math.round(Math.min(124, Math.max(78, width * 0.14))) : 0
+  const hawaiiSlot = showHawaii ? hawaiiBox + 22 : 0
 
   const stateLand = args.geo.regions.filter(
     (item) => item.kind === "state" && item.region === "main" && isLowerFortyEight(item.geometry),
@@ -128,17 +131,27 @@ export function layoutMap(args: {
   }
   projection.fitExtent(
     [
-      [12, 12],
+      [12 + hawaiiSlot, 12],
       [width - 12, mainHeight - 12],
     ],
     fitFeature as GeoPermissibleObjects,
   )
   const path = geoPath(projection)
-  const land = stateLand.map((item) => path(item.geometry) ?? "").filter(Boolean)
+  const hawaii = showHawaii
+    ? placeHawaiiBesideCalifornia({ geo: args.geo, projection, stateLand, mainHeight, box: hawaiiBox })
+    : null
+  const land = [
+    ...stateLand.map((item) => path(item.geometry) ?? "").filter(Boolean),
+    ...(hawaii?.land ?? []),
+  ]
   const lakes = args.geo.lakes.map((geometry) => path(geometry) ?? "").filter(Boolean)
 
-  const mainSchools = located.filter((school) => geoRegion(school.lat, school.lon) === "main")
+  const mainSchools = located.filter((school) => {
+    const region = geoRegion(school.lat, school.lon)
+    return region === "main" || (region === "hawaii" && hawaii !== null)
+  })
   const projectMain = (school: School): Pt | null => {
+    if (geoRegion(school.lat, school.lon) === "hawaii") return hawaii?.project(school.lon, school.lat) ?? null
     const point = projection([school.lon, school.lat])
     return point ? [point[0], point[1]] : null
   }
@@ -160,13 +173,13 @@ export function layoutMap(args: {
   const insetY = mainHeight + 10
   const insetWidth = Math.min(210, Math.round(width * 0.3))
   const insetHeight = 108
-  if (showHawaii) {
+  if (showAlaska) {
     insets.push(
       buildInset({
         geo: args.geo,
-        schools: located.filter((school) => geoRegion(school.lat, school.lon) === "hawaii"),
-        region: "hawaii",
-        label: "Hawaiʻi",
+        schools: located.filter((school) => geoRegion(school.lat, school.lon) === "alaska"),
+        region: "alaska",
+        label: "Alaska",
         x: 12,
         y: insetY,
         width: insetWidth,
@@ -178,26 +191,96 @@ export function layoutMap(args: {
       }),
     )
   }
-  if (showAlaska) {
-    insets.push(
-      buildInset({
-        geo: args.geo,
-        schools: located.filter((school) => geoRegion(school.lat, school.lon) === "alaska"),
-        region: "alaska",
-        label: "Alaska",
-        x: showHawaii ? 28 + insetWidth : 12,
-        y: insetY,
-        width: insetWidth,
-        height: insetHeight,
-        membership,
-        show,
-        colorBy,
-        selected,
-      }),
-    )
-  }
 
-  return { width, height, mainHeight, land, lakes, blobs, dots, insets }
+  return { width, height, mainHeight, land, lakes, blobs, dots, insets, labels: hawaii?.labels ?? [] }
+}
+
+function placeHawaiiBesideCalifornia(args: {
+  geo: NorthAmericaGeo
+  projection: ReturnType<typeof geoAlbers>
+  stateLand: LandFeature[]
+  mainHeight: number
+  box: number
+}): { land: string[]; labels: Array<{ x: number; y: number; text: string }>; project: (lon: number, lat: number) => Pt | null } | null {
+  const islands = args.geo.regions.filter((item) => item.region === "hawaii")
+  if (islands.length === 0) return null
+  const california = args.stateLand.filter((item) => item.name === "California")
+  const mainland = california.reduce<LandFeature | null>((best, item) => {
+    if (!best || featureSpan(item.geometry) > featureSpan(best.geometry)) return item
+    return best
+  }, null)
+  const coast = mainland ? [mainland] : args.stateLand
+  const coastPoints = coast.flatMap((item) => projectedVertices(item.geometry, args.projection))
+  if (coastPoints.length === 0) return null
+  let minY = Infinity
+  let maxY = -Infinity
+  for (const point of coastPoints) {
+    minY = Math.min(minY, point[1])
+    maxY = Math.max(maxY, point[1])
+  }
+  const boxW = args.box
+  const boxH = Math.round(boxW * 0.62)
+  const yCenter = minY + (maxY - minY) * 0.58
+  const y = Math.max(18, Math.min(args.mainHeight - boxH - 8, yCenter - boxH / 2))
+  const collection = {
+    type: "FeatureCollection",
+    features: islands.map((item) => ({ type: "Feature", properties: {}, geometry: item.geometry }) as Feature),
+  }
+  const local = geoAlbers().rotate([157, 0])
+  local.fitExtent(
+    [
+      [0, y],
+      [boxW, y + boxH],
+    ],
+    collection as GeoPermissibleObjects,
+  )
+  const drafted = islands.flatMap((item) => projectedVertices(item.geometry, local))
+  if (drafted.length === 0) return null
+  const gap = 8
+  let shift = Infinity
+  for (const point of drafted) {
+    const nearby = coastPoints.filter((coastPoint) => Math.abs(coastPoint[1] - point[1]) <= 16)
+    const shore = Math.min(...(nearby.length > 0 ? nearby : coastPoints).map((coastPoint) => coastPoint[0]))
+    shift = Math.min(shift, shore - gap - point[0])
+  }
+  const west = Math.min(...drafted.map((point) => point[0]))
+  if (west + shift < 6) shift = 6 - west
+  const [translateX, translateY] = local.translate()
+  const draftedSouth = Math.max(...drafted.map((point) => point[1]))
+  const drop = maxY - draftedSouth
+  local.translate([translateX + shift, translateY + drop])
+  const placed = islands.flatMap((item) => projectedVertices(item.geometry, local))
+  const labelX = (Math.min(...placed.map((point) => point[0])) + Math.max(...placed.map((point) => point[0]))) / 2
+  const labelY = Math.min(...placed.map((point) => point[1])) - 6
+  const localPath = geoPath(local)
+  return {
+    land: islands.map((item) => localPath(item.geometry) ?? "").filter(Boolean),
+    labels: [{ x: labelX, y: Math.max(12, labelY), text: "Hawaiʻi" }],
+    project: (lon, lat) => {
+      const point = local([lon, lat])
+      return point ? [point[0], point[1]] : null
+    },
+  }
+}
+
+function featureSpan(geometry: Geometry): number {
+  const [[minLon, minLat], [maxLon, maxLat]] = geoBounds(geometry)
+  return Math.max(0, maxLon - minLon) * Math.max(0, maxLat - minLat)
+}
+
+function projectedVertices(geometry: Geometry, projection: ReturnType<typeof geoAlbers>): Pt[] {
+  const points: Pt[] = []
+  const visit = (coords: unknown) => {
+    if (!Array.isArray(coords)) return
+    if (typeof coords[0] === "number" && typeof coords[1] === "number") {
+      const point = projection([coords[0], coords[1]])
+      if (point && Number.isFinite(point[0]) && Number.isFinite(point[1])) points.push([point[0], point[1]])
+      return
+    }
+    for (const child of coords) visit(child)
+  }
+  if ("coordinates" in geometry) visit(geometry.coordinates)
+  return points
 }
 
 function isLowerFortyEight(geometry: Geometry): boolean {

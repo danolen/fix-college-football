@@ -42,6 +42,7 @@ import {
   shareUnlocked,
 } from "@/lib/board"
 import { rivalryCountLabel, scoreRivalries, scoreTone } from "@/lib/scoring"
+import { boardTripMiles, formatTripMiles } from "@/lib/travel"
 import { discardSavedBoard, getBoardSnapshot, getServerBoardSnapshot, makeId, replaceBoard, subscribeBoard } from "@/lib/storage"
 import type { BoardState, Conference, Mode, Preset, Tier } from "@/lib/types"
 
@@ -99,6 +100,7 @@ export function AppShell() {
   const loadError = snapshot.loadError
   const unlocked = shareUnlocked(state)
   const tone = scoreTone(score.kept, score.total, catalog.thresholds)
+  const tripMiles = boardTripMiles(state.conferences, schoolsById)
   function commit(next: BoardState) {
     replaceBoard(next)
     if (tab === "share" && !shareUnlocked(next)) setTab("build")
@@ -209,7 +211,14 @@ export function AppShell() {
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-2">
-                <ScorePill kept={score.kept} total={score.total} tone={tone} />
+                <div className="flex flex-col items-end gap-0.5">
+                  <ScorePill kept={score.kept} total={score.total} tone={tone} />
+                  {tripMiles != null && (
+                    <p className="text-xs text-muted-foreground" data-testid="travel-average">
+                      {formatTripMiles(tripMiles)} average trip
+                    </p>
+                  )}
+                </div>
                 <Button type="button" variant="outline" size="sm" onClick={() => api.requestReset()}>
                   <RotateCcw />
                   Reset

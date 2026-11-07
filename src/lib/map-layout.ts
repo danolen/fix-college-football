@@ -1,6 +1,6 @@
 import { geoAlbers, geoBounds, geoPath, type GeoPermissibleObjects } from "d3-geo"
 import type { Feature, Geometry } from "geojson"
-import { conferenceDivisions } from "./board"
+import { conferenceDivisions, isIndependents } from "./board"
 import { blobPath, type Pt } from "./hull"
 import type { Conference, MapColorMode, MapShowMode, School } from "./types"
 
@@ -521,6 +521,7 @@ function blobsFromGrouped(
   const divisionPad = Math.max(4, pad - 3)
   const blobs: MapBlob[] = []
   for (const bucket of grouped.values()) {
+    if (isIndependents(bucket.conference)) continue
     blobs.push({
       d: blobPath(bucket.points, pad),
       color: bucket.conference.color,

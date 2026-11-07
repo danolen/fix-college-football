@@ -182,6 +182,24 @@ describe("map layout", () => {
     { id: "mw", name: "Mountain West", color: "#1E3A8A", tier: "group", schoolIds: ["hawaii"] },
   ]
 
+  it("leaves independent schools as dots without a conference cloud", () => {
+    const scene = layoutMap({
+      geo,
+      schools,
+      conferences: [
+        { id: "b1g", name: "Big Ten", color: "#9E2A2B", tier: "power", schoolIds: ["rutgers"] },
+        { id: "ind", name: "Independents", color: "#57534E", tier: "none", schoolIds: ["oregon", "iowa", "loose"] },
+      ],
+      width: 960,
+      height: 640,
+    })
+    assert.equal(scene.blobs.some((blob) => blob.name === "Independents"), false)
+    assert.equal(scene.blobs.some((blob) => blob.name === "Big Ten"), true)
+    assert.equal(scene.dots.some((dot) => dot.id === "oregon"), true)
+    assert.equal(scene.dots.some((dot) => dot.id === "iowa"), true)
+    assert.equal(scene.dots.some((dot) => dot.id === "loose"), true)
+  })
+
   it("draws one main blob for a coast-to-coast conference", () => {
     const scene = layoutMap({ geo, schools, conferences, width: 960, height: 640 })
     const bigTen = scene.blobs.filter((blob) => blob.name === "Big Ten")

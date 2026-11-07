@@ -7,7 +7,8 @@ import { SchoolTile } from "@/components/school-tile"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { conferenceDivisions, undividedSchoolIds } from "@/lib/board"
+import { conferenceDivisions, isIndependents, undividedSchoolIds } from "@/lib/board"
+import { conferenceTripMiles, formatTripMiles } from "@/lib/travel"
 import { PALETTE } from "@/lib/colors"
 import type { Conference, Division, School, Tier } from "@/lib/types"
 import { cn } from "@/lib/utils"
@@ -55,6 +56,7 @@ export function ConferenceRow({
   const undivided = undividedSchoolIds(conference)
     .map((id) => byId.get(id))
     .filter((school): school is School => Boolean(school))
+  const tripMiles = isIndependents(conference) ? null : conferenceTripMiles(schools)
   const targeted =
     drag.overConferenceId === conference.id && (divisions.length === 0 || drag.overDivisionId == null)
 
@@ -112,7 +114,10 @@ export function ConferenceRow({
           }}
           className="h-8 min-w-0 max-w-52 border-transparent bg-transparent font-display text-lg font-semibold tracking-wide shadow-none focus-visible:border-border"
         />
-        <span className="text-xs text-muted-foreground">{schools.length}</span>
+        <span className="flex items-center gap-2 text-xs whitespace-nowrap text-muted-foreground">
+          <span>{schools.length}</span>
+          {tripMiles != null && <span data-testid={`conference-miles-${conference.id}`}>{formatTripMiles(tripMiles)} avg</span>}
+        </span>
         <div className="ml-auto flex items-center gap-1">
           {!collapsed && (
             <Button

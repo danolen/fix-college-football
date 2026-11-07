@@ -115,29 +115,31 @@ export function ConferenceRow({
                     event.currentTarget.blur()
                   }
                 }}
-                className="h-8 min-w-0 border-transparent bg-transparent font-display text-lg font-semibold tracking-wide shadow-none focus-visible:border-border"
+                className="h-8 min-w-0 overflow-hidden border-transparent bg-transparent font-display text-lg font-semibold tracking-wide shadow-none focus-visible:border-border"
               />
             </div>
-            {collapsed && (
-              <Button
-                type="button"
-                variant="ghost"
-                size="icon-sm"
-                disabled={!canDelete}
-                aria-label={canDelete ? `Delete ${conference.name}` : `${conference.name} is the last conference in this tier`}
-                onClick={onDelete}
-              >
-                <Trash2 />
-              </Button>
-            )}
-            {collapsed && tripMiles != null && (
-              <span className="shrink-0 border-l border-border pl-2 text-xs tabular-nums text-muted-foreground" data-testid={`conference-miles-${conference.id}`}>
-                {formatTripMiles(tripMiles)}
+            <div className={cn("z-10 flex shrink-0 items-center bg-card", collapsed ? "gap-3" : "")}>
+              {collapsed && (
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon-sm"
+                  disabled={!canDelete}
+                  aria-label={canDelete ? `Delete ${conference.name}` : `${conference.name} is the last conference in this tier`}
+                  onClick={onDelete}
+                >
+                  <Trash2 />
+                </Button>
+              )}
+              {collapsed && tripMiles != null && (
+                <span className="border-l border-border pl-3 text-xs tabular-nums text-muted-foreground" data-testid={`conference-miles-${conference.id}`}>
+                  {formatTripMiles(tripMiles)}
+                </span>
+              )}
+              <span className={cn("w-7 text-right text-xs tabular-nums text-muted-foreground", collapsed ? "" : "pt-2")} data-testid={`conference-count-${conference.id}`}>
+                {schools.length}
               </span>
-            )}
-            <span className={cn("w-7 shrink-0 text-right text-xs tabular-nums text-muted-foreground", collapsed ? "" : "pt-2")} data-testid={`conference-count-${conference.id}`}>
-              {schools.length}
-            </span>
+            </div>
           </div>
           {!collapsed && (
             <div className="flex flex-wrap items-center justify-between gap-2 pl-2.5">

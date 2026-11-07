@@ -341,7 +341,6 @@ function ScorePill({ kept, total, tone }: { kept: number; total: number; tone: s
     <p
       data-testid="rivalry-score"
       aria-live="polite"
-      title="Green from 25/45 of the rivalries that count, amber from 15/45. A rivalry counts when both schools are on the board and neither is ignored. Unassigned schools still count as misses. Each pair weighs the same."
       className={`rounded-full px-3 py-1 text-sm font-medium ${color}`}
     >
       {rivalryCountLabel(kept, total)} rivalries kept together

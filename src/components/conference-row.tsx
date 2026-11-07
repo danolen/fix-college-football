@@ -119,6 +119,14 @@ export function ConferenceRow({
               />
             </div>
             <div className={cn("z-10 flex shrink-0 items-center bg-card", collapsed ? "gap-3" : "")}>
+              {collapsed && tripMiles != null && (
+                <span className="border-l border-border pl-3 text-xs tabular-nums text-muted-foreground" data-testid={`conference-miles-${conference.id}`}>
+                  {formatTripMiles(tripMiles)}
+                </span>
+              )}
+              <span className={cn("w-7 text-right text-xs tabular-nums text-muted-foreground", collapsed ? "" : "pt-2")} data-testid={`conference-count-${conference.id}`}>
+                {schools.length}
+              </span>
               {collapsed && (
                 <Button
                   type="button"
@@ -131,14 +139,6 @@ export function ConferenceRow({
                   <Trash2 />
                 </Button>
               )}
-              {collapsed && tripMiles != null && (
-                <span className="border-l border-border pl-3 text-xs tabular-nums text-muted-foreground" data-testid={`conference-miles-${conference.id}`}>
-                  {formatTripMiles(tripMiles)}
-                </span>
-              )}
-              <span className={cn("w-7 text-right text-xs tabular-nums text-muted-foreground", collapsed ? "" : "pt-2")} data-testid={`conference-count-${conference.id}`}>
-                {schools.length}
-              </span>
             </div>
           </div>
           {!collapsed && (

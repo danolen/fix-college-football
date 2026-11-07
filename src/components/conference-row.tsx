@@ -66,7 +66,7 @@ export function ConferenceRow({
       data-conference-id={conference.id}
       data-collapsed={collapsed ? "" : undefined}
     >
-      <div className={cn("flex items-center gap-2", collapsed ? "flex-nowrap" : "mb-2 flex-wrap")}>
+      <div className={cn("flex gap-2", collapsed ? "flex-nowrap items-center" : "mb-2 items-start")}>
         <Button
           type="button"
           variant="ghost"
@@ -80,7 +80,7 @@ export function ConferenceRow({
         </Button>
         <Popover>
           <PopoverTrigger
-            className="size-7 rounded-full border-2 border-background shadow-sm ring-1 ring-foreground/15"
+            className="size-7 shrink-0 rounded-full border-2 border-background shadow-sm ring-1 ring-foreground/15"
             style={{ background: conference.color }}
             aria-label={`Color for ${conference.name}`}
           />
@@ -100,58 +100,89 @@ export function ConferenceRow({
             </div>
           </PopoverContent>
         </Popover>
-        <Input
-          value={name}
-          aria-label={`Rename ${conference.name}`}
-          onChange={(event) => setName(event.target.value)}
-          onBlur={() => onRename(name)}
-          onKeyDown={(event) => {
-            if (event.key === "Enter") event.currentTarget.blur()
-            if (event.key === "Escape") {
-              setName(conference.name)
-              event.currentTarget.blur()
-            }
-          }}
-          className="h-8 min-w-0 max-w-52 border-transparent bg-transparent font-display text-lg font-semibold tracking-wide shadow-none focus-visible:border-border"
-        />
-        <span className="flex items-center gap-2 text-xs whitespace-nowrap text-muted-foreground">
-          <span>{schools.length}</span>
-          {tripMiles != null && <span data-testid={`conference-miles-${conference.id}`}>{formatTripMiles(tripMiles)} avg</span>}
-        </span>
-        <div className="ml-auto flex items-center gap-1">
+        <div className="min-w-0 flex-1">
+          <div className={cn("flex gap-2", collapsed ? "items-center" : "items-start")}>
+            <div className="min-w-0 flex-1">
+              <Input
+                value={name}
+                aria-label={`Rename ${conference.name}`}
+                onChange={(event) => setName(event.target.value)}
+                onBlur={() => onRename(name)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") event.currentTarget.blur()
+                  if (event.key === "Escape") {
+                    setName(conference.name)
+                    event.currentTarget.blur()
+                  }
+                }}
+                className="h-8 min-w-0 border-transparent bg-transparent font-display text-lg font-semibold tracking-wide shadow-none focus-visible:border-border"
+              />
+            </div>
+            {collapsed && (
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon-sm"
+                disabled={!canDelete}
+                aria-label={canDelete ? `Delete ${conference.name}` : `${conference.name} is the last conference in this tier`}
+                onClick={onDelete}
+              >
+                <Trash2 />
+              </Button>
+            )}
+            {collapsed && tripMiles != null && (
+              <span className="shrink-0 border-l border-border pl-2 text-xs tabular-nums text-muted-foreground" data-testid={`conference-miles-${conference.id}`}>
+                {formatTripMiles(tripMiles)}
+              </span>
+            )}
+            <span className={cn("w-7 shrink-0 text-right text-xs tabular-nums text-muted-foreground", collapsed ? "" : "pt-2")} data-testid={`conference-count-${conference.id}`}>
+              {schools.length}
+            </span>
+          </div>
           {!collapsed && (
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              data-testid={`add-division-${conference.id}`}
-              onClick={onAddDivision}
-            >
-              <Plus />
-              Add division
-            </Button>
+            <div className="flex flex-wrap items-center justify-between gap-2 pl-2.5">
+              {tripMiles != null ? (
+                <p className="text-xs whitespace-nowrap text-muted-foreground" data-testid={`conference-miles-${conference.id}`}>
+                  {formatTripMiles(tripMiles)} avg
+                </p>
+              ) : (
+                <span />
+              )}
+              <div className="ml-auto flex flex-wrap items-center justify-end gap-1">
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                data-testid={`add-division-${conference.id}`}
+                onClick={onAddDivision}
+              >
+                <Plus />
+                Add division
+              </Button>
+              {showTierMove && conference.tier !== "power" && (
+                <Button type="button" variant="outline" size="sm" disabled={conference.tier === "group" && !canDelete} onClick={() => onMoveTier("power")}>
+                  <ArrowLeftRight />
+                  To Power
+                </Button>
+              )}
+              {showTierMove && conference.tier !== "group" && (
+                <Button type="button" variant="outline" size="sm" disabled={conference.tier === "power" && !canDelete} onClick={() => onMoveTier("group")}>
+                  To Group
+                </Button>
+              )}
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon-sm"
+                disabled={!canDelete}
+                aria-label={canDelete ? `Delete ${conference.name}` : `${conference.name} is the last conference in this tier`}
+                onClick={onDelete}
+              >
+                <Trash2 />
+              </Button>
+              </div>
+            </div>
           )}
-          {!collapsed && showTierMove && conference.tier !== "power" && (
-            <Button type="button" variant="outline" size="sm" disabled={conference.tier === "group" && !canDelete} onClick={() => onMoveTier("power")}>
-              <ArrowLeftRight />
-              To Power
-            </Button>
-          )}
-          {!collapsed && showTierMove && conference.tier !== "group" && (
-            <Button type="button" variant="outline" size="sm" disabled={conference.tier === "power" && !canDelete} onClick={() => onMoveTier("group")}>
-              To Group
-            </Button>
-          )}
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon-sm"
-            disabled={!canDelete}
-            aria-label={canDelete ? `Delete ${conference.name}` : `${conference.name} is the last conference in this tier`}
-            onClick={onDelete}
-          >
-            <Trash2 />
-          </Button>
         </div>
       </div>
       {!collapsed && (divisions.length === 0 ? (

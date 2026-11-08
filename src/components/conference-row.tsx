@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { conferenceDivisions, isIndependents, undividedSchoolIds } from "@/lib/board"
+import { formatSp, formatSpread, spTone, summarizeSp } from "@/lib/strength"
+import { StrengthStrip } from "@/components/strength-strip"
 import { conferenceTripMiles, formatTripMiles } from "@/lib/travel"
 import { PALETTE } from "@/lib/colors"
 import type { Conference, Division, School, Tier } from "@/lib/types"
@@ -57,6 +59,7 @@ export function ConferenceRow({
     .map((id) => byId.get(id))
     .filter((school): school is School => Boolean(school))
   const tripMiles = isIndependents(conference) ? null : conferenceTripMiles(schools)
+  const strength = isIndependents(conference) ? null : summarizeSp(schools)
   const targeted =
     drag.overConferenceId === conference.id && (divisions.length === 0 || drag.overDivisionId == null)
 
@@ -119,8 +122,18 @@ export function ConferenceRow({
               />
             </div>
             <div className={cn("z-10 flex shrink-0 items-center bg-card", collapsed ? "gap-3" : "")}>
+              {collapsed && strength && (
+                <span className={cn("border-l border-border pl-3 text-xs tabular-nums", spTone(strength.mean))} data-testid={`conference-sp-${conference.id}`}>
+                  {formatSp(strength.mean)}
+                </span>
+              )}
+              {collapsed && strength && (
+                <span className="text-xs tabular-nums text-muted-foreground" data-testid={`conference-spread-${conference.id}`}>
+                  ±{formatSpread(strength.spread)}
+                </span>
+              )}
               {collapsed && tripMiles != null && (
-                <span className="border-l border-border pl-3 text-xs tabular-nums text-muted-foreground" data-testid={`conference-miles-${conference.id}`}>
+                <span className={cn("text-xs tabular-nums text-muted-foreground", strength ? "" : "border-l border-border pl-3")} data-testid={`conference-miles-${conference.id}`}>
                   {formatTripMiles(tripMiles)}
                 </span>
               )}
@@ -183,6 +196,22 @@ export function ConferenceRow({
                 <Trash2 />
               </Button>
               </div>
+            </div>
+          )}
+          {!collapsed && strength && (
+            <div className="mt-1 pl-2.5" data-testid={`conference-strength-${conference.id}`}>
+              <p className="text-xs whitespace-nowrap">
+                <span className={cn("tabular-nums", spTone(strength.mean))}>{formatSp(strength.mean)} SP+</span>
+                <span className="text-muted-foreground"> · ±{formatSpread(strength.spread)} from average</span>
+              </p>
+              <div className="mt-1.5 max-w-md">
+                <StrengthStrip schools={strength.schools} color={conference.color} />
+              </div>
+              <p className="mt-1 text-xs text-muted-foreground">
+                <span className={spTone(strength.best.rating)}>{strength.best.name} {formatSp(strength.best.rating)}</span>
+                <span> · </span>
+                <span className={spTone(strength.worst.rating)}>{strength.worst.name} {formatSp(strength.worst.rating)}</span>
+              </p>
             </div>
           )}
         </div>

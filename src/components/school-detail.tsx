@@ -9,7 +9,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
+import { StrengthStrip } from "@/components/strength-strip"
 import type { ScoredRivalry } from "@/lib/scoring"
+import { formatSp, schoolSp, spTone, type ConferenceStrength } from "@/lib/strength"
 import type { School } from "@/lib/types"
 import { cn } from "@/lib/utils"
 
@@ -17,6 +19,7 @@ export function SchoolDetail({
   school,
   rows,
   ignored,
+  league,
   onIgnore,
   onRestore,
   onOpenChange,
@@ -24,6 +27,7 @@ export function SchoolDetail({
   school: School | null
   rows: ScoredRivalry[]
   ignored: boolean
+  league: { name: string; strength: ConferenceStrength } | null
   onIgnore: () => void
   onRestore: () => void
   onOpenChange: (open: boolean) => void
@@ -40,6 +44,7 @@ export function SchoolDetail({
             {school ? `${school.city}, ${school.region} · ${school.abbr}` : ""}
           </DialogDescription>
         </DialogHeader>
+        {school && <SchoolStrength school={school} league={league} />}
         {ignored && (
           <p className="text-sm text-muted-foreground">
             This school is ignored, so every rivalry that includes it is left out of the count.
@@ -91,5 +96,32 @@ export function SchoolDetail({
         </div>
       </DialogContent>
     </Dialog>
+  )
+}
+
+function SchoolStrength({ school, league }: { school: School; league: { name: string; strength: ConferenceStrength } | null }) {
+  const rating = schoolSp(school.id)
+  if (rating == null) {
+    return (
+      <p className="text-sm text-muted-foreground" data-testid="school-sp">
+        No SP+ rating for 2021–2025.
+      </p>
+    )
+  }
+  return (
+    <section className="rounded-xl bg-muted p-3" data-testid="school-sp">
+      <p className={cn("font-medium tabular-nums", spTone(rating))}>{formatSp(rating)} SP+</p>
+      <p className="mt-1 text-xs text-muted-foreground">
+        Weighted SP+, 2021–2025. Recent seasons count more. 0 is an average FBS team.
+      </p>
+      <div className="mt-3">
+        <StrengthStrip schools={[{ id: school.id, name: school.name, rating }]} color={school.primary} guide={league?.strength.mean ?? null} />
+        {league && (
+          <p className="mt-1 text-xs text-muted-foreground">
+            {league.name} average {formatSp(league.strength.mean)}
+          </p>
+        )}
+      </div>
+    </section>
   )
 }

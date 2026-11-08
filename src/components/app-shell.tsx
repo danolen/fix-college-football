@@ -30,6 +30,7 @@ import {
   deleteConference,
   deleteDivision,
   isDirty,
+  isIndependents,
   moveConferenceTier,
   moveSchools,
   onBoardIds,
@@ -42,6 +43,7 @@ import {
   shareUnlocked,
 } from "@/lib/board"
 import { rivalryCountLabel, scoreRivalries, scoreTone } from "@/lib/scoring"
+import { summarizeSp } from "@/lib/strength"
 import { boardTripMiles, formatTripMiles } from "@/lib/travel"
 import { discardSavedBoard, getBoardSnapshot, getServerBoardSnapshot, makeId, replaceBoard, subscribeBoard } from "@/lib/storage"
 import type { BoardState, Conference, Mode, Preset, Tier } from "@/lib/types"
@@ -293,6 +295,7 @@ export function AppShell() {
         school={inspectId ? schoolsById.get(inspectId) ?? null : null}
         rows={score.rows}
         ignored={inspectId ? state.ignoredIds.includes(inspectId) : false}
+        league={inspectLeague(inspectId, state.conferences, schoolsById)}
         onIgnore={() => {
           const current = getBoardSnapshot()?.board
           if (inspectId && current) commit(setSchoolsIgnored(current, [inspectId], true))
@@ -341,6 +344,21 @@ export function AppShell() {
       </Dialog>
     </BoardProvider>
   )
+}
+
+function inspectLeague(
+  schoolId: string | null,
+  conferences: Conference[],
+  schoolsById: Map<string, { id: string; name: string }>,
+) {
+  if (!schoolId) return null
+  const conference = conferences.find((item) => item.schoolIds.includes(schoolId))
+  if (!conference || isIndependents(conference)) return null
+  const schools = conference.schoolIds
+    .map((id) => schoolsById.get(id))
+    .filter((school): school is { id: string; name: string } => Boolean(school))
+  const strength = summarizeSp(schools)
+  return strength ? { name: conference.name, strength } : null
 }
 
 function ScorePill({ kept, total, tone }: { kept: number; total: number; tone: string }) {

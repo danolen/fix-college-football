@@ -357,7 +357,8 @@ function inspectLeague(
   const schools = conference.schoolIds
     .map((id) => schoolsById.get(id))
     .filter((school): school is { id: string; name: string } => Boolean(school))
-  return summarizeSp(schools)
+  const strength = summarizeSp(schools)
+  return strength ? { name: conference.name, strength } : null
 }
 
 function ScorePill({ kept, total, tone }: { kept: number; total: number; tone: string }) {

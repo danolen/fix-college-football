@@ -27,7 +27,7 @@ export function SchoolDetail({
   school: School | null
   rows: ScoredRivalry[]
   ignored: boolean
-  league: ConferenceStrength | null
+  league: { name: string; strength: ConferenceStrength } | null
   onIgnore: () => void
   onRestore: () => void
   onOpenChange: (open: boolean) => void
@@ -99,7 +99,7 @@ export function SchoolDetail({
   )
 }
 
-function SchoolStrength({ school, league }: { school: School; league: ConferenceStrength | null }) {
+function SchoolStrength({ school, league }: { school: School; league: { name: string; strength: ConferenceStrength } | null }) {
   const rating = schoolSp(school.id)
   if (rating == null) {
     return (
@@ -115,10 +115,10 @@ function SchoolStrength({ school, league }: { school: School; league: Conference
         Weighted SP+, 2021–2025. Recent seasons count more. 0 is an average FBS team.
       </p>
       <div className="mt-3">
-        <StrengthStrip schools={[{ id: school.id, name: school.name, rating }]} color={school.primary} guide={league?.mean ?? null} />
+        <StrengthStrip schools={[{ id: school.id, name: school.name, rating }]} color={school.primary} guide={league?.strength.mean ?? null} />
         {league && (
           <p className="mt-1 text-xs text-muted-foreground">
-            League {formatSp(league.mean)}
+            {league.name} average {formatSp(league.strength.mean)}
           </p>
         )}
       </div>

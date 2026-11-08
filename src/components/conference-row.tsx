@@ -202,7 +202,7 @@ export function ConferenceRow({
             <div className="mt-1 pl-2.5" data-testid={`conference-strength-${conference.id}`}>
               <p className="text-xs whitespace-nowrap">
                 <span className={cn("tabular-nums", spTone(strength.mean))}>{formatSp(strength.mean)} SP+</span>
-                <span className="text-muted-foreground"> · ±{formatSpread(strength.spread)} spread</span>
+                <span className="text-muted-foreground"> · ±{formatSpread(strength.spread)} from average</span>
               </p>
               <div className="mt-1.5 max-w-md">
                 <StrengthStrip schools={strength.schools} color={conference.color} />

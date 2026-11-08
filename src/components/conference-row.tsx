@@ -118,26 +118,24 @@ export function ConferenceRow({
                     event.currentTarget.blur()
                   }
                 }}
-                className="h-8 min-w-0 overflow-hidden border-transparent bg-transparent font-display text-lg font-semibold tracking-wide shadow-none focus-visible:border-border"
+                className={cn(
+                  "h-8 min-w-0 overflow-hidden border-transparent bg-transparent font-display font-semibold shadow-none focus-visible:border-border",
+                  collapsed ? "px-1.5 text-base tracking-normal" : "text-lg tracking-wide",
+                )}
               />
             </div>
-            <div className={cn("z-10 flex shrink-0 items-center bg-card", collapsed ? "gap-3" : "")}>
+            <div className={cn("z-10 flex shrink-0 items-center bg-card", collapsed ? "gap-2" : "")}>
               {collapsed && strength && (
-                <span className={cn("border-l border-border pl-3 text-xs tabular-nums", spTone(strength.mean))} data-testid={`conference-sp-${conference.id}`}>
+                <span className={cn("border-l border-border pl-2 text-xs tabular-nums", spTone(strength.mean))} data-testid={`conference-sp-${conference.id}`}>
                   {formatSp(strength.mean)}
                 </span>
               )}
-              {collapsed && strength && (
-                <span className="text-xs tabular-nums text-muted-foreground" data-testid={`conference-spread-${conference.id}`}>
-                  ±{formatSpread(strength.spread)}
-                </span>
-              )}
               {collapsed && tripMiles != null && (
-                <span className={cn("text-xs tabular-nums text-muted-foreground", strength ? "" : "border-l border-border pl-3")} data-testid={`conference-miles-${conference.id}`}>
+                <span className={cn("text-xs tabular-nums text-muted-foreground", strength ? "" : "border-l border-border pl-2")} data-testid={`conference-miles-${conference.id}`}>
                   {formatTripMiles(tripMiles)}
                 </span>
               )}
-              <span className={cn("w-7 text-right text-xs tabular-nums text-muted-foreground", collapsed ? "" : "pt-2")} data-testid={`conference-count-${conference.id}`}>
+              <span className={cn("text-right text-xs tabular-nums text-muted-foreground", collapsed ? "" : "w-7 pt-2")} data-testid={`conference-count-${conference.id}`}>
                 {schools.length}
               </span>
               {collapsed && (

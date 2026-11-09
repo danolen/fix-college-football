@@ -3,8 +3,19 @@ import { readFileSync } from "node:fs"
 import { describe, it } from "node:test"
 import { nextColor, PALETTE } from "./colors.ts"
 import { blobOutline, blobPath, boundsOf, pointInPolygon, signedArea, type Pt } from "./hull.ts"
-import { layoutMap, mapDotRadius, mapSchoolMarkSize, type NorthAmericaGeo } from "./map-layout.ts"
+import { layoutMap, mapDotRadius, mapSchoolMarkSize, zoomedMarkScale, type NorthAmericaGeo } from "./map-layout.ts"
 import type { Conference, School } from "./types.ts"
+
+describe("zoomed school marks", () => {
+  it("shrinks a mark on screen as the map zoom increases", () => {
+    assert.equal(zoomedMarkScale(1), 1)
+    const atTwo = 2 * zoomedMarkScale(2)
+    const atFour = 4 * zoomedMarkScale(4)
+    assert.ok(atTwo < 1 && atTwo > 0.6, `2x zoom screen size ${atTwo}`)
+    assert.ok(atFour < atTwo, `4x zoom should be smaller than 2x, got ${atFour} vs ${atTwo}`)
+    assert.ok(atFour > 0.4, `4x zoom should stay visible, got ${atFour}`)
+  })
+})
 
 describe("palette", () => {
   it("has dozens of distinct conference colors", () => {

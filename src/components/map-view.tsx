@@ -6,7 +6,7 @@ import { SchoolMark } from "@/components/school-mark"
 import { Button } from "@/components/ui/button"
 import { getMapPrefs, getServerMapPrefs, setMapPrefs, subscribeMapPrefs } from "@/lib/storage"
 import type { NorthAmericaGeo } from "@/lib/map-layout"
-import { layoutMap, mapDotRadius, mapSchoolMarkSize } from "@/lib/map-layout"
+import { layoutMap, mapDotRadius, mapSchoolMarkSize, zoomedMarkScale } from "@/lib/map-layout"
 import { publicUrl } from "@/lib/public-url"
 import {
   DropdownMenu,
@@ -71,6 +71,11 @@ export function MapView({
   const svgNode = useRef<SVGSVGElement | null>(null)
   const frameRef = useRef<Frame>({ width: 960, height: 640, main: 512 })
   const cameraRef = useRef<Camera>({ k: 1, x: 0, y: 0 })
+  const pointersRef = useRef(new Map<number, { x: number; y: number }>())
+  const pinchRef = useRef<{ dist: number; camera: Camera } | null>(null)
+  const panRef = useRef<{ x: number; y: number; camX: number; camY: number; k: number } | null>(null)
+  const tapRef = useRef<{ t: number; x: number; y: number } | null>(null)
+  const skipTapRef = useRef(false)
 
   useEffect(() => {
     let cancelled = false
@@ -156,41 +161,113 @@ export function MapView({
     setCamera(next)
   }
 
+  function svgPoint(handle: SVGSVGElement, clientX: number, clientY: number) {
+    const frame = frameRef.current
+    const rect = handle.getBoundingClientRect()
+    return {
+      x: ((clientX - rect.left) / rect.width) * frame.width,
+      y: ((clientY - rect.top) / rect.height) * frame.height,
+    }
+  }
+
+  function applyCamera(next: Camera) {
+    cameraRef.current = next
+    setCamera(next)
+  }
+
   function onPointerDown(event: ReactPointerEvent<SVGSVGElement>) {
     if (event.button !== 0) return
-    const target = event.target
-    if (target instanceof Element && target.closest("[data-map-inset]")) return
+    const onInset = event.target instanceof Element && Boolean(event.target.closest("[data-map-inset]"))
+    if (onInset && pointersRef.current.size === 0) return
+    event.preventDefault()
     event.stopPropagation()
     const handle = event.currentTarget
     handle.setPointerCapture(event.pointerId)
-    const origin = {
-      x: event.clientX,
-      y: event.clientY,
-      camX: cameraRef.current.x,
-      camY: cameraRef.current.y,
-      k: cameraRef.current.k,
+    pointersRef.current.set(event.pointerId, { x: event.clientX, y: event.clientY })
+    if (pointersRef.current.size === 1) {
+      panRef.current = {
+        x: event.clientX,
+        y: event.clientY,
+        camX: cameraRef.current.x,
+        camY: cameraRef.current.y,
+        k: cameraRef.current.k,
+      }
+      pinchRef.current = null
+    } else if (pointersRef.current.size >= 2) {
+      const [first, second] = [...pointersRef.current.values()]
+      panRef.current = null
+      tapRef.current = null
+      skipTapRef.current = true
+      pinchRef.current = {
+        dist: Math.max(1, Math.hypot(second.x - first.x, second.y - first.y)),
+        camera: cameraRef.current,
+      }
     }
     const move = (ev: PointerEvent) => {
-      if (ev.pointerId !== event.pointerId) return
-      const frame = frameRef.current
+      if (!pointersRef.current.has(ev.pointerId)) return
+      pointersRef.current.set(ev.pointerId, { x: ev.clientX, y: ev.clientY })
       const rect = handle.getBoundingClientRect()
       if (rect.width < 1 || rect.height < 1) return
-      const dx = ((ev.clientX - origin.x) / rect.width) * frame.width
-      const dy = ((ev.clientY - origin.y) / rect.height) * frame.height
-      const next = clampCamera({ k: origin.k, x: origin.camX + dx, y: origin.camY + dy }, frame)
-      cameraRef.current = next
-      setCamera(next)
+      const frame = frameRef.current
+      const pinch = pinchRef.current
+      if (pinch && pointersRef.current.size >= 2) {
+        const [first, second] = [...pointersRef.current.values()]
+        const dist = Math.hypot(second.x - first.x, second.y - first.y)
+        const mid = svgPoint(handle, (first.x + second.x) / 2, (first.y + second.y) / 2)
+        const next = zoomAt(pinch.camera, dist / pinch.dist, mid.x, mid.y, frame)
+        applyCamera(next)
+        return
+      }
+      const pan = panRef.current
+      if (!pan) return
+      const dx = ((ev.clientX - pan.x) / rect.width) * frame.width
+      const dy = ((ev.clientY - pan.y) / rect.height) * frame.height
+      if (Math.hypot(ev.clientX - pan.x, ev.clientY - pan.y) > 8) tapRef.current = null
+      applyCamera(clampCamera({ k: pan.k, x: pan.camX + dx, y: pan.camY + dy }, frame))
     }
     const end = (ev: PointerEvent) => {
-      if (ev.pointerId !== event.pointerId) return
-      handle.removeEventListener("pointermove", move)
-      handle.removeEventListener("pointerup", end)
-      handle.removeEventListener("pointercancel", end)
+      if (!pointersRef.current.has(ev.pointerId)) return
+      const start = pointersRef.current.get(ev.pointerId)
+      pointersRef.current.delete(ev.pointerId)
       if (handle.hasPointerCapture(ev.pointerId)) handle.releasePointerCapture(ev.pointerId)
+      if (pointersRef.current.size === 0) {
+        handle.removeEventListener("pointermove", move)
+        handle.removeEventListener("pointerup", end)
+        handle.removeEventListener("pointercancel", end)
+        pinchRef.current = null
+        panRef.current = null
+        const skipTap = skipTapRef.current
+        skipTapRef.current = false
+        if (!skipTap && start && Math.hypot(ev.clientX - start.x, ev.clientY - start.y) < 10) {
+          const now = performance.now()
+          const previous = tapRef.current
+          if (previous && now - previous.t < 320 && Math.hypot(ev.clientX - previous.x, ev.clientY - previous.y) < 28) {
+            const point = svgPoint(handle, ev.clientX, ev.clientY)
+            const frame = frameRef.current
+            const factor = cameraRef.current.k > 2.5 ? 1 / cameraRef.current.k : 1.8
+            applyCamera(zoomAt(cameraRef.current, factor, point.x, point.y, frame))
+            tapRef.current = null
+          } else {
+            tapRef.current = { t: now, x: ev.clientX, y: ev.clientY }
+          }
+        }
+        return
+      }
+      const [remaining] = [...pointersRef.current.values()]
+      panRef.current = {
+        x: remaining.x,
+        y: remaining.y,
+        camX: cameraRef.current.x,
+        camY: cameraRef.current.y,
+        k: cameraRef.current.k,
+      }
+      pinchRef.current = null
     }
-    handle.addEventListener("pointermove", move)
-    handle.addEventListener("pointerup", end)
-    handle.addEventListener("pointercancel", end)
+    if (pointersRef.current.size === 1) {
+      handle.addEventListener("pointermove", move)
+      handle.addEventListener("pointerup", end)
+      handle.addEventListener("pointercancel", end)
+    }
   }
 
   return (
@@ -202,7 +279,7 @@ export function MapView({
         conferences={conferences}
         mode={mode}
       />
-      <div ref={setNode} className={cn("relative", className)}>
+      <div ref={setNode} className={cn("relative touch-none", className)}>
         {status === "loading" && (
           <div className="flex h-full min-h-[22rem] items-center justify-center rounded-2xl border bg-card text-sm text-muted-foreground">
             Drawing the map…
@@ -239,10 +316,10 @@ export function MapView({
         )}
         {scene && (
           <div className="absolute top-3 right-3 z-10 flex flex-col gap-1">
-            <Button type="button" size="icon-sm" variant="outline" className="bg-background shadow-sm" aria-label="Zoom in" data-testid="map-zoom-in" onClick={() => nudge(1.25)}>
+            <Button type="button" size="icon-lg" variant="outline" className="size-11 bg-background shadow-sm sm:size-9" aria-label="Zoom in" data-testid="map-zoom-in" onClick={() => nudge(1.25)}>
               <Plus />
             </Button>
-            <Button type="button" size="icon-sm" variant="outline" className="bg-background shadow-sm" aria-label="Zoom out" data-testid="map-zoom-out" onClick={() => nudge(0.8)}>
+            <Button type="button" size="icon-lg" variant="outline" className="size-11 bg-background shadow-sm sm:size-9" aria-label="Zoom out" data-testid="map-zoom-out" onClick={() => nudge(0.8)}>
               <Minus />
             </Button>
           </div>
@@ -405,6 +482,7 @@ function MapBody({
   const cx = scene.width / 2
   const cy = scene.mainHeight / 2
   const transform = `translate(${cx + camera.x} ${cy + camera.y}) scale(${camera.k}) translate(${-cx} ${-cy})`
+  const markScale = zoomedMarkScale(camera.k)
   return (
     <>
       <g clipPath={`url(#${clipId})`}>
@@ -445,7 +523,9 @@ function MapBody({
             />
           ))}
           {scene.dots.map((dot) => (
-            <SchoolOrDot key={dot.id} dot={dot} colorBy={colorBy} size={mapSchoolMarkSize(scene.width)} radius={mapDotRadius(scene.width)} />
+            <g key={dot.id} transform={`translate(${dot.x} ${dot.y}) scale(${markScale}) translate(${-dot.x} ${-dot.y})`}>
+              <SchoolOrDot dot={dot} colorBy={colorBy} size={mapSchoolMarkSize(scene.width)} radius={mapDotRadius(scene.width)} />
+            </g>
           ))}
           {scene.blobs.map((blob) =>
             blob.label ? (

@@ -7,13 +7,11 @@ import { layoutMap, mapDotRadius, mapSchoolMarkSize, zoomedMarkScale, type North
 import type { Conference, School } from "./types.ts"
 
 describe("zoomed school marks", () => {
-  it("shrinks a mark on screen as the map zoom increases", () => {
-    assert.equal(zoomedMarkScale(1), 1)
-    const atTwo = 2 * zoomedMarkScale(2)
-    const atFour = 4 * zoomedMarkScale(4)
-    assert.ok(atTwo < 1 && atTwo > 0.6, `2x zoom screen size ${atTwo}`)
-    assert.ok(atFour < atTwo, `4x zoom should be smaller than 2x, got ${atFour} vs ${atTwo}`)
-    assert.ok(atFour > 0.4, `4x zoom should stay visible, got ${atFour}`)
+  it("keeps a mark the same size on screen at every zoom", () => {
+    for (const zoom of [1, 1.25, 2, 2.44140625, 4, 8]) {
+      const onScreen = zoom * zoomedMarkScale(zoom)
+      assert.ok(Math.abs(onScreen - 1) < 1e-9, `${zoom}x screen size ${onScreen}`)
+    }
   })
 })
 

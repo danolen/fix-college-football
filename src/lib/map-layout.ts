@@ -44,12 +44,12 @@ export function mapDotRadius(width: number) {
   return Math.max(5.5, width / 130)
 }
 
-// The map group is already scaled by the camera zoom. This extra scale makes a
-// school mark smaller on screen as the user zooms in, so nearby schools separate
-// instead of turning into large overlapping circles.
+// The map group is already scaled by the camera zoom. This extra scale cancels
+// that zoom on each school mark, so a dot stays the same size on the screen
+// while the land around it grows.
 export function zoomedMarkScale(zoom: number) {
   const k = Math.max(1, zoom)
-  return k ** -1.5
+  return 1 / k
 }
 
 export function mapSchoolMarkSize(width: number, inset = false) {
